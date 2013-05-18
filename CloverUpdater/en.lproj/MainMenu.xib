@@ -650,7 +650,7 @@
 							<object class="NSTextFieldCell" key="NSCell" id="341423761">
 								<int key="NSCellFlags">67108864</int>
 								<int key="NSCellFlags2">138412032</int>
-								<string key="NSContents">New Clover revision %s is available - you have %s. Would you like to download newer version?</string>
+								<string key="NSContents">New Clover revision %s is available - you have %s. Would you like to download newer reversion?</string>
 								<object class="NSFont" key="NSSupport" id="337044074">
 									<string key="NSName">LucidaGrande</string>
 									<double key="NSSize">13</double>
@@ -692,7 +692,7 @@
 							<object class="NSButtonCell" key="NSCell" id="588665765">
 								<int key="NSCellFlags">67108864</int>
 								<int key="NSCellFlags2">134217728</int>
-								<string key="NSContents">Not Now</string>
+								<string key="NSContents">Not now</string>
 								<object class="NSFont" key="NSSupport" id="349761896">
 									<string key="NSName">LucidaGrande</string>
 									<double key="NSSize">13</double>
