@@ -1,0 +1,8 @@
+.DS_Store
+*.app
+*.menu
+*.kext
+*.pkg
+*.octest
+*.prefpane
+xcuserdata

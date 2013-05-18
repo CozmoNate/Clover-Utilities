@@ -1,0 +1,542 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7E1F573C17475FCE00780A84 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E1F573B17475FCE00780A84 /* SenTestingKit.framework */; };
+		7E1F573D17475FCE00780A84 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A256117434A5500E87EF8 /* Cocoa.framework */; };
+		7E1F574717475FCE00780A84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E1F574517475FCE00780A84 /* InfoPlist.strings */; };
+		7E1F574A17475FCE00780A84 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1F574917475FCE00780A84 /* Test.m */; };
+		7E4A256217434A5500E87EF8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A256117434A5500E87EF8 /* Cocoa.framework */; };
+		7E4A256417434A5500E87EF8 /* PreferencePanes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A256317434A5500E87EF8 /* PreferencePanes.framework */; };
+		7E4A256E17434A5500E87EF8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A256C17434A5500E87EF8 /* InfoPlist.strings */; };
+		7E4A257217434A5500E87EF8 /* CloverPrefPane.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4A257117434A5500E87EF8 /* CloverPrefPane.m */; };
+		7E4A257417434A5500E87EF8 /* CloverPrefPane.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A257317434A5500E87EF8 /* CloverPrefPane.tiff */; };
+		7E4A257717434A5500E87EF8 /* CloverPrefPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A257517434A5500E87EF8 /* CloverPrefPane.xib */; };
+		7E4A257E17434DBB00E87EF8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A257D17434DBB00E87EF8 /* Security.framework */; };
+		7E4A258017434DF300E87EF8 /* SecurityInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A257F17434DF300E87EF8 /* SecurityInterface.framework */; };
+		7E4A25841743527700E87EF8 /* CloverTitle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A25831743527700E87EF8 /* CloverTitle.png */; };
+		7E4A2589174378A700E87EF8 /* CloverLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A2588174378A700E87EF8 /* CloverLogo.png */; };
+		7E4A25911743846500E87EF8 /* AppleStyle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A258C1743846500E87EF8 /* AppleStyle.png */; };
+		7E4A25921743846500E87EF8 /* black_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A258D1743846500E87EF8 /* black_green.png */; };
+		7E4A25931743846500E87EF8 /* iClover.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A258E1743846500E87EF8 /* iClover.png */; };
+		7E4A25941743846500E87EF8 /* metal.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A258F1743846500E87EF8 /* metal.png */; };
+		7E4A25951743846500E87EF8 /* mrengles.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A25901743846500E87EF8 /* mrengles.png */; };
+		7EA15D6B1743CE27006E3C1E /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA15D6A1743CE27006E3C1E /* IOKit.framework */; };
+		7EA42A54174806F1007328AF /* NoPreview.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EA42A53174806F1007328AF /* NoPreview.png */; };
+		7EA6B85F1747CB440018B340 /* themes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EA6B85E1747CB440018B340 /* themes.plist */; };
+		7EE3BC6E17440E5600144659 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EE3BC6D17440E5600144659 /* ServiceManagement.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		7E1F573A17475FCE00780A84 /* Test.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E1F573B17475FCE00780A84 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		7E1F574417475FCE00780A84 /* Test-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Test-Info.plist"; sourceTree = "<group>"; };
+		7E1F574617475FCE00780A84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7E1F574817475FCE00780A84 /* Test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
+		7E1F574917475FCE00780A84 /* Test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
+		7E1F574B17475FCE00780A84 /* Test-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Test-Prefix.pch"; sourceTree = "<group>"; };
+		7E4A255E17434A5500E87EF8 /* CloverPrefs.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = CloverPrefs.prefPane; path = Clover.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E4A256117434A5500E87EF8 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		7E4A256317434A5500E87EF8 /* PreferencePanes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PreferencePanes.framework; path = System/Library/Frameworks/PreferencePanes.framework; sourceTree = SDKROOT; };
+		7E4A256617434A5500E87EF8 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		7E4A256717434A5500E87EF8 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		7E4A256817434A5500E87EF8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7E4A256B17434A5500E87EF8 /* CloverPrefs-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CloverPrefs-Info.plist"; sourceTree = "<group>"; };
+		7E4A256D17434A5500E87EF8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7E4A256F17434A5500E87EF8 /* CloverPrefs-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CloverPrefs-Prefix.pch"; sourceTree = "<group>"; };
+		7E4A257017434A5500E87EF8 /* CloverPrefPane.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CloverPrefPane.h; sourceTree = "<group>"; };
+		7E4A257117434A5500E87EF8 /* CloverPrefPane.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CloverPrefPane.m; sourceTree = "<group>"; };
+		7E4A257317434A5500E87EF8 /* CloverPrefPane.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = CloverPrefPane.tiff; sourceTree = "<group>"; };
+		7E4A257617434A5500E87EF8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CloverPrefPane.xib; sourceTree = "<group>"; };
+		7E4A257D17434DBB00E87EF8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		7E4A257F17434DF300E87EF8 /* SecurityInterface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityInterface.framework; path = System/Library/Frameworks/SecurityInterface.framework; sourceTree = SDKROOT; };
+		7E4A25831743527700E87EF8 /* CloverTitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloverTitle.png; sourceTree = "<group>"; };
+		7E4A25851743531E00E87EF8 /* CloverTitle.psd */ = {isa = PBXFileReference; lastKnownFileType = file; name = CloverTitle.psd; path = CloverPrefPane/CloverTitle.psd; sourceTree = "<group>"; };
+		7E4A2588174378A700E87EF8 /* CloverLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloverLogo.png; sourceTree = "<group>"; };
+		7E4A258C1743846500E87EF8 /* AppleStyle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppleStyle.png; sourceTree = "<group>"; };
+		7E4A258D1743846500E87EF8 /* black_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = black_green.png; sourceTree = "<group>"; };
+		7E4A258E1743846500E87EF8 /* iClover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iClover.png; sourceTree = "<group>"; };
+		7E4A258F1743846500E87EF8 /* metal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = metal.png; sourceTree = "<group>"; };
+		7E4A25901743846500E87EF8 /* mrengles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mrengles.png; sourceTree = "<group>"; };
+		7EA15D6A1743CE27006E3C1E /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		7EA42A53174806F1007328AF /* NoPreview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NoPreview.png; sourceTree = "<group>"; };
+		7EA6B85E1747CB440018B340 /* themes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = themes.plist; sourceTree = "<group>"; };
+		7EE3BC6D17440E5600144659 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7E1F573617475FCE00780A84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E1F573C17475FCE00780A84 /* SenTestingKit.framework in Frameworks */,
+				7E1F573D17475FCE00780A84 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E4A255917434A5500E87EF8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7EE3BC6E17440E5600144659 /* ServiceManagement.framework in Frameworks */,
+				7EA15D6B1743CE27006E3C1E /* IOKit.framework in Frameworks */,
+				7E4A258017434DF300E87EF8 /* SecurityInterface.framework in Frameworks */,
+				7E4A257E17434DBB00E87EF8 /* Security.framework in Frameworks */,
+				7E4A256217434A5500E87EF8 /* Cocoa.framework in Frameworks */,
+				7E4A256417434A5500E87EF8 /* PreferencePanes.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7E1F574217475FCE00780A84 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				7E1F574817475FCE00780A84 /* Test.h */,
+				7E1F574917475FCE00780A84 /* Test.m */,
+				7E1F574317475FCE00780A84 /* Supporting Files */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
+		7E1F574317475FCE00780A84 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7E1F574417475FCE00780A84 /* Test-Info.plist */,
+				7E1F574517475FCE00780A84 /* InfoPlist.strings */,
+				7E1F574B17475FCE00780A84 /* Test-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7E4A255317434A5500E87EF8 = {
+			isa = PBXGroup;
+			children = (
+				7E4A256917434A5500E87EF8 /* CloverPrefPane */,
+				7E4A258117434EAD00E87EF8 /* Graphics */,
+				7E1F574217475FCE00780A84 /* Test */,
+				7E4A256017434A5500E87EF8 /* Frameworks */,
+				7E4A255F17434A5500E87EF8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7E4A255F17434A5500E87EF8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7E4A255E17434A5500E87EF8 /* CloverPrefs.prefPane */,
+				7E1F573A17475FCE00780A84 /* Test.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7E4A256017434A5500E87EF8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7E4A256617434A5500E87EF8 /* AppKit.framework */,
+				7E4A256117434A5500E87EF8 /* Cocoa.framework */,
+				7E4A256717434A5500E87EF8 /* CoreData.framework */,
+				7E4A256817434A5500E87EF8 /* Foundation.framework */,
+				7EA15D6A1743CE27006E3C1E /* IOKit.framework */,
+				7E4A256317434A5500E87EF8 /* PreferencePanes.framework */,
+				7E4A257D17434DBB00E87EF8 /* Security.framework */,
+				7E4A257F17434DF300E87EF8 /* SecurityInterface.framework */,
+				7EE3BC6D17440E5600144659 /* ServiceManagement.framework */,
+				7E1F573B17475FCE00780A84 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7E4A256917434A5500E87EF8 /* CloverPrefPane */ = {
+			isa = PBXGroup;
+			children = (
+				7E4A257017434A5500E87EF8 /* CloverPrefPane.h */,
+				7E4A257117434A5500E87EF8 /* CloverPrefPane.m */,
+				7E4A257517434A5500E87EF8 /* CloverPrefPane.xib */,
+				7E4A256A17434A5500E87EF8 /* Supporting Files */,
+			);
+			path = CloverPrefPane;
+			sourceTree = "<group>";
+		};
+		7E4A256A17434A5500E87EF8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7E4A258B1743845A00E87EF8 /* Themes */,
+				7E4A258A17437ADA00E87EF8 /* Icons */,
+				7E4A256B17434A5500E87EF8 /* CloverPrefs-Info.plist */,
+				7E4A256C17434A5500E87EF8 /* InfoPlist.strings */,
+				7E4A256F17434A5500E87EF8 /* CloverPrefs-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7E4A258117434EAD00E87EF8 /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				7E4A25851743531E00E87EF8 /* CloverTitle.psd */,
+			);
+			name = Graphics;
+			sourceTree = "<group>";
+		};
+		7E4A258A17437ADA00E87EF8 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				7E4A25831743527700E87EF8 /* CloverTitle.png */,
+				7E4A2588174378A700E87EF8 /* CloverLogo.png */,
+				7E4A257317434A5500E87EF8 /* CloverPrefPane.tiff */,
+			);
+			name = Icons;
+			sourceTree = "<group>";
+		};
+		7E4A258B1743845A00E87EF8 /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				7EA6B85E1747CB440018B340 /* themes.plist */,
+				7EA42A53174806F1007328AF /* NoPreview.png */,
+				7E4A258C1743846500E87EF8 /* AppleStyle.png */,
+				7E4A258D1743846500E87EF8 /* black_green.png */,
+				7E4A258E1743846500E87EF8 /* iClover.png */,
+				7E4A258F1743846500E87EF8 /* metal.png */,
+				7E4A25901743846500E87EF8 /* mrengles.png */,
+			);
+			name = Themes;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		7E4A255A17434A5500E87EF8 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		7E1F573917475FCE00780A84 /* Test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E1F574E17475FCE00780A84 /* Build configuration list for PBXNativeTarget "Test" */;
+			buildPhases = (
+				7E1F573517475FCE00780A84 /* Sources */,
+				7E1F573617475FCE00780A84 /* Frameworks */,
+				7E1F573717475FCE00780A84 /* Resources */,
+				7E1F573817475FCE00780A84 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Test;
+			productName = Test;
+			productReference = 7E1F573A17475FCE00780A84 /* Test.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+		7E4A255D17434A5500E87EF8 /* Clover */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E4A257A17434A5500E87EF8 /* Build configuration list for PBXNativeTarget "Clover" */;
+			buildPhases = (
+				7E4A255817434A5500E87EF8 /* Sources */,
+				7E4A255917434A5500E87EF8 /* Frameworks */,
+				7E4A255A17434A5500E87EF8 /* Headers */,
+				7E4A255B17434A5500E87EF8 /* Resources */,
+				7E4A255C17434A5500E87EF8 /* Rez */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Clover;
+			productName = CloverPrefPane;
+			productReference = 7E4A255E17434A5500E87EF8 /* CloverPrefs.prefPane */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7E4A255417434A5500E87EF8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = Kozlek;
+			};
+			buildConfigurationList = 7E4A255717434A5500E87EF8 /* Build configuration list for PBXProject "CloverPrefs" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7E4A255317434A5500E87EF8;
+			productRefGroup = 7E4A255F17434A5500E87EF8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7E4A255D17434A5500E87EF8 /* Clover */,
+				7E1F573917475FCE00780A84 /* Test */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7E1F573717475FCE00780A84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E1F574717475FCE00780A84 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E4A255B17434A5500E87EF8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E4A256E17434A5500E87EF8 /* InfoPlist.strings in Resources */,
+				7E4A257417434A5500E87EF8 /* CloverPrefPane.tiff in Resources */,
+				7E4A25841743527700E87EF8 /* CloverTitle.png in Resources */,
+				7E4A2589174378A700E87EF8 /* CloverLogo.png in Resources */,
+				7E4A25911743846500E87EF8 /* AppleStyle.png in Resources */,
+				7E4A25921743846500E87EF8 /* black_green.png in Resources */,
+				7E4A25931743846500E87EF8 /* iClover.png in Resources */,
+				7E4A25941743846500E87EF8 /* metal.png in Resources */,
+				7E4A25951743846500E87EF8 /* mrengles.png in Resources */,
+				7E4A257717434A5500E87EF8 /* CloverPrefPane.xib in Resources */,
+				7EA6B85F1747CB440018B340 /* themes.plist in Resources */,
+				7EA42A54174806F1007328AF /* NoPreview.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXRezBuildPhase section */
+		7E4A255C17434A5500E87EF8 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXRezBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7E1F573817475FCE00780A84 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7E1F573517475FCE00780A84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E1F574A17475FCE00780A84 /* Test.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E4A255817434A5500E87EF8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E4A257217434A5500E87EF8 /* CloverPrefPane.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		7E1F574517475FCE00780A84 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7E1F574617475FCE00780A84 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		7E4A256C17434A5500E87EF8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7E4A256D17434A5500E87EF8 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		7E4A257517434A5500E87EF8 /* CloverPrefPane.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7E4A257617434A5500E87EF8 /* en */,
+			);
+			name = CloverPrefPane.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7E1F574C17475FCE00780A84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Test/Test-Prefix.pch";
+				INFOPLIST_FILE = "Test/Test-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		7E1F574D17475FCE00780A84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Test/Test-Prefix.pch";
+				INFOPLIST_FILE = "Test/Test-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+		7E4A257817434A5500E87EF8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CONFIGURATION_BUILD_DIR = Binaries;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx10.7;
+			};
+			name = Debug;
+		};
+		7E4A257917434A5500E87EF8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CONFIGURATION_BUILD_DIR = Binaries;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx10.7;
+			};
+			name = Release;
+		};
+		7E4A257B17434A5500E87EF8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CloverPrefPane/CloverPrefs-Prefix.pch";
+				INFOPLIST_FILE = "CloverPrefPane/CloverPrefs-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = prefPane;
+			};
+			name = Debug;
+		};
+		7E4A257C17434A5500E87EF8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CloverPrefPane/CloverPrefs-Prefix.pch";
+				INFOPLIST_FILE = "CloverPrefPane/CloverPrefs-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = prefPane;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7E1F574E17475FCE00780A84 /* Build configuration list for PBXNativeTarget "Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E1F574C17475FCE00780A84 /* Debug */,
+				7E1F574D17475FCE00780A84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7E4A255717434A5500E87EF8 /* Build configuration list for PBXProject "CloverPrefs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E4A257817434A5500E87EF8 /* Debug */,
+				7E4A257917434A5500E87EF8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7E4A257A17434A5500E87EF8 /* Build configuration list for PBXNativeTarget "Clover" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E4A257B17434A5500E87EF8 /* Debug */,
+				7E4A257C17434A5500E87EF8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7E4A255417434A5500E87EF8 /* Project object */;
+}
