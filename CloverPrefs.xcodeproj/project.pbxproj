@@ -11,6 +11,7 @@
 		7E1F573D17475FCE00780A84 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A256117434A5500E87EF8 /* Cocoa.framework */; };
 		7E1F574717475FCE00780A84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E1F574517475FCE00780A84 /* InfoPlist.strings */; };
 		7E1F574A17475FCE00780A84 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1F574917475FCE00780A84 /* Test.m */; };
+		7E44151D174AAAE60012952E /* NoPreview.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E44151C174AAAE60012952E /* NoPreview.png */; };
 		7E4A256217434A5500E87EF8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A256117434A5500E87EF8 /* Cocoa.framework */; };
 		7E4A256417434A5500E87EF8 /* PreferencePanes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A256317434A5500E87EF8 /* PreferencePanes.framework */; };
 		7E4A256E17434A5500E87EF8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A256C17434A5500E87EF8 /* InfoPlist.strings */; };
@@ -21,16 +22,62 @@
 		7E4A258017434DF300E87EF8 /* SecurityInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A257F17434DF300E87EF8 /* SecurityInterface.framework */; };
 		7E4A25841743527700E87EF8 /* CloverTitle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A25831743527700E87EF8 /* CloverTitle.png */; };
 		7E4A2589174378A700E87EF8 /* CloverLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A2588174378A700E87EF8 /* CloverLogo.png */; };
-		7E4A25911743846500E87EF8 /* AppleStyle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A258C1743846500E87EF8 /* AppleStyle.png */; };
-		7E4A25921743846500E87EF8 /* black_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A258D1743846500E87EF8 /* black_green.png */; };
-		7E4A25931743846500E87EF8 /* iClover.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A258E1743846500E87EF8 /* iClover.png */; };
-		7E4A25941743846500E87EF8 /* metal.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A258F1743846500E87EF8 /* metal.png */; };
-		7E4A25951743846500E87EF8 /* mrengles.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A25901743846500E87EF8 /* mrengles.png */; };
+		7E81D7C7174AB19C00F58EFC /* screenshot.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E81D7B9174AB14500F58EFC /* screenshot.png */; };
+		7E81D7C8174AB1B500F58EFC /* theme.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E81D7BA174AB14500F58EFC /* theme.plist */; };
 		7EA15D6B1743CE27006E3C1E /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA15D6A1743CE27006E3C1E /* IOKit.framework */; };
 		7EA42A54174806F1007328AF /* NoPreview.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EA42A53174806F1007328AF /* NoPreview.png */; };
-		7EA6B85F1747CB440018B340 /* themes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EA6B85E1747CB440018B340 /* themes.plist */; };
 		7EE3BC6E17440E5600144659 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EE3BC6D17440E5600144659 /* ServiceManagement.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7E81D7B6174AB11B00F58EFC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Themes/AppleStyle;
+			dstSubfolderSpec = 7;
+			files = (
+				7E81D7C8174AB1B500F58EFC /* theme.plist in CopyFiles */,
+				7E81D7C7174AB19C00F58EFC /* screenshot.png in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E81D7C9174AB1DB00F58EFC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Themes/black_green;
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E81D7CC174AB20700F58EFC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Themes/iClover;
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E81D7CF174AB21900F58EFC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Themes/metal;
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E81D7D2174AB22800F58EFC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Themes/mrengles;
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		7E1F573A17475FCE00780A84 /* Test.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -40,7 +87,8 @@
 		7E1F574817475FCE00780A84 /* Test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
 		7E1F574917475FCE00780A84 /* Test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
 		7E1F574B17475FCE00780A84 /* Test-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Test-Prefix.pch"; sourceTree = "<group>"; };
-		7E4A255E17434A5500E87EF8 /* CloverPrefs.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = CloverPrefs.prefPane; path = Clover.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E44151C174AAAE60012952E /* NoPreview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NoPreview.png; sourceTree = "<group>"; };
+		7E4A255E17434A5500E87EF8 /* Clover.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Clover.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E4A256117434A5500E87EF8 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		7E4A256317434A5500E87EF8 /* PreferencePanes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PreferencePanes.framework; path = System/Library/Frameworks/PreferencePanes.framework; sourceTree = SDKROOT; };
 		7E4A256617434A5500E87EF8 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -58,14 +106,18 @@
 		7E4A25831743527700E87EF8 /* CloverTitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloverTitle.png; sourceTree = "<group>"; };
 		7E4A25851743531E00E87EF8 /* CloverTitle.psd */ = {isa = PBXFileReference; lastKnownFileType = file; name = CloverTitle.psd; path = CloverPrefPane/CloverTitle.psd; sourceTree = "<group>"; };
 		7E4A2588174378A700E87EF8 /* CloverLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloverLogo.png; sourceTree = "<group>"; };
-		7E4A258C1743846500E87EF8 /* AppleStyle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppleStyle.png; sourceTree = "<group>"; };
-		7E4A258D1743846500E87EF8 /* black_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = black_green.png; sourceTree = "<group>"; };
-		7E4A258E1743846500E87EF8 /* iClover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iClover.png; sourceTree = "<group>"; };
-		7E4A258F1743846500E87EF8 /* metal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = metal.png; sourceTree = "<group>"; };
-		7E4A25901743846500E87EF8 /* mrengles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mrengles.png; sourceTree = "<group>"; };
+		7E81D7B9174AB14500F58EFC /* screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot.png; sourceTree = "<group>"; };
+		7E81D7BA174AB14500F58EFC /* theme.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = theme.plist; sourceTree = "<group>"; };
+		7E81D7BC174AB14500F58EFC /* screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot.png; sourceTree = "<group>"; };
+		7E81D7BD174AB14500F58EFC /* theme.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = theme.plist; sourceTree = "<group>"; };
+		7E81D7BF174AB14500F58EFC /* screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot.png; sourceTree = "<group>"; };
+		7E81D7C0174AB14500F58EFC /* theme.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = theme.plist; sourceTree = "<group>"; };
+		7E81D7C2174AB14500F58EFC /* screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot.png; sourceTree = "<group>"; };
+		7E81D7C3174AB14500F58EFC /* theme.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = theme.plist; sourceTree = "<group>"; };
+		7E81D7C5174AB14500F58EFC /* screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot.png; sourceTree = "<group>"; };
+		7E81D7C6174AB14500F58EFC /* theme.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = theme.plist; sourceTree = "<group>"; };
 		7EA15D6A1743CE27006E3C1E /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		7EA42A53174806F1007328AF /* NoPreview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NoPreview.png; sourceTree = "<group>"; };
-		7EA6B85E1747CB440018B340 /* themes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = themes.plist; sourceTree = "<group>"; };
 		7EE3BC6D17440E5600144659 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -108,6 +160,7 @@
 		7E1F574317475FCE00780A84 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7E44151C174AAAE60012952E /* NoPreview.png */,
 				7E1F574417475FCE00780A84 /* Test-Info.plist */,
 				7E1F574517475FCE00780A84 /* InfoPlist.strings */,
 				7E1F574B17475FCE00780A84 /* Test-Prefix.pch */,
@@ -129,7 +182,7 @@
 		7E4A255F17434A5500E87EF8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7E4A255E17434A5500E87EF8 /* CloverPrefs.prefPane */,
+				7E4A255E17434A5500E87EF8 /* Clover.prefPane */,
 				7E1F573A17475FCE00780A84 /* Test.octest */,
 			);
 			name = Products;
@@ -166,7 +219,7 @@
 		7E4A256A17434A5500E87EF8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				7E4A258B1743845A00E87EF8 /* Themes */,
+				7E81D7B7174AB14500F58EFC /* Themes */,
 				7E4A258A17437ADA00E87EF8 /* Icons */,
 				7E4A256B17434A5500E87EF8 /* CloverPrefs-Info.plist */,
 				7E4A256C17434A5500E87EF8 /* InfoPlist.strings */,
@@ -186,6 +239,7 @@
 		7E4A258A17437ADA00E87EF8 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				7EA42A53174806F1007328AF /* NoPreview.png */,
 				7E4A25831743527700E87EF8 /* CloverTitle.png */,
 				7E4A2588174378A700E87EF8 /* CloverLogo.png */,
 				7E4A257317434A5500E87EF8 /* CloverPrefPane.tiff */,
@@ -193,18 +247,61 @@
 			name = Icons;
 			sourceTree = "<group>";
 		};
-		7E4A258B1743845A00E87EF8 /* Themes */ = {
+		7E81D7B7174AB14500F58EFC /* Themes */ = {
 			isa = PBXGroup;
 			children = (
-				7EA6B85E1747CB440018B340 /* themes.plist */,
-				7EA42A53174806F1007328AF /* NoPreview.png */,
-				7E4A258C1743846500E87EF8 /* AppleStyle.png */,
-				7E4A258D1743846500E87EF8 /* black_green.png */,
-				7E4A258E1743846500E87EF8 /* iClover.png */,
-				7E4A258F1743846500E87EF8 /* metal.png */,
-				7E4A25901743846500E87EF8 /* mrengles.png */,
+				7E81D7B8174AB14500F58EFC /* AppleStyle */,
+				7E81D7BB174AB14500F58EFC /* black_green */,
+				7E81D7BE174AB14500F58EFC /* iClover */,
+				7E81D7C1174AB14500F58EFC /* metal */,
+				7E81D7C4174AB14500F58EFC /* mrengles */,
 			);
-			name = Themes;
+			path = Themes;
+			sourceTree = "<group>";
+		};
+		7E81D7B8174AB14500F58EFC /* AppleStyle */ = {
+			isa = PBXGroup;
+			children = (
+				7E81D7B9174AB14500F58EFC /* screenshot.png */,
+				7E81D7BA174AB14500F58EFC /* theme.plist */,
+			);
+			path = AppleStyle;
+			sourceTree = "<group>";
+		};
+		7E81D7BB174AB14500F58EFC /* black_green */ = {
+			isa = PBXGroup;
+			children = (
+				7E81D7BC174AB14500F58EFC /* screenshot.png */,
+				7E81D7BD174AB14500F58EFC /* theme.plist */,
+			);
+			path = black_green;
+			sourceTree = "<group>";
+		};
+		7E81D7BE174AB14500F58EFC /* iClover */ = {
+			isa = PBXGroup;
+			children = (
+				7E81D7BF174AB14500F58EFC /* screenshot.png */,
+				7E81D7C0174AB14500F58EFC /* theme.plist */,
+			);
+			path = iClover;
+			sourceTree = "<group>";
+		};
+		7E81D7C1174AB14500F58EFC /* metal */ = {
+			isa = PBXGroup;
+			children = (
+				7E81D7C2174AB14500F58EFC /* screenshot.png */,
+				7E81D7C3174AB14500F58EFC /* theme.plist */,
+			);
+			path = metal;
+			sourceTree = "<group>";
+		};
+		7E81D7C4174AB14500F58EFC /* mrengles */ = {
+			isa = PBXGroup;
+			children = (
+				7E81D7C5174AB14500F58EFC /* screenshot.png */,
+				7E81D7C6174AB14500F58EFC /* theme.plist */,
+			);
+			path = mrengles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,6 +344,11 @@
 				7E4A255A17434A5500E87EF8 /* Headers */,
 				7E4A255B17434A5500E87EF8 /* Resources */,
 				7E4A255C17434A5500E87EF8 /* Rez */,
+				7E81D7B6174AB11B00F58EFC /* CopyFiles */,
+				7E81D7C9174AB1DB00F58EFC /* CopyFiles */,
+				7E81D7CC174AB20700F58EFC /* CopyFiles */,
+				7E81D7CF174AB21900F58EFC /* CopyFiles */,
+				7E81D7D2174AB22800F58EFC /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -254,7 +356,7 @@
 			);
 			name = Clover;
 			productName = CloverPrefPane;
-			productReference = 7E4A255E17434A5500E87EF8 /* CloverPrefs.prefPane */;
+			productReference = 7E4A255E17434A5500E87EF8 /* Clover.prefPane */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -290,6 +392,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E1F574717475FCE00780A84 /* InfoPlist.strings in Resources */,
+				7E44151D174AAAE60012952E /* NoPreview.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,13 +404,7 @@
 				7E4A257417434A5500E87EF8 /* CloverPrefPane.tiff in Resources */,
 				7E4A25841743527700E87EF8 /* CloverTitle.png in Resources */,
 				7E4A2589174378A700E87EF8 /* CloverLogo.png in Resources */,
-				7E4A25911743846500E87EF8 /* AppleStyle.png in Resources */,
-				7E4A25921743846500E87EF8 /* black_green.png in Resources */,
-				7E4A25931743846500E87EF8 /* iClover.png in Resources */,
-				7E4A25941743846500E87EF8 /* metal.png in Resources */,
-				7E4A25951743846500E87EF8 /* mrengles.png in Resources */,
 				7E4A257717434A5500E87EF8 /* CloverPrefPane.xib in Resources */,
-				7EA6B85F1747CB440018B340 /* themes.plist in Resources */,
 				7EA42A54174806F1007328AF /* NoPreview.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -398,7 +495,6 @@
 				INFOPLIST_FILE = "Test/Test-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -414,7 +510,6 @@
 				INFOPLIST_FILE = "Test/Test-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
@@ -423,7 +518,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -456,7 +551,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;

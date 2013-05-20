@@ -19,6 +19,7 @@
 
 @implementation CloverPrefPane
 
+
 - (NSDictionary *)diskutilList
 {
     if (nil == _diskutilList) {
@@ -64,22 +65,125 @@
 - (NSDictionary*)themesInfo
 {
     if (nil == _themesInfo) {
-        _themesInfo = [NSDictionary dictionaryWithContentsOfFile:[self.bundle pathForResource:@"themes" ofType:@"plist"]];
+        _themesInfo = [self getCloverThemesFromPath:[self.cloverPath stringByAppendingPathComponent:@"themes"]];
     }
     
     return _themesInfo;
 }
 
--(void)setCloverTheme:(NSString *)cloverTheme
+-(void)setThemesInfo:(NSDictionary *)themesInfo
 {
-    if (![_cloverTheme isEqualToString:cloverTheme]) {
-        _cloverTheme = cloverTheme;
+    if (nil == themesInfo) {
+        _themesInfo = [self getCloverThemesFromPath:[self.cloverPath stringByAppendingPathComponent:@"themes"]];
+    }
+    else {
+        _themesInfo = themesInfo;
+    }
+}
+
+- (NSString*)cloverPath
+{
+    return [[NSUserDefaults standardUserDefaults] stringForKey:@"pathToClover"];
+}
+
+- (void)setCloverPath:(NSString *)cloverPath
+{
+    if (![self.cloverPath isEqualToString:cloverPath]) {
+        [[NSUserDefaults standardUserDefaults] setObject:cloverPath forKey:@"pathToClover"];
         
-        NSDictionary *themeInfo = [[self themesInfo] objectForKey:[self cloverTheme]];
-        NSString *path = [self.bundle pathForResource:self.cloverTheme ofType:@"png"];
+        // Reset current themes db forsing it to reload from new path
+        [self setThemesInfo:nil];
+        [self setCloverTheme:_cloverTheme];
+    }
+}
+
+- (NSString*)cloverTheme
+{
+    if (!_cloverTheme) {
+        _cloverTheme = [self getNvramKey:"Clover.Theme"];
         
-        [self setCloverThemeImage:[[NSImage alloc] initWithContentsOfFile:path ? path : [self.bundle pathForResource:@"NoPreview" ofType:@"png"]]];
-        [self setCloverThemeInfo:themeInfo];
+        self.CloverThemeInfo = [[self themesInfo] objectForKey:_cloverTheme];
+    }
+    
+    return _cloverTheme;
+}
+
+- (void)setCloverTheme:(NSString *)cloverTheme
+{
+    if (![self.cloverTheme isEqualToString:cloverTheme]) {
+        [self setNvramKey:"Clover.Theme" value:[cloverTheme UTF8String]];
+    }
+    
+    self.CloverThemeInfo = [[self themesInfo] objectForKey:cloverTheme];
+}
+
+- (NSNumber*)cloverOldLogLineCount
+{
+    if (!_cloverOldLogLineCount) {
+        _cloverOldLogLineCount = [NSNumber numberWithInteger:[[self getNvramKey:"Clover.LogLineCount"] integerValue]];
+    }
+    
+    return _cloverOldLogLineCount;
+}
+
+-(void)setCloverOldLogLineCount:(NSNumber *)cloverOldLogLineCount
+{
+    if (![self.cloverOldLogLineCount isEqualToNumber:cloverOldLogLineCount]) {
+        _cloverOldLogLineCount = cloverOldLogLineCount;
+        
+        [self setNvramKey:"Clover.LogLineCount" value:[[NSString stringWithFormat:@"%ld", (long)[cloverOldLogLineCount integerValue]] UTF8String]];
+    }
+}
+
+-(NSString *)cloverLogEveryBoot
+{
+    if (!_cloverLogEveryBoot) {
+        _cloverLogEveryBoot = [self getNvramKey:"Clover.LogEveryBoot"];
+    }
+    
+    return _cloverLogEveryBoot;
+}
+
+-(void)setCloverLogEveryBoot:(NSString *)cloverLogEveryBoot
+{
+    if (![self.cloverLogEveryBoot isCaseInsensitiveLike:cloverLogEveryBoot]) {
+        _cloverLogEveryBoot = cloverLogEveryBoot;
+        [self setNvramKey:"Clover.LogEveryBoot" value:[cloverLogEveryBoot UTF8String]];
+    }
+}
+
+- (NSNumber*)cloverLogEveryBootEnabled
+{
+    if ([self.cloverLogEveryBoot isCaseInsensitiveLike:@"No"]) {
+        return [NSNumber numberWithBool:NO];
+    }
+    else if ([self.cloverLogEveryBoot isCaseInsensitiveLike:@"Yes"] || [_cloverLogEveryBoot integerValue] >= 0) {
+        return [NSNumber numberWithBool:YES];
+    }
+    
+    return [NSNumber numberWithBool:NO];
+}
+
+- (void)setCloverLogEveryBootEnabled:(NSNumber *)cloverTimestampLogsEnabled
+{
+    if (![self.cloverLogEveryBootEnabled isEqualToNumber:cloverTimestampLogsEnabled]) {
+        self.cloverLogEveryBoot = [cloverTimestampLogsEnabled boolValue] ? @"Yes" : @"No";
+    }
+}
+
+- (NSNumber*)cloverLogEveryBootLimit
+{
+    if ([self.cloverLogEveryBoot isCaseInsensitiveLike:@"No"] || [self.cloverLogEveryBoot isCaseInsensitiveLike:@"Yes"]) {
+        return [NSNumber numberWithInteger:0];
+    }
+
+    return [NSNumber numberWithInteger:[self.cloverLogEveryBoot integerValue]];
+}
+
+- (void)setCloverLogEveryBootLimit:(NSNumber *)cloverLogEveryBootLimit
+{
+    if (![self.cloverLogEveryBootLimit isEqualToNumber:cloverLogEveryBootLimit]) {
+        self.cloverLogEveryBoot = [NSString stringWithFormat:@"%ld", [cloverLogEveryBootLimit integerValue]];
     }
 }
 
@@ -217,22 +321,38 @@
     return _nvramPartitions;
 }
 
+- (NSArray*)booterPaths
+{
+    if (nil == _booterPaths) {
+        NSMutableArray *list = [[NSMutableArray alloc] init];
+
+        for (NSString *volume in [self volumes]) {
+            
+            NSString *path = [NSString stringWithFormat:@"/Volumes/%@/EFI/Clover", volume];
+
+            if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+                AddMenuItemToSourceList(list, ([NSString stringWithFormat:GetLocalizedString(@"Clover on %@"), volume]), path);
+            }
+        }
+        
+        _booterPaths = [NSArray arrayWithArray:list];
+    }
+    
+    return _booterPaths;
+}
+
+-(void)setBooterPaths:(NSArray *)booterPaths
+{
+    if ([_booterPaths isNotEqualTo:booterPaths]) {
+        _booterPaths = booterPaths;
+    }
+}
+
 - (void)mainViewDidLoad
 {
-    // Allow readwrite for accessing IORegistry
-    mach_port_t   masterPort;
     
-    kern_return_t result = IOMasterPort(bootstrap_port, &masterPort);
-    if (result != KERN_SUCCESS) {
-        NSLog(@"Error getting the IOMaster port: %s", mach_error_string(result));
-        exit(1);
-    }
-    
-    _gOptionsRef = IORegistryEntryFromPath(masterPort, "IODeviceTree:/options");
-    if (_gOptionsRef == 0) {
-        NSLog(@"NVRAM is not supported on this system");
-        exit(1);
-    }
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector: @selector(volumesChanged:) name:NSWorkspaceDidMountNotification object: nil];
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector: @selector(volumesChanged:) name:NSWorkspaceDidUnmountNotification object:nil];
     
     // Setup security.
 	AuthorizationItem items = {kAuthorizationRightExecute, 0, NULL, 0};
@@ -301,24 +421,6 @@
     [_checkNowButton setEnabled:[[NSFileManager defaultManager] fileExistsAtPath:@kCloverUpdaterExecutable]];
     
     [self setKernelBootArgs:[self getNvramKey:"boot-args"]];
-    
-    [self setCloverTheme:[self getNvramKey:"Clover.Theme"]];
-    
-    [self setCloverOldLogLineCount:[NSNumber numberWithInteger:[[self getNvramKey:"Clover.LogLineCount"] integerValue]]];
-
-    NSString *logEveryBoot = [self getNvramKey:"Clover.LogEveryBoot"];
-    if ([logEveryBoot isCaseInsensitiveLike:@"No"]) {
-        [self setCloverTimestampLogsEnabled:[NSNumber numberWithBool:NO]];
-        [self setCloverTimestampLogsLimit:[NSNumber numberWithInteger:0]];
-    }
-    else if ([logEveryBoot isCaseInsensitiveLike:@"Yes"]) {
-        [self setCloverTimestampLogsEnabled:[NSNumber numberWithBool:YES]];
-        [self setCloverTimestampLogsLimit:[NSNumber numberWithInteger:0]];
-    }
-    else {
-        [self setCloverTimestampLogsEnabled:[NSNumber numberWithBool:YES]];
-        [self setCloverTimestampLogsLimit:[NSNumber numberWithInteger:[logEveryBoot integerValue]]];
-    }
 
     [self setCloverMountEfiPartition:[self getNvramKey:"Clover.MountEFI"]];
     [self setCloverNvramPartition:[self getNvramKey:"Clover.NVRamDisk"]];
@@ -350,7 +452,73 @@
                                                                      NULL));
 }
 
+- (NSDictionary*)getCloverThemesFromPath:(NSString*)path
+{
+    if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        path = [[self.bundle resourcePath] stringByAppendingPathComponent:@"Themes"];
+    }
+    
+    NSMutableDictionary *themes = [[NSMutableDictionary alloc] init];
+    
+    NSDirectoryEnumerator *enumarator = [[NSFileManager defaultManager] enumeratorAtPath:path];
+    
+    NSString *themeSubPath = nil;
+    
+    while (themeSubPath = [enumarator nextObject]) {
+        
+        NSString *themePath = [path stringByAppendingPathComponent:themeSubPath];
+        
+        NSMutableDictionary *themeInfo = [[NSMutableDictionary alloc] initWithContentsOfFile:[themePath stringByAppendingPathComponent:@"theme.plist"]];
+        
+        if (themeInfo) {
+            NSString *themeName = [themeInfo objectForKey:@"Name"];
+            
+            if (!themeName) {
+                themeName = themeSubPath;
+            }
+            
+            if (![themes objectForKey:themeName]) {
+                [themes setObject:themeInfo forKey:themeName];
+                
+                if (![themeInfo objectForKey:@"Name"]) {
+                    [themeInfo setObject:themeName forKey:@"Name"];
+                }
+                
+                if (![themeInfo objectForKey:@"Author"]) {
+                    [themeInfo setObject:GetLocalizedString(@"Not specified") forKey:@"Author"];
+                }
+                
+                if (![themeInfo objectForKey:@"Year"]) {
+                    [themeInfo setObject:GetLocalizedString(@"Not specified") forKey:@"Year"];
+                }
+                
+                if (![themeInfo objectForKey:@"Description"]) {
+                    [themeInfo setObject:GetLocalizedString(@"No description available") forKey:@"Description"];
+                }
+                
+                NSString *imagePath = [themePath stringByAppendingPathComponent:@"screenshot.png"];
+                
+                if (![[NSFileManager defaultManager] fileExistsAtPath:imagePath]) {
+                    imagePath = [self.bundle pathForResource:@"NoPreview" ofType:@"png"];
+                }
+                
+                NSLog(@"imagePath: %@", imagePath);
+                
+                [themeInfo setObject:[[NSImage alloc] initWithContentsOfFile:imagePath] forKey:@"Preview"];
+            }
+        }
+    }
+    
+    return [themes copy];
+}
+
 #pragma mark Events
+
+- (void)volumesChanged:(id)sender
+{
+    // Force update booter paths
+    [self setBooterPaths:nil];
+}
 
 - (IBAction)updatesIntervalChanged:(id)sender
 {
@@ -414,29 +582,6 @@
     [self setNvramKey:"boot-args" value:[self.kernelBootArgs UTF8String]];
 }
 
-- (void)cloverThemeVariableChanged:(id)sender
-{
-    [self setNvramKey:"Clover.Theme" value:[self.cloverTheme UTF8String]];
-}
-
-- (void)cloverOldLogLinesVariableChanged:(id)sender
-{
-    [self setNvramKey:"Clover.LogLineCount" value:[[NSString stringWithFormat:@"%ld", (long)[sender integerValue]] UTF8String]];
-}
-
-- (void)cloverTimestampLogVariableChanged:(id)sender
-{
-    if (![[self cloverTimestampLogsEnabled] integerValue]) {
-        [self setNvramKey:"Clover.LogEveryBoot" value:"No"];
-    }
-    else if (![[self cloverTimestampLogsLimit] integerValue]) {
-        [self setNvramKey:"Clover.LogEveryBoot" value:"Yes"];
-    }
-    else {
-        [self setNvramKey:"Clover.LogEveryBoot" value:[[NSString stringWithFormat:@"%ld", (long)[self.cloverTimestampLogsLimit integerValue]] UTF8String]];   
-    }
-}
-
 - (IBAction)cloverMountEfiVariableChanged:(id)sender
 {
     [self setNvramKey:"Clover.MountEFI" value:[self.cloverMountEfiPartition UTF8String]];
@@ -449,8 +594,30 @@
 
 #pragma mark NVRAM methods
 
+- (void)setUpIoRegistryConnection
+{
+    // Allow readwrite for accessing IORegistry
+    mach_port_t   masterPort;
+    
+    kern_return_t result = IOMasterPort(bootstrap_port, &masterPort);
+    if (result != KERN_SUCCESS) {
+        NSLog(@"Error getting the IOMaster port: %s", mach_error_string(result));
+        exit(1);
+    }
+    
+    _gOptionsRef = IORegistryEntryFromPath(masterPort, "IODeviceTree:/options");
+    if (_gOptionsRef == 0) {
+        NSLog(@"NVRAM is not supported on this system");
+        exit(1);
+    }
+}
+
 - (NSString*)getNvramKey:(const char *)key
 {
+    if (!_gOptionsRef) {
+        [self setUpIoRegistryConnection];
+    }
+    
     NSString* result = @"-";
     
     CFStringRef nameRef = CFStringCreateWithCString(kCFAllocatorDefault, key, kCFStringEncodingUTF8);
@@ -482,6 +649,10 @@
 
 - (OSErr)setNvramKey:(const char *)key value:(const char *)value
 {
+    if (!_gOptionsRef) {
+        [self setUpIoRegistryConnection];
+    }
+    
     OSErr processError = 0;
     
     if (key) {

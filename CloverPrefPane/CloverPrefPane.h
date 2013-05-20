@@ -18,6 +18,12 @@
     NSDictionary *_themesInfo;
     NSArray *_efiPartitions;
     NSArray *_nvramPartitions;
+    NSArray *_booterPaths;
+    
+    NSString *_cloverTheme;
+    NSNumber *_cloverOldLogLineCount;
+    NSString *_cloverLogEveryBoot;
+
     
     IBOutlet SFAuthorizationView *_authorizationView;
     
@@ -28,39 +34,36 @@
     IBOutlet NSButton *_checkNowButton;
 }
 
-@property (readonly) IBOutlet NSDictionary* themesInfo;
 @property (readonly) IBOutlet NSDictionary* diskutilList;
 @property (readonly) IBOutlet NSArray* allDisks;
 @property (readonly) IBOutlet NSArray* wholeDisks;
 @property (readonly) IBOutlet NSArray* volumes;
 @property (readonly) IBOutlet NSArray* efiPartitions;
 @property (readonly) IBOutlet NSArray* nvramPartitions;
+@property (nonatomic, strong) IBOutlet NSArray* booterPaths;
 
-@property (nonatomic, strong) IBOutlet NSObject* isUnlocked;
+@property (nonatomic, strong) IBOutlet NSNumber* isUnlocked;
 
 @property (nonatomic, strong) IBOutlet NSString* kernelBootArgs;
 
+@property (nonatomic, strong) IBOutlet NSString* cloverPath;
+@property (nonatomic, strong) IBOutlet NSDictionary* themesInfo;
 @property (nonatomic, strong) IBOutlet NSString* cloverTheme;
-@property (nonatomic, strong) IBOutlet NSImage* cloverThemeImage;
 @property (nonatomic, strong) IBOutlet NSDictionary* cloverThemeInfo;
 
 @property (nonatomic, strong) IBOutlet NSNumber* cloverOldLogLineCount;
-@property (nonatomic, strong) IBOutlet NSNumber* cloverTimestampLogsEnabled;
-@property (nonatomic, strong) IBOutlet NSNumber* cloverTimestampLogsLimit;
+@property (nonatomic, strong) IBOutlet NSString* cloverLogEveryBoot;
+@property (nonatomic, strong) IBOutlet NSNumber* cloverLogEveryBootEnabled;
+@property (nonatomic, strong) IBOutlet NSNumber* cloverLogEveryBootLimit;
 
 @property (nonatomic, strong) IBOutlet NSString* cloverMountEfiPartition;
 @property (nonatomic, strong) IBOutlet NSString* cloverNvramPartition;
-
-- (void)mainViewDidLoad;
 
 - (IBAction)updatesIntervalChanged:(id)sender;
 - (IBAction)checkForUpdatePressed:(id)sender;
 
 - (IBAction)kernelBootArgsChanged:(id)sender;
 
-- (IBAction)cloverThemeVariableChanged:(id)sender;
-- (IBAction)cloverOldLogLinesVariableChanged:(id)sender;
-- (IBAction)cloverTimestampLogVariableChanged:(id)sender;
 - (IBAction)cloverMountEfiVariableChanged:(id)sender;
 - (IBAction)cloverNvramDiskVariableChanged:(id)sender;
 

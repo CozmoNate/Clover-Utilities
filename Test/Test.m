@@ -19,6 +19,7 @@
     
     _diskutilList = [self diskutilList];
     _efiPartitions = [self getEfiPartitionsList];
+    NSDictionary *themesInfo = [self getCloverThemesFromPath:@"/Volumes/Boot OS X/EFI/Clover/Themes"];
 }
 
 - (void)tearDown
@@ -31,6 +32,75 @@
 - (void)testExample
 {
     STAssertNotNil(_efiPartitions, @"Something wrong...");
+}
+
+- (NSDictionary*)getCloverThemesFromPath:(NSString*)path
+{
+    //    NSDictionary *themes = [NSDictionary dictionaryWithContentsOfFile:[self.bundle pathForResource:@"themes" ofType:@"plist"]];
+    //
+    //    NSMutableDictionary *list = [[NSMutableDictionary alloc] init];
+    //
+    //    [themes enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+    //        NSDictionary *themeInfo = (NSDictionary*)obj;
+    //
+    //        NSString *name = [themeInfo objectForKey:@"Name"];
+    //        NSString *path = [self.bundle pathForResource:name ofType:@"png"];
+    //
+    //        if (!path) {
+    //            path = [self.bundle pathForResource:@"NoPreview" ofType:@"png"];
+    //        }
+    //
+    //        NSMutableDictionary *newEntry = [[NSMutableDictionary alloc] initWithDictionary:themeInfo];
+    //
+    //        [newEntry setObject:path forKey:@"ImagePath"];
+    //
+    //        [list setObject:newEntry forKey:name];
+    //    }];
+    //
+    //    _themesInfo = [NSDictionary dictionaryWithDictionary:list];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        path = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"themes"];
+    }
+    
+    NSMutableDictionary *themes = [[NSMutableDictionary alloc] init];
+    
+    NSDirectoryEnumerator *enumarator = [[NSFileManager defaultManager] enumeratorAtPath:path];
+    
+    NSString *themePath = nil;
+    
+    while (themePath = [enumarator nextObject]) {
+        
+        themePath = [path stringByAppendingPathComponent:themePath];
+        
+        NSMutableDictionary *themeInfo = [[NSMutableDictionary alloc] initWithContentsOfFile:[themePath stringByAppendingPathComponent:@"theme.plist"]];
+        
+        if (themeInfo) {
+            NSString *themeName = [themeInfo objectForKey:@"Name"];
+            
+            if (!themeName) {
+                themeName = themePath;
+            }
+            
+            if (![themes objectForKey:themeName]) {
+                [themes setObject:themeInfo forKey:themeName];
+                
+                if (![themeInfo objectForKey:@"Name"]) {
+                    [themeInfo setObject:themeName forKey:@"Name"];
+                }
+                
+                NSString *imagePath = [themePath stringByAppendingPathComponent:@"screenshot.png"];
+                
+                if (![[NSFileManager defaultManager] fileExistsAtPath:imagePath]) {
+                    imagePath = [[NSBundle mainBundle] pathForResource:@"NoPreview" ofType:@"png"];
+                }
+                
+                [themeInfo setObject:imagePath forKey:@"imagePath"];
+            }
+        }
+    }
+    
+    return [themes copy];
 }
 
 - (NSDictionary *)diskutilList
