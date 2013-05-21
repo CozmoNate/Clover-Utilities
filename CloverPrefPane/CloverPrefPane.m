@@ -19,6 +19,7 @@
 
 @implementation CloverPrefPane
 
+#pragma mark Properties
 
 - (NSDictionary *)diskutilList
 {
@@ -62,135 +63,10 @@
     return [[self diskutilList] objectForKey:@"VolumesFromDisks"];
 }
 
-- (NSDictionary*)themesInfo
-{
-    if (nil == _themesInfo) {
-        _themesInfo = [self getCloverThemesFromPath:[self.cloverPath stringByAppendingPathComponent:@"themes"]];
-    }
-    
-    return _themesInfo;
-}
-
--(void)setThemesInfo:(NSDictionary *)themesInfo
-{
-    if (nil == themesInfo) {
-        _themesInfo = [self getCloverThemesFromPath:[self.cloverPath stringByAppendingPathComponent:@"themes"]];
-    }
-    else {
-        _themesInfo = themesInfo;
-    }
-}
-
-- (NSString*)cloverPath
-{
-    return [[NSUserDefaults standardUserDefaults] stringForKey:@"pathToClover"];
-}
-
-- (void)setCloverPath:(NSString *)cloverPath
-{
-    if (![self.cloverPath isEqualToString:cloverPath]) {
-        [[NSUserDefaults standardUserDefaults] setObject:cloverPath forKey:@"pathToClover"];
-        
-        // Reset current themes db forsing it to reload from new path
-        [self setThemesInfo:nil];
-        [self setCloverTheme:_cloverTheme];
-    }
-}
-
-- (NSString*)cloverTheme
-{
-    if (!_cloverTheme) {
-        _cloverTheme = [self getNvramKey:"Clover.Theme"];
-        
-        self.CloverThemeInfo = [[self themesInfo] objectForKey:_cloverTheme];
-    }
-    
-    return _cloverTheme;
-}
-
-- (void)setCloverTheme:(NSString *)cloverTheme
-{
-    if (![self.cloverTheme isEqualToString:cloverTheme]) {
-        [self setNvramKey:"Clover.Theme" value:[cloverTheme UTF8String]];
-    }
-    
-    self.CloverThemeInfo = [[self themesInfo] objectForKey:cloverTheme];
-}
-
-- (NSNumber*)cloverOldLogLineCount
-{
-    if (!_cloverOldLogLineCount) {
-        _cloverOldLogLineCount = [NSNumber numberWithInteger:[[self getNvramKey:"Clover.LogLineCount"] integerValue]];
-    }
-    
-    return _cloverOldLogLineCount;
-}
-
--(void)setCloverOldLogLineCount:(NSNumber *)cloverOldLogLineCount
-{
-    if (![self.cloverOldLogLineCount isEqualToNumber:cloverOldLogLineCount]) {
-        _cloverOldLogLineCount = cloverOldLogLineCount;
-        
-        [self setNvramKey:"Clover.LogLineCount" value:[[NSString stringWithFormat:@"%ld", (long)[cloverOldLogLineCount integerValue]] UTF8String]];
-    }
-}
-
--(NSString *)cloverLogEveryBoot
-{
-    if (!_cloverLogEveryBoot) {
-        _cloverLogEveryBoot = [self getNvramKey:"Clover.LogEveryBoot"];
-    }
-    
-    return _cloverLogEveryBoot;
-}
-
--(void)setCloverLogEveryBoot:(NSString *)cloverLogEveryBoot
-{
-    if (![self.cloverLogEveryBoot isCaseInsensitiveLike:cloverLogEveryBoot]) {
-        _cloverLogEveryBoot = cloverLogEveryBoot;
-        [self setNvramKey:"Clover.LogEveryBoot" value:[cloverLogEveryBoot UTF8String]];
-    }
-}
-
-- (NSNumber*)cloverLogEveryBootEnabled
-{
-    if ([self.cloverLogEveryBoot isCaseInsensitiveLike:@"No"]) {
-        return [NSNumber numberWithBool:NO];
-    }
-    else if ([self.cloverLogEveryBoot isCaseInsensitiveLike:@"Yes"] || [_cloverLogEveryBoot integerValue] >= 0) {
-        return [NSNumber numberWithBool:YES];
-    }
-    
-    return [NSNumber numberWithBool:NO];
-}
-
-- (void)setCloverLogEveryBootEnabled:(NSNumber *)cloverTimestampLogsEnabled
-{
-    if (![self.cloverLogEveryBootEnabled isEqualToNumber:cloverTimestampLogsEnabled]) {
-        self.cloverLogEveryBoot = [cloverTimestampLogsEnabled boolValue] ? @"Yes" : @"No";
-    }
-}
-
-- (NSNumber*)cloverLogEveryBootLimit
-{
-    if ([self.cloverLogEveryBoot isCaseInsensitiveLike:@"No"] || [self.cloverLogEveryBoot isCaseInsensitiveLike:@"Yes"]) {
-        return [NSNumber numberWithInteger:0];
-    }
-
-    return [NSNumber numberWithInteger:[self.cloverLogEveryBoot integerValue]];
-}
-
-- (void)setCloverLogEveryBootLimit:(NSNumber *)cloverLogEveryBootLimit
-{
-    if (![self.cloverLogEveryBootLimit isEqualToNumber:cloverLogEveryBootLimit]) {
-        self.cloverLogEveryBoot = [NSString stringWithFormat:@"%ld", [cloverLogEveryBootLimit integerValue]];
-    }
-}
-
 #define AddMenuItemToSourceList(list, title, value) \
 [list addObject:[NSDictionary dictionaryWithObjectsAndKeys: \
-                 (title), @"Title", \
-                 (value), @"Value", nil]]
+(title), @"Title", \
+(value), @"Value", nil]]
 
 - (NSArray*)efiPartitions
 {
@@ -215,6 +91,9 @@
                         NSArray *partitions = [diskEntry objectForKey:@"Partitions"];
                         
                         if (diskIdentifier != nil && partitions != nil) {
+                            NSMutableArray *volumeNames = [[NSMutableArray alloc] init];
+                            NSString *espIdentifier = nil;
+                            
                             for (NSDictionary *partitionEntry in partitions) {
                                 
                                 NSString *content = [partitionEntry objectForKey:@"Content"];
@@ -228,19 +107,43 @@
                                         
                                         if (partitionInfo != nil) {
                                             
-                                            NSString *name = [NSString stringWithFormat:GetLocalizedString(@"EFI on %@"), diskIdentifier];
-                                            NSString *uuid = [partitionInfo objectForKey:@"VolumeUUID"];
+                                            //NSString *name = [NSString stringWithFormat:GetLocalizedString(@"EFI on %@"), diskIdentifier];
+                                            //NSString *uuid = [partitionInfo objectForKey:@"VolumeUUID"];
                                             
-                                            AddMenuItemToSourceList(list, name, (uuid != nil ? uuid : identifier));
+                                            //AddMenuItemToSourceList(list, name, (uuid != nil ? uuid : identifier));
+                                            espIdentifier = [partitionInfo objectForKey:@"VolumeUUID"];
+                                            
+                                            if (!espIdentifier) {
+                                                espIdentifier = identifier;
+                                            }
                                         }
                                     }
                                 }
+                                
+                                NSString *volumeName = [partitionEntry objectForKey:@"VolumeName"];
+                                
+                                if (volumeName) {
+                                    [volumeNames addObject:volumeName];
+                                }
+                            }
+                            
+                            if (espIdentifier) {
+                                NSString *name = [NSString stringWithFormat:GetLocalizedString(@"EFI on %@ [%@]"), [volumeNames componentsJoinedByString:@","], diskIdentifier];
+                                
+                                AddMenuItemToSourceList(list, name, espIdentifier);
                             }
                         }
                     }
                 }
             }
         }
+        
+        //        for (NSString *volume in [self volumes]) {
+        //            [list addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+        //                             [NSString stringWithFormat:GetLocalizedString(@"%@'s disk ESP"), volume], @"Title",
+        //                             volume, @"Value",
+        //                             nil]];
+        //        }
         
         _efiPartitions = [NSArray arrayWithArray:list];
     }
@@ -308,13 +211,6 @@
             }
         }
         
-        for (NSString *volume in [self volumes]) {
-            [list addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                             volume, @"Title",
-                             volume, @"Value",
-                             nil]];
-        }
-
         _nvramPartitions = [NSArray arrayWithArray:list];
     }
     
@@ -325,11 +221,11 @@
 {
     if (nil == _booterPaths) {
         NSMutableArray *list = [[NSMutableArray alloc] init];
-
+        
         for (NSString *volume in [self volumes]) {
             
             NSString *path = [NSString stringWithFormat:@"/Volumes/%@/EFI/Clover", volume];
-
+            
             if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
                 AddMenuItemToSourceList(list, ([NSString stringWithFormat:GetLocalizedString(@"Clover on %@"), volume]), path);
             }
@@ -347,6 +243,189 @@
         _booterPaths = booterPaths;
     }
 }
+
+- (NSDictionary*)themesInfo
+{
+    if (nil == _themesInfo) {
+        _themesInfo = [self getCloverThemesFromPath:[self.cloverPath stringByAppendingPathComponent:@"themes"]];
+    }
+    
+    return _themesInfo;
+}
+
+-(void)setThemesInfo:(NSDictionary *)themesInfo
+{
+    if (nil == themesInfo) {
+        _themesInfo = [self getCloverThemesFromPath:[self.cloverPath stringByAppendingPathComponent:@"themes"]];
+    }
+    else {
+        _themesInfo = themesInfo;
+    }
+}
+
+-(NSString *)kernelBootArgs
+{
+    if (!_kernelBootArgs) {
+        _kernelBootArgs = [self getNvramKey:"boot-args"];
+    }
+    
+    return _kernelBootArgs;
+}
+
+-(void)setKernelBootArgs:(NSString *)kernelBootArgs
+{
+    if (![self.kernelBootArgs isEqualToString:kernelBootArgs]) {
+        _kernelBootArgs = kernelBootArgs;
+        
+        [self setNvramKey:"boot-args" value:[kernelBootArgs UTF8String]];
+    }
+}
+
+- (NSString*)cloverPath
+{
+    return [[NSUserDefaults standardUserDefaults] stringForKey:@"pathToClover"];
+}
+
+- (void)setCloverPath:(NSString *)cloverPath
+{
+    if (![self.cloverPath isEqualToString:cloverPath]) {
+        [[NSUserDefaults standardUserDefaults] setObject:cloverPath forKey:@"pathToClover"];
+        
+        // Reset current themes db forsing it to reload from new path
+        [self setThemesInfo:nil];
+        [self setCloverTheme:_cloverTheme];
+    }
+}
+
+- (NSString*)cloverTheme
+{
+    if (!_cloverTheme) {
+        _cloverTheme = [self getNvramKey:"Clover.Theme"];
+        
+        self.CloverThemeInfo = [[self themesInfo] objectForKey:_cloverTheme];
+    }
+    
+    return _cloverTheme;
+}
+
+- (void)setCloverTheme:(NSString *)cloverTheme
+{
+    if (![self.cloverTheme isEqualToString:cloverTheme]) {
+        _cloverTheme = cloverTheme;
+        [self setNvramKey:"Clover.Theme" value:[cloverTheme UTF8String]];
+    }
+    
+    self.CloverThemeInfo = [[self themesInfo] objectForKey:cloverTheme];
+}
+
+- (NSNumber*)cloverOldLogLineCount
+{
+    if (!_cloverOldLogLineCount) {
+        _cloverOldLogLineCount = [NSNumber numberWithInteger:[[self getNvramKey:"Clover.LogLineCount"] integerValue]];
+    }
+    
+    return _cloverOldLogLineCount;
+}
+
+-(void)setCloverOldLogLineCount:(NSNumber *)cloverOldLogLineCount
+{
+    if (![self.cloverOldLogLineCount isEqualToNumber:cloverOldLogLineCount]) {
+        _cloverOldLogLineCount = cloverOldLogLineCount;
+        
+        [self setNvramKey:"Clover.LogLineCount" value:[[NSString stringWithFormat:@"%ld", (long)[cloverOldLogLineCount integerValue]] UTF8String]];
+    }
+}
+
+-(NSString *)cloverLogEveryBoot
+{
+    if (!_cloverLogEveryBoot) {
+        _cloverLogEveryBoot = [self getNvramKey:"Clover.LogEveryBoot"];
+    }
+    
+    return _cloverLogEveryBoot;
+}
+
+-(void)setCloverLogEveryBoot:(NSString *)cloverLogEveryBoot
+{
+    if (![self.cloverLogEveryBoot isCaseInsensitiveLike:cloverLogEveryBoot]) {
+        _cloverLogEveryBoot = cloverLogEveryBoot;
+        
+        [self setNvramKey:"Clover.LogEveryBoot" value:[cloverLogEveryBoot UTF8String]];
+    }
+}
+
+- (NSNumber*)cloverLogEveryBootEnabled
+{
+    if ([self.cloverLogEveryBoot isCaseInsensitiveLike:@"No"]) {
+        return [NSNumber numberWithBool:NO];
+    }
+    else if ([self.cloverLogEveryBoot isCaseInsensitiveLike:@"Yes"] || [_cloverLogEveryBoot integerValue] >= 0) {
+        return [NSNumber numberWithBool:YES];
+    }
+    
+    return [NSNumber numberWithBool:NO];
+}
+
+- (void)setCloverLogEveryBootEnabled:(NSNumber *)cloverTimestampLogsEnabled
+{
+    if (![self.cloverLogEveryBootEnabled isEqualToNumber:cloverTimestampLogsEnabled]) {
+        self.cloverLogEveryBoot = [cloverTimestampLogsEnabled boolValue] ? @"Yes" : @"No";
+    }
+}
+
+- (NSNumber*)cloverLogEveryBootLimit
+{
+    if ([self.cloverLogEveryBoot isCaseInsensitiveLike:@"No"] || [self.cloverLogEveryBoot isCaseInsensitiveLike:@"Yes"]) {
+        return [NSNumber numberWithInteger:0];
+    }
+
+    return [NSNumber numberWithInteger:[self.cloverLogEveryBoot integerValue]];
+}
+
+- (void)setCloverLogEveryBootLimit:(NSNumber *)cloverLogEveryBootLimit
+{
+    if (![self.cloverLogEveryBootLimit isEqualToNumber:cloverLogEveryBootLimit]) {
+        self.cloverLogEveryBoot = [NSString stringWithFormat:@"%ld", [cloverLogEveryBootLimit integerValue]];
+    }
+}
+
+-(NSString *)cloverMountEfiPartition
+{
+    if (!_cloverMountEfiPartition) {
+        _cloverMountEfiPartition = [self getNvramKey:"Clover.MountEFI"];
+    }
+    
+    return _cloverMountEfiPartition;
+}
+
+-(void)setCloverMountEfiPartition:(NSString *)cloverMountEfiPartition
+{
+    if (![self.cloverMountEfiPartition isEqualToString:cloverMountEfiPartition]) {
+        _cloverMountEfiPartition = cloverMountEfiPartition;
+        
+        [self setNvramKey:"Clover.MountEFI" value:[cloverMountEfiPartition UTF8String]];
+    }
+}
+
+-(NSString *)cloverNvramPartition
+{
+    if (!_cloverNvramPartition) {
+        _cloverNvramPartition = [self getNvramKey:"Clover.NVRamDisk"];
+    }
+    
+    return _cloverNvramPartition;
+}
+
+-(void)setCloverNvramPartition:(NSString *)cloverNvramPartition
+{
+    if (![self.cloverNvramPartition isEqualToString:cloverNvramPartition]) {
+        _cloverNvramPartition = cloverNvramPartition;
+        
+        [self setNvramKey:"Clover.NVRamDisk" value:[cloverNvramPartition UTF8String]];
+    }
+}
+
+#pragma mark Methods
 
 - (void)mainViewDidLoad
 {
@@ -575,21 +654,6 @@
     [_lastUpdateTextField setStringValue:[_lastUpdateTextField.formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]]];
     
     [[NSWorkspace sharedWorkspace] launchApplication:@kCloverUpdaterExecutable];
-}
-
-- (void)kernelBootArgsChanged:(id)sender
-{
-    [self setNvramKey:"boot-args" value:[self.kernelBootArgs UTF8String]];
-}
-
-- (IBAction)cloverMountEfiVariableChanged:(id)sender
-{
-    [self setNvramKey:"Clover.MountEFI" value:[self.cloverMountEfiPartition UTF8String]];
-}
-
-- (IBAction)cloverNvramDiskVariableChanged:(id)sender
-{
-    [self setNvramKey:"Clover.NVRamDisk" value:[self.cloverNvramPartition UTF8String]];
 }
 
 #pragma mark NVRAM methods

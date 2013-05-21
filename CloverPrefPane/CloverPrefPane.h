@@ -20,9 +20,12 @@
     NSArray *_nvramPartitions;
     NSArray *_booterPaths;
     
+    NSString *_kernelBootArgs;
     NSString *_cloverTheme;
     NSNumber *_cloverOldLogLineCount;
     NSString *_cloverLogEveryBoot;
+    NSString *_cloverMountEfiPartition;
+    NSString *_cloverNvramPartition;
 
     
     IBOutlet SFAuthorizationView *_authorizationView;
@@ -61,10 +64,5 @@
 
 - (IBAction)updatesIntervalChanged:(id)sender;
 - (IBAction)checkForUpdatePressed:(id)sender;
-
-- (IBAction)kernelBootArgsChanged:(id)sender;
-
-- (IBAction)cloverMountEfiVariableChanged:(id)sender;
-- (IBAction)cloverNvramDiskVariableChanged:(id)sender;
 
 @end
