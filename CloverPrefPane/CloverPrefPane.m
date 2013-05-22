@@ -244,7 +244,7 @@
     }
 }
 
-- (NSDictionary*)themesInfo
+- (NSDictionary*)cloverThemesCollection
 {
     if (nil == _themesInfo) {
         _themesInfo = [self getCloverThemesFromPath:[self.cloverPath stringByAppendingPathComponent:@"themes"]];
@@ -253,7 +253,7 @@
     return _themesInfo;
 }
 
--(void)setThemesInfo:(NSDictionary *)themesInfo
+-(void)setCloverThemesCollection:(NSDictionary *)themesInfo
 {
     if (nil == themesInfo) {
         _themesInfo = [self getCloverThemesFromPath:[self.cloverPath stringByAppendingPathComponent:@"themes"]];
@@ -281,6 +281,36 @@
     }
 }
 
+-(NSDictionary *)cloverSettings
+{
+    if (!_cloverSettings) {
+        
+        if (!_gPlatformRef) {
+            [self setupIoRegistryPlatformConnection];
+        }
+        
+        CFTypeRef valueRef = IORegistryEntryCreateCFProperty(_gPlatformRef, CFSTR("Settings"), 0, 0);
+        
+        if (valueRef != 0) {
+            // Get the OF variable's type.
+            CFTypeID typeID = CFGetTypeID(valueRef);
+            
+            if (typeID == CFDataGetTypeID()) {
+
+                _cloverSettings = (__bridge NSDictionary *)(CFPropertyListCreateFromXMLData(kCFAllocatorDefault, (CFDataRef)valueRef, kCFPropertyListImmutable, NULL));
+            }
+            else {
+                NSLog(@"/efi/platform/Settings type isn't Data");
+            }
+        }
+        else {
+            NSLog(@"/efi/platform/Settings not found");
+        }
+    }
+    
+    return _cloverSettings;
+}
+
 - (NSString*)cloverPath
 {
     return [[NSUserDefaults standardUserDefaults] stringForKey:@"pathToClover"];
@@ -292,7 +322,7 @@
         [[NSUserDefaults standardUserDefaults] setObject:cloverPath forKey:@"pathToClover"];
         
         // Reset current themes db forsing it to reload from new path
-        [self setThemesInfo:nil];
+        [self setCloverThemesCollection:nil];
         [self setCloverTheme:_cloverTheme];
     }
 }
@@ -302,7 +332,7 @@
     if (!_cloverTheme) {
         _cloverTheme = [self getNvramKey:"Clover.Theme"];
         
-        self.CloverThemeInfo = [[self themesInfo] objectForKey:_cloverTheme];
+        self.CloverThemeInfo = [self.cloverThemesCollection objectForKey:_cloverTheme];
     }
     
     return _cloverTheme;
@@ -315,7 +345,7 @@
         [self setNvramKey:"Clover.Theme" value:[cloverTheme UTF8String]];
     }
     
-    self.CloverThemeInfo = [[self themesInfo] objectForKey:cloverTheme];
+    self.CloverThemeInfo = [self.cloverThemesCollection objectForKey:cloverTheme];
 }
 
 - (NSNumber*)cloverOldLogLineCount
@@ -427,84 +457,6 @@
 
 #pragma mark Methods
 
-- (void)mainViewDidLoad
-{
-    
-    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector: @selector(volumesChanged:) name:NSWorkspaceDidMountNotification object: nil];
-    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector: @selector(volumesChanged:) name:NSWorkspaceDidUnmountNotification object:nil];
-    
-    // Setup security.
-	AuthorizationItem items = {kAuthorizationRightExecute, 0, NULL, 0};
-	AuthorizationRights rights = {1, &items};
-
-  	_authorizationView.delegate = self;
-	[_authorizationView setAuthorizationRights:&rights];
-	[_authorizationView updateStatus:nil];
-    
-    // Updater
-    BOOL plistExists;
-    
-    NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
-    NSString *agentsFolder = [[searchPaths objectAtIndex:0] stringByAppendingPathComponent:@"LaunchAgents"];
-    [[NSFileManager defaultManager] createDirectoryAtPath:agentsFolder withIntermediateDirectories:YES attributes:nil error:nil];
-    _updaterPlistPath = [[agentsFolder stringByAppendingPathComponent:@kCloverUpdaterIdentifier] stringByAppendingPathExtension:@"plist"];
-    
-    // Initialize revision fields
-    searchPaths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSLocalDomainMask, YES);
-    NSString *preferenceFolder = [[searchPaths objectAtIndex:0] stringByAppendingPathComponent:@"Preferences"];
-    NSString *cloverInstallerPlist = [[preferenceFolder stringByAppendingPathComponent:(NSString *)CFSTR("com.projectosx.clover.installer")] stringByAppendingPathExtension:@"plist"];
-    plistExists = [[NSFileManager defaultManager] fileExistsAtPath:cloverInstallerPlist];
-    NSString* installedRevision = @"-";
-    if (plistExists) {
-        NSDictionary *dict = [[NSDictionary alloc] initWithContentsOfFile:cloverInstallerPlist];
-        NSNumber* revision = [dict objectForKey:@"CloverRevision"];
-        if (revision) {
-            installedRevision = [revision stringValue];
-        }
-    }
-    [_lastInstalledTextField setStringValue:installedRevision];
-    
-    NSString* bootedRevision = @"-";
-    io_registry_entry_t ioRegistryEFI = IORegistryEntryFromPath(kIOMasterPortDefault, "IODeviceTree:/efi/platform");
-    if (ioRegistryEFI) {
-        CFStringRef nameRef = CFStringCreateWithCString(kCFAllocatorDefault, "clovergui-revision", kCFStringEncodingUTF8);
-        if (nameRef) {
-            CFTypeRef valueRef = IORegistryEntryCreateCFProperty(ioRegistryEFI, nameRef, 0, 0);
-            CFRelease(nameRef);
-            if (valueRef) {
-                // Get the OF variable's type.
-                CFTypeID typeID = CFGetTypeID(valueRef);
-                if (typeID == CFDataGetTypeID())
-                    bootedRevision = [NSString stringWithFormat:@"%u",*((uint32_t*)CFDataGetBytePtr(valueRef))];
-                CFRelease(valueRef);
-            }
-        }
-        IOObjectRelease(ioRegistryEFI);
-    }
-    [_lastBootedTextField setStringValue:bootedRevision];
-    
-    // Initialize popUpCheckInterval
-    unsigned int checkInterval = [self getUIntPreferenceKey:CFSTR("ScheduledCheckInterval") forAppID:CFSTR(kCloverUpdaterIdentifier) withDefault:0];
-    [_updatesIntervalPopup selectItemWithTag:checkInterval];
-    
-    // Init last updates check date
-    unsigned int lastCheckTimestamp = [self getUIntPreferenceKey:CFSTR("LastCheckTimestamp") forAppID:CFSTR(kCloverUpdaterIdentifier) withDefault:0];
-    if (lastCheckTimestamp == 0) {
-        [_lastUpdateTextField setStringValue:@"-"];
-    } else {
-        NSDate *date = [NSDate dateWithTimeIntervalSince1970:lastCheckTimestamp];
-        [_lastUpdateTextField setStringValue:[_lastUpdateTextField.formatter stringFromDate:date]];
-    }
-    
-    // Disable the checkNowButton if executable is not present
-    [_checkNowButton setEnabled:[[NSFileManager defaultManager] fileExistsAtPath:@kCloverUpdaterExecutable]];
-    
-    [self setKernelBootArgs:[self getNvramKey:"boot-args"]];
-
-    [self setCloverMountEfiPartition:[self getNvramKey:"Clover.MountEFI"]];
-    [self setCloverNvramPartition:[self getNvramKey:"Clover.NVRamDisk"]];
-}
-
 - (NSDictionary*)getPartitionInfo:(NSString*)partitionName
 {
     if (!partitionName)
@@ -580,9 +532,7 @@
                 if (![[NSFileManager defaultManager] fileExistsAtPath:imagePath]) {
                     imagePath = [self.bundle pathForResource:@"NoPreview" ofType:@"png"];
                 }
-                
-                NSLog(@"imagePath: %@", imagePath);
-                
+                                
                 [themeInfo setObject:[[NSImage alloc] initWithContentsOfFile:imagePath] forKey:@"Preview"];
             }
         }
@@ -592,6 +542,81 @@
 }
 
 #pragma mark Events
+
+
+- (void)mainViewDidLoad
+{
+    
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector: @selector(volumesChanged:) name:NSWorkspaceDidMountNotification object: nil];
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector: @selector(volumesChanged:) name:NSWorkspaceDidUnmountNotification object:nil];
+    
+    // Setup security.
+	AuthorizationItem items = {kAuthorizationRightExecute, 0, NULL, 0};
+	AuthorizationRights rights = {1, &items};
+    
+  	_authorizationView.delegate = self;
+	[_authorizationView setAuthorizationRights:&rights];
+	[_authorizationView updateStatus:nil];
+    
+    // Updater
+    BOOL plistExists;
+    
+    NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+    NSString *agentsFolder = [[searchPaths objectAtIndex:0] stringByAppendingPathComponent:@"LaunchAgents"];
+    [[NSFileManager defaultManager] createDirectoryAtPath:agentsFolder withIntermediateDirectories:YES attributes:nil error:nil];
+    _updaterPlistPath = [[agentsFolder stringByAppendingPathComponent:@kCloverUpdaterIdentifier] stringByAppendingPathExtension:@"plist"];
+    
+    // Initialize revision fields
+    searchPaths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSLocalDomainMask, YES);
+    NSString *preferenceFolder = [[searchPaths objectAtIndex:0] stringByAppendingPathComponent:@"Preferences"];
+    NSString *cloverInstallerPlist = [[preferenceFolder stringByAppendingPathComponent:(NSString *)CFSTR("com.projectosx.clover.installer")] stringByAppendingPathExtension:@"plist"];
+    plistExists = [[NSFileManager defaultManager] fileExistsAtPath:cloverInstallerPlist];
+    NSString* installedRevision = @"-";
+    if (plistExists) {
+        NSDictionary *dict = [[NSDictionary alloc] initWithContentsOfFile:cloverInstallerPlist];
+        NSNumber* revision = [dict objectForKey:@"CloverRevision"];
+        if (revision) {
+            installedRevision = [revision stringValue];
+        }
+    }
+    [_lastInstalledTextField setStringValue:installedRevision];
+    
+    NSString* bootedRevision = @"-";
+    io_registry_entry_t ioRegistryEFI = IORegistryEntryFromPath(kIOMasterPortDefault, "IODeviceTree:/efi/platform");
+    if (ioRegistryEFI) {
+        CFStringRef nameRef = CFStringCreateWithCString(kCFAllocatorDefault, "clovergui-revision", kCFStringEncodingUTF8);
+        if (nameRef) {
+            CFTypeRef valueRef = IORegistryEntryCreateCFProperty(ioRegistryEFI, nameRef, 0, 0);
+            CFRelease(nameRef);
+            if (valueRef) {
+                // Get the OF variable's type.
+                CFTypeID typeID = CFGetTypeID(valueRef);
+                if (typeID == CFDataGetTypeID())
+                    bootedRevision = [NSString stringWithFormat:@"%u",*((uint32_t*)CFDataGetBytePtr(valueRef))];
+                CFRelease(valueRef);
+            }
+        }
+        IOObjectRelease(ioRegistryEFI);
+    }
+    [_lastBootedTextField setStringValue:bootedRevision];
+    
+    // Initialize popUpCheckInterval
+    unsigned int checkInterval = [self getUIntPreferenceKey:CFSTR("ScheduledCheckInterval") forAppID:CFSTR(kCloverUpdaterIdentifier) withDefault:0];
+    [_updatesIntervalPopup selectItemWithTag:checkInterval];
+    
+    // Init last updates check date
+    unsigned int lastCheckTimestamp = [self getUIntPreferenceKey:CFSTR("LastCheckTimestamp") forAppID:CFSTR(kCloverUpdaterIdentifier) withDefault:0];
+    if (lastCheckTimestamp == 0) {
+        [_lastUpdateTextField setStringValue:@"-"];
+    } else {
+        NSDate *date = [NSDate dateWithTimeIntervalSince1970:lastCheckTimestamp];
+        [_lastUpdateTextField setStringValue:[_lastUpdateTextField.formatter stringFromDate:date]];
+    }
+    
+    // Disable the checkNowButton if executable is not present
+    [_checkNowButton setEnabled:[[NSFileManager defaultManager] fileExistsAtPath:@kCloverUpdaterExecutable]];
+    
+}
 
 - (void)volumesChanged:(id)sender
 {
@@ -656,9 +681,28 @@
     [[NSWorkspace sharedWorkspace] launchApplication:@kCloverUpdaterExecutable];
 }
 
+-(void)saveSettingsPressed:(id)sender
+{
+    NSSavePanel *panel = [NSSavePanel savePanel];
+    
+    [panel setAllowedFileTypes:[NSArray arrayWithObjects:@"plist", nil]];
+    [panel setAllowsOtherFileTypes:NO];
+    [panel setCanCreateDirectories:YES];
+    [panel setCanSelectHiddenExtension:NO];
+    
+    [panel setTitle:GetLocalizedString(@"Save Clover setting")];
+    [panel setNameFieldStringValue:@"settings.plist"];
+    
+    [panel beginSheetModalForWindow:[self.mainView window] completionHandler:^(NSInteger result) {
+        if (result == NSFileHandlingPanelOKButton) {
+            [_cloverSettings writeToFile:[[panel URL] absoluteString] atomically:YES];
+        }
+    }];
+}
+
 #pragma mark NVRAM methods
 
-- (void)setUpIoRegistryConnection
+- (void)setupIoRegistryOptionsConnection
 {
     // Allow readwrite for accessing IORegistry
     mach_port_t   masterPort;
@@ -676,10 +720,28 @@
     }
 }
 
+- (void)setupIoRegistryPlatformConnection
+{
+    // Allow readwrite for accessing IORegistry
+    mach_port_t   masterPort;
+    
+    kern_return_t result = IOMasterPort(bootstrap_port, &masterPort);
+    if (result != KERN_SUCCESS) {
+        NSLog(@"Error getting the IOMaster port: %s", mach_error_string(result));
+        return;
+    }
+    
+    _gPlatformRef = IORegistryEntryFromPath(masterPort, "IODeviceTree:/efi/platform");
+    if (_gPlatformRef == 0) {
+        NSLog(@"failed to get platform node");
+        return;
+    }
+}
+
 - (NSString*)getNvramKey:(const char *)key
 {
     if (!_gOptionsRef) {
-        [self setUpIoRegistryConnection];
+        [self setupIoRegistryOptionsConnection];
     }
     
     NSString* result = @"-";
@@ -714,7 +776,7 @@
 - (OSErr)setNvramKey:(const char *)key value:(const char *)value
 {
     if (!_gOptionsRef) {
-        [self setUpIoRegistryConnection];
+        [self setupIoRegistryOptionsConnection];
     }
     
     OSErr processError = 0;

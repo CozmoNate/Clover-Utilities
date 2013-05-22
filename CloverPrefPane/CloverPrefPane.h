@@ -13,6 +13,8 @@
 @interface CloverPrefPane : NSPreferencePane
 {
     io_registry_entry_t _gOptionsRef;
+    io_registry_entry_t _gPlatformRef;
+    
     NSString *_updaterPlistPath;
     NSDictionary *_diskutilList;
     NSDictionary *_themesInfo;
@@ -21,6 +23,7 @@
     NSArray *_booterPaths;
     
     NSString *_kernelBootArgs;
+    NSDictionary *_cloverSettings;
     NSString *_cloverTheme;
     NSNumber *_cloverOldLogLineCount;
     NSString *_cloverLogEveryBoot;
@@ -49,8 +52,10 @@
 
 @property (nonatomic, strong) IBOutlet NSString* kernelBootArgs;
 
+@property (readonly) IBOutlet NSDictionary* cloverSettings;
+
 @property (nonatomic, strong) IBOutlet NSString* cloverPath;
-@property (nonatomic, strong) IBOutlet NSDictionary* themesInfo;
+@property (nonatomic, strong) IBOutlet NSDictionary* cloverThemesCollection;
 @property (nonatomic, strong) IBOutlet NSString* cloverTheme;
 @property (nonatomic, strong) IBOutlet NSDictionary* cloverThemeInfo;
 
@@ -64,5 +69,7 @@
 
 - (IBAction)updatesIntervalChanged:(id)sender;
 - (IBAction)checkForUpdatePressed:(id)sender;
+
+- (IBAction)saveSettingsPressed:(id)sender;
 
 @end
