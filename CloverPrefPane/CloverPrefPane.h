@@ -12,18 +12,17 @@
 
 @interface CloverPrefPane : NSPreferencePane
 {
-    io_registry_entry_t _gOptionsRef;
-    io_registry_entry_t _gPlatformRef;
+    io_registry_entry_t _ioRegistryOptions;
+    io_registry_entry_t _ioRegistryEfiPlatform;
     
     NSString *_updaterPlistPath;
     NSDictionary *_diskutilList;
     NSDictionary *_themesInfo;
     NSArray *_efiPartitions;
     NSArray *_nvramPartitions;
-    NSArray *_booterPaths;
-    
-    NSString *_kernelBootArgs;
-    NSDictionary *_cloverSettings;
+    NSArray *_cloverPathCollection;
+    NSArray *_cloverOemCollection;
+    NSDictionary *_cloverConfig;
     NSString *_cloverTheme;
     NSNumber *_cloverOldLogLineCount;
     NSString *_cloverLogEveryBoot;
@@ -46,16 +45,17 @@
 @property (readonly) IBOutlet NSArray* volumes;
 @property (readonly) IBOutlet NSArray* efiPartitions;
 @property (readonly) IBOutlet NSArray* nvramPartitions;
-@property (nonatomic, strong) IBOutlet NSArray* booterPaths;
 
 @property (nonatomic, strong) IBOutlet NSNumber* isUnlocked;
 
 @property (nonatomic, strong) IBOutlet NSString* kernelBootArgs;
 
-@property (readonly) IBOutlet NSDictionary* cloverSettings;
-
+@property (nonatomic, strong) IBOutlet NSArray* cloverPathCollection;
 @property (nonatomic, strong) IBOutlet NSString* cloverPath;
+@property (nonatomic, strong) IBOutlet NSArray* cloverOemCollection;
+@property (nonatomic, strong) IBOutlet NSString* cloverOemPath;
 @property (nonatomic, strong) IBOutlet NSDictionary* cloverThemesCollection;
+@property (nonatomic, strong) IBOutlet NSDictionary* cloverConfig;
 @property (nonatomic, strong) IBOutlet NSString* cloverTheme;
 @property (nonatomic, strong) IBOutlet NSDictionary* cloverThemeInfo;
 
@@ -69,7 +69,7 @@
 
 - (IBAction)updatesIntervalChanged:(id)sender;
 - (IBAction)checkForUpdatePressed:(id)sender;
-
 - (IBAction)saveSettingsPressed:(id)sender;
+- (IBAction)editCurrentConfigPressed:(id)sender;
 
 @end

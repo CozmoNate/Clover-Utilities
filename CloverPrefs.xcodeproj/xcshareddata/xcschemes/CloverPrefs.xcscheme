@@ -14,6 +14,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "7E6F6DF3174DFAB1009F131B"
+               BuildableName = "getconfig"
+               BlueprintName = "getconfig"
+               ReferencedContainer = "container:CloverPrefs.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "7E4A255D17434A5500E87EF8"
                BuildableName = "Clover.prefPane"
                BlueprintName = "Clover"

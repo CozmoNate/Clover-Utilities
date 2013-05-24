@@ -40,9 +40,7 @@
         
         NSData *data = [file readDataToEndOfFile];
         
-        _diskutilList = (__bridge NSDictionary *)(CFPropertyListCreateFromXMLData(kCFAllocatorDefault, (__bridge CFDataRef)data,
-                                                                                  kCFPropertyListImmutable,
-                                                                                  NULL));
+        _diskutilList = (__bridge NSDictionary *)(CFPropertyListCreateWithData(kCFAllocatorDefault, (__bridge CFDataRef)data, kCFPropertyListImmutable, NULL, NULL));
     }
     
     return _diskutilList;
@@ -194,9 +192,11 @@
                                                 
                                                 name = [NSString stringWithFormat:@"%@ [%@]", identifier, name == nil || [name length] == 0 ? [content isEqualToString:@"EFI"] ? @"EFI" : identifier : name];
                                                 
-                                                NSString *uuid = [partitionInfo objectForKey:@"VolumeUUID"];
+                                                // uuid not supported by script
+                                                //NSString *uuid = [partitionInfo objectForKey:@"VolumeUUID"];
                                                 
-                                                AddMenuItemToSourceList(list, name, (uuid != nil ? uuid : identifier));
+                                                //AddMenuItemToSourceList(list, name, (uuid != nil ? uuid : identifier));
+                                                AddMenuItemToSourceList(list, name, identifier);
                                             }
                                         }
                                     }
@@ -217,98 +217,38 @@
     return _nvramPartitions;
 }
 
-- (NSArray*)booterPaths
-{
-    if (nil == _booterPaths) {
-        NSMutableArray *list = [[NSMutableArray alloc] init];
-        
-        for (NSString *volume in [self volumes]) {
-            
-            NSString *path = [NSString stringWithFormat:@"/Volumes/%@/EFI/Clover", volume];
-            
-            if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
-                AddMenuItemToSourceList(list, ([NSString stringWithFormat:GetLocalizedString(@"Clover on %@"), volume]), path);
-            }
-        }
-        
-        _booterPaths = [NSArray arrayWithArray:list];
-    }
-    
-    return _booterPaths;
-}
-
--(void)setBooterPaths:(NSArray *)booterPaths
-{
-    if ([_booterPaths isNotEqualTo:booterPaths]) {
-        _booterPaths = booterPaths;
-    }
-}
-
-- (NSDictionary*)cloverThemesCollection
-{
-    if (nil == _themesInfo) {
-        _themesInfo = [self getCloverThemesFromPath:[self.cloverPath stringByAppendingPathComponent:@"themes"]];
-    }
-    
-    return _themesInfo;
-}
-
--(void)setCloverThemesCollection:(NSDictionary *)themesInfo
-{
-    if (nil == themesInfo) {
-        _themesInfo = [self getCloverThemesFromPath:[self.cloverPath stringByAppendingPathComponent:@"themes"]];
-    }
-    else {
-        _themesInfo = themesInfo;
-    }
-}
-
 -(NSString *)kernelBootArgs
 {
-    if (!_kernelBootArgs) {
-        _kernelBootArgs = [self getNvramKey:"boot-args"];
-    }
-    
-    return _kernelBootArgs;
+    return [self getNvramKey:"boot-args"];
 }
 
 -(void)setKernelBootArgs:(NSString *)kernelBootArgs
 {
     if (![self.kernelBootArgs isEqualToString:kernelBootArgs]) {
-        _kernelBootArgs = kernelBootArgs;
-        
         [self setNvramKey:"boot-args" value:[kernelBootArgs UTF8String]];
     }
 }
 
--(NSDictionary *)cloverSettings
-{
-    if (!_cloverSettings) {
-        
-        if (!_gPlatformRef) {
-            [self setupIoRegistryPlatformConnection];
-        }
-        
-        CFTypeRef valueRef = IORegistryEntryCreateCFProperty(_gPlatformRef, CFSTR("Settings"), 0, 0);
-        
-        if (valueRef != 0) {
-            // Get the OF variable's type.
-            CFTypeID typeID = CFGetTypeID(valueRef);
-            
-            if (typeID == CFDataGetTypeID()) {
 
-                _cloverSettings = (__bridge NSDictionary *)(CFPropertyListCreateFromXMLData(kCFAllocatorDefault, (CFDataRef)valueRef, kCFPropertyListImmutable, NULL));
-            }
-            else {
-                NSLog(@"/efi/platform/Settings type isn't Data");
-            }
-        }
-        else {
-            NSLog(@"/efi/platform/Settings not found");
-        }
+- (NSArray*)cloverPathCollection
+{
+    if (!_cloverPathCollection) {
+        _cloverPathCollection = [self getCloverPathCollection];
     }
     
-    return _cloverSettings;
+    return _cloverPathCollection;
+}
+
+-(void)setCloverPathCollection:(NSArray *)booterPaths
+{
+    if (!booterPaths) {
+        _cloverPathCollection = [self getCloverPathCollection];
+    }
+    else {
+        _cloverPathCollection = booterPaths;
+    }
+    
+    self.cloverOemCollection = nil;
 }
 
 - (NSString*)cloverPath
@@ -322,8 +262,80 @@
         [[NSUserDefaults standardUserDefaults] setObject:cloverPath forKey:@"pathToClover"];
         
         // Reset current themes db forsing it to reload from new path
-        [self setCloverThemesCollection:nil];
-        [self setCloverTheme:_cloverTheme];
+        self.cloverThemesCollection = nil;
+        self.cloverOemCollection = nil;
+    }
+}
+
+-(NSArray *)cloverOemCollection
+{
+    if (!_cloverOemCollection) {
+        _cloverOemCollection = [self getCloverOemcollectionFromPath:self.cloverPath];
+    }
+    
+    return _cloverOemCollection;
+}
+
+-(void)setCloverOemCollection:(NSArray *)cloverOemProductsCollection
+{
+    if (!cloverOemProductsCollection) {
+        _cloverOemCollection = [self getCloverOemcollectionFromPath:self.cloverPath];
+    }
+    else {
+        _cloverOemCollection = cloverOemProductsCollection;
+    }
+}
+
+-(NSString *)cloverOemPath
+{
+    return [[NSUserDefaults standardUserDefaults] stringForKey:@"lastOemProductSelected"];
+}
+
+-(void)setCloverOemPath:(NSString *)cloverOemProduct
+{
+    if (![self.cloverOemPath isEqualToString:cloverOemProduct]) {
+        [[NSUserDefaults standardUserDefaults] setObject:cloverOemProduct forKey:@"lastOemProductSelected"];
+        
+        self.cloverConfig = nil;
+    }
+}
+
+-(NSDictionary *)cloverConfig
+{
+    if (!_cloverConfig) {
+        NSString *configPath = [self.cloverOemPath stringByAppendingPathComponent:@"config.plist"];
+        NSLog(@"loading config: %@", configPath);
+        _cloverConfig = [NSDictionary dictionaryWithContentsOfFile:configPath];
+    }
+    
+    return _cloverConfig;
+}
+
+-(void)setCloverConfig:(NSDictionary *)cloverConfig
+{
+    _cloverConfig = cloverConfig;
+    
+    if (cloverConfig) {
+        [_cloverConfig writeToFile:[self.cloverOemPath stringByAppendingPathComponent:@"config.plist"] atomically:YES];
+    }
+}
+
+- (NSDictionary*)cloverThemesCollection
+{
+    if (nil == _themesInfo) {
+        _themesInfo = [self getCloverThemesFromPath:self.cloverPath];
+    }
+    
+    return _themesInfo;
+}
+
+-(void)setCloverThemesCollection:(NSDictionary *)themesInfo
+{
+    if (nil == themesInfo) {
+        _themesInfo = [self getCloverThemesFromPath:self.cloverPath];
+    }
+    else {
+        _themesInfo = themesInfo;
     }
 }
 
@@ -483,21 +495,39 @@
                                                                      NULL));
 }
 
+- (NSArray*)getCloverPathCollection
+{
+    NSMutableArray *list = [[NSMutableArray alloc] init];
+    
+    for (NSString *volume in [self volumes]) {
+        
+        NSString *path = [NSString stringWithFormat:@"/Volumes/%@/EFI/Clover", volume];
+        
+        if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+            AddMenuItemToSourceList(list, ([NSString stringWithFormat:GetLocalizedString(@"Clover on %@"), volume]), path);
+        }
+    }
+    
+    return [list copy];
+}
+
 - (NSDictionary*)getCloverThemesFromPath:(NSString*)path
 {
-    if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
-        path = [[self.bundle resourcePath] stringByAppendingPathComponent:@"Themes"];
+    NSString *themesPath = [path stringByAppendingPathComponent:@"themes"];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:themesPath]) {
+        themesPath = [[self.bundle resourcePath] stringByAppendingPathComponent:@"Themes"];
     }
+    
+    NSLog(@"loading themes from: %@", themesPath);
     
     NSMutableDictionary *themes = [[NSMutableDictionary alloc] init];
     
-    NSDirectoryEnumerator *enumarator = [[NSFileManager defaultManager] enumeratorAtPath:path];
+    NSArray *subPaths = [[NSFileManager defaultManager] subpathsOfDirectoryAtPath:themesPath error:NULL];
     
-    NSString *themeSubPath = nil;
-    
-    while (themeSubPath = [enumarator nextObject]) {
+    for (NSString *themeSubPath in subPaths) {
         
-        NSString *themePath = [path stringByAppendingPathComponent:themeSubPath];
+        NSString *themePath = [themesPath stringByAppendingPathComponent:themeSubPath];
         
         NSMutableDictionary *themeInfo = [[NSMutableDictionary alloc] initWithContentsOfFile:[themePath stringByAppendingPathComponent:@"theme.plist"]];
         
@@ -541,15 +571,41 @@
     return [themes copy];
 }
 
+- (NSArray*)getCloverOemcollectionFromPath:(NSString*)path
+{
+    NSString *oemPath = [path stringByAppendingPathComponent:@"OEM"];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:oemPath]) {
+        return [NSArray array];
+    }
+    
+    NSMutableArray *list = [[NSMutableArray alloc] init];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:[path stringByAppendingPathComponent:@"config.plist"]]) {
+        AddMenuItemToSourceList(list, @"Default", path);
+    }
+    
+    NSDirectoryEnumerator *enumarator = [[NSFileManager defaultManager] enumeratorAtPath:oemPath];
+    
+    NSString *productSubPath = nil;
+    
+    while (productSubPath = [enumarator nextObject]) {
+        
+        NSString *productPath = [oemPath stringByAppendingPathComponent:productSubPath];
+
+        if ([[NSFileManager defaultManager] fileExistsAtPath:[productPath stringByAppendingPathComponent:@"config.plist"]]) {
+            AddMenuItemToSourceList(list, productSubPath, productPath);
+        }
+    }
+    
+    return [list copy];
+}
+
 #pragma mark Events
 
 
 - (void)mainViewDidLoad
 {
-    
-    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector: @selector(volumesChanged:) name:NSWorkspaceDidMountNotification object: nil];
-    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector: @selector(volumesChanged:) name:NSWorkspaceDidUnmountNotification object:nil];
-    
     // Setup security.
 	AuthorizationItem items = {kAuthorizationRightExecute, 0, NULL, 0};
 	AuthorizationRights rights = {1, &items};
@@ -616,15 +672,21 @@
     // Disable the checkNowButton if executable is not present
     [_checkNowButton setEnabled:[[NSFileManager defaultManager] fileExistsAtPath:@kCloverUpdaterExecutable]];
     
+    
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector: @selector(volumesChanged:) name:NSWorkspaceDidMountNotification object: nil];
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector: @selector(volumesChanged:) name:NSWorkspaceDidUnmountNotification object:nil];
 }
 
 - (void)volumesChanged:(id)sender
 {
     // Force update booter paths
-    [self setBooterPaths:nil];
+    NSLog(@"volumes did changed");
+
+    _diskutilList = nil;
+    self.cloverPathCollection = nil;
 }
 
-- (IBAction)updatesIntervalChanged:(id)sender
+- (void)updatesIntervalChanged:(id)sender
 {
     CFDictionaryRef launchInfo = SMJobCopyDictionary(kSMDomainUserLaunchd, CFSTR(kCloverUpdaterIdentifier));
     if (launchInfo != NULL) {
@@ -674,14 +736,14 @@
     CFPreferencesAppSynchronize(CFSTR(kCloverUpdaterIdentifier)); // Force the preferences to be save to disk
 }
 
-- (IBAction)checkForUpdatePressed:(id)sender
+- (void)checkForUpdatePressed:(id)sender
 {
     [_lastUpdateTextField setStringValue:[_lastUpdateTextField.formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]]];
     
     [[NSWorkspace sharedWorkspace] launchApplication:@kCloverUpdaterExecutable];
 }
 
--(void)saveSettingsPressed:(id)sender
+- (void)saveSettingsPressed:(id)sender
 {
     NSSavePanel *panel = [NSSavePanel savePanel];
     
@@ -695,9 +757,19 @@
     
     [panel beginSheetModalForWindow:[self.mainView window] completionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelOKButton) {
-            [_cloverSettings writeToFile:[[panel URL] absoluteString] atomically:YES];
+            
+            NSString *command = [NSString stringWithFormat:@"%@ >%@", [self.bundle pathForResource:@"getconfig" ofType:@""], [[panel URL] path]];
+            
+            NSLog(@"command: %@", command);
+            
+            system([command UTF8String]);
         }
     }];
+}
+
+- (void)editCurrentConfigPressed:(id)sender
+{
+    [[NSWorkspace sharedWorkspace] openFile:[self.cloverOemPath stringByAppendingPathComponent:@"config.plist"]];
 }
 
 #pragma mark NVRAM methods
@@ -713,8 +785,9 @@
         exit(1);
     }
     
-    _gOptionsRef = IORegistryEntryFromPath(masterPort, "IODeviceTree:/options");
-    if (_gOptionsRef == 0) {
+    _ioRegistryOptions = IORegistryEntryFromPath(masterPort, "IODeviceTree:/options");
+    
+    if (_ioRegistryOptions == 0) {
         NSLog(@"NVRAM is not supported on this system");
         exit(1);
     }
@@ -731,16 +804,17 @@
         return;
     }
     
-    _gPlatformRef = IORegistryEntryFromPath(masterPort, "IODeviceTree:/efi/platform");
-    if (_gPlatformRef == 0) {
-        NSLog(@"failed to get platform node");
+    _ioRegistryEfiPlatform = IORegistryEntryFromPath(masterPort, "IODeviceTree:/efi/platform");
+    
+    if (_ioRegistryEfiPlatform == 0) {
+        NSLog(@"EFI is not supported on this system");
         return;
     }
 }
 
 - (NSString*)getNvramKey:(const char *)key
 {
-    if (!_gOptionsRef) {
+    if (!_ioRegistryOptions) {
         [self setupIoRegistryOptionsConnection];
     }
     
@@ -752,7 +826,7 @@
         return result;
     }
     
-    CFTypeRef valueRef = IORegistryEntryCreateCFProperty(_gOptionsRef, nameRef, 0, 0);
+    CFTypeRef valueRef = IORegistryEntryCreateCFProperty(_ioRegistryOptions, nameRef, 0, 0);
     CFRelease(nameRef);
     if (valueRef == 0) {
         return result;
@@ -775,7 +849,7 @@
 
 - (OSErr)setNvramKey:(const char *)key value:(const char *)value
 {
-    if (!_gOptionsRef) {
+    if (!_ioRegistryOptions) {
         [self setupIoRegistryOptionsConnection];
     }
     

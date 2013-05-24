@@ -23,10 +23,37 @@
 		7E4A25841743527700E87EF8 /* CloverTitle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A25831743527700E87EF8 /* CloverTitle.png */; };
 		7E4A2589174378A700E87EF8 /* CloverLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A2588174378A700E87EF8 /* CloverLogo.png */; };
 		7EA15D6B1743CE27006E3C1E /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA15D6A1743CE27006E3C1E /* IOKit.framework */; };
+		7EA204B3174E001700F7C117 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EA204B2174E001700F7C117 /* main.c */; };
+		7EA204B5174E001700F7C117 /* getconfig.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7EA204B4174E001700F7C117 /* getconfig.1 */; };
+		7EA204BB174E004300F7C117 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A256617434A5500E87EF8 /* AppKit.framework */; };
+		7EA204BC174E004800F7C117 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA15D6A1743CE27006E3C1E /* IOKit.framework */; };
 		7EA42A54174806F1007328AF /* NoPreview.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EA42A53174806F1007328AF /* NoPreview.png */; };
 		7EA5B60A174C99A200428A7C /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 7EA5B609174C99A200428A7C /* Themes */; };
 		7EE3BC6E17440E5600144659 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EE3BC6D17440E5600144659 /* ServiceManagement.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7EA204B9174E002000F7C117 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7E4A255417434A5500E87EF8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7EA204AF174E001700F7C117;
+			remoteInfo = getconfig;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7EA204AE174E001700F7C117 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				7EA204B5174E001700F7C117 /* getconfig.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		7E1F573A17475FCE00780A84 /* Test.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +83,9 @@
 		7E4A25851743531E00E87EF8 /* CloverTitle.psd */ = {isa = PBXFileReference; lastKnownFileType = file; name = CloverTitle.psd; path = CloverPrefPane/CloverTitle.psd; sourceTree = "<group>"; };
 		7E4A2588174378A700E87EF8 /* CloverLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloverLogo.png; sourceTree = "<group>"; };
 		7EA15D6A1743CE27006E3C1E /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		7EA204B0174E001700F7C117 /* getconfig */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = getconfig; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EA204B2174E001700F7C117 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		7EA204B4174E001700F7C117 /* getconfig.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = getconfig.1; sourceTree = "<group>"; };
 		7EA42A53174806F1007328AF /* NoPreview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NoPreview.png; sourceTree = "<group>"; };
 		7EA5B609174C99A200428A7C /* Themes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Themes; sourceTree = "<group>"; };
 		7EE3BC6D17440E5600144659 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
@@ -81,6 +111,15 @@
 				7E4A257E17434DBB00E87EF8 /* Security.framework in Frameworks */,
 				7E4A256217434A5500E87EF8 /* Cocoa.framework in Frameworks */,
 				7E4A256417434A5500E87EF8 /* PreferencePanes.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7EA204AD174E001700F7C117 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7EA204BC174E004800F7C117 /* IOKit.framework in Frameworks */,
+				7EA204BB174E004300F7C117 /* AppKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +152,7 @@
 			children = (
 				7E4A256917434A5500E87EF8 /* CloverPrefPane */,
 				7E4A258117434EAD00E87EF8 /* Graphics */,
+				7EA204B1174E001700F7C117 /* getconfig */,
 				7E1F574217475FCE00780A84 /* Test */,
 				7E4A256017434A5500E87EF8 /* Frameworks */,
 				7E4A255F17434A5500E87EF8 /* Products */,
@@ -124,6 +164,7 @@
 			children = (
 				7E4A255E17434A5500E87EF8 /* Clover.prefPane */,
 				7E1F573A17475FCE00780A84 /* Test.octest */,
+				7EA204B0174E001700F7C117 /* getconfig */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -187,6 +228,15 @@
 			name = Icons;
 			sourceTree = "<group>";
 		};
+		7EA204B1174E001700F7C117 /* getconfig */ = {
+			isa = PBXGroup;
+			children = (
+				7EA204B2174E001700F7C117 /* main.c */,
+				7EA204B4174E001700F7C117 /* getconfig.1 */,
+			);
+			path = getconfig;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -231,11 +281,29 @@
 			buildRules = (
 			);
 			dependencies = (
+				7EA204BA174E002000F7C117 /* PBXTargetDependency */,
 			);
 			name = Clover;
 			productName = CloverPrefPane;
 			productReference = 7E4A255E17434A5500E87EF8 /* Clover.prefPane */;
 			productType = "com.apple.product-type.bundle";
+		};
+		7EA204AF174E001700F7C117 /* getconfig */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7EA204B6174E001700F7C117 /* Build configuration list for PBXNativeTarget "getconfig" */;
+			buildPhases = (
+				7EA204AC174E001700F7C117 /* Sources */,
+				7EA204AD174E001700F7C117 /* Frameworks */,
+				7EA204AE174E001700F7C117 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = getconfig;
+			productName = getconfig;
+			productReference = 7EA204B0174E001700F7C117 /* getconfig */;
+			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
@@ -258,6 +326,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				7EA204AF174E001700F7C117 /* getconfig */,
 				7E4A255D17434A5500E87EF8 /* Clover */,
 				7E1F573917475FCE00780A84 /* Test */,
 			);
@@ -333,7 +402,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7EA204AC174E001700F7C117 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7EA204B3174E001700F7C117 /* main.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7EA204BA174E002000F7C117 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7EA204AF174E001700F7C117 /* getconfig */;
+			targetProxy = 7EA204B9174E002000F7C117 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		7E1F574517475FCE00780A84 /* InfoPlist.strings */ = {
@@ -397,7 +482,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -430,7 +515,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -479,6 +564,21 @@
 			};
 			name = Release;
 		};
+		7EA204B7174E001700F7C117 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7EA204B8174E001700F7C117 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -505,6 +605,15 @@
 			buildConfigurations = (
 				7E4A257B17434A5500E87EF8 /* Debug */,
 				7E4A257C17434A5500E87EF8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7EA204B6174E001700F7C117 /* Build configuration list for PBXNativeTarget "getconfig" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7EA204B7174E001700F7C117 /* Debug */,
+				7EA204B8174E001700F7C117 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
