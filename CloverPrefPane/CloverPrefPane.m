@@ -56,9 +56,29 @@
     return [[self diskutilList] objectForKey:@"WholeDisks"];
 }
 
-- (NSArray*)volumes
+- (NSArray*)mountedVolumes
 {
-    return [[self diskutilList] objectForKey:@"VolumesFromDisks"];
+    if (!_mountedVolumes) {
+
+        NSMutableArray *list = [[NSMutableArray alloc] init];
+        
+        NSArray *urls = [[NSFileManager defaultManager] mountedVolumeURLsIncludingResourceValuesForKeys:[NSArray arrayWithObject:NSURLVolumeNameKey] options:0];
+        
+        for (NSURL *url in urls) {
+            NSError *error;
+            NSString *volumeName = nil;
+            
+            [url getResourceValue:&volumeName forKey:NSURLVolumeNameKey error:&error];
+            
+            if (volumeName) {
+                [list addObject:volumeName];
+            }
+        }
+        
+        _mountedVolumes = [list copy];
+    }
+    
+    return _mountedVolumes;//[[self diskutilList] objectForKey:@"VolumesFromDisks"];
 }
 
 #define AddMenuItemToSourceList(list, title, value) \
@@ -230,25 +250,26 @@
 }
 
 
-- (NSArray*)cloverPathCollection
+- (NSArray*)cloverPathsCollection
 {
-    if (!_cloverPathCollection) {
-        _cloverPathCollection = [self getCloverPathCollection];
+    if (!_cloverPathsCollection) {
+        _cloverPathsCollection = [self getCloverPathsCollection];
     }
     
-    return _cloverPathCollection;
+    return _cloverPathsCollection;
 }
 
--(void)setCloverPathCollection:(NSArray *)booterPaths
+-(void)setCloverPathsCollection:(NSArray *)booterPaths
 {
     if (!booterPaths) {
-        _cloverPathCollection = [self getCloverPathCollection];
+        _cloverPathsCollection = [self getCloverPathsCollection];
     }
     else {
-        _cloverPathCollection = booterPaths;
+        _cloverPathsCollection = booterPaths;
     }
     
     self.cloverOemCollection = nil;
+    self.cloverThemesCollection = nil;
 }
 
 - (NSString*)cloverPath
@@ -284,6 +305,8 @@
     else {
         _cloverOemCollection = cloverOemProductsCollection;
     }
+    
+    self.cloverOemPath = nil;
 }
 
 -(NSString *)cloverOemPath
@@ -295,7 +318,6 @@
 {
     if (![self.cloverOemPath isEqualToString:cloverOemProduct]) {
         [[NSUserDefaults standardUserDefaults] setObject:cloverOemProduct forKey:@"lastOemProductSelected"];
-        
         self.cloverConfig = nil;
     }
 }
@@ -495,11 +517,11 @@
                                                                      NULL));
 }
 
-- (NSArray*)getCloverPathCollection
+- (NSArray*)getCloverPathsCollection
 {
     NSMutableArray *list = [[NSMutableArray alloc] init];
     
-    for (NSString *volume in [self volumes]) {
+    for (NSString *volume in [self mountedVolumes]) {
         
         NSString *path = [NSString stringWithFormat:@"/Volumes/%@/EFI/Clover", volume];
         
@@ -508,7 +530,11 @@
         }
     }
     
-    return [list copy];
+    if ([list count]) {
+        return [list copy];
+    }
+    
+    return nil;
 }
 
 - (NSDictionary*)getCloverThemesFromPath:(NSString*)path
@@ -598,7 +624,11 @@
         }
     }
     
-    return [list copy];
+    if ([list count]) {
+        return [list copy];
+    }
+    
+    return nil;
 }
 
 #pragma mark Events
@@ -683,7 +713,7 @@
     NSLog(@"volumes did changed");
 
     _diskutilList = nil;
-    self.cloverPathCollection = nil;
+    _mountedVolumes = nil;
 }
 
 - (void)updatesIntervalChanged:(id)sender
@@ -769,6 +799,11 @@
 
 - (void)editCurrentConfigPressed:(id)sender
 {
+//    NSString *command = [NSString stringWithFormat:@"%@ >%@", [self.bundle pathForResource:@"Property List Editor" ofType:@"app"], [self.cloverOemPath stringByAppendingPathComponent:@"config.plist"]];
+//    
+//    NSLog(@"command: %@", command);
+//    
+//    system([command UTF8String]);
     [[NSWorkspace sharedWorkspace] openFile:[self.cloverOemPath stringByAppendingPathComponent:@"config.plist"]];
 }
 

@@ -17,10 +17,11 @@
     
     NSString *_updaterPlistPath;
     NSDictionary *_diskutilList;
+    NSArray *_mountedVolumes;
     NSDictionary *_themesInfo;
     NSArray *_efiPartitions;
     NSArray *_nvramPartitions;
-    NSArray *_cloverPathCollection;
+    NSArray *_cloverPathsCollection;
     NSArray *_cloverOemCollection;
     NSDictionary *_cloverConfig;
     NSString *_cloverTheme;
@@ -39,10 +40,12 @@
     IBOutlet NSButton *_checkNowButton;
 }
 
+
+
 @property (readonly) IBOutlet NSDictionary* diskutilList;
 @property (readonly) IBOutlet NSArray* allDisks;
 @property (readonly) IBOutlet NSArray* wholeDisks;
-@property (readonly) IBOutlet NSArray* volumes;
+@property (readonly) IBOutlet NSArray* mountedVolumes;
 @property (readonly) IBOutlet NSArray* efiPartitions;
 @property (readonly) IBOutlet NSArray* nvramPartitions;
 
@@ -50,7 +53,7 @@
 
 @property (nonatomic, strong) IBOutlet NSString* kernelBootArgs;
 
-@property (nonatomic, strong) IBOutlet NSArray* cloverPathCollection;
+@property (nonatomic, strong) IBOutlet NSArray* cloverPathsCollection;
 @property (nonatomic, strong) IBOutlet NSString* cloverPath;
 @property (nonatomic, strong) IBOutlet NSArray* cloverOemCollection;
 @property (nonatomic, strong) IBOutlet NSString* cloverOemPath;

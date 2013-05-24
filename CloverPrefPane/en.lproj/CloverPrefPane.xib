@@ -111,7 +111,7 @@
 													<int key="NSPeriodicInterval">75</int>
 													<object class="NSMenuItem" key="NSMenuItem" id="709365397">
 														<reference key="NSMenu" ref="629003914"/>
-														<string key="NSTitle">Item 1</string>
+														<string key="NSTitle">-</string>
 														<string key="NSKeyEquiv"/>
 														<int key="NSKeyEquivModMask">1048576</int>
 														<int key="NSMnemonicLoc">2147483647</int>
@@ -270,7 +270,7 @@
 													<int key="NSPeriodicInterval">75</int>
 													<object class="NSMenuItem" key="NSMenuItem" id="1056451957">
 														<reference key="NSMenu" ref="387753317"/>
-														<string key="NSTitle">Item 1</string>
+														<string key="NSTitle">-</string>
 														<string key="NSKeyEquiv"/>
 														<int key="NSKeyEquivModMask">1048576</int>
 														<int key="NSMnemonicLoc">2147483647</int>
@@ -511,10 +511,6 @@
 																<object class="NSImageCell" key="NSCell" id="888074458">
 																	<int key="NSCellFlags">134217728</int>
 																	<int key="NSCellFlags2">33554432</int>
-																	<object class="NSCustomResource" key="NSContents">
-																		<string key="NSClassName">NSImage</string>
-																		<string key="NSResourceName">screenshot</string>
-																	</object>
 																	<string key="NSCellIdentifier">_NS:9</string>
 																	<int key="NSAlign">0</int>
 																	<int key="NSScale">3</int>
@@ -2508,15 +2504,15 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">content: self.cloverPathCollection</string>
+						<string key="label">content: self.cloverPathsCollection</string>
 						<reference key="source" ref="81304396"/>
 						<reference key="destination" ref="294453543"/>
-						<object class="NSNibBindingConnector" key="connector" id="724653301">
+						<object class="NSNibBindingConnector" key="connector" id="974326575">
 							<reference key="NSSource" ref="81304396"/>
 							<reference key="NSDestination" ref="294453543"/>
-							<string key="NSLabel">content: self.cloverPathCollection</string>
+							<string key="NSLabel">content: self.cloverPathsCollection</string>
 							<string key="NSBinding">content</string>
-							<string key="NSKeyPath">self.cloverPathCollection</string>
+							<string key="NSKeyPath">self.cloverPathsCollection</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -2524,37 +2520,37 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">contentObjects: self.cloverPathCollection.Value</string>
+						<string key="label">contentObjects: self.cloverPathsCollection.Value</string>
 						<reference key="source" ref="81304396"/>
 						<reference key="destination" ref="294453543"/>
-						<object class="NSNibBindingConnector" key="connector" id="944120882">
+						<object class="NSNibBindingConnector" key="connector" id="570441111">
 							<reference key="NSSource" ref="81304396"/>
 							<reference key="NSDestination" ref="294453543"/>
-							<string key="NSLabel">contentObjects: self.cloverPathCollection.Value</string>
+							<string key="NSLabel">contentObjects: self.cloverPathsCollection.Value</string>
 							<string key="NSBinding">contentObjects</string>
-							<string key="NSKeyPath">self.cloverPathCollection.Value</string>
-							<reference key="NSPreviousConnector" ref="724653301"/>
+							<string key="NSKeyPath">self.cloverPathsCollection.Value</string>
+							<reference key="NSPreviousConnector" ref="974326575"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">2406</int>
+					<int key="connectionID">2453</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">contentValues: self.cloverPathCollection.Title</string>
+						<string key="label">contentValues: self.cloverPathsCollection.Title</string>
 						<reference key="source" ref="81304396"/>
 						<reference key="destination" ref="294453543"/>
-						<object class="NSNibBindingConnector" key="connector" id="967074740">
+						<object class="NSNibBindingConnector" key="connector" id="168544379">
 							<reference key="NSSource" ref="81304396"/>
 							<reference key="NSDestination" ref="294453543"/>
-							<string key="NSLabel">contentValues: self.cloverPathCollection.Title</string>
+							<string key="NSLabel">contentValues: self.cloverPathsCollection.Title</string>
 							<string key="NSBinding">contentValues</string>
-							<string key="NSKeyPath">self.cloverPathCollection.Title</string>
-							<reference key="NSPreviousConnector" ref="944120882"/>
+							<string key="NSKeyPath">self.cloverPathsCollection.Title</string>
+							<reference key="NSPreviousConnector" ref="570441111"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">2411</int>
+					<int key="connectionID">2454</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -2567,11 +2563,34 @@
 							<string key="NSLabel">selectedObject: self.cloverPath</string>
 							<string key="NSBinding">selectedObject</string>
 							<string key="NSKeyPath">self.cloverPath</string>
-							<reference key="NSPreviousConnector" ref="967074740"/>
+							<reference key="NSPreviousConnector" ref="168544379"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">2412</int>
+					<int key="connectionID">2455</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: self.cloverPathsCollection</string>
+						<reference key="source" ref="81304396"/>
+						<reference key="destination" ref="294453543"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="81304396"/>
+							<reference key="NSDestination" ref="294453543"/>
+							<string key="NSLabel">enabled: self.cloverPathsCollection</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">self.cloverPathsCollection</string>
+							<dictionary key="NSOptions">
+								<integer value="0" key="NSMultipleValuesPlaceholder"/>
+								<integer value="0" key="NSNoSelectionPlaceholder"/>
+								<integer value="0" key="NSNotApplicablePlaceholder"/>
+								<integer value="0" key="NSNullPlaceholder"/>
+								<string key="NSValueTransformerName">NSIsNotNil</string>
+							</dictionary>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">2467</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -2638,7 +2657,30 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">2398</int>
+					<int key="connectionID">2469</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: self.cloverOemCollection</string>
+						<reference key="source" ref="417080499"/>
+						<reference key="destination" ref="294453543"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="417080499"/>
+							<reference key="NSDestination" ref="294453543"/>
+							<string key="NSLabel">enabled: self.cloverOemCollection</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">self.cloverOemCollection</string>
+							<dictionary key="NSOptions">
+								<integer value="0" key="NSMultipleValuesPlaceholder"/>
+								<integer value="0" key="NSNoSelectionPlaceholder"/>
+								<integer value="0" key="NSNotApplicablePlaceholder"/>
+								<integer value="0" key="NSNullPlaceholder"/>
+								<string key="NSValueTransformerName">NSIsNotNil</string>
+							</dictionary>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">2471</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -3786,7 +3828,7 @@ bWUgZGVmaW5lZCBpbiByZWZpdC5jb25mIGlzIHVzZQ</string>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">2419</int>
+			<int key="maxID">2471</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3835,7 +3877,7 @@ bWUgZGVmaW5lZCBpbiByZWZpdC5jb25mIGlzIHVzZQ</string>
 						<string key="cloverOemPath">NSString</string>
 						<string key="cloverOldLogLineCount">NSNumber</string>
 						<string key="cloverPath">NSString</string>
-						<string key="cloverPathCollection">NSArray</string>
+						<string key="cloverPathsCollection">NSArray</string>
 						<string key="cloverTheme">NSString</string>
 						<string key="cloverThemeInfo">NSDictionary</string>
 						<string key="cloverThemesCollection">NSDictionary</string>
@@ -3916,8 +3958,8 @@ bWUgZGVmaW5lZCBpbiByZWZpdC5jb25mIGlzIHVzZQ</string>
 							<string key="name">cloverPath</string>
 							<string key="candidateClassName">NSString</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="cloverPathCollection">
-							<string key="name">cloverPathCollection</string>
+						<object class="IBToOneOutletInfo" key="cloverPathsCollection">
+							<string key="name">cloverPathsCollection</string>
 							<string key="candidateClassName">NSArray</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="cloverTheme">
@@ -4022,7 +4064,6 @@ bWUgZGVmaW5lZCBpbiByZWZpdC5jb25mIGlzIHVzZQ</string>
 			<string key="NSMenuCheckmark">{11, 11}</string>
 			<string key="NSMenuMixedState">{10, 3}</string>
 			<string key="NSSwitch">{15, 15}</string>
-			<string key="screenshot">{413, 413}</string>
 		</dictionary>
 	</data>
 </archive>
