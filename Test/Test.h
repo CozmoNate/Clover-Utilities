@@ -10,6 +10,8 @@
 
 @interface Test : SenTestCase
 {
+    io_registry_entry_t _ioAcpiPlatformExpert;
+    
     NSDictionary *_diskutilList;
     NSArray *_efiPartitions;
 }

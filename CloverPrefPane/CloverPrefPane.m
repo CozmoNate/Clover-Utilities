@@ -121,19 +121,10 @@
                                     NSString *identifier = [partitionEntry objectForKey:@"DeviceIdentifier"];
                                     
                                     if (identifier != nil) {
-                                        NSDictionary *partitionInfo = [self getPartitionInfo:identifier];
+                                        espIdentifier = [self getUuidForBsdVolume:identifier];
                                         
-                                        if (partitionInfo != nil) {
-                                            
-                                            //NSString *name = [NSString stringWithFormat:GetLocalizedString(@"EFI on %@"), diskIdentifier];
-                                            //NSString *uuid = [partitionInfo objectForKey:@"VolumeUUID"];
-                                            
-                                            //AddMenuItemToSourceList(list, name, (uuid != nil ? uuid : identifier));
-                                            espIdentifier = [partitionInfo objectForKey:@"VolumeUUID"];
-                                            
-                                            if (!espIdentifier) {
-                                                espIdentifier = identifier;
-                                            }
+                                        if (!espIdentifier) {
+                                            espIdentifier = identifier;
                                         }
                                     }
                                 }
@@ -491,6 +482,51 @@
 
 #pragma mark Methods
 
+- (NSString*)getUuidForBsdVolume:(NSString*)bsdName
+{
+    CFMutableDictionaryRef	matchingDict;
+    io_service_t			service;
+    NSString *              uuid = @"-";
+    
+    matchingDict = IOBSDNameMatching(kIOMasterPortDefault, 0, [bsdName UTF8String]);
+    
+    if (NULL == matchingDict) {
+        NSLog(@"IOBSDNameMatching returned a NULL dictionary");
+    }
+    else {
+        // Fetch the object with the matching BSD node name.
+		// Note that there should only be one match, so IOServiceGetMatchingService is used instead of
+		// IOServiceGetMatchingServices to simplify the code.
+        service = IOServiceGetMatchingService(kIOMasterPortDefault, matchingDict);
+        
+		if (IO_OBJECT_NULL == service) {
+			NSLog(@"IOServiceGetMatchingService returned IO_OBJECT_NULL");
+		}
+		else {
+			if (IOObjectConformsTo(service, "IOMedia")) {
+                
+                CFTypeRef valueRef;
+                
+                valueRef = IORegistryEntryCreateCFProperty(service, CFSTR("UUID"), kCFAllocatorDefault, 0);
+                
+                if (NULL == valueRef) {
+                    NSLog(@"Could not retrieve UUID property");
+                }
+                else {
+                    
+                    uuid = (__bridge NSString*)CFStringCreateCopy(kCFAllocatorDefault, valueRef);
+                    
+                    CFRelease(valueRef);
+                }
+            }
+            
+			IOObjectRelease(service);
+		}
+    }
+    
+    return uuid;
+}
+
 - (NSDictionary*)getPartitionInfo:(NSString*)partitionName
 {
     if (!partitionName)
@@ -809,48 +845,10 @@
 
 #pragma mark NVRAM methods
 
-- (void)setupIoRegistryOptionsConnection
-{
-    // Allow readwrite for accessing IORegistry
-    mach_port_t   masterPort;
-    
-    kern_return_t result = IOMasterPort(bootstrap_port, &masterPort);
-    if (result != KERN_SUCCESS) {
-        NSLog(@"Error getting the IOMaster port: %s", mach_error_string(result));
-        exit(1);
-    }
-    
-    _ioRegistryOptions = IORegistryEntryFromPath(masterPort, "IODeviceTree:/options");
-    
-    if (_ioRegistryOptions == 0) {
-        NSLog(@"NVRAM is not supported on this system");
-        exit(1);
-    }
-}
-
-- (void)setupIoRegistryPlatformConnection
-{
-    // Allow readwrite for accessing IORegistry
-    mach_port_t   masterPort;
-    
-    kern_return_t result = IOMasterPort(bootstrap_port, &masterPort);
-    if (result != KERN_SUCCESS) {
-        NSLog(@"Error getting the IOMaster port: %s", mach_error_string(result));
-        return;
-    }
-    
-    _ioRegistryEfiPlatform = IORegistryEntryFromPath(masterPort, "IODeviceTree:/efi/platform");
-    
-    if (_ioRegistryEfiPlatform == 0) {
-        NSLog(@"EFI is not supported on this system");
-        return;
-    }
-}
-
 - (NSString*)getNvramKey:(const char *)key
 {
     if (!_ioRegistryOptions) {
-        [self setupIoRegistryOptionsConnection];
+        _ioRegistryOptions = IORegistryEntryFromPath(kIOMasterPortDefault, "IODeviceTree:/options");
     }
     
     NSString* result = @"-";
@@ -885,7 +883,7 @@
 - (OSErr)setNvramKey:(const char *)key value:(const char *)value
 {
     if (!_ioRegistryOptions) {
-        [self setupIoRegistryOptionsConnection];
+        _ioRegistryOptions = IORegistryEntryFromPath(kIOMasterPortDefault, "IODeviceTree:/options");
     }
     
     OSErr processError = 0;

@@ -12,6 +12,7 @@
 		7E1F574717475FCE00780A84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E1F574517475FCE00780A84 /* InfoPlist.strings */; };
 		7E1F574A17475FCE00780A84 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1F574917475FCE00780A84 /* Test.m */; };
 		7E44151D174AAAE60012952E /* NoPreview.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E44151C174AAAE60012952E /* NoPreview.png */; };
+		7E46FE92174FD11A0071109E /* getconfig in Resources */ = {isa = PBXBuildFile; fileRef = 7EA204B0174E001700F7C117 /* getconfig */; };
 		7E4A256217434A5500E87EF8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A256117434A5500E87EF8 /* Cocoa.framework */; };
 		7E4A256417434A5500E87EF8 /* PreferencePanes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A256317434A5500E87EF8 /* PreferencePanes.framework */; };
 		7E4A256E17434A5500E87EF8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A256C17434A5500E87EF8 /* InfoPlist.strings */; };
@@ -27,6 +28,8 @@
 		7EA204B5174E001700F7C117 /* getconfig.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7EA204B4174E001700F7C117 /* getconfig.1 */; };
 		7EA204BB174E004300F7C117 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A256617434A5500E87EF8 /* AppKit.framework */; };
 		7EA204BC174E004800F7C117 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA15D6A1743CE27006E3C1E /* IOKit.framework */; };
+		7EA275AA1750BAF4009D6C13 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA15D6A1743CE27006E3C1E /* IOKit.framework */; };
+		7EA275AB1750BAF8009D6C13 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A256617434A5500E87EF8 /* AppKit.framework */; };
 		7EA42A54174806F1007328AF /* NoPreview.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EA42A53174806F1007328AF /* NoPreview.png */; };
 		7EA5B60A174C99A200428A7C /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 7EA5B609174C99A200428A7C /* Themes */; };
 		7EE3BC6E17440E5600144659 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EE3BC6D17440E5600144659 /* ServiceManagement.framework */; };
@@ -96,6 +99,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EA275AB1750BAF8009D6C13 /* AppKit.framework in Frameworks */,
+				7EA275AA1750BAF4009D6C13 /* IOKit.framework in Frameworks */,
 				7E1F573C17475FCE00780A84 /* SenTestingKit.framework in Frameworks */,
 				7E1F573D17475FCE00780A84 /* Cocoa.framework in Frameworks */,
 			);
@@ -347,6 +352,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E46FE92174FD11A0071109E /* getconfig in Resources */,
 				7E4A256E17434A5500E87EF8 /* InfoPlist.strings in Resources */,
 				7E4A257417434A5500E87EF8 /* CloverPrefPane.tiff in Resources */,
 				7E4A25841743527700E87EF8 /* CloverTitle.png in Resources */,

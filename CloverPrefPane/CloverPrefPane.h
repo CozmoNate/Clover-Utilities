@@ -13,7 +13,7 @@
 @interface CloverPrefPane : NSPreferencePane
 {
     io_registry_entry_t _ioRegistryOptions;
-    io_registry_entry_t _ioRegistryEfiPlatform;
+    io_registry_entry_t _ioAcpiPlatformExpert;
     
     NSString *_updaterPlistPath;
     NSDictionary *_diskutilList;
@@ -39,8 +39,6 @@
     IBOutlet NSTextField *_lastUpdateTextField;
     IBOutlet NSButton *_checkNowButton;
 }
-
-
 
 @property (readonly) IBOutlet NSDictionary* diskutilList;
 @property (readonly) IBOutlet NSArray* allDisks;
