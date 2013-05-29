@@ -843,9 +843,12 @@
         NSURL *url = [[panel URLs] objectAtIndex:0];
         
         if ([url.path.lastPathComponent isCaseInsensitiveLike:@"EFI"]) {
-            self.cloverPath = [url.path stringByAppendingPathComponent:@"Clover"];
+            self.cloverPath = [url.path stringByAppendingPathComponent:@"CLOVER"];
         }
-        else if ([url.path.lastPathComponent isCaseInsensitiveLike:@"Clover"]) {
+        if ([url.path.lastPathComponent isCaseInsensitiveLike:@"BOOT"]) {
+            self.cloverPath = [[url.path stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"CLOVER"];
+        }
+        else if ([url.path.lastPathComponent isCaseInsensitiveLike:@"CLOVER"]) {
             self.cloverPath = url.path;
         }
     }];

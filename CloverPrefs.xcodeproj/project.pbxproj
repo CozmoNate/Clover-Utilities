@@ -277,6 +277,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7E4A257A17434A5500E87EF8 /* Build configuration list for PBXNativeTarget "Clover" */;
 			buildPhases = (
+				7E54AC881755EBB90085A20F /* ShellScript */,
 				7E4A255817434A5500E87EF8 /* Sources */,
 				7E4A255917434A5500E87EF8 /* Frameworks */,
 				7E4A255A17434A5500E87EF8 /* Headers */,
@@ -388,6 +389,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		7E54AC881755EBB90085A20F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/sh\n# Increment project's build number\n\nif [[ $(git status \"${SOURCE_ROOT}\" | grep -c modified) == \"0\" ]]; then\n    exit 0\nfi\n\nBUILDNUM=$(/usr/libexec/PlistBuddy -c \"print CFBundleVersion\" \"${PRODUCT_SETTINGS_PATH}\")\nBUILDNUM=$(($BUILDNUM + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $BUILDNUM\" \"${PRODUCT_SETTINGS_PATH}\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
