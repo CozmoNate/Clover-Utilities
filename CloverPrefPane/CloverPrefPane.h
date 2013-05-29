@@ -71,6 +71,7 @@
 - (IBAction)updatesIntervalChanged:(id)sender;
 - (IBAction)checkForUpdatePressed:(id)sender;
 - (IBAction)saveSettingsPressed:(id)sender;
+- (IBAction)setCurrentCloverPathPressed:(id)sender;
 - (IBAction)editCurrentConfigPressed:(id)sender;
 
 @end

@@ -297,7 +297,7 @@
         _cloverOemCollection = cloverOemProductsCollection;
     }
     
-    self.cloverOemPath = nil;
+    //self.cloverOemPath = nil;
 }
 
 -(NSString *)cloverOemPath
@@ -635,6 +635,10 @@
 
 - (NSArray*)getCloverOemcollectionFromPath:(NSString*)path
 {
+    if (!path || ![path length]) {
+        return nil;
+    }
+    
     NSString *oemPath = [path stringByAppendingPathComponent:@"OEM"];
     
     if (![[NSFileManager defaultManager] fileExistsAtPath:oemPath]) {
@@ -750,6 +754,9 @@
 
     _diskutilList = nil;
     _mountedVolumes = nil;
+    
+    // force rfresh clover paths
+    self.cloverPathsCollection = nil;
 }
 
 - (void)updatesIntervalChanged:(id)sender
@@ -807,6 +814,41 @@
     [_lastUpdateTextField setStringValue:[_lastUpdateTextField.formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]]];
     
     [[NSWorkspace sharedWorkspace] launchApplication:@kCloverUpdaterExecutable];
+}
+
+-(void)setCurrentCloverPathPressed:(NSString *)cloverPath
+{
+    NSOpenPanel *panel = [NSOpenPanel openPanel];
+    [panel setAllowsMultipleSelection:NO];
+    [panel setCanChooseDirectories:YES];
+    [panel setCanChooseFiles:NO];
+    [panel setResolvesAliases:YES];
+    
+    NSString *panelTitle = NSLocalizedString(@"Choose EFI folder", @"Set custom Clover location");
+    [panel setTitle:panelTitle];
+    
+    NSString *promptString = NSLocalizedString(@"Choose", @"Prompt for the open panel prompt");
+    [panel setPrompt:promptString];
+        
+    [panel beginSheetModalForWindow:[self.mainView window] completionHandler:^(NSInteger result){
+        
+        // Hide the open panel.
+        [panel orderOut:self];
+        
+        // If the return code wasn't OK, don't do anything.
+        if (result != NSOKButton) {
+            return;
+        }
+        // Get the first URL returned from the Open Panel and set it at the first path component of the control.
+        NSURL *url = [[panel URLs] objectAtIndex:0];
+        
+        if ([url.path.lastPathComponent isCaseInsensitiveLike:@"EFI"]) {
+            self.cloverPath = [url.path stringByAppendingPathComponent:@"Clover"];
+        }
+        else if ([url.path.lastPathComponent isCaseInsensitiveLike:@"Clover"]) {
+            self.cloverPath = url.path;
+        }
+    }];
 }
 
 - (void)saveSettingsPressed:(id)sender
