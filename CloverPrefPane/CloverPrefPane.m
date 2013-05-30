@@ -824,11 +824,8 @@
     [panel setCanChooseFiles:NO];
     [panel setResolvesAliases:YES];
     
-    NSString *panelTitle = NSLocalizedString(@"Choose EFI folder", @"Set custom Clover location");
-    [panel setTitle:panelTitle];
-    
-    NSString *promptString = NSLocalizedString(@"Choose", @"Prompt for the open panel prompt");
-    [panel setPrompt:promptString];
+    [panel setTitle:GetLocalizedString(@"Set custom Clover location")];
+    [panel setPrompt:GetLocalizedString(@"Choose EFI folder")];
         
     [panel beginSheetModalForWindow:[self.mainView window] completionHandler:^(NSInteger result){
         
