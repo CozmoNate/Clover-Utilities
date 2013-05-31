@@ -62,13 +62,13 @@
 
         NSMutableArray *list = [[NSMutableArray alloc] init];
         
-        NSArray *urls = [[NSFileManager defaultManager] mountedVolumeURLsIncludingResourceValuesForKeys:[NSArray arrayWithObject:NSURLVolumeNameKey] options:0];
+        NSArray *urls = [[NSFileManager defaultManager] mountedVolumeURLsIncludingResourceValuesForKeys:[NSArray arrayWithObject:NSURLVolumeURLKey] options:0];
         
         for (NSURL *url in urls) {
             NSError *error;
             NSString *volumeName = nil;
             
-            [url getResourceValue:&volumeName forKey:NSURLVolumeNameKey error:&error];
+            [url getResourceValue:&volumeName forKey:NSURLVolumeURLKey error:&error];
             
             if (volumeName) {
                 [list addObject:volumeName];
@@ -282,7 +282,7 @@
 -(NSArray *)cloverOemCollection
 {
     if (!_cloverOemCollection) {
-        _cloverOemCollection = [self getCloverOemcollectionFromPath:self.cloverPath];
+        _cloverOemCollection = [self getCloverOemCollectionFromPath:self.cloverPath];
     }
     
     return _cloverOemCollection;
@@ -291,7 +291,7 @@
 -(void)setCloverOemCollection:(NSArray *)cloverOemProductsCollection
 {
     if (!cloverOemProductsCollection) {
-        _cloverOemCollection = [self getCloverOemcollectionFromPath:self.cloverPath];
+        _cloverOemCollection = [self getCloverOemCollectionFromPath:self.cloverPath];
     }
     else {
         _cloverOemCollection = cloverOemProductsCollection;
@@ -633,7 +633,7 @@
     return [themes copy];
 }
 
-- (NSArray*)getCloverOemcollectionFromPath:(NSString*)path
+- (NSArray*)getCloverOemCollectionFromPath:(NSString*)path
 {
     if (!path || ![path length]) {
         return nil;
