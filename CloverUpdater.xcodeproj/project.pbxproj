@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E27CF00175F26D7005438E5 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E27CEFF175F26D7005438E5 /* IOKit.framework */; };
 		7EA6B83D1747B6F60018B340 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA6B83C1747B6F60018B340 /* Cocoa.framework */; };
 		7EA6B8471747B6F60018B340 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7EA6B8451747B6F60018B340 /* InfoPlist.strings */; };
 		7EA6B8491747B6F60018B340 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA6B8481747B6F60018B340 /* main.m */; };
@@ -18,11 +19,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E27CEFF175F26D7005438E5 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		7EA6B8391747B6F60018B340 /* CloverUpdater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CloverUpdater.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EA6B83C1747B6F60018B340 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		7EA6B83F1747B6F60018B340 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		7EA6B8401747B6F60018B340 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		7EA6B8411747B6F60018B340 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7EA6B8441747B6F60018B340 /* CloverUpdater-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CloverUpdater-Info.plist"; sourceTree = "<group>"; };
 		7EA6B8461747B6F60018B340 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7EA6B8481747B6F60018B340 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -33,7 +32,6 @@
 		7EA6B8521747B6F60018B340 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		7EA6B8591747B7EF0018B340 /* clover.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = clover.icns; sourceTree = "<group>"; };
 		7EA6B85B1747B8500018B340 /* CloverLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CloverLogo.png; path = CloverPrefPane/CloverLogo.png; sourceTree = SOURCE_ROOT; };
-		7EA6B85D1747B8EB0018B340 /* Arguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Arguments.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E27CF00175F26D7005438E5 /* IOKit.framework in Frameworks */,
 				7EA6B83D1747B6F60018B340 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -69,9 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				7EA6B83C1747B6F60018B340 /* Cocoa.framework */,
-				7EA6B83F1747B6F60018B340 /* AppKit.framework */,
-				7EA6B8401747B6F60018B340 /* CoreData.framework */,
-				7EA6B8411747B6F60018B340 /* Foundation.framework */,
+				7E27CEFF175F26D7005438E5 /* IOKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -79,7 +76,6 @@
 		7EA6B8421747B6F60018B340 /* CloverUpdater */ = {
 			isa = PBXGroup;
 			children = (
-				7EA6B85D1747B8EB0018B340 /* Arguments.h */,
 				7EA6B84E1747B6F60018B340 /* AppDelegate.h */,
 				7EA6B84F1747B6F60018B340 /* AppDelegate.m */,
 				7EA6B8511747B6F60018B340 /* MainMenu.xib */,
