@@ -13,7 +13,6 @@
 
 @property (assign) IBOutlet NSTextField *hasUpdateTextField;
 
-- (IBAction)skipUpdate:(id)sender;
 - (IBAction)doUpdate:(id)sender;
 
 @end

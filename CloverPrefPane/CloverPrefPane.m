@@ -12,7 +12,7 @@
 #include <sys/mount.h>
 
 #define kCloverUpdaterIdentifier "com.projectosx.Clover.Updater"
-#define kCloverUpdaterExecutable "/Library/Application Support/Clover/CloverUpdaterUtility"
+#define kCloverUpdaterExecutable "CloverUpdater.app"
 
 #define GetLocalizedString(key) \
 [self.bundle localizedStringForKey:(key) value:@"" table:nil]
@@ -671,8 +671,60 @@
     return nil;
 }
 
-#pragma mark Events
+- (void)setUpdatesInterval:(NSInteger)checkInterval
+{
+    CFDictionaryRef launchInfo = SMJobCopyDictionary(kSMDomainUserLaunchd, CFSTR(kCloverUpdaterIdentifier));
+    
+    if (launchInfo != NULL) {
+        CFRelease(launchInfo);
+        
+        CFErrorRef error = NULL;
+        if (!SMJobRemove(kSMDomainUserLaunchd, CFSTR(kCloverUpdaterIdentifier), NULL/*[[_authorizationView authorization] authorizationRef]*/, YES, &error))
+            NSLog(@"Error in SMJobRemove: %@", error);
+        if (error)
+            CFRelease(error);
+    }
+    
+	[self setPreferenceKey:CFSTR("ScheduledCheckInterval") forAppID:CFSTR(kCloverUpdaterIdentifier) fromInt:(int)checkInterval];
+    
+    NSString *updaterPath = [[[self.bundle resourcePath] stringByAppendingPathComponent:@kCloverUpdaterExecutable] stringByAppendingPathComponent:@"Contents/MacOS/CloverUpdater"];
+    NSLog(@"Clover Updater path: %@", updaterPath);
+    
+    if (checkInterval > 0) {
+        // Create a new plist
+        NSArray* call = [NSArray arrayWithObjects:
+                        updaterPath,
+                         @"startup",
+                         nil];
+        
+        NSMutableDictionary *plist = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                      @kCloverUpdaterIdentifier, @"Label",
+                                      [NSNumber numberWithInteger:checkInterval], @"StartInterval",
+                                      [NSNumber numberWithBool:YES], @"RunAtLoad",
+                                      updaterPath, @"Program",
+                                      call, @"ProgramArguments",
+                                      nil];
+        
+        [plist writeToFile:_updaterPlistPath atomically:YES];
+        
+		CFErrorRef error = NULL;
+        
+		if (!SMJobSubmit(kSMDomainUserLaunchd, (__bridge CFDictionaryRef)plist, NULL/*[[_authorizationView authorization] authorizationRef]*/, &error)) {
+			if (error) {
+				NSLog(@"Error in SMJobSubmit: %@", error);
+			} else {
+				NSLog(@"Error in SMJobSubmit without details. Check /var/db/launchd.db/com.apple.launchd.peruser.NNN/overrides.plist for %@ set to disabled.", @kCloverUpdaterIdentifier);
+            }
+		}
+		if (error) {
+			CFRelease(error);
+        }
+    }
+    
+    CFPreferencesAppSynchronize(CFSTR(kCloverUpdaterIdentifier)); // Force the preferences to be save to disk
+}
 
+#pragma mark Events
 
 - (void)mainViewDidLoad
 {
@@ -684,21 +736,21 @@
 	[_authorizationView setAuthorizationRights:&rights];
 	[_authorizationView updateStatus:nil];
     
-    // Updater
-    BOOL plistExists;
-    
     NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
     NSString *agentsFolder = [[searchPaths objectAtIndex:0] stringByAppendingPathComponent:@"LaunchAgents"];
     [[NSFileManager defaultManager] createDirectoryAtPath:agentsFolder withIntermediateDirectories:YES attributes:nil error:nil];
     _updaterPlistPath = [[agentsFolder stringByAppendingPathComponent:@kCloverUpdaterIdentifier] stringByAppendingPathExtension:@"plist"];
     
+    if (![[NSFileManager defaultManager] fileExistsAtPath:_updaterPlistPath]) {
+        NSLog(@"Setting default updates interval: Daily");
+        [self setUpdatesInterval:86400];
+    }
+    
     // Initialize revision fields
-    searchPaths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSLocalDomainMask, YES);
     NSString *preferenceFolder = [[searchPaths objectAtIndex:0] stringByAppendingPathComponent:@"Preferences"];
-    NSString *cloverInstallerPlist = [[preferenceFolder stringByAppendingPathComponent:(NSString *)CFSTR("com.projectosx.clover.installer")] stringByAppendingPathExtension:@"plist"];
-    plistExists = [[NSFileManager defaultManager] fileExistsAtPath:cloverInstallerPlist];
+    NSString *cloverInstallerPlist = [[preferenceFolder stringByAppendingPathComponent:@"com.projectosx.clover.installer"] stringByAppendingPathExtension:@"plist"];
     NSString* installedRevision = @"-";
-    if (plistExists) {
+    if ([[NSFileManager defaultManager] fileExistsAtPath:cloverInstallerPlist]) {
         NSDictionary *dict = [[NSDictionary alloc] initWithContentsOfFile:cloverInstallerPlist];
         NSNumber* revision = [dict objectForKey:@"CloverRevision"];
         if (revision) {
@@ -740,7 +792,7 @@
     }
     
     // Disable the checkNowButton if executable is not present
-    [_checkNowButton setEnabled:[[NSFileManager defaultManager] fileExistsAtPath:@kCloverUpdaterExecutable]];
+    //[_checkNowButton setEnabled:[[NSFileManager defaultManager] fileExistsAtPath:@kCloverUpdaterExecutable]];
     
     
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector: @selector(volumesChanged:) name:NSWorkspaceDidMountNotification object: nil];
@@ -761,51 +813,7 @@
 
 - (void)updatesIntervalChanged:(id)sender
 {
-    CFDictionaryRef launchInfo = SMJobCopyDictionary(kSMDomainUserLaunchd, CFSTR(kCloverUpdaterIdentifier));
-    if (launchInfo != NULL) {
-        CFRelease(launchInfo);
-        CFErrorRef error = NULL;
-        if (!SMJobRemove(kSMDomainUserLaunchd, CFSTR(kCloverUpdaterIdentifier), NULL, YES, &error))
-            NSLog(@"Error in SMJobRemove: %@", error);
-        if (error)
-            CFRelease(error);
-    }
-	
-    NSInteger checkInterval = [sender tag];
-    
-	[self setPreferenceKey:CFSTR("ScheduledCheckInterval") forAppID:CFSTR(kCloverUpdaterIdentifier) fromInt:(int)checkInterval];
-    
-    if (checkInterval > 0 && [[NSFileManager defaultManager] fileExistsAtPath:@kCloverUpdaterExecutable]) {
-        // Create a new plist
-        NSArray* call = [NSArray arrayWithObjects:
-                         @kCloverUpdaterExecutable,
-                         @"startup",
-                         nil];
-        
-        NSMutableDictionary *plist = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                      @kCloverUpdaterIdentifier, @"Label",
-                                      [NSNumber numberWithInteger:checkInterval], @"StartInterval",
-                                      [NSNumber numberWithBool:YES], @"RunAtLoad",
-                                      @kCloverUpdaterExecutable, @"Program",
-                                      call, @"ProgramArguments",
-                                      nil];
-        
-        [plist writeToFile:_updaterPlistPath atomically:YES];
-        
-		CFErrorRef error = NULL;
-		if (!SMJobSubmit(kSMDomainUserLaunchd, (__bridge CFDictionaryRef)plist, NULL, &error)) {
-			if (error) {
-				NSLog(@"Error in SMJobSubmit: %@", error);
-			} else
-				NSLog(@"Error in SMJobSubmit without details. Check /var/db/launchd.db/com.apple.launchd.peruser.NNN/overrides.plist for %@ set to disabled.", @kCloverUpdaterIdentifier);
-		}
-		if (error)
-			CFRelease(error);
-    } else {
-        // Remove the plist
-        [[NSFileManager defaultManager] removeItemAtPath:_updaterPlistPath error:nil];
-    }
-    
+    [self setUpdatesInterval:[sender tag]];
     CFPreferencesAppSynchronize(CFSTR(kCloverUpdaterIdentifier)); // Force the preferences to be save to disk
 }
 
@@ -813,7 +821,7 @@
 {
     [_lastUpdateTextField setStringValue:[_lastUpdateTextField.formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]]];
     
-    [[NSWorkspace sharedWorkspace] launchApplication:@kCloverUpdaterExecutable];
+    [[NSWorkspace sharedWorkspace] launchApplication:[[self.bundle resourcePath] stringByAppendingPathComponent:@kCloverUpdaterExecutable]];
 }
 
 -(void)setCurrentCloverPathPressed:(NSString *)cloverPath

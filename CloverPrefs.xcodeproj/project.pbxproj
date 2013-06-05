@@ -11,8 +11,18 @@
 		7E1F573D17475FCE00780A84 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A256117434A5500E87EF8 /* Cocoa.framework */; };
 		7E1F574717475FCE00780A84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E1F574517475FCE00780A84 /* InfoPlist.strings */; };
 		7E1F574A17475FCE00780A84 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1F574917475FCE00780A84 /* Test.m */; };
+		7E27CF10175FE500005438E5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A256117434A5500E87EF8 /* Cocoa.framework */; };
+		7E27CF1A175FE500005438E5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E27CF18175FE500005438E5 /* InfoPlist.strings */; };
+		7E27CF1C175FE500005438E5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E27CF1B175FE500005438E5 /* main.m */; };
+		7E27CF20175FE500005438E5 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 7E27CF1E175FE500005438E5 /* Credits.rtf */; };
+		7E27CF23175FE500005438E5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E27CF22175FE500005438E5 /* AppDelegate.m */; };
+		7E27CF26175FE500005438E5 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E27CF24175FE500005438E5 /* MainMenu.xib */; };
+		7E27CF2B175FE596005438E5 /* clover.icns in Resources */ = {isa = PBXBuildFile; fileRef = 7E27CF2A175FE596005438E5 /* clover.icns */; };
+		7E27CF2D175FE5A6005438E5 /* CloverLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E27CF2C175FE5A6005438E5 /* CloverLogo.png */; };
+		7E27CF31175FE6E7005438E5 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA15D6A1743CE27006E3C1E /* IOKit.framework */; };
+		7E27CF34175FE6FE005438E5 /* CloverUpdater.app in Resources */ = {isa = PBXBuildFile; fileRef = 7E27CF0F175FE500005438E5 /* CloverUpdater.app */; };
+		7E27CF35175FE706005438E5 /* getconfig in Resources */ = {isa = PBXBuildFile; fileRef = 7EA204B0174E001700F7C117 /* getconfig */; };
 		7E44151D174AAAE60012952E /* NoPreview.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E44151C174AAAE60012952E /* NoPreview.png */; };
-		7E46FE92174FD11A0071109E /* getconfig in Resources */ = {isa = PBXBuildFile; fileRef = 7EA204B0174E001700F7C117 /* getconfig */; };
 		7E4A256217434A5500E87EF8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A256117434A5500E87EF8 /* Cocoa.framework */; };
 		7E4A256417434A5500E87EF8 /* PreferencePanes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A256317434A5500E87EF8 /* PreferencePanes.framework */; };
 		7E4A256E17434A5500E87EF8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A256C17434A5500E87EF8 /* InfoPlist.strings */; };
@@ -36,6 +46,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		7E27CF32175FE6F3005438E5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7E4A255417434A5500E87EF8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E27CF0E175FE500005438E5;
+			remoteInfo = CloverUpdater;
+		};
 		7EA204B9174E002000F7C117 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7E4A255417434A5500E87EF8 /* Project object */;
@@ -66,6 +83,17 @@
 		7E1F574817475FCE00780A84 /* Test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
 		7E1F574917475FCE00780A84 /* Test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
 		7E1F574B17475FCE00780A84 /* Test-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Test-Prefix.pch"; sourceTree = "<group>"; };
+		7E27CF0F175FE500005438E5 /* CloverUpdater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CloverUpdater.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E27CF17175FE500005438E5 /* CloverUpdater-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CloverUpdater-Info.plist"; sourceTree = "<group>"; };
+		7E27CF19175FE500005438E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7E27CF1B175FE500005438E5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7E27CF1D175FE500005438E5 /* CloverUpdater-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CloverUpdater-Prefix.pch"; sourceTree = "<group>"; };
+		7E27CF1F175FE500005438E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		7E27CF21175FE500005438E5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		7E27CF22175FE500005438E5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		7E27CF25175FE500005438E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		7E27CF2A175FE596005438E5 /* clover.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = clover.icns; sourceTree = "<group>"; };
+		7E27CF2C175FE5A6005438E5 /* CloverLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CloverLogo.png; path = CloverPrefPane/CloverLogo.png; sourceTree = SOURCE_ROOT; };
 		7E44151C174AAAE60012952E /* NoPreview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NoPreview.png; sourceTree = "<group>"; };
 		7E4A255E17434A5500E87EF8 /* Clover.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Clover.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E4A256117434A5500E87EF8 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -103,6 +131,15 @@
 				7EA275AA1750BAF4009D6C13 /* IOKit.framework in Frameworks */,
 				7E1F573C17475FCE00780A84 /* SenTestingKit.framework in Frameworks */,
 				7E1F573D17475FCE00780A84 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E27CF0C175FE500005438E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E27CF10175FE500005438E5 /* Cocoa.framework in Frameworks */,
+				7E27CF31175FE6E7005438E5 /* IOKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,10 +189,36 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		7E27CF15175FE500005438E5 /* CloverUpdater */ = {
+			isa = PBXGroup;
+			children = (
+				7E27CF21175FE500005438E5 /* AppDelegate.h */,
+				7E27CF22175FE500005438E5 /* AppDelegate.m */,
+				7E27CF24175FE500005438E5 /* MainMenu.xib */,
+				7E27CF16175FE500005438E5 /* Supporting Files */,
+			);
+			path = CloverUpdater;
+			sourceTree = "<group>";
+		};
+		7E27CF16175FE500005438E5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7E27CF2C175FE5A6005438E5 /* CloverLogo.png */,
+				7E27CF2A175FE596005438E5 /* clover.icns */,
+				7E27CF17175FE500005438E5 /* CloverUpdater-Info.plist */,
+				7E27CF18175FE500005438E5 /* InfoPlist.strings */,
+				7E27CF1B175FE500005438E5 /* main.m */,
+				7E27CF1D175FE500005438E5 /* CloverUpdater-Prefix.pch */,
+				7E27CF1E175FE500005438E5 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		7E4A255317434A5500E87EF8 = {
 			isa = PBXGroup;
 			children = (
 				7E4A256917434A5500E87EF8 /* CloverPrefPane */,
+				7E27CF15175FE500005438E5 /* CloverUpdater */,
 				7E4A258117434EAD00E87EF8 /* Graphics */,
 				7EA204B1174E001700F7C117 /* getconfig */,
 				7E1F574217475FCE00780A84 /* Test */,
@@ -170,6 +233,7 @@
 				7E4A255E17434A5500E87EF8 /* Clover.prefPane */,
 				7E1F573A17475FCE00780A84 /* Test.octest */,
 				7EA204B0174E001700F7C117 /* getconfig */,
+				7E27CF0F175FE500005438E5 /* CloverUpdater.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -273,6 +337,24 @@
 			productReference = 7E1F573A17475FCE00780A84 /* Test.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
+		7E27CF0E175FE500005438E5 /* CloverUpdater */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E27CF27175FE500005438E5 /* Build configuration list for PBXNativeTarget "CloverUpdater" */;
+			buildPhases = (
+				7E27CF2E175FE6C8005438E5 /* ShellScript */,
+				7E27CF0B175FE500005438E5 /* Sources */,
+				7E27CF0C175FE500005438E5 /* Frameworks */,
+				7E27CF0D175FE500005438E5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CloverUpdater;
+			productName = CloverUpdater;
+			productReference = 7E27CF0F175FE500005438E5 /* CloverUpdater.app */;
+			productType = "com.apple.product-type.application";
+		};
 		7E4A255D17434A5500E87EF8 /* Clover */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7E4A257A17434A5500E87EF8 /* Build configuration list for PBXNativeTarget "Clover" */;
@@ -287,6 +369,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				7E27CF33175FE6F3005438E5 /* PBXTargetDependency */,
 				7EA204BA174E002000F7C117 /* PBXTargetDependency */,
 			);
 			name = Clover;
@@ -335,6 +418,7 @@
 				7EA204AF174E001700F7C117 /* getconfig */,
 				7E4A255D17434A5500E87EF8 /* Clover */,
 				7E1F573917475FCE00780A84 /* Test */,
+				7E27CF0E175FE500005438E5 /* CloverUpdater */,
 			);
 		};
 /* End PBXProject section */
@@ -349,11 +433,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7E27CF0D175FE500005438E5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E27CF1A175FE500005438E5 /* InfoPlist.strings in Resources */,
+				7E27CF20175FE500005438E5 /* Credits.rtf in Resources */,
+				7E27CF26175FE500005438E5 /* MainMenu.xib in Resources */,
+				7E27CF2B175FE596005438E5 /* clover.icns in Resources */,
+				7E27CF2D175FE5A6005438E5 /* CloverLogo.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7E4A255B17434A5500E87EF8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E46FE92174FD11A0071109E /* getconfig in Resources */,
+				7E27CF35175FE706005438E5 /* getconfig in Resources */,
+				7E27CF34175FE6FE005438E5 /* CloverUpdater.app in Resources */,
 				7E4A256E17434A5500E87EF8 /* InfoPlist.strings in Resources */,
 				7E4A257417434A5500E87EF8 /* CloverPrefPane.tiff in Resources */,
 				7E4A25841743527700E87EF8 /* CloverTitle.png in Resources */,
@@ -390,6 +487,19 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
+		7E27CF2E175FE6C8005438E5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/sh\n# Increment project's build number\n\nif [[ $(git status \"${SOURCE_ROOT}\" | grep -c modified) == \"0\" ]]; then\nexit 0\nfi\n\nBUILDNUM=$(/usr/libexec/PlistBuddy -c \"print CFBundleVersion\" \"${PRODUCT_SETTINGS_PATH}\")\nBUILDNUM=$(($BUILDNUM + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $BUILDNUM\" \"${PRODUCT_SETTINGS_PATH}\"";
+		};
 		7E54AC881755EBB90085A20F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -414,6 +524,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7E27CF0B175FE500005438E5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E27CF1C175FE500005438E5 /* main.m in Sources */,
+				7E27CF23175FE500005438E5 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7E4A255817434A5500E87EF8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -433,6 +552,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		7E27CF33175FE6F3005438E5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7E27CF0E175FE500005438E5 /* CloverUpdater */;
+			targetProxy = 7E27CF32175FE6F3005438E5 /* PBXContainerItemProxy */;
+		};
 		7EA204BA174E002000F7C117 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 7EA204AF174E001700F7C117 /* getconfig */;
@@ -447,6 +571,30 @@
 				7E1F574617475FCE00780A84 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		7E27CF18175FE500005438E5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7E27CF19175FE500005438E5 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		7E27CF1E175FE500005438E5 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7E27CF1F175FE500005438E5 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		7E27CF24175FE500005438E5 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7E27CF25175FE500005438E5 /* en */,
+			);
+			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 		7E4A256C17434A5500E87EF8 /* InfoPlist.strings */ = {
@@ -495,6 +643,37 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+		7E27CF28175FE500005438E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CloverUpdater/CloverUpdater-Prefix.pch";
+				INFOPLIST_FILE = "CloverUpdater/CloverUpdater-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		7E27CF29175FE500005438E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CloverUpdater/CloverUpdater-Prefix.pch";
+				INFOPLIST_FILE = "CloverUpdater/CloverUpdater-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
 		};
@@ -596,7 +775,6 @@
 		7EA204B8174E001700F7C117 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -612,6 +790,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		7E27CF27175FE500005438E5 /* Build configuration list for PBXNativeTarget "CloverUpdater" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E27CF28175FE500005438E5 /* Debug */,
+				7E27CF29175FE500005438E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		7E4A255717434A5500E87EF8 /* Build configuration list for PBXProject "CloverPrefs" */ = {
 			isa = XCConfigurationList;

@@ -16,6 +16,7 @@
     io_registry_entry_t _ioAcpiPlatformExpert;
     
     NSString *_updaterPlistPath;
+    
     NSDictionary *_diskutilList;
     NSArray *_mountedVolumes;
     NSDictionary *_themesInfo;

@@ -20,34 +20,6 @@
                ReferencedContainer = "container:CloverPrefs.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7E27CF0E175FE500005438E5"
-               BuildableName = "CloverUpdater.app"
-               BlueprintName = "CloverUpdater"
-               ReferencedContainer = "container:CloverPrefs.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7E4A255D17434A5500E87EF8"
-               BuildableName = "Clover.prefPane"
-               BlueprintName = "Clover"
-               ReferencedContainer = "container:CloverPrefs.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -57,6 +29,15 @@
       buildConfiguration = "Debug">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "7EA204AF174E001700F7C117"
+            BuildableName = "getconfig"
+            BlueprintName = "getconfig"
+            ReferencedContainer = "container:CloverPrefs.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -70,9 +51,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7E27CF0E175FE500005438E5"
-            BuildableName = "CloverUpdater.app"
-            BlueprintName = "CloverUpdater"
+            BlueprintIdentifier = "7EA204AF174E001700F7C117"
+            BuildableName = "getconfig"
+            BlueprintName = "getconfig"
             ReferencedContainer = "container:CloverPrefs.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -85,6 +66,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "7EA204AF174E001700F7C117"
+            BuildableName = "getconfig"
+            BlueprintName = "getconfig"
+            ReferencedContainer = "container:CloverPrefs.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

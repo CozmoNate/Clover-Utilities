@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
-		<int key="IBDocument.SystemTarget">1070</int>
-		<string key="IBDocument.SystemVersion">12D78</string>
+		<int key="IBDocument.SystemTarget">1080</int>
+		<string key="IBDocument.SystemVersion">12E55</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.37</string>
+		<string key="IBDocument.AppKitVersion">1187.39</string>
 		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -650,7 +650,7 @@
 							<object class="NSTextFieldCell" key="NSCell" id="341423761">
 								<int key="NSCellFlags">67108864</int>
 								<int key="NSCellFlags2">138412032</int>
-								<string key="NSContents">New Clover revision %s is available - you have %s. Would you like to download newer reversion?</string>
+								<string key="NSContents">New Clover revision %i is available - you have %i. Would you like to download newer reversion?</string>
 								<object class="NSFont" key="NSSupport" id="337044074">
 									<string key="NSName">LucidaGrande</string>
 									<double key="NSSize">13</double>
@@ -845,6 +845,7 @@
 							<string key="NSFrame">{{334, 13}, {132, 32}}</string>
 							<reference key="NSSuperview" ref="699385328"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="229169774">
@@ -889,6 +890,22 @@
 						<reference key="destination" ref="632727374"/>
 					</object>
 					<int key="connectionID">449</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">terminate:</string>
+						<reference key="source" ref="1050"/>
+						<reference key="destination" ref="725351181"/>
+					</object>
+					<int key="connectionID">632</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">terminate:</string>
+						<reference key="source" ref="1050"/>
+						<reference key="destination" ref="777740552"/>
+					</object>
+					<int key="connectionID">633</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -1225,22 +1242,6 @@
 						<reference key="destination" ref="124287580"/>
 					</object>
 					<int key="connectionID">622</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">skipUpdate:</string>
-						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="725351181"/>
-					</object>
-					<int key="connectionID">623</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">skipUpdate:</string>
-						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="777740552"/>
-					</object>
-					<int key="connectionID">631</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1937,7 +1938,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">631</int>
+			<int key="maxID">633</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1986,10 +1987,6 @@
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
-		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
-			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.macosx</string>
-			<real value="1070" key="NS.object.0"/>
-		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
