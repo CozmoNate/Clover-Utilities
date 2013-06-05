@@ -46,10 +46,14 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
+    NSArray *args = [[NSProcessInfo processInfo] arguments];
+    
+    BOOL forced = args && [args count] && [[args objectAtIndex:1] isEqualToString:@"forced"];
+    
     NSUInteger lastCheckTimestamp = [self getUIntPreferenceKey:CFSTR("LastCheckTimestamp") forAppID:CFSTR(kCloverUpdaterIdentifier) withDefault:0];
     NSTimeInterval intervalFromRef = [[NSDate dateWithTimeIntervalSinceNow:0] timeIntervalSince1970];
     
-    if (lastCheckTimestamp && lastCheckTimestamp > intervalFromRef) {
+    if ((lastCheckTimestamp && lastCheckTimestamp > intervalFromRef) || forced) {
         [self setPreferenceKey:CFSTR("LastCheckTimestamp") forAppID:CFSTR(kCloverUpdaterIdentifier) fromInt:intervalFromRef];
         CFPreferencesAppSynchronize(CFSTR(kCloverUpdaterIdentifier)); // Force the preferences to be save to disk
         

@@ -821,7 +821,10 @@
 {
     [_lastUpdateTextField setStringValue:[_lastUpdateTextField.formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]]];
     
-    [[NSWorkspace sharedWorkspace] launchApplication:[[self.bundle resourcePath] stringByAppendingPathComponent:@kCloverUpdaterExecutable]];
+    NSString *command = [NSString stringWithFormat:@"%@/Contents/MacOS/CloverUpdater forced", [[self.bundle resourcePath] stringByAppendingPathComponent:@kCloverUpdaterExecutable]];
+    NSLog(@"executing: %@", command);
+    system(command.UTF8String);
+    //[[NSWorkspace sharedWorkspace] launchApplication:[[self.bundle resourcePath] stringByAppendingPathComponent:@kCloverUpdaterExecutable]];
 }
 
 -(void)setCurrentCloverPathPressed:(NSString *)cloverPath
