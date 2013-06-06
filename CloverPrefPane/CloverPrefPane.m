@@ -746,19 +746,7 @@
         [self setUpdatesInterval:86400];
     }
     
-    // Initialize revision fields
-    NSString *preferenceFolder = [[searchPaths objectAtIndex:0] stringByAppendingPathComponent:@"Preferences"];
-    NSString *cloverInstallerPlist = [[preferenceFolder stringByAppendingPathComponent:@"com.projectosx.clover.installer"] stringByAppendingPathExtension:@"plist"];
-    NSString* installedRevision = @"-";
-    if ([[NSFileManager defaultManager] fileExistsAtPath:cloverInstallerPlist]) {
-        NSDictionary *dict = [[NSDictionary alloc] initWithContentsOfFile:cloverInstallerPlist];
-        NSNumber* revision = [dict objectForKey:@"CloverRevision"];
-        if (revision) {
-            installedRevision = [revision stringValue];
-        }
-    }
-    [_lastInstalledTextField setStringValue:installedRevision];
-    
+    // Initialize revision fields    
     NSString* bootedRevision = @"-";
     io_registry_entry_t ioRegistryEFI = IORegistryEntryFromPath(kIOMasterPortDefault, "IODeviceTree:/efi/platform");
     if (ioRegistryEFI) {
@@ -797,6 +785,20 @@
     
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector: @selector(volumesChanged:) name:NSWorkspaceDidMountNotification object: nil];
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector: @selector(volumesChanged:) name:NSWorkspaceDidUnmountNotification object:nil];
+    
+    // 
+    NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString:@"http://sourceforge.net/projects/cloverefiboot/files/latest/download"] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
+    
+    if (![[NSURLConnection alloc]initWithRequest:request delegate:self]) {
+        [NSApp terminate:self];
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    NSString *remoteRevision = [[[[[response.suggestedFilename componentsSeparatedByString:@"."] objectAtIndex:0] componentsSeparatedByString:@"_"] objectAtIndex:2] substringFromIndex:1];
+    
+    [_latestAvailableTextField setStringValue:remoteRevision];
 }
 
 - (void)volumesChanged:(id)sender
@@ -822,7 +824,6 @@
     [_lastUpdateTextField setStringValue:[_lastUpdateTextField.formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]]];
     
     NSString *command = [NSString stringWithFormat:@"%@/Contents/MacOS/CloverUpdater forced", [[self.bundle resourcePath] stringByAppendingPathComponent:@kCloverUpdaterExecutable]];
-    NSLog(@"executing: %@", command);
     system(command.UTF8String);
     //[[NSWorkspace sharedWorkspace] launchApplication:[[self.bundle resourcePath] stringByAppendingPathComponent:@kCloverUpdaterExecutable]];
 }

@@ -35,7 +35,7 @@
     IBOutlet SFAuthorizationView *_authorizationView;
     
     IBOutlet NSTextField *_lastBootedTextField;
-    IBOutlet NSTextField *_lastInstalledTextField;
+    IBOutlet NSTextField *_latestAvailableTextField;
     IBOutlet NSPopUpButton *_updatesIntervalPopup;
     IBOutlet NSTextField *_lastUpdateTextField;
     IBOutlet NSButton *_checkNowButton;

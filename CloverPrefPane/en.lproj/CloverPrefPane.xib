@@ -675,7 +675,6 @@
 												<int key="NSvFlags">268</int>
 												<string key="NSFrame">{{14, 5}, {443, 30}}</string>
 												<reference key="NSSuperview" ref="903839662"/>
-												<reference key="NSNextKeyView" ref="879423928"/>
 												<string key="NSReuseIdentifierKey">_NS:1535</string>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSTextFieldCell" key="NSCell" id="295154422">
@@ -1045,7 +1044,6 @@
 												<int key="NSvFlags">268</int>
 												<string key="NSFrame">{{316, 19}, {134, 26}}</string>
 												<reference key="NSSuperview" ref="281436595"/>
-												<reference key="NSNextKeyView" ref="879423928"/>
 												<string key="NSReuseIdentifierKey">_NS:9</string>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSPopUpButtonCell" key="NSCell" id="544269407">
@@ -1188,7 +1186,7 @@
 												<object class="NSTextFieldCell" key="NSCell" id="883131225">
 													<int key="NSCellFlags">68157504</int>
 													<int key="NSCellFlags2">71304192</int>
-													<string key="NSContents">Last installed revision:</string>
+													<string key="NSContents">Latest available revision:</string>
 													<reference key="NSSupport" ref="163658622"/>
 													<string key="NSCellIdentifier">_NS:1535</string>
 													<reference key="NSControlView" ref="545662489"/>
@@ -1200,7 +1198,7 @@
 											<object class="NSTextField" id="463302185">
 												<reference key="NSNextResponder" ref="665992349"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{278, 262}, {46, 17}}</string>
+												<string key="NSFrame">{{278, 262}, {179, 17}}</string>
 												<reference key="NSSuperview" ref="665992349"/>
 												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView" ref="545662489"/>
@@ -1209,7 +1207,7 @@
 												<object class="NSTextFieldCell" key="NSCell" id="133790708">
 													<int key="NSCellFlags">68157504</int>
 													<int key="NSCellFlags2">4195328</int>
-													<string key="NSContents">99999</string>
+													<string key="NSContents">-</string>
 													<reference key="NSSupport" ref="163658622"/>
 													<string key="NSCellIdentifier">_NS:1535</string>
 													<reference key="NSControlView" ref="463302185"/>
@@ -1222,7 +1220,7 @@
 											<object class="NSTextField" id="980717246">
 												<reference key="NSNextResponder" ref="665992349"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{278, 237}, {46, 17}}</string>
+												<string key="NSFrame">{{278, 237}, {179, 17}}</string>
 												<reference key="NSSuperview" ref="665992349"/>
 												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView" ref="474609040"/>
@@ -1231,7 +1229,7 @@
 												<object class="NSTextFieldCell" key="NSCell" id="584027854">
 													<int key="NSCellFlags">68157504</int>
 													<int key="NSCellFlags2">4195328</int>
-													<string key="NSContents">99999</string>
+													<string key="NSContents">-</string>
 													<reference key="NSSupport" ref="163658622"/>
 													<string key="NSCellIdentifier">_NS:1535</string>
 													<reference key="NSControlView" ref="980717246"/>
@@ -1771,14 +1769,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">_lastInstalledTextField</string>
-						<reference key="source" ref="294453543"/>
-						<reference key="destination" ref="980717246"/>
-					</object>
-					<int key="connectionID">794</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">_updatesIntervalPopup</string>
 						<reference key="source" ref="294453543"/>
 						<reference key="destination" ref="747368662"/>
@@ -1864,6 +1854,14 @@
 						<reference key="destination" ref="858134792"/>
 					</object>
 					<int key="connectionID">2495</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_latestAvailableTextField</string>
+						<reference key="source" ref="294453543"/>
+						<reference key="destination" ref="980717246"/>
+					</object>
+					<int key="connectionID">2499</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -2839,7 +2837,6 @@
 						<reference key="object" ref="665992349"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="719164296"/>
-							<reference ref="545662489"/>
 							<reference ref="474609040"/>
 							<reference ref="463302185"/>
 							<reference ref="980717246"/>
@@ -2848,6 +2845,7 @@
 							<reference ref="398780745"/>
 							<reference ref="684889945"/>
 							<reference ref="96607494"/>
+							<reference ref="545662489"/>
 						</array>
 						<reference key="parent" ref="35354735"/>
 					</object>
@@ -3876,7 +3874,7 @@ bWUgZGVmaW5lZCBpbiByZWZpdC5jb25mIGlzIHVzZQ</string>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">2498</int>
+			<int key="maxID">2499</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3916,8 +3914,8 @@ bWUgZGVmaW5lZCBpbiByZWZpdC5jb25mIGlzIHVzZQ</string>
 						<string key="_authorizationView">SFAuthorizationView</string>
 						<string key="_checkNowButton">NSButton</string>
 						<string key="_lastBootedTextField">NSTextField</string>
-						<string key="_lastInstalledTextField">NSTextField</string>
 						<string key="_lastUpdateTextField">NSTextField</string>
+						<string key="_latestAvailableTextField">NSTextField</string>
 						<string key="_updatesIntervalPopup">NSPopUpButton</string>
 						<string key="allDisks">NSArray</string>
 						<string key="cloverConfig">NSDictionary</string>
@@ -3955,12 +3953,12 @@ bWUgZGVmaW5lZCBpbiByZWZpdC5jb25mIGlzIHVzZQ</string>
 							<string key="name">_lastBootedTextField</string>
 							<string key="candidateClassName">NSTextField</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="_lastInstalledTextField">
-							<string key="name">_lastInstalledTextField</string>
-							<string key="candidateClassName">NSTextField</string>
-						</object>
 						<object class="IBToOneOutletInfo" key="_lastUpdateTextField">
 							<string key="name">_lastUpdateTextField</string>
+							<string key="candidateClassName">NSTextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_latestAvailableTextField">
+							<string key="name">_latestAvailableTextField</string>
 							<string key="candidateClassName">NSTextField</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="_updatesIntervalPopup">
