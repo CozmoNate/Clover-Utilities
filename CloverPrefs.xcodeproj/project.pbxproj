@@ -42,6 +42,7 @@
 		7EA275AB1750BAF8009D6C13 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A256617434A5500E87EF8 /* AppKit.framework */; };
 		7EA42A54174806F1007328AF /* NoPreview.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EA42A53174806F1007328AF /* NoPreview.png */; };
 		7EA5B60A174C99A200428A7C /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 7EA5B609174C99A200428A7C /* Themes */; };
+		7EC0FC41176131FD00932CEE /* Definitions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EC0FC40176131FD00932CEE /* Definitions.h */; };
 		7EE3BC6E17440E5600144659 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EE3BC6D17440E5600144659 /* ServiceManagement.framework */; };
 /* End PBXBuildFile section */
 
@@ -119,6 +120,7 @@
 		7EA204B4174E001700F7C117 /* getconfig.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = getconfig.1; sourceTree = "<group>"; };
 		7EA42A53174806F1007328AF /* NoPreview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NoPreview.png; sourceTree = "<group>"; };
 		7EA5B609174C99A200428A7C /* Themes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Themes; sourceTree = "<group>"; };
+		7EC0FC40176131FD00932CEE /* Definitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Definitions.h; sourceTree = "<group>"; };
 		7EE3BC6D17440E5600144659 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -217,6 +219,7 @@
 		7E4A255317434A5500E87EF8 = {
 			isa = PBXGroup;
 			children = (
+				7EC0FC3F176131E500932CEE /* Shared */,
 				7E4A256917434A5500E87EF8 /* CloverPrefPane */,
 				7E27CF15175FE500005438E5 /* CloverUpdater */,
 				7E4A258117434EAD00E87EF8 /* Graphics */,
@@ -306,6 +309,14 @@
 			path = getconfig;
 			sourceTree = "<group>";
 		};
+		7EC0FC3F176131E500932CEE /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				7EC0FC40176131FD00932CEE /* Definitions.h */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -313,6 +324,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EC0FC41176131FD00932CEE /* Definitions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -798,6 +810,7 @@
 				7E27CF29175FE500005438E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7E4A255717434A5500E87EF8 /* Build configuration list for PBXProject "CloverPrefs" */ = {
 			isa = XCConfigurationList;

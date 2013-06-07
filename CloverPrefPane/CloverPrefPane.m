@@ -10,15 +10,14 @@
 
 #include <mach/mach_error.h>
 #include <sys/mount.h>
-
-#define kCloverUpdaterIdentifier "com.projectosx.Clover.Updater"
-#define kCloverUpdaterExecutable "CloverUpdater.app"
+#include "Definitions.h"
 
 #define GetLocalizedString(key) \
 [self.bundle localizedStringForKey:(key) value:@"" table:nil]
 
 @implementation CloverPrefPane
 
+#pragma mark -
 #pragma mark Properties
 
 - (NSDictionary *)diskutilList
@@ -82,7 +81,7 @@
 }
 
 #define AddMenuItemToSourceList(list, title, value) \
-[list addObject:[NSDictionary dictionaryWithObjectsAndKeys: \
+[(list) addObject:[NSDictionary dictionaryWithObjectsAndKeys: \
 (title), @"Title", \
 (value), @"Value", nil]]
 
@@ -201,13 +200,11 @@
                                                 
                                                 NSString *name = [partitionInfo objectForKey:@"VolumeName"];
                                                 
-                                                name = [NSString stringWithFormat:@"%@ [%@]", identifier, name == nil || [name length] == 0 ? [content isEqualToString:@"EFI"] ? @"EFI" : identifier : name];
-                                                
                                                 // uuid not supported by script
                                                 //NSString *uuid = [partitionInfo objectForKey:@"VolumeUUID"];
                                                 
                                                 //AddMenuItemToSourceList(list, name, (uuid != nil ? uuid : identifier));
-                                                AddMenuItemToSourceList(list, name, identifier);
+                                                AddMenuItemToSourceList(list, ([NSString stringWithFormat:@"%@ [%@]", identifier, name == nil || [name length] == 0 ? [content isEqualToString:@"EFI"] ? @"EFI" : identifier : name]), identifier);
                                             }
                                         }
                                     }
@@ -215,9 +212,15 @@
                             }
                         }
                     }
-                    // Whole disk is Apple_HFS
-                    //                else if ([content isEqualToString:@"Apple_HFS"]) {
-                    //                }
+                    // Logical RAID volume or Fusion Drive
+                    else if ([content isEqualToString:@"Apple_HFS"]) {
+                        NSString *identifier = [diskEntry objectForKey:@"DeviceIdentifier"];
+                        NSString *name = [diskEntry objectForKey:@"VolumeName"];
+                        
+                        if (identifier && name) {
+                            AddMenuItemToSourceList(list, ([NSString stringWithFormat:@"%@ [%@]", identifier, name]), identifier);
+                        }
+                    }
                 }
             }
         }
@@ -480,6 +483,7 @@
     }
 }
 
+#pragma mark -
 #pragma mark Methods
 
 - (NSString*)getUuidForBsdVolume:(NSString*)bsdName
@@ -724,6 +728,7 @@
     CFPreferencesAppSynchronize(CFSTR(kCloverUpdaterIdentifier)); // Force the preferences to be save to disk
 }
 
+#pragma mark -
 #pragma mark Events
 
 - (void)mainViewDidLoad
@@ -764,7 +769,7 @@
         }
         IOObjectRelease(ioRegistryEFI);
     }
-    [_lastBootedTextField setStringValue:bootedRevision];
+    [_bootedRevisionTextField setStringValue:bootedRevision];
     
     // Initialize popUpCheckInterval
     unsigned int checkInterval = [self getUIntPreferenceKey:CFSTR("ScheduledCheckInterval") forAppID:CFSTR(kCloverUpdaterIdentifier) withDefault:0];
@@ -787,7 +792,7 @@
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector: @selector(volumesChanged:) name:NSWorkspaceDidUnmountNotification object:nil];
     
     // 
-    NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString:@"http://sourceforge.net/projects/cloverefiboot/files/latest/download"] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
+    NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString:@"http://sourceforge.net/projects/cloverefiboot/files/latest/download"] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20.0];
     
     if (![[NSURLConnection alloc]initWithRequest:request delegate:self]) {
         [NSApp terminate:self];
@@ -798,7 +803,12 @@
 {
     NSString *remoteRevision = [[[[[response.suggestedFilename componentsSeparatedByString:@"."] objectAtIndex:0] componentsSeparatedByString:@"_"] objectAtIndex:2] substringFromIndex:1];
     
-    [_latestAvailableTextField setStringValue:remoteRevision];
+    [_installerRevisionTextField setStringValue:remoteRevision];
+    
+    if ([_bootedRevisionTextField intValue] < [_installerRevisionTextField intValue]) {
+        [_checkNowButton setTitle:GetLocalizedString(@"Update...")];
+    }
+    //[_checkNowButton setEnabled:[_bootedRevisionTextField intValue] < [_installerRevisionTextField intValue]];
 }
 
 - (void)volumesChanged:(id)sender
@@ -821,11 +831,16 @@
 
 - (void)checkForUpdatePressed:(id)sender
 {
-    [_lastUpdateTextField setStringValue:[_lastUpdateTextField.formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]]];
-    
-    NSString *command = [NSString stringWithFormat:@"%@/Contents/MacOS/CloverUpdater forced", [[self.bundle resourcePath] stringByAppendingPathComponent:@kCloverUpdaterExecutable]];
-    system(command.UTF8String);
-    //[[NSWorkspace sharedWorkspace] launchApplication:[[self.bundle resourcePath] stringByAppendingPathComponent:@kCloverUpdaterExecutable]];
+    if ([_bootedRevisionTextField intValue] < [_installerRevisionTextField intValue]) {
+        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@kCloverLatestInstallerURL]];
+    }
+    else {
+        [_lastUpdateTextField setStringValue:[_lastUpdateTextField.formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]]];
+        
+        NSString *command = [NSString stringWithFormat:@"%@/Contents/MacOS/CloverUpdater forced", [[self.bundle resourcePath] stringByAppendingPathComponent:@kCloverUpdaterExecutable]];
+        system(command.UTF8String);
+        //[[NSWorkspace sharedWorkspace] launchApplication:[[self.bundle resourcePath] stringByAppendingPathComponent:@kCloverUpdaterExecutable]];
+    }
 }
 
 -(void)setCurrentCloverPathPressed:(NSString *)cloverPath
@@ -873,7 +888,7 @@
     [panel setCanSelectHiddenExtension:NO];
     
     [panel setTitle:GetLocalizedString(@"Save Clover setting")];
-    [panel setNameFieldStringValue:@"settings.plist"];
+    [panel setNameFieldStringValue:@"config.plist"];
     
     [panel beginSheetModalForWindow:[self.mainView window] completionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelOKButton) {
@@ -897,6 +912,7 @@
     [[NSWorkspace sharedWorkspace] openFile:[self.cloverOemPath stringByAppendingPathComponent:@"config.plist"]];
 }
 
+#pragma mark -
 #pragma mark NVRAM methods
 
 - (NSString*)getNvramKey:(const char *)key
@@ -969,6 +985,7 @@
     return processError;
 }
 
+#pragma mark -
 #pragma mark get and set preference keys functions 
 // idea taken from:
 // http://svn.perian.org/branches/perian-1.1/CPFPerianPrefPaneController.m
@@ -994,6 +1011,7 @@
 	CFRelease(numRef);
 }
 
+#pragma mark -
 #pragma mark SFAuthorization delegate
 
 - (void)authorizationViewDidAuthorize:(SFAuthorizationView *)view

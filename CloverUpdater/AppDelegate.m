@@ -7,12 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#include "Definitions.h"
 
 #define GetLocalizedString(key) \
 [[NSBundle mainBundle] localizedStringForKey:(key) value:@"" table:nil]
-
-#define kCloverUpdaterIdentifier "com.projectosx.Clover.Updater"
-#define kCloverLatestInstallerURL "http://sourceforge.net/projects/cloverefiboot/files/latest/download"
 
 @implementation AppDelegate
 
@@ -57,7 +55,7 @@
         [self setPreferenceKey:CFSTR("LastCheckTimestamp") forAppID:CFSTR(kCloverUpdaterIdentifier) fromInt:intervalFromRef];
         CFPreferencesAppSynchronize(CFSTR(kCloverUpdaterIdentifier)); // Force the preferences to be save to disk
         
-        NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString:@kCloverLatestInstallerURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
+        NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString:@kCloverLatestInstallerURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
         
         if (![[NSURLConnection alloc]initWithRequest:request delegate:self]) {
             [NSApp terminate:self];
