@@ -11,6 +11,7 @@
 #import "Localizer.h"
 
 #import "Definitions.h"
+#import "NSPopover+Message.h"
 
 #include <mach/mach_error.h>
 #include <sys/mount.h>
@@ -848,17 +849,14 @@
     }
     else if (_updateCkeckIsForced) {
         _updateCkeckIsForced = NO;
-        NSBeginAlertSheet(
-                          GetLocalizedString(@"Clover Updates Check"),
-                          GetLocalizedString(@"Ok"),
-                          nil,
-                          nil,
-                          [self.mainView window],
-                          self,
-                          nil,
-                          nil,
-                          NULL,
-                          GetLocalizedString(@"No new Clover revisions are avaliable at this time!"));
+        NSAlert *alert = [[NSAlert alloc] init];
+        
+        [alert setIcon:[NSImage imageNamed:NSImageNameInfo]];
+        [alert setMessageText:GetLocalizedString(@"No new Clover revisions are avaliable at this time!")];
+        [alert setInformativeText:GetLocalizedString(@"Clover updates check completed")];
+        [alert addButtonWithTitle:GetLocalizedString(@"Ok")];
+        
+        [alert beginSheetModalForWindow:[self.mainView window] modalDelegate:nil didEndSelector:nil contextInfo:NULL];
     }
 }
 
@@ -956,6 +954,16 @@
     [[NSWorkspace sharedWorkspace] openFile:self.cloverConfigPath];
 }
 
+- (void)popupToolTip:(id)sender
+{
+    [NSPopover showRelativeToRect:[sender frame]
+                           ofView:[sender superview]
+                    preferredEdge:NSMaxXEdge
+                           string:[sender toolTip]
+                  backgroundColor:nil
+                         maxWidth:200.0];
+}
+
 #pragma mark -
 #pragma mark NVRAM methods
 
@@ -1026,6 +1034,8 @@
         free(argv);
         free(nvram_arg);
     }
+    
+    
     return processError;
 }
 

@@ -52,6 +52,10 @@
 		7EF336ED176322E3002FE7AE /* CloverPrefPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EF336EC176322E3002FE7AE /* CloverPrefPane.xib */; };
 		7EF336F017633961002FE7AE /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EF336EF17633961002FE7AE /* MainMenu.xib */; };
 		7EF336F317633985002FE7AE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7EF336F517633985002FE7AE /* Localizable.strings */; };
+		7EF336FF17638142002FE7AE /* NSPopover+Message.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EF336FB17638142002FE7AE /* NSPopover+Message.h */; };
+		7EF3370017638142002FE7AE /* NSString+Size.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EF336FC17638142002FE7AE /* NSString+Size.h */; };
+		7EF3370117638142002FE7AE /* NSPopover+Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF336FD17638142002FE7AE /* NSPopover+Message.m */; };
+		7EF3370217638142002FE7AE /* NSString+Size.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF336FE17638142002FE7AE /* NSString+Size.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +142,10 @@
 		7EF336EF17633961002FE7AE /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		7EF336F417633985002FE7AE /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7EF336F61763398A002FE7AE /* ru */ = {isa = PBXFileReference; lastKnownFileType = file; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7EF336FB17638142002FE7AE /* NSPopover+Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSPopover+Message.h"; sourceTree = "<group>"; };
+		7EF336FC17638142002FE7AE /* NSString+Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Size.h"; sourceTree = "<group>"; };
+		7EF336FD17638142002FE7AE /* NSPopover+Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSPopover+Message.m"; sourceTree = "<group>"; };
+		7EF336FE17638142002FE7AE /* NSString+Size.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Size.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -335,6 +343,10 @@
 				7EB5C0E21762666C00F58B4C /* Localizer.m */,
 				7E67EE5F1762F94A00169E7E /* AnyPreferencesController.h */,
 				7E67EE601762F94A00169E7E /* AnyPreferencesController.m */,
+				7EF336FC17638142002FE7AE /* NSString+Size.h */,
+				7EF336FE17638142002FE7AE /* NSString+Size.m */,
+				7EF336FB17638142002FE7AE /* NSPopover+Message.h */,
+				7EF336FD17638142002FE7AE /* NSPopover+Message.m */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -349,6 +361,8 @@
 				7EC0FC41176131FD00932CEE /* Definitions.h in Headers */,
 				7EB5C0E31762666C00F58B4C /* Localizer.h in Headers */,
 				7E67EE611762F94A00169E7E /* AnyPreferencesController.h in Headers */,
+				7EF336FF17638142002FE7AE /* NSPopover+Message.h in Headers */,
+				7EF3370017638142002FE7AE /* NSString+Size.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,6 +595,8 @@
 				7E4A257217434A5500E87EF8 /* CloverPrefPane.m in Sources */,
 				7EB5C0E41762666C00F58B4C /* Localizer.m in Sources */,
 				7E67EE621762F94A00169E7E /* AnyPreferencesController.m in Sources */,
+				7EF3370117638142002FE7AE /* NSPopover+Message.m in Sources */,
+				7EF3370217638142002FE7AE /* NSString+Size.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -749,7 +765,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx10.7;
 				VALID_ARCHS = x86_64;
@@ -776,7 +792,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx10.7;
 				VALID_ARCHS = x86_64;
 			};

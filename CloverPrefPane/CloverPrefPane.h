@@ -80,5 +80,6 @@
 - (IBAction)saveSettingsPressed:(id)sender;
 - (IBAction)setCurrentCloverPathPressed:(id)sender;
 - (IBAction)editCurrentConfigPressed:(id)sender;
+- (IBAction)popupToolTip:(id)sender;
 
 @end
