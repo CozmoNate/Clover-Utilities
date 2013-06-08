@@ -9,8 +9,19 @@
 #ifndef CloverPrefs_Definitions_h
 #define CloverPrefs_Definitions_h
 
-#define kCloverUpdaterIdentifier "com.projectosx.Clover.Updater"
-#define kCloverUpdaterExecutable "CloverUpdater.app"
-#define kCloverLatestInstallerURL "http://sourceforge.net/projects/cloverefiboot/files/latest/download"
+#define kCloverUpdaterIdentifier        "com.projectosx.Clover.Updater"
+#define kCloverUpdaterExecutable        "CloverUpdater.app/Contents/MacOS/CloverUpdater"
+#define kCloverLatestInstallerURL       "http://sourceforge.net/projects/cloverefiboot/files/latest/download"
+
+#define kCloverLastCheckTimestamp       "LastCheckTimestamp"
+#define kCloverScheduledCheckInterval   "ScheduledCheckInterval"
+
+#define kCloverThemeName                "Clover.Theme"
+#define kCloverLogLineCount             "Clover.LogLineCount"
+#define kCloverLogEveryBoot             "Clover.LogEveryBoot"
+#define kCloverBackupDirOnDestVol       "Clover.BackupDirOnDestVol"
+#define kCloverKeepBackupLimit          "Clover.KeepBackupLimit"
+#define kCloverMountEFI                 "Clover.MountEFI"
+#define kCloverNVRamDisk                "Clover.NVRamDisk"
 
 #endif

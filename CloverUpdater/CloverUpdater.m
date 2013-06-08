@@ -6,37 +6,16 @@
 //  Copyright (c) 2013 Kozlek. All rights reserved.
 //
 
-#import "AppDelegate.h"
-#include "Definitions.h"
+#import "CloverUpdater.h"
+
+#import "Definitions.h"
+#import "Localizer.h"
+#import "AnyPreferencesController.h"
 
 #define GetLocalizedString(key) \
 [[NSBundle mainBundle] localizedStringForKey:(key) value:@"" table:nil]
 
-@implementation AppDelegate
-
-// idea taken from:
-// http://svn.perian.org/branches/perian-1.1/CPFPerianPrefPaneController.m
-- (unsigned int)getUIntPreferenceKey:(CFStringRef)key forAppID:(CFStringRef)appID withDefault:(unsigned int)defaultValue
-{
-	CFPropertyListRef value;
-	unsigned int ret = defaultValue;
-	
-	value = CFPreferencesCopyAppValue(key, appID);
-	if (value && CFGetTypeID(value) == CFNumberGetTypeID())
-		CFNumberGetValue(value, kCFNumberIntType, &ret);
-	
-	if (value)
-		CFRelease(value);
-	
-	return ret;
-}
-
-- (void)setPreferenceKey:(CFStringRef)key forAppID:(CFStringRef)appID fromInt:(int)value
-{
-	CFNumberRef numRef = CFNumberCreate(NULL, kCFNumberIntType, &value);
-	CFPreferencesSetAppValue(key, numRef, appID);
-	CFRelease(numRef);
-}
+@implementation CloverUpdater
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication {
     return YES;
@@ -47,13 +26,15 @@
     NSArray *args = [[NSProcessInfo processInfo] arguments];
     
     BOOL forced = args && [args count] && [[args objectAtIndex:1] isEqualToString:@"forced"];
+
+    NSDate *now = [NSDate dateWithTimeIntervalSinceNow:0];
     
-    NSUInteger lastCheckTimestamp = [self getUIntPreferenceKey:CFSTR("LastCheckTimestamp") forAppID:CFSTR(kCloverUpdaterIdentifier) withDefault:0];
-    NSTimeInterval intervalFromRef = [[NSDate dateWithTimeIntervalSinceNow:0] timeIntervalSince1970];
+    NSTimeInterval lastCheckTimestamp = [[AnyPreferencesController getDateFromKey:CFSTR(kCloverLastCheckTimestamp) forAppID:CFSTR(kCloverUpdaterIdentifier)] timeIntervalSince1970];
+    NSTimeInterval intervalFromRef = [now timeIntervalSince1970];
     
     if ((lastCheckTimestamp && lastCheckTimestamp > intervalFromRef) || forced) {
-        [self setPreferenceKey:CFSTR("LastCheckTimestamp") forAppID:CFSTR(kCloverUpdaterIdentifier) fromInt:intervalFromRef];
-        CFPreferencesAppSynchronize(CFSTR(kCloverUpdaterIdentifier)); // Force the preferences to be save to disk
+        [AnyPreferencesController setKey:CFSTR(kCloverLastCheckTimestamp) forAppID:CFSTR(kCloverUpdaterIdentifier) fromDate:now];
+        [AnyPreferencesController synchronizeforAppID:CFSTR(kCloverUpdaterIdentifier)];
         
         NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString:@kCloverLatestInstallerURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
         
@@ -65,6 +46,8 @@
         [NSApp terminate:self];
     }
     
+    [Localizer localizeView:_hasUpdateWindow];
+    [Localizer localizeView:_noUpdatesWindow];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response

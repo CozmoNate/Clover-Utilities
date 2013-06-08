@@ -7,10 +7,13 @@
 //
 
 #import "CloverPrefPane.h"
+#import "AnyPreferencesController.h"
+#import "Localizer.h"
+
+#import "Definitions.h"
 
 #include <mach/mach_error.h>
 #include <sys/mount.h>
-#include "Definitions.h"
 
 #define GetLocalizedString(key) \
 [self.bundle localizedStringForKey:(key) value:@"" table:nil]
@@ -358,7 +361,7 @@
 - (NSString*)cloverTheme
 {
     if (!_cloverTheme) {
-        _cloverTheme = [self getNvramKey:"Clover.Theme"];
+        _cloverTheme = [self getNvramKey:kCloverThemeName];
         
         self.CloverThemeInfo = [self.cloverThemesCollection objectForKey:_cloverTheme];
     }
@@ -370,34 +373,44 @@
 {
     if (![self.cloverTheme isEqualToString:cloverTheme]) {
         _cloverTheme = cloverTheme;
-        [self setNvramKey:"Clover.Theme" value:[cloverTheme UTF8String]];
+        [self setNvramKey:kCloverThemeName value:[cloverTheme UTF8String]];
     }
     
     self.CloverThemeInfo = [self.cloverThemesCollection objectForKey:cloverTheme];
 }
 
-- (NSNumber*)cloverOldLogLineCount
+- (NSString*)cloverPreviousLogLines
 {
     if (!_cloverOldLogLineCount) {
-        _cloverOldLogLineCount = [NSNumber numberWithInteger:[[self getNvramKey:"Clover.LogLineCount"] integerValue]];
+        _cloverOldLogLineCount = [self getNvramKey:kCloverLogLineCount];
     }
     
     return _cloverOldLogLineCount;
 }
 
--(void)setCloverOldLogLineCount:(NSNumber *)cloverOldLogLineCount
+-(void)setCloverPreviousLogLines:(NSString*)cloverOldLogLineCount
 {
-    if (![self.cloverOldLogLineCount isEqualToNumber:cloverOldLogLineCount]) {
+    if (![self.cloverPreviousLogLines isEqualToString:cloverOldLogLineCount]) {
         _cloverOldLogLineCount = cloverOldLogLineCount;
         
-        [self setNvramKey:"Clover.LogLineCount" value:[[NSString stringWithFormat:@"%ld", (long)[cloverOldLogLineCount integerValue]] UTF8String]];
+        [self setNvramKey:kCloverLogLineCount value:[cloverOldLogLineCount UTF8String]];
     }
+}
+
+-(NSNumber *)cloverPreviousLogLinesNumber
+{
+    return [NSNumber numberWithInteger:[self.cloverPreviousLogLines integerValue]];
+}
+
+-(void)setCloverPreviousLogLinesNumber:(NSNumber *)cloverOldLogLineCountNumber
+{
+    self.cloverPreviousLogLines = [cloverOldLogLineCountNumber stringValue];
 }
 
 -(NSString *)cloverLogEveryBoot
 {
     if (!_cloverLogEveryBoot) {
-        _cloverLogEveryBoot = [self getNvramKey:"Clover.LogEveryBoot"];
+        _cloverLogEveryBoot = [self getNvramKey:kCloverLogEveryBoot];
     }
     
     return _cloverLogEveryBoot;
@@ -408,7 +421,7 @@
     if (![self.cloverLogEveryBoot isCaseInsensitiveLike:cloverLogEveryBoot]) {
         _cloverLogEveryBoot = cloverLogEveryBoot;
         
-        [self setNvramKey:"Clover.LogEveryBoot" value:[cloverLogEveryBoot UTF8String]];
+        [self setNvramKey:kCloverLogEveryBoot value:[cloverLogEveryBoot UTF8String]];
     }
 }
 
@@ -431,7 +444,7 @@
     }
 }
 
-- (NSNumber*)cloverLogEveryBootLimit
+- (NSNumber*)cloverLogEveryBootNumber
 {
     if ([self.cloverLogEveryBoot isCaseInsensitiveLike:@"No"] || [self.cloverLogEveryBoot isCaseInsensitiveLike:@"Yes"]) {
         return [NSNumber numberWithInteger:0];
@@ -440,9 +453,9 @@
     return [NSNumber numberWithInteger:[self.cloverLogEveryBoot integerValue]];
 }
 
-- (void)setCloverLogEveryBootLimit:(NSNumber *)cloverLogEveryBootLimit
+- (void)setCloverLogEveryBootNumber:(NSNumber *)cloverLogEveryBootLimit
 {
-    if (![self.cloverLogEveryBootLimit isEqualToNumber:cloverLogEveryBootLimit]) {
+    if (![self.cloverLogEveryBootNumber isEqualToNumber:cloverLogEveryBootLimit]) {
         self.cloverLogEveryBoot = [NSString stringWithFormat:@"%ld", [cloverLogEveryBootLimit integerValue]];
     }
 }
@@ -450,7 +463,7 @@
 -(NSString *)cloverMountEfiPartition
 {
     if (!_cloverMountEfiPartition) {
-        _cloverMountEfiPartition = [self getNvramKey:"Clover.MountEFI"];
+        _cloverMountEfiPartition = [self getNvramKey:kCloverMountEFI];
     }
     
     return _cloverMountEfiPartition;
@@ -461,14 +474,14 @@
     if (![self.cloverMountEfiPartition isEqualToString:cloverMountEfiPartition]) {
         _cloverMountEfiPartition = cloverMountEfiPartition;
         
-        [self setNvramKey:"Clover.MountEFI" value:[cloverMountEfiPartition UTF8String]];
+        [self setNvramKey:kCloverMountEFI value:[cloverMountEfiPartition UTF8String]];
     }
 }
 
 -(NSString *)cloverNvramPartition
 {
     if (!_cloverNvramPartition) {
-        _cloverNvramPartition = [self getNvramKey:"Clover.NVRamDisk"];
+        _cloverNvramPartition = [self getNvramKey:kCloverNVRamDisk];
     }
     
     return _cloverNvramPartition;
@@ -479,8 +492,54 @@
     if (![self.cloverNvramPartition isEqualToString:cloverNvramPartition]) {
         _cloverNvramPartition = cloverNvramPartition;
         
-        [self setNvramKey:"Clover.NVRamDisk" value:[cloverNvramPartition UTF8String]];
+        [self setNvramKey:kCloverNVRamDisk value:[cloverNvramPartition UTF8String]];
     }
+}
+
+- (NSNumber*)cloverBackupsOnDestinationVolumeEnabled
+{
+    if (!_cloverBackupsOnDestinationVolume) {
+        _cloverBackupsOnDestinationVolume = [self getNvramKey:kCloverBackupDirOnDestVol];
+    }
+    
+    return [NSNumber numberWithBool:[_cloverBackupsOnDestinationVolume isCaseInsensitiveLike:@"Yes"]];
+}
+
+-(void)setCloverBackupsOnDestinationVolumeEnabled:(NSNumber*)cloverBackupsOnDestinationVolume
+{
+    if (![self.cloverBackupsOnDestinationVolumeEnabled isEqualToNumber:cloverBackupsOnDestinationVolume]) {
+        _cloverBackupsOnDestinationVolume = [cloverBackupsOnDestinationVolume boolValue]? @"Yes" : @"";
+        
+        [self setNvramKey:kCloverBackupDirOnDestVol value:[_cloverBackupsOnDestinationVolume UTF8String]];
+    }
+}
+
+- (NSString*)cloverBackupsLimit
+{
+    if (!_cloverEfiFolderBackupsLimit) {
+        _cloverEfiFolderBackupsLimit = [self getNvramKey:kCloverKeepBackupLimit];
+    }
+    
+    return _cloverEfiFolderBackupsLimit;
+}
+
+-(void)setCloverBackupsLimit:(NSString *)cloverBackupsLimit
+{
+    if (![self.cloverBackupsLimit isEqualToString:cloverBackupsLimit]) {
+        _cloverEfiFolderBackupsLimit = cloverBackupsLimit;
+        
+        [self setNvramKey:kCloverKeepBackupLimit value:[cloverBackupsLimit UTF8String]];
+    }
+}
+
+-(NSNumber *)cloverBackupsLimitNumber
+{
+    return [NSNumber numberWithInteger:[self.cloverBackupsLimit integerValue]];
+}
+
+-(void)setCloverBackupsLimitNumber:(NSNumber *)cloverBackupsLimitNumber
+{
+    self.cloverBackupsLimit = [cloverBackupsLimitNumber stringValue];
 }
 
 #pragma mark -
@@ -689,10 +748,9 @@
             CFRelease(error);
     }
     
-	[self setPreferenceKey:CFSTR("ScheduledCheckInterval") forAppID:CFSTR(kCloverUpdaterIdentifier) fromInt:(int)checkInterval];
+    [AnyPreferencesController setKey:CFSTR(kCloverScheduledCheckInterval) forAppID:CFSTR(kCloverUpdaterIdentifier) fromInteger:checkInterval];
     
-    NSString *updaterPath = [[[self.bundle resourcePath] stringByAppendingPathComponent:@kCloverUpdaterExecutable] stringByAppendingPathComponent:@"Contents/MacOS/CloverUpdater"];
-    NSLog(@"Clover Updater path: %@", updaterPath);
+    NSString *updaterPath = [[self.bundle resourcePath] stringByAppendingPathComponent:@kCloverUpdaterExecutable];
     
     if (checkInterval > 0) {
         // Create a new plist
@@ -725,7 +783,7 @@
         }
     }
     
-    CFPreferencesAppSynchronize(CFSTR(kCloverUpdaterIdentifier)); // Force the preferences to be save to disk
+    [AnyPreferencesController synchronizeforAppID:CFSTR(kCloverUpdaterIdentifier)];
 }
 
 #pragma mark -
@@ -772,50 +830,55 @@
     [_bootedRevisionTextField setStringValue:bootedRevision];
     
     // Initialize popUpCheckInterval
-    unsigned int checkInterval = [self getUIntPreferenceKey:CFSTR("ScheduledCheckInterval") forAppID:CFSTR(kCloverUpdaterIdentifier) withDefault:0];
+    NSInteger checkInterval = [AnyPreferencesController getIntegerFromKey:CFSTR(kCloverScheduledCheckInterval) forAppID:CFSTR(kCloverUpdaterIdentifier) withDefault:0];
     [_updatesIntervalPopup selectItemWithTag:checkInterval];
     
     // Init last updates check date
-    unsigned int lastCheckTimestamp = [self getUIntPreferenceKey:CFSTR("LastCheckTimestamp") forAppID:CFSTR(kCloverUpdaterIdentifier) withDefault:0];
-    if (lastCheckTimestamp == 0) {
-        [_lastUpdateTextField setStringValue:@"-"];
-    } else {
-        NSDate *date = [NSDate dateWithTimeIntervalSince1970:lastCheckTimestamp];
-        [_lastUpdateTextField setStringValue:[_lastUpdateTextField.formatter stringFromDate:date]];
-    }
+    NSDate *lastCheckTimestamp = [AnyPreferencesController getDateFromKey:CFSTR(kCloverLastCheckTimestamp) forAppID:CFSTR(kCloverUpdaterIdentifier)];
     
-    // Disable the checkNowButton if executable is not present
-    //[_checkNowButton setEnabled:[[NSFileManager defaultManager] fileExistsAtPath:@kCloverUpdaterExecutable]];
+    if (lastCheckTimestamp) {
+        [_lastUpdateTextField setStringValue:[_lastUpdateTextField.formatter stringFromDate:lastCheckTimestamp]];
+    } else {
+        [_lastUpdateTextField setStringValue:@"-"];
+    }
     
     
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector: @selector(volumesChanged:) name:NSWorkspaceDidMountNotification object: nil];
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector: @selector(volumesChanged:) name:NSWorkspaceDidUnmountNotification object:nil];
     
     // 
-    NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString:@"http://sourceforge.net/projects/cloverefiboot/files/latest/download"] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20.0];
+    NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString:@kCloverLatestInstallerURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20.0];
     
     if (![[NSURLConnection alloc]initWithRequest:request delegate:self]) {
-        [NSApp terminate:self];
+        //
     }
+    
+    [Localizer localizeView:self.mainView];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
+    NSDate *now = [NSDate dateWithTimeIntervalSinceNow:0];
+    
     NSString *remoteRevision = [[[[[response.suggestedFilename componentsSeparatedByString:@"."] objectAtIndex:0] componentsSeparatedByString:@"_"] objectAtIndex:2] substringFromIndex:1];
     
     [_installerRevisionTextField setStringValue:remoteRevision];
     
+    [_lastUpdateTextField setStringValue:[_lastUpdateTextField.formatter stringFromDate:now]];
+    [AnyPreferencesController setKey:CFSTR(kCloverLastCheckTimestamp) forAppID:CFSTR(kCloverUpdaterIdentifier) fromDate:now];
+    
     if ([_bootedRevisionTextField intValue] < [_installerRevisionTextField intValue]) {
         [_checkNowButton setTitle:GetLocalizedString(@"Update...")];
     }
-    //[_checkNowButton setEnabled:[_bootedRevisionTextField intValue] < [_installerRevisionTextField intValue]];
+    else if (_updateCkeckIsForced) {
+        _updateCkeckIsForced = NO;
+        NSBeginAlertSheet(GetLocalizedString(@"Clover Updates Check"), GetLocalizedString(@"Ok"), nil, nil, [self.mainView window], self, nil, nil, NULL, GetLocalizedString(@"No new Clover revisions are avaliable at this time!"));
+    }
 }
 
 - (void)volumesChanged:(id)sender
 {
     // Force update booter paths
-    NSLog(@"volumes did changed");
-
     _diskutilList = nil;
     _mountedVolumes = nil;
     
@@ -826,7 +889,6 @@
 - (void)updatesIntervalChanged:(id)sender
 {
     [self setUpdatesInterval:[sender tag]];
-    CFPreferencesAppSynchronize(CFSTR(kCloverUpdaterIdentifier)); // Force the preferences to be save to disk
 }
 
 - (void)checkForUpdatePressed:(id)sender
@@ -835,11 +897,14 @@
         [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@kCloverLatestInstallerURL]];
     }
     else {
-        [_lastUpdateTextField setStringValue:[_lastUpdateTextField.formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]]];
+        //[_lastUpdateTextField setStringValue:[_lastUpdateTextField.formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]]];
+        _updateCkeckIsForced = YES;
         
-        NSString *command = [NSString stringWithFormat:@"%@/Contents/MacOS/CloverUpdater forced", [[self.bundle resourcePath] stringByAppendingPathComponent:@kCloverUpdaterExecutable]];
-        system(command.UTF8String);
-        //[[NSWorkspace sharedWorkspace] launchApplication:[[self.bundle resourcePath] stringByAppendingPathComponent:@kCloverUpdaterExecutable]];
+        NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString:@kCloverLatestInstallerURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20.0];
+        
+        if (![[NSURLConnection alloc]initWithRequest:request delegate:self]) {
+            //
+        }
     }
 }
 
@@ -895,8 +960,6 @@
             
             NSString *command = [NSString stringWithFormat:@"%@ >%@", [self.bundle pathForResource:@"getconfig" ofType:@""], [[panel URL] path]];
             
-            NSLog(@"command: %@", command);
-            
             system([command UTF8String]);
         }
     }];
@@ -904,11 +967,6 @@
 
 - (void)editCurrentConfigPressed:(id)sender
 {
-//    NSString *command = [NSString stringWithFormat:@"%@ >%@", [self.bundle pathForResource:@"Property List Editor" ofType:@"app"], [self.cloverOemPath stringByAppendingPathComponent:@"config.plist"]];
-//    
-//    NSLog(@"command: %@", command);
-//    
-//    system([command UTF8String]);
     [[NSWorkspace sharedWorkspace] openFile:[self.cloverOemPath stringByAppendingPathComponent:@"config.plist"]];
 }
 
@@ -983,32 +1041,6 @@
         free(nvram_arg);
     }
     return processError;
-}
-
-#pragma mark -
-#pragma mark get and set preference keys functions 
-// idea taken from:
-// http://svn.perian.org/branches/perian-1.1/CPFPerianPrefPaneController.m
-- (unsigned int)getUIntPreferenceKey:(CFStringRef)key forAppID:(CFStringRef)appID withDefault:(unsigned int)defaultValue
-{
-	CFPropertyListRef value;
-	unsigned int ret = defaultValue;
-	
-	value = CFPreferencesCopyAppValue(key, appID);
-	if (value && CFGetTypeID(value) == CFNumberGetTypeID())
-		CFNumberGetValue(value, kCFNumberIntType, &ret);
-	
-	if (value)
-		CFRelease(value);
-	
-	return ret;
-}
-
-- (void)setPreferenceKey:(CFStringRef)key forAppID:(CFStringRef)appID fromInt:(int)value
-{
-	CFNumberRef numRef = CFNumberCreate(NULL, kCFNumberIntType, &value);
-	CFPreferencesSetAppValue(key, numRef, appID);
-	CFRelease(numRef);
 }
 
 #pragma mark -

@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Kozlek. All rights reserved.
 //
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+@interface CloverUpdater : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *hasUpdateWindow;
 @property (assign) IBOutlet NSWindow *noUpdatesWindow;

@@ -15,7 +15,7 @@
 		7E27CF1A175FE500005438E5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E27CF18175FE500005438E5 /* InfoPlist.strings */; };
 		7E27CF1C175FE500005438E5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E27CF1B175FE500005438E5 /* main.m */; };
 		7E27CF20175FE500005438E5 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 7E27CF1E175FE500005438E5 /* Credits.rtf */; };
-		7E27CF23175FE500005438E5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E27CF22175FE500005438E5 /* AppDelegate.m */; };
+		7E27CF23175FE500005438E5 /* CloverUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E27CF22175FE500005438E5 /* CloverUpdater.m */; };
 		7E27CF26175FE500005438E5 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E27CF24175FE500005438E5 /* MainMenu.xib */; };
 		7E27CF2B175FE596005438E5 /* clover.icns in Resources */ = {isa = PBXBuildFile; fileRef = 7E27CF2A175FE596005438E5 /* clover.icns */; };
 		7E27CF2D175FE5A6005438E5 /* CloverLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E27CF2C175FE5A6005438E5 /* CloverLogo.png */; };
@@ -33,6 +33,9 @@
 		7E4A258017434DF300E87EF8 /* SecurityInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A257F17434DF300E87EF8 /* SecurityInterface.framework */; };
 		7E4A25841743527700E87EF8 /* CloverTitle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A25831743527700E87EF8 /* CloverTitle.png */; };
 		7E4A2589174378A700E87EF8 /* CloverLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A2588174378A700E87EF8 /* CloverLogo.png */; };
+		7E67EE611762F94A00169E7E /* AnyPreferencesController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E67EE5F1762F94A00169E7E /* AnyPreferencesController.h */; };
+		7E67EE621762F94A00169E7E /* AnyPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E67EE601762F94A00169E7E /* AnyPreferencesController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7E67EE631762F94A00169E7E /* AnyPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E67EE601762F94A00169E7E /* AnyPreferencesController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7EA15D6B1743CE27006E3C1E /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA15D6A1743CE27006E3C1E /* IOKit.framework */; };
 		7EA204B3174E001700F7C117 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EA204B2174E001700F7C117 /* main.c */; };
 		7EA204B5174E001700F7C117 /* getconfig.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7EA204B4174E001700F7C117 /* getconfig.1 */; };
@@ -42,6 +45,9 @@
 		7EA275AB1750BAF8009D6C13 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A256617434A5500E87EF8 /* AppKit.framework */; };
 		7EA42A54174806F1007328AF /* NoPreview.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EA42A53174806F1007328AF /* NoPreview.png */; };
 		7EA5B60A174C99A200428A7C /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 7EA5B609174C99A200428A7C /* Themes */; };
+		7EB5C0E31762666C00F58B4C /* Localizer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EB5C0E11762666C00F58B4C /* Localizer.h */; };
+		7EB5C0E41762666C00F58B4C /* Localizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB5C0E21762666C00F58B4C /* Localizer.m */; };
+		7EB5C0E51762666C00F58B4C /* Localizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB5C0E21762666C00F58B4C /* Localizer.m */; };
 		7EC0FC41176131FD00932CEE /* Definitions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EC0FC40176131FD00932CEE /* Definitions.h */; };
 		7EE3BC6E17440E5600144659 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EE3BC6D17440E5600144659 /* ServiceManagement.framework */; };
 /* End PBXBuildFile section */
@@ -90,8 +96,8 @@
 		7E27CF1B175FE500005438E5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7E27CF1D175FE500005438E5 /* CloverUpdater-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CloverUpdater-Prefix.pch"; sourceTree = "<group>"; };
 		7E27CF1F175FE500005438E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		7E27CF21175FE500005438E5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		7E27CF22175FE500005438E5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		7E27CF21175FE500005438E5 /* CloverUpdater.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CloverUpdater.h; sourceTree = "<group>"; };
+		7E27CF22175FE500005438E5 /* CloverUpdater.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CloverUpdater.m; sourceTree = "<group>"; };
 		7E27CF25175FE500005438E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		7E27CF2A175FE596005438E5 /* clover.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = clover.icns; sourceTree = "<group>"; };
 		7E27CF2C175FE5A6005438E5 /* CloverLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CloverLogo.png; path = CloverPrefPane/CloverLogo.png; sourceTree = SOURCE_ROOT; };
@@ -114,12 +120,16 @@
 		7E4A25831743527700E87EF8 /* CloverTitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloverTitle.png; sourceTree = "<group>"; };
 		7E4A25851743531E00E87EF8 /* CloverTitle.psd */ = {isa = PBXFileReference; lastKnownFileType = file; name = CloverTitle.psd; path = CloverPrefPane/CloverTitle.psd; sourceTree = "<group>"; };
 		7E4A2588174378A700E87EF8 /* CloverLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloverLogo.png; sourceTree = "<group>"; };
+		7E67EE5F1762F94A00169E7E /* AnyPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnyPreferencesController.h; sourceTree = "<group>"; };
+		7E67EE601762F94A00169E7E /* AnyPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnyPreferencesController.m; sourceTree = "<group>"; };
 		7EA15D6A1743CE27006E3C1E /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		7EA204B0174E001700F7C117 /* getconfig */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = getconfig; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EA204B2174E001700F7C117 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		7EA204B4174E001700F7C117 /* getconfig.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = getconfig.1; sourceTree = "<group>"; };
 		7EA42A53174806F1007328AF /* NoPreview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NoPreview.png; sourceTree = "<group>"; };
 		7EA5B609174C99A200428A7C /* Themes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Themes; sourceTree = "<group>"; };
+		7EB5C0E11762666C00F58B4C /* Localizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Localizer.h; sourceTree = "<group>"; };
+		7EB5C0E21762666C00F58B4C /* Localizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Localizer.m; sourceTree = "<group>"; };
 		7EC0FC40176131FD00932CEE /* Definitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Definitions.h; sourceTree = "<group>"; };
 		7EE3BC6D17440E5600144659 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -194,8 +204,8 @@
 		7E27CF15175FE500005438E5 /* CloverUpdater */ = {
 			isa = PBXGroup;
 			children = (
-				7E27CF21175FE500005438E5 /* AppDelegate.h */,
-				7E27CF22175FE500005438E5 /* AppDelegate.m */,
+				7E27CF21175FE500005438E5 /* CloverUpdater.h */,
+				7E27CF22175FE500005438E5 /* CloverUpdater.m */,
 				7E27CF24175FE500005438E5 /* MainMenu.xib */,
 				7E27CF16175FE500005438E5 /* Supporting Files */,
 			);
@@ -313,6 +323,10 @@
 			isa = PBXGroup;
 			children = (
 				7EC0FC40176131FD00932CEE /* Definitions.h */,
+				7EB5C0E11762666C00F58B4C /* Localizer.h */,
+				7EB5C0E21762666C00F58B4C /* Localizer.m */,
+				7E67EE5F1762F94A00169E7E /* AnyPreferencesController.h */,
+				7E67EE601762F94A00169E7E /* AnyPreferencesController.m */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -325,6 +339,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7EC0FC41176131FD00932CEE /* Definitions.h in Headers */,
+				7EB5C0E31762666C00F58B4C /* Localizer.h in Headers */,
+				7E67EE611762F94A00169E7E /* AnyPreferencesController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,7 +557,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E27CF1C175FE500005438E5 /* main.m in Sources */,
-				7E27CF23175FE500005438E5 /* AppDelegate.m in Sources */,
+				7E27CF23175FE500005438E5 /* CloverUpdater.m in Sources */,
+				7EB5C0E51762666C00F58B4C /* Localizer.m in Sources */,
+				7E67EE631762F94A00169E7E /* AnyPreferencesController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -550,6 +568,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E4A257217434A5500E87EF8 /* CloverPrefPane.m in Sources */,
+				7EB5C0E41762666C00F58B4C /* Localizer.m in Sources */,
+				7E67EE621762F94A00169E7E /* AnyPreferencesController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
