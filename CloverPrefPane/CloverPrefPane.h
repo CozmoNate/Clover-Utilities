@@ -24,7 +24,7 @@
     NSArray *_nvramPartitions;
     NSArray *_cloverPathsCollection;
     NSArray *_cloverOemCollection;
-    NSDictionary *_cloverConfig;
+    NSString *_cloverConfigPath;
     NSString *_cloverTheme;
     NSString *_cloverOldLogLineCount;
     NSString *_cloverLogEveryBoot;
@@ -60,14 +60,12 @@
 @property (nonatomic, strong) IBOutlet NSArray* cloverOemCollection;
 @property (nonatomic, strong) IBOutlet NSString* cloverOemPath;
 @property (nonatomic, strong) IBOutlet NSDictionary* cloverThemesCollection;
-@property (nonatomic, strong) IBOutlet NSDictionary* cloverConfig;
+@property (nonatomic, strong) IBOutlet NSString* cloverConfigPath;
 @property (nonatomic, strong) IBOutlet NSString* cloverTheme;
 @property (nonatomic, strong) IBOutlet NSDictionary* cloverThemeInfo;
 
-@property (nonatomic, strong) IBOutlet NSString* cloverPreviousLogLines;
-@property (nonatomic, strong) IBOutlet NSNumber* cloverPreviousLogLinesNumber;
+@property (nonatomic, strong) IBOutlet NSNumber* cloverPreviousLogLines;
 
-@property (nonatomic, strong) IBOutlet NSString* cloverLogEveryBoot;
 @property (nonatomic, strong) IBOutlet NSNumber* cloverLogEveryBootEnabled;
 @property (nonatomic, strong) IBOutlet NSNumber* cloverLogEveryBootNumber;
 
@@ -75,9 +73,7 @@
 @property (nonatomic, strong) IBOutlet NSString* cloverNvramPartition;
 
 @property (nonatomic, strong) IBOutlet NSNumber* cloverBackupsOnDestinationVolumeEnabled;
-
-@property (nonatomic, strong) IBOutlet NSString* cloverBackupsLimit;
-@property (nonatomic, strong) IBOutlet NSNumber* cloverBackupsLimitNumber;
+@property (nonatomic, strong) IBOutlet NSNumber* cloverBackupsLimit;
 
 - (IBAction)updatesIntervalChanged:(id)sender;
 - (IBAction)checkForUpdatePressed:(id)sender;

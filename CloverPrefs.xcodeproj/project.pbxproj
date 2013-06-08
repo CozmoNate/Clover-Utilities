@@ -16,7 +16,6 @@
 		7E27CF1C175FE500005438E5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E27CF1B175FE500005438E5 /* main.m */; };
 		7E27CF20175FE500005438E5 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 7E27CF1E175FE500005438E5 /* Credits.rtf */; };
 		7E27CF23175FE500005438E5 /* CloverUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E27CF22175FE500005438E5 /* CloverUpdater.m */; };
-		7E27CF26175FE500005438E5 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E27CF24175FE500005438E5 /* MainMenu.xib */; };
 		7E27CF2B175FE596005438E5 /* clover.icns in Resources */ = {isa = PBXBuildFile; fileRef = 7E27CF2A175FE596005438E5 /* clover.icns */; };
 		7E27CF2D175FE5A6005438E5 /* CloverLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E27CF2C175FE5A6005438E5 /* CloverLogo.png */; };
 		7E27CF31175FE6E7005438E5 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA15D6A1743CE27006E3C1E /* IOKit.framework */; };
@@ -28,7 +27,6 @@
 		7E4A256E17434A5500E87EF8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A256C17434A5500E87EF8 /* InfoPlist.strings */; };
 		7E4A257217434A5500E87EF8 /* CloverPrefPane.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4A257117434A5500E87EF8 /* CloverPrefPane.m */; };
 		7E4A257417434A5500E87EF8 /* CloverPrefPane.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A257317434A5500E87EF8 /* CloverPrefPane.tiff */; };
-		7E4A257717434A5500E87EF8 /* CloverPrefPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A257517434A5500E87EF8 /* CloverPrefPane.xib */; };
 		7E4A257E17434DBB00E87EF8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A257D17434DBB00E87EF8 /* Security.framework */; };
 		7E4A258017434DF300E87EF8 /* SecurityInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A257F17434DF300E87EF8 /* SecurityInterface.framework */; };
 		7E4A25841743527700E87EF8 /* CloverTitle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A25831743527700E87EF8 /* CloverTitle.png */; };
@@ -50,6 +48,10 @@
 		7EB5C0E51762666C00F58B4C /* Localizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB5C0E21762666C00F58B4C /* Localizer.m */; };
 		7EC0FC41176131FD00932CEE /* Definitions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EC0FC40176131FD00932CEE /* Definitions.h */; };
 		7EE3BC6E17440E5600144659 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EE3BC6D17440E5600144659 /* ServiceManagement.framework */; };
+		7EF336E5176320BD002FE7AE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7EF336E7176320BD002FE7AE /* Localizable.strings */; };
+		7EF336ED176322E3002FE7AE /* CloverPrefPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EF336EC176322E3002FE7AE /* CloverPrefPane.xib */; };
+		7EF336F017633961002FE7AE /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EF336EF17633961002FE7AE /* MainMenu.xib */; };
+		7EF336F317633985002FE7AE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7EF336F517633985002FE7AE /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,7 +100,6 @@
 		7E27CF1F175FE500005438E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		7E27CF21175FE500005438E5 /* CloverUpdater.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CloverUpdater.h; sourceTree = "<group>"; };
 		7E27CF22175FE500005438E5 /* CloverUpdater.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CloverUpdater.m; sourceTree = "<group>"; };
-		7E27CF25175FE500005438E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		7E27CF2A175FE596005438E5 /* clover.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = clover.icns; sourceTree = "<group>"; };
 		7E27CF2C175FE5A6005438E5 /* CloverLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CloverLogo.png; path = CloverPrefPane/CloverLogo.png; sourceTree = SOURCE_ROOT; };
 		7E44151C174AAAE60012952E /* NoPreview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NoPreview.png; sourceTree = "<group>"; };
@@ -114,7 +115,6 @@
 		7E4A257017434A5500E87EF8 /* CloverPrefPane.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CloverPrefPane.h; sourceTree = "<group>"; };
 		7E4A257117434A5500E87EF8 /* CloverPrefPane.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CloverPrefPane.m; sourceTree = "<group>"; };
 		7E4A257317434A5500E87EF8 /* CloverPrefPane.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = CloverPrefPane.tiff; sourceTree = "<group>"; };
-		7E4A257617434A5500E87EF8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CloverPrefPane.xib; sourceTree = "<group>"; };
 		7E4A257D17434DBB00E87EF8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		7E4A257F17434DF300E87EF8 /* SecurityInterface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityInterface.framework; path = System/Library/Frameworks/SecurityInterface.framework; sourceTree = SDKROOT; };
 		7E4A25831743527700E87EF8 /* CloverTitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloverTitle.png; sourceTree = "<group>"; };
@@ -132,6 +132,12 @@
 		7EB5C0E21762666C00F58B4C /* Localizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Localizer.m; sourceTree = "<group>"; };
 		7EC0FC40176131FD00932CEE /* Definitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Definitions.h; sourceTree = "<group>"; };
 		7EE3BC6D17440E5600144659 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
+		7EF336E8176320D2002FE7AE /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7EF336EC176322E3002FE7AE /* CloverPrefPane.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CloverPrefPane.xib; sourceTree = "<group>"; };
+		7EF336EE176322F5002FE7AE /* ru */ = {isa = PBXFileReference; lastKnownFileType = file; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7EF336EF17633961002FE7AE /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		7EF336F417633985002FE7AE /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7EF336F61763398A002FE7AE /* ru */ = {isa = PBXFileReference; lastKnownFileType = file; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,7 +212,8 @@
 			children = (
 				7E27CF21175FE500005438E5 /* CloverUpdater.h */,
 				7E27CF22175FE500005438E5 /* CloverUpdater.m */,
-				7E27CF24175FE500005438E5 /* MainMenu.xib */,
+				7EF336EF17633961002FE7AE /* MainMenu.xib */,
+				7EF336F517633985002FE7AE /* Localizable.strings */,
 				7E27CF16175FE500005438E5 /* Supporting Files */,
 			);
 			path = CloverUpdater;
@@ -273,7 +280,8 @@
 			children = (
 				7E4A257017434A5500E87EF8 /* CloverPrefPane.h */,
 				7E4A257117434A5500E87EF8 /* CloverPrefPane.m */,
-				7E4A257517434A5500E87EF8 /* CloverPrefPane.xib */,
+				7EF336EC176322E3002FE7AE /* CloverPrefPane.xib */,
+				7EF336E7176320BD002FE7AE /* Localizable.strings */,
 				7E4A256A17434A5500E87EF8 /* Supporting Files */,
 			);
 			path = CloverPrefPane;
@@ -437,6 +445,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				ru,
 			);
 			mainGroup = 7E4A255317434A5500E87EF8;
 			productRefGroup = 7E4A255F17434A5500E87EF8 /* Products */;
@@ -467,9 +476,10 @@
 			files = (
 				7E27CF1A175FE500005438E5 /* InfoPlist.strings in Resources */,
 				7E27CF20175FE500005438E5 /* Credits.rtf in Resources */,
-				7E27CF26175FE500005438E5 /* MainMenu.xib in Resources */,
 				7E27CF2B175FE596005438E5 /* clover.icns in Resources */,
 				7E27CF2D175FE5A6005438E5 /* CloverLogo.png in Resources */,
+				7EF336F017633961002FE7AE /* MainMenu.xib in Resources */,
+				7EF336F317633985002FE7AE /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,9 +493,10 @@
 				7E4A257417434A5500E87EF8 /* CloverPrefPane.tiff in Resources */,
 				7E4A25841743527700E87EF8 /* CloverTitle.png in Resources */,
 				7E4A2589174378A700E87EF8 /* CloverLogo.png in Resources */,
-				7E4A257717434A5500E87EF8 /* CloverPrefPane.xib in Resources */,
 				7EA42A54174806F1007328AF /* NoPreview.png in Resources */,
 				7EA5B60A174C99A200428A7C /* Themes in Resources */,
+				7EF336E5176320BD002FE7AE /* Localizable.strings in Resources */,
+				7EF336ED176322E3002FE7AE /* CloverPrefPane.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -621,14 +632,6 @@
 			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
-		7E27CF24175FE500005438E5 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7E27CF25175FE500005438E5 /* en */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
 		7E4A256C17434A5500E87EF8 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -637,12 +640,22 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		7E4A257517434A5500E87EF8 /* CloverPrefPane.xib */ = {
+		7EF336E7176320BD002FE7AE /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				7E4A257617434A5500E87EF8 /* en */,
+				7EF336E8176320D2002FE7AE /* en */,
+				7EF336EE176322F5002FE7AE /* ru */,
 			);
-			name = CloverPrefPane.xib;
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		7EF336F517633985002FE7AE /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7EF336F417633985002FE7AE /* en */,
+				7EF336F61763398A002FE7AE /* ru */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -68,12 +68,12 @@
         
         for (NSURL *url in urls) {
             NSError *error;
-            NSString *volumeName = nil;
+            NSURL *volumeURL = nil;
             
-            [url getResourceValue:&volumeName forKey:NSURLVolumeURLKey error:&error];
+            [url getResourceValue:&volumeURL forKey:NSURLVolumeURLKey error:&error];
             
-            if (volumeName) {
-                [list addObject:volumeName];
+            if (volumeURL) {
+                [list addObject:volumeURL];
             }
         }
         
@@ -83,18 +83,20 @@
     return _mountedVolumes;//[[self diskutilList] objectForKey:@"VolumesFromDisks"];
 }
 
-#define AddMenuItemToSourceList(list, title, value) \
-[(list) addObject:[NSDictionary dictionaryWithObjectsAndKeys: \
-(title), @"Title", \
-(value), @"Value", nil]]
+- (void)addMenuItemToSourceList:(NSMutableArray*)list title:(NSString*)title value:(NSString*)value
+{
+    [list addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+                       title, @"Title",
+                       value, @"Value", nil]];
+}
 
 - (NSArray*)efiPartitions
 {
     if (nil == _efiPartitions) {
         NSMutableArray *list = [[NSMutableArray alloc] init];
         
-        AddMenuItemToSourceList(list, GetLocalizedString(@"None"), @"No");
-        AddMenuItemToSourceList(list, GetLocalizedString(@"Boot Volume"), @"Yes");
+        [self addMenuItemToSourceList:list title:GetLocalizedString(@"None") value: @"No"];
+        [self addMenuItemToSourceList:list title:GetLocalizedString(@"Boot Volume") value:@"Yes"];
         
         NSArray *disksAndPartitions = [[self diskutilList] objectForKey:@"AllDisksAndPartitions"];
         
@@ -141,7 +143,7 @@
                             if (espIdentifier) {
                                 NSString *name = [NSString stringWithFormat:GetLocalizedString(@"EFI on %@ [%@]"), [volumeNames componentsJoinedByString:@","], diskIdentifier];
                                 
-                                AddMenuItemToSourceList(list, name, espIdentifier);
+                                [self addMenuItemToSourceList:list title:name value:espIdentifier];
                             }
                         }
                     }
@@ -167,8 +169,8 @@
     if (nil == _nvramPartitions) {
         NSMutableArray *list = [[NSMutableArray alloc] init];
         
-        AddMenuItemToSourceList(list, GetLocalizedString(@"No"), @"No");
-        AddMenuItemToSourceList(list, GetLocalizedString(@"Default"), @"Yes");
+        [self addMenuItemToSourceList:list title:GetLocalizedString(@"No") value:@"No"];
+        [self addMenuItemToSourceList:list title:GetLocalizedString(@"Default") value:@"Yes"];
         
         NSArray *disksAndPartitions = [[self diskutilList] objectForKey:@"AllDisksAndPartitions"];
         
@@ -202,12 +204,10 @@
                                             if (writable != nil && [writable boolValue] == YES) {
                                                 
                                                 NSString *name = [partitionInfo objectForKey:@"VolumeName"];
+                         
+                                                name = [NSString stringWithFormat:@"%@, %@", identifier, name == nil || [name length] == 0 ? [content isEqualToString:@"EFI"] ? @"EFI" : identifier : name];
                                                 
-                                                // uuid not supported by script
-                                                //NSString *uuid = [partitionInfo objectForKey:@"VolumeUUID"];
-                                                
-                                                //AddMenuItemToSourceList(list, name, (uuid != nil ? uuid : identifier));
-                                                AddMenuItemToSourceList(list, ([NSString stringWithFormat:@"%@ [%@]", identifier, name == nil || [name length] == 0 ? [content isEqualToString:@"EFI"] ? @"EFI" : identifier : name]), identifier);
+                                                [self addMenuItemToSourceList:list title:name value:identifier];
                                             }
                                         }
                                     }
@@ -221,7 +221,9 @@
                         NSString *name = [diskEntry objectForKey:@"VolumeName"];
                         
                         if (identifier && name) {
-                            AddMenuItemToSourceList(list, ([NSString stringWithFormat:@"%@ [%@]", identifier, name]), identifier);
+                            name = [NSString stringWithFormat:@"%@ [%@]", identifier, name];
+                            
+                            [self addMenuItemToSourceList:list title:name value:identifier];
                         }
                     }
                 }
@@ -278,6 +280,7 @@
 {
     if (![self.cloverPath isEqualToString:cloverPath]) {
         [[NSUserDefaults standardUserDefaults] setObject:cloverPath forKey:@"pathToClover"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         
         // Reset current themes db forsing it to reload from new path
         self.cloverThemesCollection = nil;
@@ -315,27 +318,31 @@
 {
     if (![self.cloverOemPath isEqualToString:cloverOemProduct]) {
         [[NSUserDefaults standardUserDefaults] setObject:cloverOemProduct forKey:@"lastOemProductSelected"];
-        self.cloverConfig = nil;
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        self.cloverConfigPath = nil;
     }
 }
 
--(NSDictionary *)cloverConfig
+-(NSString*)cloverConfigPath
 {
-    if (!_cloverConfig) {
+    if (!_cloverConfigPath) {
         NSString *configPath = [self.cloverOemPath stringByAppendingPathComponent:@"config.plist"];
-        NSLog(@"loading config: %@", configPath);
-        _cloverConfig = [NSDictionary dictionaryWithContentsOfFile:configPath];
+        
+        if ([[NSFileManager defaultManager] fileExistsAtPath:configPath]) {
+            _cloverConfigPath = configPath;
+        }
+        else {
+            _cloverConfigPath = nil;
+        }
     }
     
-    return _cloverConfig;
+    return _cloverConfigPath;
 }
 
--(void)setCloverConfig:(NSDictionary *)cloverConfig
+-(void)setCloverConfigPath:(NSString *)cloverConfigPath
 {
-    _cloverConfig = cloverConfig;
-    
-    if (cloverConfig) {
-        [_cloverConfig writeToFile:[self.cloverOemPath stringByAppendingPathComponent:@"config.plist"] atomically:YES];
+    if (_cloverConfigPath && ![_cloverConfigPath isEqualToString:cloverConfigPath]) {
+        _cloverConfigPath = cloverConfigPath;
     }
 }
 
@@ -379,58 +386,34 @@
     self.CloverThemeInfo = [self.cloverThemesCollection objectForKey:cloverTheme];
 }
 
-- (NSString*)cloverPreviousLogLines
+- (NSNumber*)cloverPreviousLogLines
 {
     if (!_cloverOldLogLineCount) {
         _cloverOldLogLineCount = [self getNvramKey:kCloverLogLineCount];
     }
     
-    return _cloverOldLogLineCount;
+    return [NSNumber numberWithInteger:[_cloverOldLogLineCount integerValue]];
 }
 
--(void)setCloverPreviousLogLines:(NSString*)cloverOldLogLineCount
+-(void)setCloverPreviousLogLines:(NSNumber*)cloverPreviousLogLines
 {
-    if (![self.cloverPreviousLogLines isEqualToString:cloverOldLogLineCount]) {
-        _cloverOldLogLineCount = cloverOldLogLineCount;
+    if (![self.cloverPreviousLogLines isEqualToNumber:cloverPreviousLogLines]) {
+        _cloverOldLogLineCount = [cloverPreviousLogLines stringValue];
         
-        [self setNvramKey:kCloverLogLineCount value:[cloverOldLogLineCount UTF8String]];
-    }
-}
-
--(NSNumber *)cloverPreviousLogLinesNumber
-{
-    return [NSNumber numberWithInteger:[self.cloverPreviousLogLines integerValue]];
-}
-
--(void)setCloverPreviousLogLinesNumber:(NSNumber *)cloverOldLogLineCountNumber
-{
-    self.cloverPreviousLogLines = [cloverOldLogLineCountNumber stringValue];
-}
-
--(NSString *)cloverLogEveryBoot
-{
-    if (!_cloverLogEveryBoot) {
-        _cloverLogEveryBoot = [self getNvramKey:kCloverLogEveryBoot];
-    }
-    
-    return _cloverLogEveryBoot;
-}
-
--(void)setCloverLogEveryBoot:(NSString *)cloverLogEveryBoot
-{
-    if (![self.cloverLogEveryBoot isCaseInsensitiveLike:cloverLogEveryBoot]) {
-        _cloverLogEveryBoot = cloverLogEveryBoot;
-        
-        [self setNvramKey:kCloverLogEveryBoot value:[cloverLogEveryBoot UTF8String]];
+        [self setNvramKey:kCloverLogLineCount value:[_cloverOldLogLineCount UTF8String]];
     }
 }
 
 - (NSNumber*)cloverLogEveryBootEnabled
 {
-    if ([self.cloverLogEveryBoot isCaseInsensitiveLike:@"No"]) {
+    if (!_cloverLogEveryBoot) {
+        _cloverLogEveryBoot = [self getNvramKey:kCloverLogEveryBoot];
+    }
+    
+    if ([_cloverLogEveryBoot isCaseInsensitiveLike:@"No"]) {
         return [NSNumber numberWithBool:NO];
     }
-    else if ([self.cloverLogEveryBoot isCaseInsensitiveLike:@"Yes"] || [_cloverLogEveryBoot integerValue] >= 0) {
+    else if ([_cloverLogEveryBoot isCaseInsensitiveLike:@"Yes"] || [_cloverLogEveryBoot integerValue] >= 0) {
         return [NSNumber numberWithBool:YES];
     }
     
@@ -440,23 +423,29 @@
 - (void)setCloverLogEveryBootEnabled:(NSNumber *)cloverTimestampLogsEnabled
 {
     if (![self.cloverLogEveryBootEnabled isEqualToNumber:cloverTimestampLogsEnabled]) {
-        self.cloverLogEveryBoot = [cloverTimestampLogsEnabled boolValue] ? @"Yes" : @"No";
+        _cloverLogEveryBoot = [cloverTimestampLogsEnabled boolValue] ? @"Yes" : @"No";
+        [self setNvramKey:kCloverLogEveryBoot value:[_cloverLogEveryBoot UTF8String]];
     }
 }
 
 - (NSNumber*)cloverLogEveryBootNumber
 {
-    if ([self.cloverLogEveryBoot isCaseInsensitiveLike:@"No"] || [self.cloverLogEveryBoot isCaseInsensitiveLike:@"Yes"]) {
+    if (!_cloverLogEveryBoot) {
+        _cloverLogEveryBoot = [self getNvramKey:kCloverLogEveryBoot];
+    }
+    
+    if ([_cloverLogEveryBoot isCaseInsensitiveLike:@"No"] || [_cloverLogEveryBoot isCaseInsensitiveLike:@"Yes"]) {
         return [NSNumber numberWithInteger:0];
     }
 
-    return [NSNumber numberWithInteger:[self.cloverLogEveryBoot integerValue]];
+    return [NSNumber numberWithInteger:[_cloverLogEveryBoot integerValue]];
 }
 
 - (void)setCloverLogEveryBootNumber:(NSNumber *)cloverLogEveryBootLimit
 {
     if (![self.cloverLogEveryBootNumber isEqualToNumber:cloverLogEveryBootLimit]) {
-        self.cloverLogEveryBoot = [NSString stringWithFormat:@"%ld", [cloverLogEveryBootLimit integerValue]];
+        _cloverLogEveryBoot = [NSString stringWithFormat:@"%ld", [cloverLogEveryBootLimit integerValue]];
+        [self setNvramKey:kCloverLogEveryBoot value:[_cloverLogEveryBoot UTF8String]];
     }
 }
 
@@ -514,32 +503,21 @@
     }
 }
 
-- (NSString*)cloverBackupsLimit
+- (NSNumber*)cloverBackupsLimit
 {
     if (!_cloverEfiFolderBackupsLimit) {
         _cloverEfiFolderBackupsLimit = [self getNvramKey:kCloverKeepBackupLimit];
     }
     
-    return _cloverEfiFolderBackupsLimit;
+    return [NSNumber numberWithInteger:[_cloverEfiFolderBackupsLimit integerValue]];;
 }
 
--(void)setCloverBackupsLimit:(NSString *)cloverBackupsLimit
+-(void)setCloverBackupsLimit:(NSNumber *)cloverBackupsLimit
 {
-    if (![self.cloverBackupsLimit isEqualToString:cloverBackupsLimit]) {
-        _cloverEfiFolderBackupsLimit = cloverBackupsLimit;
-        
-        [self setNvramKey:kCloverKeepBackupLimit value:[cloverBackupsLimit UTF8String]];
+    if (![self.cloverBackupsLimit isEqualToNumber:cloverBackupsLimit]) {
+        _cloverEfiFolderBackupsLimit = [cloverBackupsLimit stringValue];
+        [self setNvramKey:kCloverKeepBackupLimit value:[_cloverEfiFolderBackupsLimit UTF8String]];
     }
-}
-
--(NSNumber *)cloverBackupsLimitNumber
-{
-    return [NSNumber numberWithInteger:[self.cloverBackupsLimit integerValue]];
-}
-
--(void)setCloverBackupsLimitNumber:(NSNumber *)cloverBackupsLimitNumber
-{
-    self.cloverBackupsLimit = [cloverBackupsLimitNumber stringValue];
 }
 
 #pragma mark -
@@ -620,12 +598,14 @@
 {
     NSMutableArray *list = [[NSMutableArray alloc] init];
     
-    for (NSString *volume in [self mountedVolumes]) {
+    for (NSURL *volume in [self mountedVolumes]) {
         
-        NSString *path = [NSString stringWithFormat:@"/Volumes/%@/EFI/Clover", volume];
+        NSString *path = [[volume path] stringByAppendingPathComponent:@"EFI/CLOVER"];
         
-        if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
-            AddMenuItemToSourceList(list, ([NSString stringWithFormat:GetLocalizedString(@"Clover on %@"), volume]), path);
+        if ([[NSFileManager defaultManager] fileExistsAtPath:[path stringByAppendingPathComponent:@"config.plist"]]) {
+            NSString *name = [NSString stringWithFormat:GetLocalizedString(@"Clover on %@"), [volume.pathComponents objectAtIndex:volume.pathComponents.count - 1]];
+            
+            [self addMenuItemToSourceList:list title:name value:path];
         }
     }
     
@@ -688,7 +668,8 @@
                     imagePath = [self.bundle pathForResource:@"NoPreview" ofType:@"png"];
                 }
                                 
-                [themeInfo setObject:[[NSImage alloc] initWithContentsOfFile:imagePath] forKey:@"Preview"];
+                //[themeInfo setObject:[[NSImage alloc] initWithContentsOfFile:imagePath] forKey:@"Preview"];
+                [themeInfo setObject:imagePath forKey:@"Preview"];
             }
         }
     }
@@ -711,7 +692,7 @@
     NSMutableArray *list = [[NSMutableArray alloc] init];
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:[path stringByAppendingPathComponent:@"config.plist"]]) {
-        AddMenuItemToSourceList(list, @"Default", path);
+        [self addMenuItemToSourceList:list title:GetLocalizedString(@"Default") value:path];
     }
     
     NSDirectoryEnumerator *enumarator = [[NSFileManager defaultManager] enumeratorAtPath:oemPath];
@@ -723,7 +704,7 @@
         NSString *productPath = [oemPath stringByAppendingPathComponent:productSubPath];
 
         if ([[NSFileManager defaultManager] fileExistsAtPath:[productPath stringByAppendingPathComponent:@"config.plist"]]) {
-            AddMenuItemToSourceList(list, productSubPath, productPath);
+            [self addMenuItemToSourceList:list title:productSubPath value:productPath];
         }
     }
     
@@ -791,6 +772,8 @@
 
 - (void)mainViewDidLoad
 {
+    [Localizer localizeView:self.mainView withBunde:self.bundle];
+    
     // Setup security.
 	AuthorizationItem items = {kAuthorizationRightExecute, 0, NULL, 0};
 	AuthorizationRights rights = {1, &items};
@@ -803,11 +786,6 @@
     NSString *agentsFolder = [[searchPaths objectAtIndex:0] stringByAppendingPathComponent:@"LaunchAgents"];
     [[NSFileManager defaultManager] createDirectoryAtPath:agentsFolder withIntermediateDirectories:YES attributes:nil error:nil];
     _updaterPlistPath = [[agentsFolder stringByAppendingPathComponent:@kCloverUpdaterIdentifier] stringByAppendingPathExtension:@"plist"];
-    
-    if (![[NSFileManager defaultManager] fileExistsAtPath:_updaterPlistPath]) {
-        NSLog(@"Setting default updates interval: Daily");
-        [self setUpdatesInterval:86400];
-    }
     
     // Initialize revision fields    
     NSString* bootedRevision = @"-";
@@ -852,8 +830,6 @@
     if (![[NSURLConnection alloc]initWithRequest:request delegate:self]) {
         //
     }
-    
-    [Localizer localizeView:self.mainView];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
@@ -872,7 +848,17 @@
     }
     else if (_updateCkeckIsForced) {
         _updateCkeckIsForced = NO;
-        NSBeginAlertSheet(GetLocalizedString(@"Clover Updates Check"), GetLocalizedString(@"Ok"), nil, nil, [self.mainView window], self, nil, nil, NULL, GetLocalizedString(@"No new Clover revisions are avaliable at this time!"));
+        NSBeginAlertSheet(
+                          GetLocalizedString(@"Clover Updates Check"),
+                          GetLocalizedString(@"Ok"),
+                          nil,
+                          nil,
+                          [self.mainView window],
+                          self,
+                          nil,
+                          nil,
+                          NULL,
+                          GetLocalizedString(@"No new Clover revisions are avaliable at this time!"));
     }
 }
 
@@ -951,7 +937,7 @@
     [panel setAllowsOtherFileTypes:NO];
     [panel setCanCreateDirectories:YES];
     [panel setCanSelectHiddenExtension:NO];
-    
+
     [panel setTitle:GetLocalizedString(@"Save Clover setting")];
     [panel setNameFieldStringValue:@"config.plist"];
     
@@ -967,7 +953,7 @@
 
 - (void)editCurrentConfigPressed:(id)sender
 {
-    [[NSWorkspace sharedWorkspace] openFile:[self.cloverOemPath stringByAppendingPathComponent:@"config.plist"]];
+    [[NSWorkspace sharedWorkspace] openFile:self.cloverConfigPath];
 }
 
 #pragma mark -

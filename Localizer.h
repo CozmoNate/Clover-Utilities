@@ -6,13 +6,17 @@
 //  Copyright (c) 2013 kozlek. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-#define GetLocalizedString(key) \
-[[NSBundle mainBundle] localizedStringForKey:(key) value:@"" table:nil]
-
 @interface Localizer : NSObject
+{
+@private
+    NSBundle *_bundle;
+}
 
++ (Localizer*)localizerWithBundle:(NSBundle*)bundle;
 + (void)localizeView:(id)view;
++ (void)localizeView:(id)view withBunde:(NSBundle*)bundle;
+
+- (Localizer*)initWithBundle:(NSBundle*)bundle;
+- (void)localizeView:(id)view;
 
 @end

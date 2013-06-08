@@ -8,15 +8,68 @@
 
 #import "Localizer.h"
 
+#define GetLocalizedString(key) \
+[_bundle localizedStringForKey:(key) value:@"" table:nil]
+
 @implementation Localizer
 
-+ (void)localizeView:(id)view
++ (Localizer *)localizerWithBundle:(NSBundle *)bundle
+{
+    Localizer *me = [[Localizer alloc] initWithBundle:bundle];
+    
+    return me;
+}
+
++(void)localizeView:(id)view
+{
+    Localizer *localizer = [Localizer localizerWithBundle:[NSBundle mainBundle]];
+    [localizer localizeView:view];
+}
+
++(void)localizeView:(id)view withBunde:(NSBundle *)bundle
+{
+    Localizer *localizer = [Localizer localizerWithBundle:bundle];
+    [localizer localizeView:view];
+}
+
+-(Localizer *)initWithBundle:(NSBundle *)bundle
+{
+    self = [super init];
+    
+    if (self) {
+        _bundle = bundle;
+    }
+    
+    return self;
+}
+
+- (void)localizeView:(id)view
 {
     if (!view) {
         return;
     }
     
-    if ([view isKindOfClass:[NSMatrix class]]) {
+    if ([view isKindOfClass:[NSWindow class]]) {
+        [self localizeView:[view contentView]];
+    }
+    else if ([view isKindOfClass:[NSTextField class]]) {
+        NSTextField *textField = (NSTextField*)view;
+        
+        NSString *title = [textField stringValue];
+        
+        [textField setStringValue:GetLocalizedString(title)];
+    }
+    else if ([view isKindOfClass:[NSButton class]]) {
+        NSButton *button = (NSButton*)view;
+        
+        NSString *title = [button title];
+        
+        [button setTitle:GetLocalizedString(title)];
+        [button setAlternateTitle:GetLocalizedString([button alternateTitle])];
+        
+        [self localizeView:button.menu];
+    }
+    else if ([view isKindOfClass:[NSMatrix class]]) {
         NSMatrix *matrix = (NSMatrix*)view;
         
         NSUInteger row, column;
@@ -31,37 +84,6 @@
             }
         }
     }
-    else if ([view isKindOfClass:[NSButton class]]) {
-        NSButton *button = (NSButton*)view;
-        
-        NSString *title = [button title];
-        
-        [button setTitle:GetLocalizedString(title)];
-        [button setAlternateTitle:GetLocalizedString([button alternateTitle])];
-        
-        [Localizer localizeView:button.menu];
-    }
-    else if ([view isKindOfClass:[NSTextField class]]) {
-        NSTextField *textField = (NSTextField*)view;
-        
-        NSString *title = [[textField cell] title];
-        
-        [[textField cell] setTitle:GetLocalizedString(title)];
-    }
-    else if ([view isKindOfClass:[NSTabView class]]) {
-        for (NSTabViewItem *item in [(NSTabView*)view tabViewItems]) {
-            [item setLabel:GetLocalizedString([item label])];
-            [Localizer localizeView:[item view]];
-        }
-    }
-    else if ([view isKindOfClass:[NSToolbar class]]) {
-        for (NSToolbarItem *item in [(NSToolbar*)view items]) {
-            [item setLabel:GetLocalizedString([item label])];
-            [Localizer localizeView:[item view]];
-        }
-        
-        return;
-    }
     else if ([view isKindOfClass:[NSMenu class]]) {
         NSMenu *menu = (NSMenu*)view;
         
@@ -74,29 +96,48 @@
                 [menuItem setTitle:GetLocalizedString([menuItem title])];
                 
                 if ([menuItem hasSubmenu])
-                    [Localizer localizeView:[menuItem submenu]];
+                    [self localizeView:[menuItem submenu]];
             }
         }
-        
-        return;
     }
-    else {
-        if ([view respondsToSelector:@selector(setAlternateTitle:)]) {
-            NSString *title = [(id)view alternateTitle];
-            [(id)view setAlternateTitle:GetLocalizedString(title)];
+    else if ([view isKindOfClass:[NSTabView class]]) {
+        for (NSTabViewItem *item in [(NSTabView*)view tabViewItems]) {
+            [item setLabel:GetLocalizedString([item label])];
+            [self localizeView:[item view]];
         }
-        if ([view respondsToSelector:@selector(setTitle:)]) {
-            NSString *title = [(id)view title];
-            [(id)view setTitle:GetLocalizedString(title)];
+    }
+    else if ([view isKindOfClass:[NSToolbar class]]) {
+        for (NSToolbarItem *item in [(NSToolbar*)view items]) {
+            [item setLabel:GetLocalizedString([item label])];
+            [self localizeView:[item view]];
         }
     }
     
-    if ([view isKindOfClass:[NSWindow class]]) {
-        [Localizer localizeView:[view contentView]];
-    }
+    // Must be at the end to allow other checks to pass because almost all controls are derived from NSView
     else if ([view isKindOfClass:[NSView class]] ) {
-        for(NSView *subView in [view subviews])
-            [Localizer localizeView:subView];
+        for(NSView *subView in [view subviews]) {
+            [self localizeView:subView];
+        }
+    }
+    else {
+        if ([view respondsToSelector:@selector(setTitle:)]) {
+            NSString *title = [(id)view title];
+            [view setTitle:GetLocalizedString(title)];
+        }
+        else if ([view respondsToSelector:@selector(setStringValue:)]) {
+            NSString *title = [(id)view stringValue];
+            [view setStringValue:GetLocalizedString(title)];
+        }
+        
+        if ([view respondsToSelector:@selector(setAlternateTitle:)]) {
+            NSString *title = [(id)view alternateTitle];
+            [view setAlternateTitle:GetLocalizedString(title)];
+        }
+    }
+    
+    if ([view respondsToSelector:@selector(setToolTip:)]) {
+        NSString *tooltip = [view toolTip];
+        [view setToolTip:GetLocalizedString(tooltip)];
     }
 }
 
