@@ -110,7 +110,7 @@
     
     NSRect containerRect = [attributedString boundingRectWithSize:NSMakeSize(width, 0)
                                                           options:NSStringDrawingUsesLineFragmentOrigin];
-    containerRect.size.width = containerRect.size.width *= (25/(containerRect.size.width+2)+1);
+    containerRect.size.width = containerRect.size.width *= (20/(containerRect.size.width+2)+1);
     
     NSSize size = containerRect.size;
     NSSize popoverSize = NSMakeSize(containerRect.size.width + (padding * 2), containerRect.size.height + (padding * 2));

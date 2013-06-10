@@ -27,6 +27,7 @@
 - (NSDictionary *)diskutilList
 {
     if (nil == _diskutilList) {
+        
         // Get diskutil list -plist output
         NSTask *task = [[NSTask alloc] init];
         
@@ -62,7 +63,7 @@
 - (NSArray*)mountedVolumes
 {
     if (!_mountedVolumes) {
-
+        
         NSMutableArray *list = [[NSMutableArray alloc] init];
         
         NSArray *urls = [[NSFileManager defaultManager] mountedVolumeURLsIncludingResourceValuesForKeys:[NSArray arrayWithObject:NSURLVolumeURLKey] options:0];
@@ -94,6 +95,7 @@
 - (NSArray*)efiPartitions
 {
     if (nil == _efiPartitions) {
+        
         NSMutableArray *list = [[NSMutableArray alloc] init];
         
         [self addMenuItemToSourceList:list title:GetLocalizedString(@"None") value: @"No"];
@@ -142,7 +144,7 @@
                             }
                             
                             if (espIdentifier) {
-                                NSString *name = [NSString stringWithFormat:GetLocalizedString(@"EFI on %@ [%@]"), [volumeNames componentsJoinedByString:@","], diskIdentifier];
+                                NSString *name = [NSString stringWithFormat:GetLocalizedString(@"EFI on %@ (%@)"), [volumeNames componentsJoinedByString:@","], diskIdentifier];
                                 
                                 [self addMenuItemToSourceList:list title:name value:espIdentifier];
                             }
@@ -168,6 +170,7 @@
 - (NSArray*)nvramPartitions
 {
     if (nil == _nvramPartitions) {
+        
         NSMutableArray *list = [[NSMutableArray alloc] init];
         
         [self addMenuItemToSourceList:list title:GetLocalizedString(@"No") value:@"No"];
@@ -206,7 +209,7 @@
                                                 
                                                 NSString *name = [partitionInfo objectForKey:@"VolumeName"];
                          
-                                                name = [NSString stringWithFormat:@"%@, %@", identifier, name == nil || [name length] == 0 ? [content isEqualToString:@"EFI"] ? @"EFI" : identifier : name];
+                                                name = [NSString stringWithFormat:@"%@ (%@)", identifier, name == nil || [name length] == 0 ? [content isEqualToString:@"EFI"] ? @"EFI" : identifier : name];
                                                 
                                                 [self addMenuItemToSourceList:list title:name value:identifier];
                                             }
@@ -222,7 +225,7 @@
                         NSString *name = [diskEntry objectForKey:@"VolumeName"];
                         
                         if (identifier && name) {
-                            name = [NSString stringWithFormat:@"%@ [%@]", identifier, name];
+                            name = [NSString stringWithFormat:@"%@ (%@)", identifier, name];
                             
                             [self addMenuItemToSourceList:list title:name value:identifier];
                         }
@@ -961,7 +964,7 @@
                     preferredEdge:NSMaxXEdge
                            string:[sender toolTip]
                   backgroundColor:nil
-                         maxWidth:200.0];
+                         maxWidth:250.0];
 }
 
 #pragma mark -
