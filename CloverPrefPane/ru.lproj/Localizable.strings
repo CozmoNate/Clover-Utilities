@@ -21,7 +21,7 @@
 "checking..." = "идет проверка...";
 "Theme" = "Тема";
 "Selected theme preview" = "Предпросмотр выбранной темы";
-"Select bootloader GUI theme" = "Выберите тему загрузчика";
+"Select bootloader GUI theme" = "Выберите тему для загрузчика";
 "Never" = "Никогда";
 "Hourly" = "Каждый час";
 "Daily" = "Каждый день";
@@ -39,10 +39,11 @@
 "Save current boot config.plist..." = "Сохранить config.plist текущего загрузчика...";
 "Select OEM configuration" = "Выберите конфигурацию OEM";
 "Edit config.plist" = "Изменить config.plist";
+"Reveal in Finder" = "Показать в Finder";
 "Set EFI folder" = "Выбрать папку EFI";
 "Force create EFI folder backups on destination volume" = "Создавать копии папки EFI загрузчика на системном томе";
 "Number of EFI folder backups to keep" = "Максимальное количество копий папки EFI";
-"Maximum timestamp log files allowed" = "Максимальное количество файлов историй загрузки";
+"Maximum timestamp log files allowed" = "Максимальное количество файлов boot.log";
 "Number of previous boot log lines to save" = "Лимит сообщений с прошлых загрузок";
 "Selected theme information" = "Инофрмация по выбранной теме";
 
@@ -54,7 +55,7 @@
 "EFI folder backups will be created on destination volume rather then ESP, while updating bootloader" = "Копии папки EFI, при инсталяции новых версий загрузчика, будут создаваться на выбранном томе, а не в корне ESP (Если загрузчик устанавливается на ESP)";
 
 "Mounting the ESP partition on boot\n\nValue:\n* No: result in not mounting ESP partition on boot\n* Boot Volume: mount the ESP on the same disk drive as the system partition\n* User defined ESP: mount specified ESP on sytem startup" = "Монтирует EFI раздел при загрузке системы\n\nЗначения:\n* Нет: не производить ни каких действий с разделами EFI\n* Загрузочный диск: монтировать EFI раздел, находящийся на диске с загружаемой системой\n* На выбор пользователя: монтировать выбранный раздел при старте системы";
-"Force mount selected ESP at startup" = "Монтировать раздел EFI при загрузке";
+"Force mount selected ESP at startup" = "Монтировать раздел EFI на старте системы";
 
-"Save the nvram contents to disk (NVRAM emulation)\n\nValue:\n* No: don't save the nvram contents to disk\n* Default: save the nvram contents in the nvram.plist file in the root folder of the system partition or on one of the helper partioions\n* User defined partition: device node of the volume where the nvram contents will be saved" = "Сохраняет содержимое NVRAM на диск (эмуляция NVRAM)\n\nЗначение:\n* Нет: не сохранять содержимое NVRAM на диск\n* По умолчанию: сохраняет файл nvram.plist в корне диска с системой или на специализированных системных разделах\n* Раздел на выбор пользователя: раздел, на котором будет сохранено содержимое NVRAM в файле nvram.plist";
-"Save NVRAM contents to selected partition" = "Сохранять NVRAM на выбранный диск";
+"Save the nvram contents to disk (NVRAM emulation)\n\nValue:\n* No: don't save the nvram contents to disk\n* Default: save the nvram contents in the nvram.plist file in the root folder of the system partition or on one of the helper partioions" = "Сохраняет содержимое NVRAM на диск (эмуляция NVRAM)\n\nЗначение:\n* Нет: не сохранять содержимое NVRAM на диск\n* По умолчанию: сохраняет файл nvram.plist в корне диска с системой или на специализированных системных разделах";
+"Store NVRAM contents on system boot partition" = "Сохранять содержимое NVRAM на системном диске";

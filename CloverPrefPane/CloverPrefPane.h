@@ -21,7 +21,7 @@
     NSArray *_mountedVolumes;
     NSDictionary *_themesInfo;
     NSArray *_efiPartitions;
-    NSArray *_nvramPartitions;
+//    NSArray *_nvramPartitions;
     NSArray *_cloverPathsCollection;
     NSArray *_cloverOemCollection;
     NSString *_cloverConfigPath;
@@ -49,7 +49,7 @@
 @property (readonly) IBOutlet NSArray* wholeDisks;
 @property (readonly) IBOutlet NSArray* mountedVolumes;
 @property (readonly) IBOutlet NSArray* efiPartitions;
-@property (readonly) IBOutlet NSArray* nvramPartitions;
+//@property (readonly) IBOutlet NSArray* nvramPartitions;
 
 @property (nonatomic, strong) IBOutlet NSNumber* isUnlocked;
 
@@ -70,7 +70,7 @@
 @property (nonatomic, strong) IBOutlet NSNumber* cloverLogEveryBootNumber;
 
 @property (nonatomic, strong) IBOutlet NSString* cloverMountEfiPartition;
-@property (nonatomic, strong) IBOutlet NSString* cloverNvramPartition;
+@property (nonatomic, strong) IBOutlet NSNumber* cloverEmulateNvram;
 
 @property (nonatomic, strong) IBOutlet NSNumber* cloverBackupsOnDestinationVolumeEnabled;
 @property (nonatomic, strong) IBOutlet NSNumber* cloverBackupsLimit;
@@ -79,7 +79,7 @@
 - (IBAction)checkForUpdatePressed:(id)sender;
 - (IBAction)saveSettingsPressed:(id)sender;
 - (IBAction)setCurrentCloverPathPressed:(id)sender;
-- (IBAction)editCurrentConfigPressed:(id)sender;
+- (IBAction)revealCurrentConfigPressed:(id)sender;
 - (IBAction)popupToolTip:(id)sender;
 
 @end

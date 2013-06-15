@@ -47,6 +47,10 @@
 		7EB5C0E41762666C00F58B4C /* Localizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB5C0E21762666C00F58B4C /* Localizer.m */; };
 		7EB5C0E51762666C00F58B4C /* Localizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB5C0E21762666C00F58B4C /* Localizer.m */; };
 		7EC0FC41176131FD00932CEE /* Definitions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EC0FC40176131FD00932CEE /* Definitions.h */; };
+		7ED2CB93176A6B1C004DB645 /* 36-circle-west.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED2CB91176A6B1C004DB645 /* 36-circle-west.png */; };
+		7ED2CB94176A6B1C004DB645 /* 36-circle-west@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED2CB92176A6B1C004DB645 /* 36-circle-west@2x.png */; };
+		7ED2CB97176A6B42004DB645 /* 20-circle-east.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED2CB95176A6B42004DB645 /* 20-circle-east.png */; };
+		7ED2CB98176A6B42004DB645 /* 20-circle-east@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED2CB96176A6B42004DB645 /* 20-circle-east@2x.png */; };
 		7EE3BC6E17440E5600144659 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EE3BC6D17440E5600144659 /* ServiceManagement.framework */; };
 		7EF336E5176320BD002FE7AE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7EF336E7176320BD002FE7AE /* Localizable.strings */; };
 		7EF336ED176322E3002FE7AE /* CloverPrefPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EF336EC176322E3002FE7AE /* CloverPrefPane.xib */; };
@@ -136,6 +140,10 @@
 		7EB5C0E21762666C00F58B4C /* Localizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Localizer.m; sourceTree = "<group>"; };
 		7EC0FC40176131FD00932CEE /* Definitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Definitions.h; sourceTree = "<group>"; };
 		7EC2F2C11764E1C60022B337 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7ED2CB91176A6B1C004DB645 /* 36-circle-west.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "36-circle-west.png"; sourceTree = "<group>"; };
+		7ED2CB92176A6B1C004DB645 /* 36-circle-west@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "36-circle-west@2x.png"; sourceTree = "<group>"; };
+		7ED2CB95176A6B42004DB645 /* 20-circle-east.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20-circle-east.png"; sourceTree = "<group>"; };
+		7ED2CB96176A6B42004DB645 /* 20-circle-east@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20-circle-east@2x.png"; sourceTree = "<group>"; };
 		7EE3BC6D17440E5600144659 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		7EF336EC176322E3002FE7AE /* CloverPrefPane.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CloverPrefPane.xib; sourceTree = "<group>"; };
 		7EF336EE176322F5002FE7AE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -322,6 +330,10 @@
 				7E4A25831743527700E87EF8 /* CloverTitle.png */,
 				7E4A2588174378A700E87EF8 /* CloverLogo.png */,
 				7E4A257317434A5500E87EF8 /* CloverPrefPane.tiff */,
+				7ED2CB95176A6B42004DB645 /* 20-circle-east.png */,
+				7ED2CB96176A6B42004DB645 /* 20-circle-east@2x.png */,
+				7ED2CB91176A6B1C004DB645 /* 36-circle-west.png */,
+				7ED2CB92176A6B1C004DB645 /* 36-circle-west@2x.png */,
 			);
 			name = Icons;
 			sourceTree = "<group>";
@@ -511,6 +523,10 @@
 				7EA5B60A174C99A200428A7C /* Themes in Resources */,
 				7EF336E5176320BD002FE7AE /* Localizable.strings in Resources */,
 				7EF336ED176322E3002FE7AE /* CloverPrefPane.xib in Resources */,
+				7ED2CB93176A6B1C004DB645 /* 36-circle-west.png in Resources */,
+				7ED2CB94176A6B1C004DB645 /* 36-circle-west@2x.png in Resources */,
+				7ED2CB97176A6B42004DB645 /* 20-circle-east.png in Resources */,
+				7ED2CB98176A6B42004DB645 /* 20-circle-east@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

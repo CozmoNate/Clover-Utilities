@@ -144,7 +144,7 @@
                             }
                             
                             if (espIdentifier) {
-                                NSString *name = [NSString stringWithFormat:GetLocalizedString(@"EFI on %@ (%@)"), [volumeNames componentsJoinedByString:@","], diskIdentifier];
+                                NSString *name = [NSString stringWithFormat:GetLocalizedString(@"EFI on %@ (%@)"), [volumeNames componentsJoinedByString:@", "], diskIdentifier];
                                 
                                 [self addMenuItemToSourceList:list title:name value:espIdentifier];
                             }
@@ -167,7 +167,7 @@
     return _efiPartitions;
 }
 
-- (NSArray*)nvramPartitions
+/*- (NSArray*)nvramPartitions
 {
     if (nil == _nvramPartitions) {
         
@@ -238,7 +238,7 @@
     }
     
     return _nvramPartitions;
-}
+}*/
 
 -(NSString *)kernelBootArgs
 {
@@ -338,6 +338,8 @@
         else {
             _cloverConfigPath = nil;
         }
+        
+//        _configurationController.configuration = (__bridge NSMutableDictionary *)(CFPropertyListCreateFromXMLData(kCFAllocatorDefault, (__bridge CFDataRef)[NSData dataWithContentsOfFile:_cloverConfigPath], kCFPropertyListMutableContainersAndLeaves, NULL));
     }
     
     return _cloverConfigPath;
@@ -347,6 +349,8 @@
 {
     if (_cloverConfigPath && ![_cloverConfigPath isEqualToString:cloverConfigPath]) {
         _cloverConfigPath = cloverConfigPath;
+        
+//        _configurationController.configuration = (__bridge NSMutableDictionary *)(CFPropertyListCreateFromXMLData(kCFAllocatorDefault, (__bridge CFDataRef)[NSData dataWithContentsOfFile:_cloverConfigPath], kCFPropertyListMutableContainersAndLeaves, NULL));
     }
 }
 
@@ -471,21 +475,20 @@
     }
 }
 
--(NSString *)cloverNvramPartition
+- (NSNumber *)cloverEmulateNvram
 {
     if (!_cloverNvramPartition) {
         _cloverNvramPartition = [self getNvramKey:kCloverNVRamDisk];
     }
     
-    return _cloverNvramPartition;
+    return [NSNumber numberWithBool:_cloverNvramPartition && [_cloverNvramPartition isCaseInsensitiveLike:@"Yes"]];
 }
 
--(void)setCloverNvramPartition:(NSString *)cloverNvramPartition
+-(void)setCloverEmulateNvram:(NSNumber *)cloverEmulateNvram
 {
-    if (![self.cloverNvramPartition isEqualToString:cloverNvramPartition]) {
-        _cloverNvramPartition = cloverNvramPartition;
-        
-        [self setNvramKey:kCloverNVRamDisk value:[cloverNvramPartition UTF8String]];
+    if (![self.cloverEmulateNvram isEqualToNumber:cloverEmulateNvram]) {
+        _cloverNvramPartition = [cloverEmulateNvram boolValue] ? @"Yes" : @"No";
+        [self setNvramKey:kCloverNVRamDisk value:[_cloverNvramPartition UTF8String]];
     }
 }
 
@@ -952,9 +955,10 @@
     }];
 }
 
-- (void)editCurrentConfigPressed:(id)sender
+- (void)revealCurrentConfigPressed:(id)sender
 {
-    [[NSWorkspace sharedWorkspace] openFile:self.cloverConfigPath];
+    [[NSWorkspace sharedWorkspace] selectFile:self.cloverConfigPath inFileViewerRootedAtPath:nil];
+    //[[NSWorkspace sharedWorkspace] openFile:self.cloverConfigPath withApplication:@"Finder"];
 }
 
 - (void)popupToolTip:(id)sender
