@@ -530,6 +530,21 @@
 #pragma mark -
 #pragma mark Methods
 
+- (void)readAndSetInstallerRevision
+{
+    // Initialize revision fields
+    NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSLocalDomainMask, YES);
+    NSString *preferenceFolder = [[searchPaths objectAtIndex:0] stringByAppendingPathComponent:@"Preferences"];
+    NSString *cloverInstallerPlist = [[preferenceFolder stringByAppendingPathComponent:@"com.projectosx.clover.installer"] stringByAppendingPathExtension:@"plist"];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:cloverInstallerPlist]) {
+        NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:cloverInstallerPlist];
+        NSNumber* revision = [dict objectForKey:@"CloverRevision"];
+        if (revision) {
+            [_installedRevisionTextField setStringValue:[revision stringValue]];
+        }
+    }
+}
+
 - (NSString*)getUuidForBsdVolume:(NSString*)bsdName
 {
     CFMutableDictionaryRef	matchingDict;
@@ -827,6 +842,7 @@
         [_lastUpdateTextField setStringValue:@"-"];
     }
     
+    [self readAndSetInstallerRevision];
     
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector: @selector(volumesChanged:) name:NSWorkspaceDidMountNotification object: nil];
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector: @selector(volumesChanged:) name:NSWorkspaceDidUnmountNotification object:nil];
@@ -841,16 +857,18 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
+    [self readAndSetInstallerRevision];
+    
     NSDate *now = [NSDate dateWithTimeIntervalSinceNow:0];
     
     NSString *remoteRevision = [[[[[response.suggestedFilename componentsSeparatedByString:@"."] objectAtIndex:0] componentsSeparatedByString:@"_"] objectAtIndex:2] substringFromIndex:1];
     
-    [_installerRevisionTextField setStringValue:remoteRevision];
+    [_availableRevisionTextField setStringValue:remoteRevision];
     
     [_lastUpdateTextField setStringValue:[_lastUpdateTextField.formatter stringFromDate:now]];
     [AnyPreferencesController setKey:CFSTR(kCloverLastCheckTimestamp) forAppID:CFSTR(kCloverUpdaterIdentifier) fromDate:now];
     
-    if ([_bootedRevisionTextField intValue] < [_installerRevisionTextField intValue]) {
+    if ([_bootedRevisionTextField intValue] < [_availableRevisionTextField intValue]) {
         [_checkNowButton setTitle:GetLocalizedString(@"Update...")];
     }
     else if (_updateCkeckIsForced) {
@@ -883,7 +901,7 @@
 
 - (void)checkForUpdatePressed:(id)sender
 {
-    if ([_bootedRevisionTextField intValue] < [_installerRevisionTextField intValue]) {
+    if ([_bootedRevisionTextField intValue] < [_availableRevisionTextField intValue]) {
         [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@kCloverLatestInstallerURL]];
     }
     else {

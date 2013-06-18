@@ -21,7 +21,6 @@
     NSArray *_mountedVolumes;
     NSDictionary *_themesInfo;
     NSArray *_efiPartitions;
-//    NSArray *_nvramPartitions;
     NSArray *_cloverPathsCollection;
     NSArray *_cloverOemCollection;
     NSString *_cloverConfigPath;
@@ -38,7 +37,8 @@
     IBOutlet SFAuthorizationView *_authorizationView;
     
     IBOutlet NSTextField *_bootedRevisionTextField;
-    IBOutlet NSTextField *_installerRevisionTextField;
+    IBOutlet NSTextField *_installedRevisionTextField;
+    IBOutlet NSTextField *_availableRevisionTextField;
     IBOutlet NSPopUpButton *_updatesIntervalPopup;
     IBOutlet NSTextField *_lastUpdateTextField;
     IBOutlet NSButton *_checkNowButton;

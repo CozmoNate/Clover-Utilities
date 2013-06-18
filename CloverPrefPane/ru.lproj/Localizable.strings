@@ -17,6 +17,7 @@
 "Updates" = "Обновления";
 "NVRAM" = "NVRAM";
 "Current booted revision:" = "Текущая версия загрузчика:";
+"Last installed revision:" = "Последняя установленная версия:";
 "Latest available revision:" = "Доступные обновления:";
 "checking..." = "идет проверка...";
 "Theme" = "Тема";
