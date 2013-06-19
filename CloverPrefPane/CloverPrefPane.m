@@ -530,6 +530,21 @@
 #pragma mark -
 #pragma mark Methods
 
+- (void)changeProgressionTitle:(NSString*)title isInProgress:(BOOL)isInProgress
+{
+    [_checkNowButton setTitle:GetLocalizedString(title)];
+    [_checkNowButton setEnabled:!isInProgress];
+    [_updatesIndicator setHidden:!isInProgress];
+    
+    if (isInProgress) {
+        [_updatesIndicator startAnimation:self];
+    }
+    else {
+        [_updatesIndicator stopAnimation:self];
+    }
+
+}
+
 - (void)readAndSetInstallerRevision
 {
     // Initialize revision fields
@@ -847,21 +862,40 @@
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector: @selector(volumesChanged:) name:NSWorkspaceDidMountNotification object: nil];
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector: @selector(volumesChanged:) name:NSWorkspaceDidUnmountNotification object:nil];
     
-    // 
     NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString:@kCloverLatestInstallerURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20.0];
     
     if (![[NSURLConnection alloc]initWithRequest:request delegate:self]) {
-        //
+        [_lastUpdateTextField setStringValue:@"-"];
     }
+    else {
+        [self changeProgressionTitle:@"Checking..." isInProgress:YES];
+    }
+}
+
+- (void) willUnselect
+{
+    //
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    [_lastUpdateTextField setStringValue:@"-"];
+    [self changeProgressionTitle:@"Check now" isInProgress:NO];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
+
+    // Do not download installer
+    [connection cancel];
+    
     [self readAndSetInstallerRevision];
     
     NSDate *now = [NSDate dateWithTimeIntervalSinceNow:0];
     
-    NSString *remoteRevision = [[[[[response.suggestedFilename componentsSeparatedByString:@"."] objectAtIndex:0] componentsSeparatedByString:@"_"] objectAtIndex:2] substringFromIndex:1];
+    _installerFilename = response.suggestedFilename;
+    
+    NSString *remoteRevision = [[[[[_installerFilename componentsSeparatedByString:@"."] objectAtIndex:0] componentsSeparatedByString:@"_"] objectAtIndex:2] substringFromIndex:1];
     
     [_availableRevisionTextField setStringValue:remoteRevision];
     
@@ -869,10 +903,11 @@
     [AnyPreferencesController setKey:CFSTR(kCloverLastCheckTimestamp) forAppID:CFSTR(kCloverUpdaterIdentifier) fromDate:now];
     
     if ([_bootedRevisionTextField intValue] < [_availableRevisionTextField intValue]) {
-        [_checkNowButton setTitle:GetLocalizedString(@"Update...")];
+        [self changeProgressionTitle:@"Download..." isInProgress:NO];
     }
-    else if (_updateCkeckIsForced) {
-        _updateCkeckIsForced = NO;
+    else if (_hasForcedUpdateCheck) {
+        _hasForcedUpdateCheck = NO;
+        
         NSAlert *alert = [[NSAlert alloc] init];
         
         [alert setIcon:[NSImage imageNamed:NSImageNameInfo]];
@@ -902,16 +937,32 @@
 - (void)checkForUpdatePressed:(id)sender
 {
     if ([_bootedRevisionTextField intValue] < [_availableRevisionTextField intValue]) {
-        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@kCloverLatestInstallerURL]];
+
+        //[[NSWorkspace sharedWorkspace] launchApplication:updaterPath];
+        NSSavePanel *panel = [NSSavePanel savePanel];
+        
+        [panel setNameFieldStringValue:[_installerFilename lastPathComponent]];
+        [panel setTitle:GetLocalizedString(@"Set Clover installer location")];
+        
+        [panel beginSheetModalForWindow:[self.mainView window] completionHandler:^(NSInteger result) {
+        
+            if (result == NSFileHandlingPanelOKButton) {
+                
+                _installerFilename = panel.URL.path;
+                [NSTask launchedTaskWithLaunchPath:[[self.bundle resourcePath] stringByAppendingPathComponent:@kCloverUpdaterExecutable] arguments:[NSArray arrayWithObjects:@"update", _installerFilename, nil]];
+            }
+        }];
     }
     else {
-        //[_lastUpdateTextField setStringValue:[_lastUpdateTextField.formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]]];
-        _updateCkeckIsForced = YES;
+        _hasForcedUpdateCheck = YES;
         
         NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString:@kCloverLatestInstallerURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20.0];
         
-        if (![[NSURLConnection alloc]initWithRequest:request delegate:self]) {
-            //
+        if ([NSURLConnection connectionWithRequest:request delegate:self]) {
+            [_checkNowButton setStringValue:@"Checking..."];
+            [_checkNowButton setEnabled:NO];
+            [_updatesIndicator setHidden:NO];
+            [_updatesIndicator startAnimation:self];
         }
     }
 }

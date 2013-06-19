@@ -23,38 +23,60 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
+    [Localizer localizeView:_hasUpdateWindow];
+    [Localizer localizeView:_noUpdatesWindow];
+    [Localizer localizeView:_progressionWindow];
+    
     NSArray *args = [[NSProcessInfo processInfo] arguments];
     
-    BOOL forced = args && [args count] && [[args objectAtIndex:1] isEqualToString:@"forced"];
-
-    NSDate *now = [NSDate dateWithTimeIntervalSinceNow:0];
-    
-    NSTimeInterval lastCheckTimestamp = [[AnyPreferencesController getDateFromKey:CFSTR(kCloverLastCheckTimestamp) forAppID:CFSTR(kCloverUpdaterIdentifier)] timeIntervalSince1970];
-    NSTimeInterval intervalFromRef = [now timeIntervalSince1970];
-    
-    if ((lastCheckTimestamp && lastCheckTimestamp > intervalFromRef) || forced) {
-        [AnyPreferencesController setKey:CFSTR(kCloverLastCheckTimestamp) forAppID:CFSTR(kCloverUpdaterIdentifier) fromDate:now];
-        [AnyPreferencesController synchronizeforAppID:CFSTR(kCloverUpdaterIdentifier)];
+    if (args && [args count] && [[args objectAtIndex:1] isEqualToString:@"update"]) {
+        _installerPath = [args objectAtIndex:2];
+        _forcedUpdate = YES;
+        [self doUpdate:self];
+    }
+    else {
+        BOOL forced = args && [args count] && [[args objectAtIndex:1] isEqualToString:@"forced"];
         
-        NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString:@kCloverLatestInstallerURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
+        NSDate *now = [NSDate dateWithTimeIntervalSinceNow:0];
         
-        if (![[NSURLConnection alloc]initWithRequest:request delegate:self]) {
+        NSTimeInterval lastCheckTimestamp = [[AnyPreferencesController getDateFromKey:CFSTR(kCloverLastCheckTimestamp) forAppID:CFSTR(kCloverUpdaterIdentifier)] timeIntervalSince1970];
+        NSTimeInterval intervalFromRef = [now timeIntervalSince1970];
+        
+        if ((lastCheckTimestamp && lastCheckTimestamp > intervalFromRef) || forced) {
+            NSLog(@"Starting updates check...");
+            
+            [AnyPreferencesController setKey:CFSTR(kCloverLastCheckTimestamp) forAppID:CFSTR(kCloverUpdaterIdentifier) fromDate:now];
+            [AnyPreferencesController synchronizeforAppID:CFSTR(kCloverUpdaterIdentifier)];
+            
+            NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString:@kCloverLatestInstallerURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
+            
+            if (![[NSURLConnection alloc]initWithRequest:request delegate:self]) {
+                [NSApp terminate:self];
+            }
+        }
+        else {
+            NSLog(@"To early to run check. Terminating...");
+            
             [NSApp terminate:self];
         }
     }
-    else {
-        [NSApp terminate:self];
-    }
-    
-    [Localizer localizeView:_hasUpdateWindow];
-    [Localizer localizeView:_noUpdatesWindow];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    NSLog(@"Connection failed with error: %@", error.description);
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
+    // Stop downloading installer
+    [connection cancel];
+    
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     
-    NSString *remoteString = [[[[[response.suggestedFilename componentsSeparatedByString:@"."] objectAtIndex:0] componentsSeparatedByString:@"_"] objectAtIndex:2] substringFromIndex:1];
+    _installerPath = response.suggestedFilename;
+    
+    NSString *remoteString = [[[[[_installerPath componentsSeparatedByString:@"."] objectAtIndex:0] componentsSeparatedByString:@"_"] objectAtIndex:2] substringFromIndex:1];
     NSNumber *remote = [formatter numberFromString:remoteString];
 
     NSString* bootedRevision = @"-";
@@ -78,33 +100,113 @@
     NSNumber *local = [formatter numberFromString:bootedRevision];
     
     if ([remote isGreaterThan:local]) {
+        
         [_hasUpdateTextField setStringValue:[NSString stringWithFormat:GetLocalizedString([_hasUpdateTextField stringValue]), remote.intValue, local.intValue]];
 
-        [self performSelector:@selector(showHasUpdatesWindow) withObject:nil afterDelay:1.0];
+        [self performSelector:@selector(showWindow:) withObject:_hasUpdateWindow afterDelay:1.0];
     }
     else {
-        [self performSelector:@selector(showNoUpdatesWindow) withObject:nil afterDelay:1.0];
+        [self performSelector:@selector(showWindow:) withObject:_noUpdatesWindow afterDelay:1.0];
     }
 }
 
-- (void)showHasUpdatesWindow
+- (void)download:(NSURLDownload *)download decideDestinationWithSuggestedFilename:(NSString *)filename
 {
-    [NSApp activateIgnoringOtherApps:YES];
-    [_hasUpdateWindow setLevel:NSModalPanelWindowLevel];
-    [_hasUpdateWindow makeKeyAndOrderFront:self];
+    NSLog(@"Downloading to: %@", _installerPath);
+    [download setDestination:_installerPath allowOverwrite:YES];
 }
 
-- (void)showNoUpdatesWindow
+- (void)download:(NSURLDownload *)download didReceiveResponse:(NSURLResponse *)response;
+{
+    if ([response expectedContentLength]) {
+        [_levelIndicator setHidden:NO];
+        [_progressionIndicator setHidden:YES];
+        [_levelIndicator setMinValue:0];
+        [_levelIndicator setMaxValue:[response expectedContentLength]];
+        [_levelIndicator setDoubleValue:0];
+    }
+    else {
+        [_levelIndicator setHidden:YES];
+        [_progressionIndicator setHidden:NO];
+    }
+}
+
+- (void)download:(NSURLDownload *)download didReceiveDataOfLength:(NSUInteger)length
+{
+    if (![_levelIndicator isHidden]) {
+        [_levelIndicator setDoubleValue:_levelIndicator.doubleValue + length];
+        [_progressionValueTextField setStringValue:[NSString stringWithFormat:GetLocalizedString(@"%1.1f Mbytes"), _levelIndicator.doubleValue / (1024 * 1024)]];
+    }
+}
+
+- (void)downloadDidFinish:(NSURLDownload *)download
+{
+    [[NSWorkspace sharedWorkspace] openFile:_installerPath];
+    [NSApp terminate:self];
+}
+
+- (void)download:(NSURLDownload *)aDownload didFailWithError:(NSError *)error
+{
+    NSAlert *alert = [[NSAlert alloc] init];
+    
+    [alert setIcon:[NSImage imageNamed:NSImageNameCaution]];
+    [alert setMessageText:GetLocalizedString(@"An error occured while trying to download Clover installer!")];
+    [alert setInformativeText:error.localizedDescription];
+    [alert addButtonWithTitle:GetLocalizedString(@"Ok")];
+    
+    [alert beginSheetModalForWindow:_progressionWindow modalDelegate:nil didEndSelector:nil contextInfo:NULL];
+    
+//    [self changeProgressionTitle:@"Download..." isInProgress:NO];
+}
+
+- (void)showWindow:(NSWindow*)window
 {
     [NSApp activateIgnoringOtherApps:YES];
-    [_noUpdatesWindow setLevel:NSModalPanelWindowLevel];
-    [_noUpdatesWindow makeKeyAndOrderFront:self];
+    [window setLevel:NSModalPanelWindowLevel];
+    [window makeKeyAndOrderFront:self];
 }
 
 - (IBAction)doUpdate:(id)sender
 {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@kCloverLatestInstallerURL]];
-    [NSApp terminate:self];
+//    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@kCloverLatestInstallerURL]];
+//    [NSApp terminate:self];
+    
+    if (_forcedUpdate) {
+        NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString:@kCloverLatestInstallerURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20.0];
+        
+        if ([[NSURLDownload alloc] initWithRequest:request delegate:self]) {
+            
+            [self showWindow:_progressionWindow];
+            
+            [_progressionMessageTextField setStringValue:[NSString stringWithFormat:GetLocalizedString(@"Downloading %@"), [_installerPath lastPathComponent]]];
+            [_progressionValueTextField setStringValue:@""];
+        }
+    }
+    else {
+        NSSavePanel *panel = [NSSavePanel savePanel];
+        
+        [panel setNameFieldStringValue:[_installerPath lastPathComponent]];
+        [panel setTitle:GetLocalizedString(@"Set Clover installer location")];
+
+        [panel beginSheetModalForWindow:_hasUpdateWindow completionHandler:^(NSInteger result) {
+
+            if (result == NSFileHandlingPanelOKButton) {
+
+                _installerPath = panel.URL.path;
+
+                NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString:@kCloverLatestInstallerURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20.0];
+
+                if ([[NSURLDownload alloc] initWithRequest:request delegate:self]) {
+                    [_hasUpdateWindow orderOut:self];
+                    
+                    [self showWindow:_progressionWindow];
+                    
+                    [_progressionMessageTextField setStringValue:[NSString stringWithFormat:GetLocalizedString(@"Downloading %@"), [_installerPath lastPathComponent]]];
+                    [_progressionValueTextField setStringValue:@""];
+                }
+            }
+        }];
+    }
 }
 
 

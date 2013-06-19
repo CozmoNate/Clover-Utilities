@@ -12,7 +12,7 @@
 "Ok" = "Ok";
 "Save Clover setting" = "Сохранить настройки Clover";
 "Set custom Clover location" = "Укажите папку с Clover";
-"Update..." = "Обновить...";
+"Download..." = "Обновить...";
 
 "Updates" = "Обновления";
 "NVRAM" = "NVRAM";
@@ -20,6 +20,7 @@
 "Last installed revision:" = "Последняя установленная версия:";
 "Latest available revision:" = "Доступные обновления:";
 "checking..." = "идет проверка...";
+"Checking..." = "Идет проверка...";
 "Theme" = "Тема";
 "Selected theme preview" = "Предпросмотр выбранной темы";
 "Select bootloader GUI theme" = "Выберите тему для загрузчика";
@@ -37,7 +38,7 @@
 "Create timestamp CloverEFI/boot.log file on every boot" = "Создавать каждый раз новый файл CloverEFI/boot.log";
 "Clover" = "Clover";
 "Select bootloader location" = "Выберите расположение Clover";
-"Save current boot config.plist..." = "Сохранить config.plist текущего загрузчика...";
+"Save current bootloader settings..." = "Сохранить настройки текущей версии загрузчика...";
 "Select OEM configuration" = "Выберите конфигурацию OEM";
 "Edit config.plist" = "Изменить config.plist";
 "Reveal in Finder" = "Показать в Finder";

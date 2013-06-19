@@ -10,12 +10,13 @@
 #import <ServiceManagement/ServiceManagement.h>
 #import <SecurityInterface/SFAuthorizationView.h>
 
-@interface CloverPrefPane : NSPreferencePane
+@interface CloverPrefPane : NSPreferencePane <NSURLDownloadDelegate, NSConnectionDelegate>
 {
     io_registry_entry_t _ioRegistryOptions;
     io_registry_entry_t _ioAcpiPlatformExpert;
-    
     NSString *_updaterPlistPath;
+    BOOL _hasForcedUpdateCheck;
+    NSString *_installerFilename;
     
     NSDictionary *_diskutilList;
     NSArray *_mountedVolumes;
@@ -32,16 +33,14 @@
     NSString *_cloverBackupsOnDestinationVolume;
     NSString *_cloverEfiFolderBackupsLimit;
     
-    BOOL _updateCkeckIsForced;
-    
     IBOutlet SFAuthorizationView *_authorizationView;
-    
     IBOutlet NSTextField *_bootedRevisionTextField;
     IBOutlet NSTextField *_installedRevisionTextField;
     IBOutlet NSTextField *_availableRevisionTextField;
     IBOutlet NSPopUpButton *_updatesIntervalPopup;
     IBOutlet NSTextField *_lastUpdateTextField;
     IBOutlet NSButton *_checkNowButton;
+    IBOutlet NSProgressIndicator *_updatesIndicator;
 }
 
 @property (readonly) IBOutlet NSDictionary* diskutilList;

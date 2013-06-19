@@ -32,6 +32,17 @@
     [localizer localizeView:view];
 }
 
+-(id)init
+{
+    self = [super init];
+    
+    if (self) {
+        _bundle = [NSBundle mainBundle];
+    }
+    
+    return self;
+}
+
 -(Localizer *)initWithBundle:(NSBundle *)bundle
 {
     self = [super init];
