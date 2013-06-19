@@ -835,8 +835,10 @@
             if (valueRef) {
                 // Get the OF variable's type.
                 CFTypeID typeID = CFGetTypeID(valueRef);
-                if (typeID == CFDataGetTypeID())
+                if (typeID == CFDataGetTypeID()) {
                     bootedRevision = [NSString stringWithFormat:@"%u",*((uint32_t*)CFDataGetBytePtr(valueRef))];
+                    self.cloverRevision = [NSNumber numberWithInteger:[bootedRevision integerValue]];
+                }
                 CFRelease(valueRef);
             }
         }
@@ -885,8 +887,7 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-
-    // Do not download installer
+    // Do not download the installer
     [connection cancel];
     
     [self readAndSetInstallerRevision];
@@ -916,6 +917,11 @@
         [alert addButtonWithTitle:GetLocalizedString(@"Ok")];
         
         [alert beginSheetModalForWindow:[self.mainView window] modalDelegate:nil didEndSelector:nil contextInfo:NULL];
+        
+        [self changeProgressionTitle:@"Check now" isInProgress:NO];
+    }
+    else {
+        [self changeProgressionTitle:@"Check now" isInProgress:NO];
     }
 }
 
@@ -1036,7 +1042,7 @@
                            ofView:[sender superview]
                     preferredEdge:NSMaxXEdge
                            string:[sender toolTip]
-                  backgroundColor:nil
+                  backgroundColor:[NSColor colorWithCalibratedWhite:0.95 alpha:0.95]
                          maxWidth:250.0];
 }
 

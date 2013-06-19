@@ -54,6 +54,7 @@
 
 @property (nonatomic, strong) IBOutlet NSString* kernelBootArgs;
 
+@property (nonatomic, strong) IBOutlet NSNumber* cloverRevision;
 @property (nonatomic, strong) IBOutlet NSArray* cloverPathsCollection;
 @property (nonatomic, strong) IBOutlet NSString* cloverPath;
 @property (nonatomic, strong) IBOutlet NSArray* cloverOemCollection;

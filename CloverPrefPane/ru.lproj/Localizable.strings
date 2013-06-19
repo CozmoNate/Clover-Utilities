@@ -30,7 +30,7 @@
 "Weekly" = "Раз в неделю";
 "Monthly" = "Раз в месяц";
 "Check for updates:" = "Проверять обновления:";
-"Last check was" = "Последняя проверка";
+"Last updates check was" = "Последняя проверка";
 "Check now" = "Проверить сейчас";
 "Author:" = "Автор:";
 "Year:" = "Год:";
@@ -38,7 +38,8 @@
 "Create timestamp CloverEFI/boot.log file on every boot" = "Создавать каждый раз новый файл CloverEFI/boot.log";
 "Clover" = "Clover";
 "Select bootloader location" = "Выберите расположение Clover";
-"Save current bootloader settings..." = "Сохранить настройки текущей версии загрузчика...";
+"Save bootloader settings..." = "Сохранить настройки загрузчика...";
+"Saves config.plist of bootloader that currently booted the system" = "Сохраняет config.plist загрузчика, который загрузил систему";
 "Select OEM configuration" = "Выберите конфигурацию OEM";
 "Edit config.plist" = "Изменить config.plist";
 "Reveal in Finder" = "Показать в Finder";

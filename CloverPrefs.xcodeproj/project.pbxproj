@@ -515,8 +515,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E27CF35175FE706005438E5 /* getconfig in Resources */,
 				7E27CF34175FE6FE005438E5 /* CloverUpdater.app in Resources */,
+				7E27CF35175FE706005438E5 /* getconfig in Resources */,
 				7E4A256E17434A5500E87EF8 /* InfoPlist.strings in Resources */,
 				7E4A257417434A5500E87EF8 /* CloverPrefPane.tiff in Resources */,
 				7E4A25841743527700E87EF8 /* CloverTitle.png in Resources */,
@@ -735,7 +735,6 @@
 				INFOPLIST_FILE = "CloverUpdater/CloverUpdater-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -751,7 +750,6 @@
 				INFOPLIST_FILE = "CloverUpdater/CloverUpdater-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

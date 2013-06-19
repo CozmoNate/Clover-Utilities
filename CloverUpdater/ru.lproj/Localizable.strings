@@ -3,6 +3,8 @@
 
 "Not now" = "Не сейчас";
 "Update..." = "Обновить...";
+"Downloading %@" = "Загрузка %@";
+"%1.1f Mbytes" = "%1.1f МБайт";
 
 "New Clover revision %i is available - you have %i. Would you like to download newer reversion?" = "Появилась новая ревизия Clover r%i, вы используете r%i. Не хотели бы вы скачать новую версию?";
 "No new Clover revisions are avaliable at this time!" = "Пока нет новых версий Clover, доступных для загрузки!";
