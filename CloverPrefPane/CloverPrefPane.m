@@ -965,10 +965,7 @@
         NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString:@kCloverLatestInstallerURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20.0];
         
         if ([NSURLConnection connectionWithRequest:request delegate:self]) {
-            [_checkNowButton setStringValue:@"Checking..."];
-            [_checkNowButton setEnabled:NO];
-            [_updatesIndicator setHidden:NO];
-            [_updatesIndicator startAnimation:self];
+            [self changeProgressionTitle:@"Checking..." isInProgress:YES];
         }
     }
 }
