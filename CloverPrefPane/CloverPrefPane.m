@@ -530,7 +530,7 @@
 #pragma mark -
 #pragma mark Methods
 
-- (void)changeProgressionTitle:(NSString*)title isInProgress:(BOOL)isInProgress
+- (void)setUpdatesButtonTitle:(NSString*)title isInProgress:(BOOL)isInProgress
 {
     [_checkNowButton setTitle:GetLocalizedString(title)];
     [_checkNowButton setEnabled:!isInProgress];
@@ -870,7 +870,7 @@
         [_lastUpdateTextField setStringValue:@"-"];
     }
     else {
-        [self changeProgressionTitle:@"Checking..." isInProgress:YES];
+        [self setUpdatesButtonTitle:@"Checking..." isInProgress:YES];
     }
 }
 
@@ -882,7 +882,7 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     [_lastUpdateTextField setStringValue:@"-"];
-    [self changeProgressionTitle:@"Check now" isInProgress:NO];
+    [self setUpdatesButtonTitle:@"Check now" isInProgress:NO];
 }
 
 //- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
@@ -956,7 +956,7 @@
     [AnyPreferencesController setKey:CFSTR(kCloverLastCheckTimestamp) forAppID:CFSTR(kCloverUpdaterIdentifier) fromDate:now];
     
     if ([_bootedRevisionTextField intValue] < [_availableRevisionTextField intValue]) {
-        [self changeProgressionTitle:@"Download..." isInProgress:NO];
+        [self setUpdatesButtonTitle:@"Download..." isInProgress:NO];
     }
     else if (_hasForcedUpdateCheck) {
         _hasForcedUpdateCheck = NO;
@@ -970,10 +970,10 @@
         
         [alert beginSheetModalForWindow:[self.mainView window] modalDelegate:nil didEndSelector:nil contextInfo:NULL];
         
-        [self changeProgressionTitle:@"Check now" isInProgress:NO];
+        [self setUpdatesButtonTitle:@"Check now" isInProgress:NO];
     }
     else {
-        [self changeProgressionTitle:@"Check now" isInProgress:NO];
+        [self setUpdatesButtonTitle:@"Check now" isInProgress:NO];
     }
 }
 
@@ -1017,7 +1017,7 @@
         NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString:@kCloverLatestInstallerURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20.0];
         
         if ([NSURLConnection connectionWithRequest:request delegate:self]) {
-            [self changeProgressionTitle:@"Checking..." isInProgress:YES];
+            [self setUpdatesButtonTitle:@"Checking..." isInProgress:YES];
         }
     }
 }
