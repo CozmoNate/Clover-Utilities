@@ -17,6 +17,7 @@
     NSString *_updaterPlistPath;
     BOOL _hasForcedUpdateCheck;
     NSString *_installerFilename;
+//    NSMutableData *_remoteDocumentData;
     
     NSDictionary *_diskutilList;
     NSArray *_mountedVolumes;

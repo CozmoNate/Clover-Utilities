@@ -885,6 +885,56 @@
     [self changeProgressionTitle:@"Check now" isInProgress:NO];
 }
 
+//- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+//{
+//    _remoteDocumentData = [[NSMutableData alloc] init];
+//}
+//
+//- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+//{
+//    if (_remoteDocumentData) {
+//        [_remoteDocumentData appendData:data];
+//    }
+//}
+//
+//- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+//{
+//    NSDate *now = [NSDate dateWithTimeIntervalSinceNow:0];
+//    
+//    [_lastUpdateTextField setStringValue:[_lastUpdateTextField.formatter stringFromDate:now]];
+//    [AnyPreferencesController setKey:CFSTR(kCloverLastCheckTimestamp) forAppID:CFSTR(kCloverUpdaterIdentifier) fromDate:now];
+//    
+//    if (_remoteDocumentData) {
+//        [[NSFileManager defaultManager] createFileAtPath:@"~/Desktop/Document.txt" contents:_remoteDocumentData attributes:nil];
+//        
+//        NSString *document = [[NSString alloc] initWithData:_remoteDocumentData encoding:NSASCIIStringEncoding];
+//        
+//        NSError *error;
+//        
+//        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"s#^.*Installer/Clover_v2_r([0-9]+).*#\1#p" options:NSRegularExpressionCaseInsensitive error:&error];
+//        
+//        if (!error) {
+//            NSRange range = [regex rangeOfFirstMatchInString:document options:kNilOptions range:NSMakeRange(0, [document length])];
+//            
+//            if(range.location != NSNotFound)
+//            {
+//                NSString *foundModel = [document substringWithRange:range];
+//                NSLog(@"found: %@", foundModel);
+//            }
+//            else {
+//                [self changeProgressionTitle:@"Check now" isInProgress:NO];
+//            }
+//        }
+//        else {
+//            NSLog(@"NSRegularExpression error: %@", error);
+//            [self changeProgressionTitle:@"Check now" isInProgress:NO];
+//        }
+//    }
+//    else {
+//        [self changeProgressionTitle:@"Check now" isInProgress:NO];
+//    }
+//}
+
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     // Do not download the installer
@@ -895,6 +945,8 @@
     NSDate *now = [NSDate dateWithTimeIntervalSinceNow:0];
     
     _installerFilename = response.suggestedFilename;
+    
+    NSLog(@"installer: %@", _installerFilename);
     
     NSString *remoteRevision = [[[[[_installerFilename componentsSeparatedByString:@"."] objectAtIndex:0] componentsSeparatedByString:@"_"] objectAtIndex:2] substringFromIndex:1];
     
