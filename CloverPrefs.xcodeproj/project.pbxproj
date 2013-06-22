@@ -21,6 +21,7 @@
 		7E27CF31175FE6E7005438E5 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA15D6A1743CE27006E3C1E /* IOKit.framework */; };
 		7E27CF34175FE6FE005438E5 /* CloverUpdater.app in Resources */ = {isa = PBXBuildFile; fileRef = 7E27CF0F175FE500005438E5 /* CloverUpdater.app */; };
 		7E27CF35175FE706005438E5 /* getconfig in Resources */ = {isa = PBXBuildFile; fileRef = 7EA204B0174E001700F7C117 /* getconfig */; };
+		7E376DC21775D73400095238 /* divider.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E376DC11775D73400095238 /* divider.png */; };
 		7E44151D174AAAE60012952E /* NoPreview.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E44151C174AAAE60012952E /* NoPreview.png */; };
 		7E4A256217434A5500E87EF8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A256117434A5500E87EF8 /* Cocoa.framework */; };
 		7E4A256417434A5500E87EF8 /* PreferencePanes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A256317434A5500E87EF8 /* PreferencePanes.framework */; };
@@ -48,10 +49,6 @@
 		7EB5C0E41762666C00F58B4C /* Localizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB5C0E21762666C00F58B4C /* Localizer.m */; };
 		7EB5C0E51762666C00F58B4C /* Localizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB5C0E21762666C00F58B4C /* Localizer.m */; };
 		7EC0FC41176131FD00932CEE /* Definitions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EC0FC40176131FD00932CEE /* Definitions.h */; };
-		7ED2CB93176A6B1C004DB645 /* 36-circle-west.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED2CB91176A6B1C004DB645 /* 36-circle-west.png */; };
-		7ED2CB94176A6B1C004DB645 /* 36-circle-west@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED2CB92176A6B1C004DB645 /* 36-circle-west@2x.png */; };
-		7ED2CB97176A6B42004DB645 /* 20-circle-east.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED2CB95176A6B42004DB645 /* 20-circle-east.png */; };
-		7ED2CB98176A6B42004DB645 /* 20-circle-east@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED2CB96176A6B42004DB645 /* 20-circle-east@2x.png */; };
 		7EE3BC6E17440E5600144659 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EE3BC6D17440E5600144659 /* ServiceManagement.framework */; };
 		7EF336E5176320BD002FE7AE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7EF336E7176320BD002FE7AE /* Localizable.strings */; };
 		7EF336ED176322E3002FE7AE /* CloverPrefPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EF336EC176322E3002FE7AE /* CloverPrefPane.xib */; };
@@ -111,6 +108,7 @@
 		7E27CF22175FE500005438E5 /* CloverUpdater.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CloverUpdater.m; sourceTree = "<group>"; };
 		7E27CF2A175FE596005438E5 /* clover.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = clover.icns; sourceTree = "<group>"; };
 		7E27CF2C175FE5A6005438E5 /* CloverLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CloverLogo.png; path = CloverPrefPane/CloverLogo.png; sourceTree = SOURCE_ROOT; };
+		7E376DC11775D73400095238 /* divider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = divider.png; sourceTree = "<group>"; };
 		7E44151C174AAAE60012952E /* NoPreview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NoPreview.png; sourceTree = "<group>"; };
 		7E4A255E17434A5500E87EF8 /* Clover.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Clover.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E4A256117434A5500E87EF8 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -141,10 +139,6 @@
 		7EB5C0E21762666C00F58B4C /* Localizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Localizer.m; sourceTree = "<group>"; };
 		7EC0FC40176131FD00932CEE /* Definitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Definitions.h; sourceTree = "<group>"; };
 		7EC2F2C11764E1C60022B337 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		7ED2CB91176A6B1C004DB645 /* 36-circle-west.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "36-circle-west.png"; sourceTree = "<group>"; };
-		7ED2CB92176A6B1C004DB645 /* 36-circle-west@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "36-circle-west@2x.png"; sourceTree = "<group>"; };
-		7ED2CB95176A6B42004DB645 /* 20-circle-east.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20-circle-east.png"; sourceTree = "<group>"; };
-		7ED2CB96176A6B42004DB645 /* 20-circle-east@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20-circle-east@2x.png"; sourceTree = "<group>"; };
 		7EE3BC6D17440E5600144659 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		7EF336EC176322E3002FE7AE /* CloverPrefPane.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CloverPrefPane.xib; sourceTree = "<group>"; };
 		7EF336EE176322F5002FE7AE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -332,10 +326,7 @@
 				7E4A25831743527700E87EF8 /* CloverTitle.png */,
 				7E4A2588174378A700E87EF8 /* CloverLogo.png */,
 				7E4A257317434A5500E87EF8 /* CloverPrefPane.tiff */,
-				7ED2CB95176A6B42004DB645 /* 20-circle-east.png */,
-				7ED2CB96176A6B42004DB645 /* 20-circle-east@2x.png */,
-				7ED2CB91176A6B1C004DB645 /* 36-circle-west.png */,
-				7ED2CB92176A6B1C004DB645 /* 36-circle-west@2x.png */,
+				7E376DC11775D73400095238 /* divider.png */,
 			);
 			name = Icons;
 			sourceTree = "<group>";
@@ -525,10 +516,7 @@
 				7EA5B60A174C99A200428A7C /* Themes in Resources */,
 				7EF336E5176320BD002FE7AE /* Localizable.strings in Resources */,
 				7EF336ED176322E3002FE7AE /* CloverPrefPane.xib in Resources */,
-				7ED2CB93176A6B1C004DB645 /* 36-circle-west.png in Resources */,
-				7ED2CB94176A6B1C004DB645 /* 36-circle-west@2x.png in Resources */,
-				7ED2CB97176A6B42004DB645 /* 20-circle-east.png in Resources */,
-				7ED2CB98176A6B42004DB645 /* 20-circle-east@2x.png in Resources */,
+				7E376DC21775D73400095238 /* divider.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

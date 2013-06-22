@@ -646,11 +646,7 @@
         }
     }
     
-    if ([list count]) {
-        return [list copy];
-    }
-    
-    return nil;
+    return list;
 }
 
 - (NSDictionary*)getCloverThemesFromPath:(NSString*)path
@@ -711,7 +707,7 @@
         }
     }
     
-    return [themes copy];
+    return themes;
 }
 
 - (NSArray*)getCloverOemCollectionFromPath:(NSString*)path
@@ -745,11 +741,7 @@
         }
     }
     
-    if ([list count]) {
-        return [list copy];
-    }
-    
-    return nil;
+    return list;
 }
 
 - (void)setUpdatesInterval:(NSInteger)checkInterval
