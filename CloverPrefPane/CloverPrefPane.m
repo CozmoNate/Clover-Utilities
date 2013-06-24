@@ -752,20 +752,20 @@
         CFRelease(launchInfo);
         
         CFErrorRef error = NULL;
+        
         if (!SMJobRemove(kSMDomainUserLaunchd, CFSTR(kCloverUpdaterIdentifier), NULL/*[[_authorizationView authorization] authorizationRef]*/, YES, &error))
             NSLog(@"Error in SMJobRemove: %@", error);
+        
         if (error)
             CFRelease(error);
     }
     
     [AnyPreferencesController setKey:CFSTR(kCloverScheduledCheckInterval) forAppID:CFSTR(kCloverUpdaterIdentifier) fromInteger:checkInterval];
     
-    NSString *updaterPath = [[self.bundle resourcePath] stringByAppendingPathComponent:@kCloverUpdaterExecutable];
-    
     if (checkInterval > 0) {
         // Create a new plist
         NSArray* call = [NSArray arrayWithObjects:
-                        updaterPath,
+                        _updaterPath,
                          @"startup",
                          nil];
         
@@ -773,7 +773,7 @@
                                       @kCloverUpdaterIdentifier, @"Label",
                                       [NSNumber numberWithInteger:checkInterval], @"StartInterval",
                                       [NSNumber numberWithBool:YES], @"RunAtLoad",
-                                      updaterPath, @"Program",
+                                      _updaterPath, @"Program",
                                       call, @"ProgramArguments",
                                       nil];
         
@@ -841,6 +841,15 @@
     // Initialize popUpCheckInterval
     NSInteger checkInterval = [AnyPreferencesController getIntegerFromKey:CFSTR(kCloverScheduledCheckInterval) forAppID:CFSTR(kCloverUpdaterIdentifier) withDefault:0];
     [_updatesIntervalPopup selectItemWithTag:checkInterval];
+    
+    // Set launch agent values
+    _updaterPath = [[self.bundle resourcePath] stringByAppendingPathComponent:@kCloverUpdaterExecutable];
+    
+    NSDictionary *launchInfo = [NSDictionary dictionaryWithContentsOfFile:_updaterPlistPath];
+    
+    if (launchInfo && (![[launchInfo objectForKey:@"Program"] isEqualToString:_updaterPath] ||![[[launchInfo objectForKey:@"ProgramArguments"] objectAtIndex:0] isEqualToString:_updaterPath])) {
+        [self setUpdatesInterval:checkInterval];
+    }
     
     // Init last updates check date
     NSDate *lastCheckTimestamp = [AnyPreferencesController getDateFromKey:CFSTR(kCloverLastCheckTimestamp) forAppID:CFSTR(kCloverUpdaterIdentifier)];

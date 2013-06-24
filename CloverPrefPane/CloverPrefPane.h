@@ -14,9 +14,11 @@
 {
     io_registry_entry_t _ioRegistryOptions;
     io_registry_entry_t _ioAcpiPlatformExpert;
-    NSString *_updaterPlistPath;
-    BOOL _hasForcedUpdateCheck;
     NSString *_installerFilename;
+    NSString *_updaterPath;
+    NSString *_updaterPlistPath;
+    
+    BOOL _hasForcedUpdateCheck;
 //    NSMutableData *_remoteDocumentData;
     
     NSDictionary *_diskutilList;
