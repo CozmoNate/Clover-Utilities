@@ -21,7 +21,7 @@
 		7E27CF31175FE6E7005438E5 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA15D6A1743CE27006E3C1E /* IOKit.framework */; };
 		7E27CF34175FE6FE005438E5 /* CloverUpdater.app in Resources */ = {isa = PBXBuildFile; fileRef = 7E27CF0F175FE500005438E5 /* CloverUpdater.app */; };
 		7E27CF35175FE706005438E5 /* getconfig in Resources */ = {isa = PBXBuildFile; fileRef = 7EA204B0174E001700F7C117 /* getconfig */; };
-		7E376DC21775D73400095238 /* divider.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E376DC11775D73400095238 /* divider.png */; };
+		7E3621E71778C19400510D34 /* Divider.tif in Resources */ = {isa = PBXBuildFile; fileRef = 7E3621E61778C19400510D34 /* Divider.tif */; };
 		7E44151D174AAAE60012952E /* NoPreview.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E44151C174AAAE60012952E /* NoPreview.png */; };
 		7E4A256217434A5500E87EF8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A256117434A5500E87EF8 /* Cocoa.framework */; };
 		7E4A256417434A5500E87EF8 /* PreferencePanes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A256317434A5500E87EF8 /* PreferencePanes.framework */; };
@@ -108,7 +108,7 @@
 		7E27CF22175FE500005438E5 /* CloverUpdater.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CloverUpdater.m; sourceTree = "<group>"; };
 		7E27CF2A175FE596005438E5 /* clover.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = clover.icns; sourceTree = "<group>"; };
 		7E27CF2C175FE5A6005438E5 /* CloverLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CloverLogo.png; path = CloverPrefPane/CloverLogo.png; sourceTree = SOURCE_ROOT; };
-		7E376DC11775D73400095238 /* divider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = divider.png; sourceTree = "<group>"; };
+		7E3621E61778C19400510D34 /* Divider.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Divider.tif; sourceTree = "<group>"; };
 		7E44151C174AAAE60012952E /* NoPreview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NoPreview.png; sourceTree = "<group>"; };
 		7E4A255E17434A5500E87EF8 /* Clover.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Clover.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E4A256117434A5500E87EF8 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -125,10 +125,11 @@
 		7E4A257D17434DBB00E87EF8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		7E4A257F17434DF300E87EF8 /* SecurityInterface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityInterface.framework; path = System/Library/Frameworks/SecurityInterface.framework; sourceTree = SDKROOT; };
 		7E4A25831743527700E87EF8 /* CloverTitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloverTitle.png; sourceTree = "<group>"; };
-		7E4A25851743531E00E87EF8 /* CloverTitle.psd */ = {isa = PBXFileReference; lastKnownFileType = file; name = CloverTitle.psd; path = CloverPrefPane/CloverTitle.psd; sourceTree = "<group>"; };
 		7E4A2588174378A700E87EF8 /* CloverLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloverLogo.png; sourceTree = "<group>"; };
 		7E67EE5F1762F94A00169E7E /* AnyPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnyPreferencesController.h; sourceTree = "<group>"; };
 		7E67EE601762F94A00169E7E /* AnyPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnyPreferencesController.m; sourceTree = "<group>"; };
+		7E7FE0361778BAFC00E6325E /* Divider.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Divider.psd; sourceTree = "<group>"; };
+		7E7FE0431778BF4700E6325E /* CloverTitle.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = CloverTitle.psd; sourceTree = "<group>"; };
 		7EA15D6A1743CE27006E3C1E /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		7EA204B0174E001700F7C117 /* getconfig */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = getconfig; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EA204B2174E001700F7C117 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
@@ -314,7 +315,8 @@
 		7E4A258117434EAD00E87EF8 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
-				7E4A25851743531E00E87EF8 /* CloverTitle.psd */,
+				7E7FE0361778BAFC00E6325E /* Divider.psd */,
+				7E7FE0431778BF4700E6325E /* CloverTitle.psd */,
 			);
 			name = Graphics;
 			sourceTree = "<group>";
@@ -326,7 +328,7 @@
 				7E4A25831743527700E87EF8 /* CloverTitle.png */,
 				7E4A2588174378A700E87EF8 /* CloverLogo.png */,
 				7E4A257317434A5500E87EF8 /* CloverPrefPane.tiff */,
-				7E376DC11775D73400095238 /* divider.png */,
+				7E3621E61778C19400510D34 /* Divider.tif */,
 			);
 			name = Icons;
 			sourceTree = "<group>";
@@ -516,7 +518,7 @@
 				7EA5B60A174C99A200428A7C /* Themes in Resources */,
 				7EF336E5176320BD002FE7AE /* Localizable.strings in Resources */,
 				7EF336ED176322E3002FE7AE /* CloverPrefPane.xib in Resources */,
-				7E376DC21775D73400095238 /* divider.png in Resources */,
+				7E3621E71778C19400510D34 /* Divider.tif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
