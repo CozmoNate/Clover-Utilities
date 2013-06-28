@@ -107,7 +107,7 @@
 
         [self performSelector:@selector(showWindow:) withObject:_hasUpdateWindow afterDelay:1.0];
     }
-    else {
+    else if (_forcedUpdate) {
         [self performSelector:@selector(showWindow:) withObject:_noUpdatesWindow afterDelay:1.0];
     }
 }
