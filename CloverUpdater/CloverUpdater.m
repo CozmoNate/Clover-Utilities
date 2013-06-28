@@ -40,9 +40,11 @@
         NSDate *now = [NSDate dateWithTimeIntervalSinceNow:0];
         
         NSTimeInterval lastCheckTimestamp = [[AnyPreferencesController getDateFromKey:CFSTR(kCloverLastCheckTimestamp) forAppID:CFSTR(kCloverUpdaterIdentifier)] timeIntervalSince1970];
+        NSInteger scheduledCheckInterval = [AnyPreferencesController getIntegerFromKey:CFSTR(kCloverScheduledCheckInterval) forAppID:CFSTR(kCloverUpdaterIdentifier) withDefault:0];
         NSTimeInterval intervalFromRef = [now timeIntervalSince1970];
         
-        if ((lastCheckTimestamp && lastCheckTimestamp > intervalFromRef) || forced) {
+        
+        if ((scheduledCheckInterval && lastCheckTimestamp && lastCheckTimestamp + scheduledCheckInterval < intervalFromRef) || forced) {
             NSLog(@"Starting updates check...");
             
             [AnyPreferencesController setKey:CFSTR(kCloverLastCheckTimestamp) forAppID:CFSTR(kCloverUpdaterIdentifier) fromDate:now];
@@ -50,7 +52,7 @@
             
             NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString:@kCloverLatestInstallerURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
             
-            if (![[NSURLConnection alloc]initWithRequest:request delegate:self]) {
+            if (![[NSURLConnection alloc] initWithRequest:request delegate:self]) {
                 [NSApp terminate:self];
             }
         }
