@@ -5,6 +5,8 @@
 //  Created by Kozlek on 15/05/13.
 //  Copyright (c) 2013 Kozlek. All rights reserved.
 //
+//  Initial code from Clover by JrCs
+//
 
 #import "CloverPrefPane.h"
 #import "AnyPreferencesController.h"

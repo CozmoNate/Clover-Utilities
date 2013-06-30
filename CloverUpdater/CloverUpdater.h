@@ -5,6 +5,8 @@
 //  Created by Kozlek on 18/05/13.
 //  Copyright (c) 2013 Kozlek. All rights reserved.
 //
+//  Initial code from Clover by JrCs, slice
+//
 
 @interface CloverUpdater : NSObject <NSApplicationDelegate, NSURLConnectionDelegate, NSURLDownloadDelegate>
 {

@@ -5,6 +5,8 @@
 //  Created by Kozlek on 18/05/13.
 //  Copyright (c) 2013 Kozlek. All rights reserved.
 //
+//  Initial code from Clover by JrCs, slice
+//
 
 #import "CloverUpdater.h"
 
@@ -40,7 +42,7 @@
         NSDate *now = [NSDate dateWithTimeIntervalSinceNow:0];
         
         NSTimeInterval lastCheckTimestamp = [[AnyPreferencesController getDateFromKey:CFSTR(kCloverLastCheckTimestamp) forAppID:CFSTR(kCloverUpdaterIdentifier)] timeIntervalSince1970];
-        NSInteger scheduledCheckInterval = [AnyPreferencesController getIntegerFromKey:CFSTR(kCloverScheduledCheckInterval) forAppID:CFSTR(kCloverUpdaterIdentifier) withDefault:0];
+        NSInteger scheduledCheckInterval = [AnyPreferencesController getIntegerFromKey:CFSTR(kCloverScheduledCheckInterval) forAppID:CFSTR(kCloverUpdaterIdentifier) withDefault:0] * 0.9;
         NSTimeInterval intervalFromRef = [now timeIntervalSince1970];
         
         
