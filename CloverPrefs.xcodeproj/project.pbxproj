@@ -108,6 +108,7 @@
 		7E27CF22175FE500005438E5 /* CloverUpdater.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CloverUpdater.m; sourceTree = "<group>"; };
 		7E27CF2A175FE596005438E5 /* clover.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = clover.icns; sourceTree = "<group>"; };
 		7E27CF2C175FE5A6005438E5 /* CloverLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CloverLogo.png; path = CloverPrefPane/CloverLogo.png; sourceTree = SOURCE_ROOT; };
+		7E2BC0AE178530BA00B4282A /* Platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Platform.h; sourceTree = "<group>"; };
 		7E3621E61778C19400510D34 /* Divider.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Divider.tif; sourceTree = "<group>"; };
 		7E44151C174AAAE60012952E /* NoPreview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NoPreview.png; sourceTree = "<group>"; };
 		7E4A255E17434A5500E87EF8 /* Clover.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Clover.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -336,6 +337,7 @@
 		7EA204B1174E001700F7C117 /* getconfig */ = {
 			isa = PBXGroup;
 			children = (
+				7E2BC0AE178530BA00B4282A /* Platform.h */,
 				7EA204B2174E001700F7C117 /* main.c */,
 				7EA204B4174E001700F7C117 /* getconfig.1 */,
 			);
