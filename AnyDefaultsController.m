@@ -29,9 +29,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#import "AnyPreferencesController.h"
+#import "AnyDefaultsController.h"
 
-@implementation AnyPreferencesController
+@implementation AnyDefaultsController
 
 + (BOOL)getBoolFromKey:(CFStringRef)key forAppID:(CFStringRef)appID withDefault:(BOOL)defaultValue
 {

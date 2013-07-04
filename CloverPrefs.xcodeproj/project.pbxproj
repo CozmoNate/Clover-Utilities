@@ -32,9 +32,9 @@
 		7E4A258017434DF300E87EF8 /* SecurityInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A257F17434DF300E87EF8 /* SecurityInterface.framework */; };
 		7E4A25841743527700E87EF8 /* CloverTitle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A25831743527700E87EF8 /* CloverTitle.png */; };
 		7E4A2589174378A700E87EF8 /* CloverLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A2588174378A700E87EF8 /* CloverLogo.png */; };
-		7E67EE611762F94A00169E7E /* AnyPreferencesController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E67EE5F1762F94A00169E7E /* AnyPreferencesController.h */; };
-		7E67EE621762F94A00169E7E /* AnyPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E67EE601762F94A00169E7E /* AnyPreferencesController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		7E67EE631762F94A00169E7E /* AnyPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E67EE601762F94A00169E7E /* AnyPreferencesController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7E67EE611762F94A00169E7E /* AnyDefaultsController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E67EE5F1762F94A00169E7E /* AnyDefaultsController.h */; };
+		7E67EE621762F94A00169E7E /* AnyDefaultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E67EE601762F94A00169E7E /* AnyDefaultsController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7E67EE631762F94A00169E7E /* AnyDefaultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E67EE601762F94A00169E7E /* AnyDefaultsController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7EA15D6B1743CE27006E3C1E /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA15D6A1743CE27006E3C1E /* IOKit.framework */; };
 		7EA204B3174E001700F7C117 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EA204B2174E001700F7C117 /* main.c */; };
 		7EA204B5174E001700F7C117 /* getconfig.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7EA204B4174E001700F7C117 /* getconfig.1 */; };
@@ -127,8 +127,8 @@
 		7E4A257F17434DF300E87EF8 /* SecurityInterface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityInterface.framework; path = System/Library/Frameworks/SecurityInterface.framework; sourceTree = SDKROOT; };
 		7E4A25831743527700E87EF8 /* CloverTitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloverTitle.png; sourceTree = "<group>"; };
 		7E4A2588174378A700E87EF8 /* CloverLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloverLogo.png; sourceTree = "<group>"; };
-		7E67EE5F1762F94A00169E7E /* AnyPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnyPreferencesController.h; sourceTree = "<group>"; };
-		7E67EE601762F94A00169E7E /* AnyPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnyPreferencesController.m; sourceTree = "<group>"; };
+		7E67EE5F1762F94A00169E7E /* AnyDefaultsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnyDefaultsController.h; sourceTree = "<group>"; };
+		7E67EE601762F94A00169E7E /* AnyDefaultsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnyDefaultsController.m; sourceTree = "<group>"; };
 		7E7FE0361778BAFC00E6325E /* Divider.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Divider.psd; sourceTree = "<group>"; };
 		7E7FE0431778BF4700E6325E /* CloverTitle.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = CloverTitle.psd; sourceTree = "<group>"; };
 		7EA15D6A1743CE27006E3C1E /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
@@ -350,8 +350,8 @@
 				7EC0FC40176131FD00932CEE /* Definitions.h */,
 				7EB5C0E11762666C00F58B4C /* Localizer.h */,
 				7EB5C0E21762666C00F58B4C /* Localizer.m */,
-				7E67EE5F1762F94A00169E7E /* AnyPreferencesController.h */,
-				7E67EE601762F94A00169E7E /* AnyPreferencesController.m */,
+				7E67EE5F1762F94A00169E7E /* AnyDefaultsController.h */,
+				7E67EE601762F94A00169E7E /* AnyDefaultsController.m */,
 				7EF336FC17638142002FE7AE /* NSString+Size.h */,
 				7EF336FE17638142002FE7AE /* NSString+Size.m */,
 				7EF336FB17638142002FE7AE /* NSPopover+Message.h */,
@@ -369,7 +369,7 @@
 			files = (
 				7EC0FC41176131FD00932CEE /* Definitions.h in Headers */,
 				7EB5C0E31762666C00F58B4C /* Localizer.h in Headers */,
-				7E67EE611762F94A00169E7E /* AnyPreferencesController.h in Headers */,
+				7E67EE611762F94A00169E7E /* AnyDefaultsController.h in Headers */,
 				7EF336FF17638142002FE7AE /* NSPopover+Message.h in Headers */,
 				7EF3370017638142002FE7AE /* NSString+Size.h in Headers */,
 			);
@@ -594,7 +594,7 @@
 				7E27CF1C175FE500005438E5 /* main.m in Sources */,
 				7E27CF23175FE500005438E5 /* CloverUpdater.m in Sources */,
 				7EB5C0E51762666C00F58B4C /* Localizer.m in Sources */,
-				7E67EE631762F94A00169E7E /* AnyPreferencesController.m in Sources */,
+				7E67EE631762F94A00169E7E /* AnyDefaultsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -604,7 +604,7 @@
 			files = (
 				7E4A257217434A5500E87EF8 /* CloverPrefPane.m in Sources */,
 				7EB5C0E41762666C00F58B4C /* Localizer.m in Sources */,
-				7E67EE621762F94A00169E7E /* AnyPreferencesController.m in Sources */,
+				7E67EE621762F94A00169E7E /* AnyDefaultsController.m in Sources */,
 				7EF3370117638142002FE7AE /* NSPopover+Message.m in Sources */,
 				7EF3370217638142002FE7AE /* NSString+Size.m in Sources */,
 			);

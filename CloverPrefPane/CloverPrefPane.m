@@ -9,7 +9,7 @@
 //
 
 #import "CloverPrefPane.h"
-#import "AnyPreferencesController.h"
+#import "AnyDefaultsController.h"
 #import "Localizer.h"
 
 #import "Definitions.h"
@@ -762,7 +762,7 @@
             CFRelease(error);
     }
     
-    [AnyPreferencesController setKey:CFSTR(kCloverScheduledCheckInterval) forAppID:CFSTR(kCloverUpdaterIdentifier) fromInteger:checkInterval];
+    [AnyDefaultsController setKey:CFSTR(kCloverScheduledCheckInterval) forAppID:CFSTR(kCloverUpdaterIdentifier) fromInteger:checkInterval];
     
     if (checkInterval > 0) {
         // Create a new plist
@@ -795,7 +795,7 @@
         }
     }
     
-    [AnyPreferencesController synchronizeforAppID:CFSTR(kCloverUpdaterIdentifier)];
+    [AnyDefaultsController synchronizeforAppID:CFSTR(kCloverUpdaterIdentifier)];
 }
 
 #pragma mark -
@@ -841,7 +841,7 @@
     [_bootedRevisionTextField setStringValue:bootedRevision];
     
     // Initialize popUpCheckInterval
-    NSInteger checkInterval = [AnyPreferencesController getIntegerFromKey:CFSTR(kCloverScheduledCheckInterval) forAppID:CFSTR(kCloverUpdaterIdentifier) withDefault:0];
+    NSInteger checkInterval = [AnyDefaultsController getIntegerFromKey:CFSTR(kCloverScheduledCheckInterval) forAppID:CFSTR(kCloverUpdaterIdentifier) withDefault:0];
     [_updatesIntervalPopup selectItemWithTag:checkInterval];
     
     // Set launch agent values
@@ -854,7 +854,7 @@
     }
     
     // Init last updates check date
-    NSDate *lastCheckTimestamp = [AnyPreferencesController getDateFromKey:CFSTR(kCloverLastCheckTimestamp) forAppID:CFSTR(kCloverUpdaterIdentifier)];
+    NSDate *lastCheckTimestamp = [AnyDefaultsController getDateFromKey:CFSTR(kCloverLastCheckTimestamp) forAppID:CFSTR(kCloverUpdaterIdentifier)];
     
     if (lastCheckTimestamp) {
         [_lastUpdateTextField setStringValue:[_lastUpdateTextField.formatter stringFromDate:lastCheckTimestamp]];
@@ -956,7 +956,7 @@
     [_availableRevisionTextField setStringValue:remoteRevision];
     
     [_lastUpdateTextField setStringValue:[_lastUpdateTextField.formatter stringFromDate:now]];
-    [AnyPreferencesController setKey:CFSTR(kCloverLastCheckTimestamp) forAppID:CFSTR(kCloverUpdaterIdentifier) fromDate:now];
+    [AnyDefaultsController setKey:CFSTR(kCloverLastCheckTimestamp) forAppID:CFSTR(kCloverUpdaterIdentifier) fromDate:now];
     
     if ([_bootedRevisionTextField intValue] < [_availableRevisionTextField intValue]) {
         [self setUpdatesButtonTitle:@"Download..." isInProgress:NO];

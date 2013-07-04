@@ -29,7 +29,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-@interface AnyPreferencesController : NSObject
+@interface AnyDefaultsController : NSObject
 
 + (BOOL)getBoolFromKey:(CFStringRef)key forAppID:(CFStringRef)appID withDefault:(BOOL)defaultValue;
 + (void)setKey:(CFStringRef)key forAppID:(CFStringRef)appID fromBool:(BOOL)value;

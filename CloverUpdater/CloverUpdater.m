@@ -12,7 +12,7 @@
 
 #import "Definitions.h"
 #import "Localizer.h"
-#import "AnyPreferencesController.h"
+#import "AnyDefaultsController.h"
 
 #define GetLocalizedString(key) \
 [[NSBundle mainBundle] localizedStringForKey:(key) value:@"" table:nil]
@@ -41,16 +41,16 @@
         
         NSDate *now = [NSDate dateWithTimeIntervalSinceNow:0];
         
-        NSTimeInterval lastCheckTimestamp = [[AnyPreferencesController getDateFromKey:CFSTR(kCloverLastCheckTimestamp) forAppID:CFSTR(kCloverUpdaterIdentifier)] timeIntervalSince1970];
-        NSInteger scheduledCheckInterval = [AnyPreferencesController getIntegerFromKey:CFSTR(kCloverScheduledCheckInterval) forAppID:CFSTR(kCloverUpdaterIdentifier) withDefault:0] * 0.9;
+        NSTimeInterval lastCheckTimestamp = [[AnyDefaultsController getDateFromKey:CFSTR(kCloverLastCheckTimestamp) forAppID:CFSTR(kCloverUpdaterIdentifier)] timeIntervalSince1970];
+        NSInteger scheduledCheckInterval = [AnyDefaultsController getIntegerFromKey:CFSTR(kCloverScheduledCheckInterval) forAppID:CFSTR(kCloverUpdaterIdentifier) withDefault:0] * 0.9;
         NSTimeInterval intervalFromRef = [now timeIntervalSince1970];
         
         
         if ((scheduledCheckInterval && lastCheckTimestamp && lastCheckTimestamp + scheduledCheckInterval < intervalFromRef) || forced) {
             NSLog(@"Starting updates check...");
             
-            [AnyPreferencesController setKey:CFSTR(kCloverLastCheckTimestamp) forAppID:CFSTR(kCloverUpdaterIdentifier) fromDate:now];
-            [AnyPreferencesController synchronizeforAppID:CFSTR(kCloverUpdaterIdentifier)];
+            [AnyDefaultsController setKey:CFSTR(kCloverLastCheckTimestamp) forAppID:CFSTR(kCloverUpdaterIdentifier) fromDate:now];
+            [AnyDefaultsController synchronizeforAppID:CFSTR(kCloverUpdaterIdentifier)];
             
             NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString:@kCloverLatestInstallerURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
             
