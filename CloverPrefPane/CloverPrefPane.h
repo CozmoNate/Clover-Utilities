@@ -69,16 +69,16 @@
 @property (nonatomic, strong) IBOutlet NSString* cloverTheme;
 @property (nonatomic, strong) IBOutlet NSDictionary* cloverThemeInfo;
 
-@property (nonatomic, strong) IBOutlet NSNumber* cloverPreviousLogLines;
+@property (nonatomic, assign) NSInteger cloverPreviousLogLines;
 
-@property (nonatomic, strong) IBOutlet NSNumber* cloverLogEveryBootEnabled;
-@property (nonatomic, strong) IBOutlet NSNumber* cloverLogEveryBootNumber;
+@property (nonatomic, assign) BOOL cloverLogEveryBootEnabled;
+@property (nonatomic, assign) NSInteger cloverLogEveryBootNumber;
 
-@property (nonatomic, strong) IBOutlet NSString* cloverMountEfiPartition;
-@property (nonatomic, strong) IBOutlet NSNumber* cloverEmulateNvram;
+@property (nonatomic, assign) IBOutlet NSString* cloverMountEfiPartition;
+@property (nonatomic, assign) BOOL cloverEmulateNvram;
 
-@property (nonatomic, strong) IBOutlet NSNumber* cloverBackupsOnDestinationVolumeEnabled;
-@property (nonatomic, strong) IBOutlet NSNumber* cloverBackupsLimit;
+@property (nonatomic, assign) BOOL cloverBackupsOnDestinationVolumeEnabled;
+@property (nonatomic, assign) NSInteger cloverBackupsLimit;
 
 - (IBAction)updatesIntervalChanged:(id)sender;
 - (IBAction)checkForUpdatePressed:(id)sender;

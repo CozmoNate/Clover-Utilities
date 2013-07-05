@@ -396,65 +396,65 @@
     self.CloverThemeInfo = [self.cloverThemesCollection objectForKey:cloverTheme];
 }
 
-- (NSNumber*)cloverPreviousLogLines
+- (NSInteger)cloverPreviousLogLines
 {
     if (!_cloverOldLogLineCount) {
         _cloverOldLogLineCount = [self getNvramKey:kCloverLogLineCount];
     }
     
-    return [NSNumber numberWithInteger:[_cloverOldLogLineCount integerValue]];
+    return [_cloverOldLogLineCount integerValue];
 }
 
--(void)setCloverPreviousLogLines:(NSNumber*)cloverPreviousLogLines
+-(void)setCloverPreviousLogLines:(NSInteger)cloverPreviousLogLines
 {
-    if (![self.cloverPreviousLogLines isEqualToNumber:cloverPreviousLogLines]) {
-        _cloverOldLogLineCount = [cloverPreviousLogLines stringValue];
+    if (self.cloverPreviousLogLines != cloverPreviousLogLines) {
+        _cloverOldLogLineCount = [NSString stringWithFormat:@"%li", cloverPreviousLogLines];
         
         [self setNvramKey:kCloverLogLineCount value:[_cloverOldLogLineCount UTF8String]];
     }
 }
 
-- (NSNumber*)cloverLogEveryBootEnabled
+- (BOOL)cloverLogEveryBootEnabled
 {
     if (!_cloverLogEveryBoot) {
         _cloverLogEveryBoot = [self getNvramKey:kCloverLogEveryBoot];
     }
     
     if ([_cloverLogEveryBoot isCaseInsensitiveLike:@"No"]) {
-        return [NSNumber numberWithBool:NO];
+        return NO;
     }
     else if ([_cloverLogEveryBoot isCaseInsensitiveLike:@"Yes"] || [_cloverLogEveryBoot integerValue] >= 0) {
-        return [NSNumber numberWithBool:YES];
+        return YES;
     }
     
-    return [NSNumber numberWithBool:NO];
+    return NO;
 }
 
-- (void)setCloverLogEveryBootEnabled:(NSNumber *)cloverTimestampLogsEnabled
+- (void)setCloverLogEveryBootEnabled:(BOOL)cloverTimestampLogsEnabled
 {
-    if (![self.cloverLogEveryBootEnabled isEqualToNumber:cloverTimestampLogsEnabled]) {
-        _cloverLogEveryBoot = [cloverTimestampLogsEnabled boolValue] ? @"Yes" : @"No";
+    if (self.cloverLogEveryBootEnabled != cloverTimestampLogsEnabled) {
+        _cloverLogEveryBoot = cloverTimestampLogsEnabled ? @"Yes" : @"No";
         [self setNvramKey:kCloverLogEveryBoot value:[_cloverLogEveryBoot UTF8String]];
     }
 }
 
-- (NSNumber*)cloverLogEveryBootNumber
+- (NSInteger)cloverLogEveryBootNumber
 {
     if (!_cloverLogEveryBoot) {
         _cloverLogEveryBoot = [self getNvramKey:kCloverLogEveryBoot];
     }
     
     if ([_cloverLogEveryBoot isCaseInsensitiveLike:@"No"] || [_cloverLogEveryBoot isCaseInsensitiveLike:@"Yes"]) {
-        return [NSNumber numberWithInteger:0];
+        return 0;
     }
 
-    return [NSNumber numberWithInteger:[_cloverLogEveryBoot integerValue]];
+    return [_cloverLogEveryBoot integerValue];
 }
 
-- (void)setCloverLogEveryBootNumber:(NSNumber *)cloverLogEveryBootLimit
+- (void)setCloverLogEveryBootNumber:(NSInteger)cloverLogEveryBootLimit
 {
-    if (![self.cloverLogEveryBootNumber isEqualToNumber:cloverLogEveryBootLimit]) {
-        _cloverLogEveryBoot = [NSString stringWithFormat:@"%ld", [cloverLogEveryBootLimit integerValue]];
+    if (self.cloverLogEveryBootNumber != cloverLogEveryBootLimit) {
+        _cloverLogEveryBoot = [NSString stringWithFormat:@"%li", cloverLogEveryBootLimit];
         [self setNvramKey:kCloverLogEveryBoot value:[_cloverLogEveryBoot UTF8String]];
     }
 }
@@ -477,54 +477,54 @@
     }
 }
 
-- (NSNumber *)cloverEmulateNvram
+- (BOOL)cloverEmulateNvram
 {
     if (!_cloverNvramPartition) {
         _cloverNvramPartition = [self getNvramKey:kCloverNVRamDisk];
     }
     
-    return [NSNumber numberWithBool:_cloverNvramPartition && [_cloverNvramPartition isCaseInsensitiveLike:@"Yes"]];
+    return _cloverNvramPartition && [_cloverNvramPartition isCaseInsensitiveLike:@"Yes"];
 }
 
--(void)setCloverEmulateNvram:(NSNumber *)cloverEmulateNvram
+-(void)setCloverEmulateNvram:(BOOL)cloverEmulateNvram
 {
-    if (![self.cloverEmulateNvram isEqualToNumber:cloverEmulateNvram]) {
-        _cloverNvramPartition = [cloverEmulateNvram boolValue] ? @"Yes" : @"No";
+    if (self.cloverEmulateNvram != cloverEmulateNvram) {
+        _cloverNvramPartition = cloverEmulateNvram ? @"Yes" : @"No";
         [self setNvramKey:kCloverNVRamDisk value:[_cloverNvramPartition UTF8String]];
     }
 }
 
-- (NSNumber*)cloverBackupsOnDestinationVolumeEnabled
+- (BOOL)cloverBackupsOnDestinationVolumeEnabled
 {
     if (!_cloverBackupsOnDestinationVolume) {
         _cloverBackupsOnDestinationVolume = [self getNvramKey:kCloverBackupDirOnDestVol];
     }
     
-    return [NSNumber numberWithBool:[_cloverBackupsOnDestinationVolume isCaseInsensitiveLike:@"Yes"]];
+    return [_cloverBackupsOnDestinationVolume isCaseInsensitiveLike:@"Yes"];
 }
 
--(void)setCloverBackupsOnDestinationVolumeEnabled:(NSNumber*)cloverBackupsOnDestinationVolume
+-(void)setCloverBackupsOnDestinationVolumeEnabled:(BOOL)cloverBackupsOnDestinationVolume
 {
-    if (![self.cloverBackupsOnDestinationVolumeEnabled isEqualToNumber:cloverBackupsOnDestinationVolume]) {
-        _cloverBackupsOnDestinationVolume = [cloverBackupsOnDestinationVolume boolValue]? @"Yes" : @"";
+    if (self.cloverBackupsOnDestinationVolumeEnabled != cloverBackupsOnDestinationVolume) {
+        _cloverBackupsOnDestinationVolume = cloverBackupsOnDestinationVolume ? @"Yes" : @"";
         
         [self setNvramKey:kCloverBackupDirOnDestVol value:[_cloverBackupsOnDestinationVolume UTF8String]];
     }
 }
 
-- (NSNumber*)cloverBackupsLimit
+- (NSInteger)cloverBackupsLimit
 {
     if (!_cloverEfiFolderBackupsLimit) {
         _cloverEfiFolderBackupsLimit = [self getNvramKey:kCloverKeepBackupLimit];
     }
     
-    return [NSNumber numberWithInteger:[_cloverEfiFolderBackupsLimit integerValue]];;
+    return [_cloverEfiFolderBackupsLimit integerValue];
 }
 
--(void)setCloverBackupsLimit:(NSNumber *)cloverBackupsLimit
+-(void)setCloverBackupsLimit:(NSInteger)cloverBackupsLimit
 {
-    if (![self.cloverBackupsLimit isEqualToNumber:cloverBackupsLimit]) {
-        _cloverEfiFolderBackupsLimit = [cloverBackupsLimit stringValue];
+    if (self.cloverBackupsLimit != cloverBackupsLimit) {
+        _cloverEfiFolderBackupsLimit = [NSString stringWithFormat:@"%li", (long)cloverBackupsLimit];
         [self setNvramKey:kCloverKeepBackupLimit value:[_cloverEfiFolderBackupsLimit UTF8String]];
     }
 }
