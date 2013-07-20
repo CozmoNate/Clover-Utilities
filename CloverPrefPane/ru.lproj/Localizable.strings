@@ -16,6 +16,7 @@
 
 "Updates" = "Обновления";
 "NVRAM" = "NVRAM";
+"Preferences" = "Настройки";
 "Current booted revision:" = "Текущая версия загрузчика:";
 "Last installed revision:" = "Последняя установленная версия:";
 "Latest available revision:" = "Доступные обновления:";
