@@ -60,7 +60,6 @@
         }
         else {
             NSLog(@"To early to run check. Terminating...");
-            
             [NSApp terminate:self];
         }
     }
@@ -69,6 +68,7 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     NSLog(@"Connection failed with error: %@", error.description);
+    [NSApp terminate:self];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
