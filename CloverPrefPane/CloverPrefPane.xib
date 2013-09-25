@@ -53,15 +53,15 @@
                                             </constraints>
                                             <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="2175">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
+                                                <font key="font" metaFont="menu"/>
                                                 <menu key="menu" title="OtherViews" id="2176"/>
                                             </popUpButtonCell>
                                             <connections>
-                                                <binding destination="-2" name="content" keyPath="self.cloverPathsCollection" id="2180"/>
-                                                <binding destination="-2" name="contentObjects" keyPath="self.cloverPathsCollection.Value" previousBinding="2180" id="2453"/>
-                                                <binding destination="-2" name="contentValues" keyPath="self.cloverPathsCollection.Title" previousBinding="2453" id="2454"/>
                                                 <binding destination="-2" name="selectedObject" keyPath="self.cloverPath" previousBinding="2454" id="2490"/>
                                                 <binding destination="-2" name="toolTip" keyPath="self.cloverPath" id="2496"/>
+                                                <binding destination="-2" name="content" keyPath="self.cloverPathsCollection" id="2180"/>
+                                                <binding destination="-2" name="contentValues" keyPath="self.cloverPathsCollection.Title" previousBinding="2453" id="2454"/>
+                                                <binding destination="-2" name="contentObjects" keyPath="self.cloverPathsCollection.Value" previousBinding="2180" id="2453"/>
                                             </connections>
                                         </popUpButton>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2190">
@@ -84,10 +84,10 @@
                                                 <action selector="saveSettingsPressed:" target="-2" id="2280"/>
                                                 <binding destination="-2" name="enabled" keyPath="self.cloverRevision" id="5144">
                                                     <dictionary key="options">
-                                                        <integer key="NSNullPlaceholder" value="0"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
                                                         <integer key="NSNotApplicablePlaceholder" value="0"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="0"/>
-                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
+                                                        <integer key="NSNullPlaceholder" value="0"/>
                                                         <string key="NSValueTransformerName">NSIsNotNil</string>
                                                     </dictionary>
                                                 </binding>
@@ -107,22 +107,22 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="2321">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
+                                                <font key="font" metaFont="menu"/>
                                                 <menu key="menu" title="OtherViews" id="2322"/>
                                             </popUpButtonCell>
                                             <connections>
                                                 <binding destination="-2" name="content" keyPath="self.cloverOemCollection" id="2388"/>
-                                                <binding destination="-2" name="contentObjects" keyPath="self.cloverOemCollection.Value" previousBinding="2388" id="2392"/>
-                                                <binding destination="-2" name="contentValues" keyPath="self.cloverOemCollection.Title" previousBinding="2392" id="2396"/>
                                                 <binding destination="-2" name="enabled" keyPath="self.cloverOemCollection" id="2479">
                                                     <dictionary key="options">
-                                                        <integer key="NSNullPlaceholder" value="0"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
                                                         <integer key="NSNotApplicablePlaceholder" value="0"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="0"/>
-                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
+                                                        <integer key="NSNullPlaceholder" value="0"/>
                                                         <string key="NSValueTransformerName">NSIsNotNil</string>
                                                     </dictionary>
                                                 </binding>
+                                                <binding destination="-2" name="contentValues" keyPath="self.cloverOemCollection.Title" previousBinding="2392" id="2396"/>
+                                                <binding destination="-2" name="contentObjects" keyPath="self.cloverOemCollection.Value" previousBinding="2388" id="2392"/>
                                                 <binding destination="-2" name="selectedObject" keyPath="self.cloverOemPath" previousBinding="2396" id="2469"/>
                                             </connections>
                                         </popUpButton>
@@ -149,19 +149,19 @@
                                                 <action selector="revealCurrentConfigPressed:" target="-2" id="3335"/>
                                                 <binding destination="-2" name="enabled" keyPath="self.cloverConfigPath" id="2681">
                                                     <dictionary key="options">
-                                                        <integer key="NSNullPlaceholder" value="0"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
                                                         <integer key="NSNotApplicablePlaceholder" value="0"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="0"/>
-                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
+                                                        <integer key="NSNullPlaceholder" value="0"/>
                                                         <string key="NSValueTransformerName">NSIsNotNil</string>
                                                     </dictionary>
                                                 </binding>
                                                 <binding destination="-2" name="hidden" keyPath="self.cloverConfigPath" previousBinding="2681" id="2857">
                                                     <dictionary key="options">
-                                                        <integer key="NSNullPlaceholder" value="0"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
                                                         <integer key="NSNotApplicablePlaceholder" value="0"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="0"/>
-                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
+                                                        <integer key="NSNullPlaceholder" value="0"/>
                                                         <string key="NSValueTransformerName">NSIsNil</string>
                                                     </dictionary>
                                                 </binding>
@@ -197,10 +197,10 @@
                                                 <action selector="setCurrentCloverPathPressed:" target="-2" id="2495"/>
                                                 <binding destination="-2" name="hidden" keyPath="self.cloverPath" id="3205">
                                                     <dictionary key="options">
-                                                        <integer key="NSNullPlaceholder" value="0"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
                                                         <integer key="NSNotApplicablePlaceholder" value="0"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="0"/>
-                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
+                                                        <integer key="NSNullPlaceholder" value="0"/>
                                                         <string key="NSValueTransformerName">NSIsNil</string>
                                                     </dictionary>
                                                 </binding>
@@ -303,20 +303,20 @@
                                             <connections>
                                                 <binding destination="2084" name="content" keyPath="arrangedObjects" id="2303"/>
                                                 <binding destination="2084" name="contentValues" keyPath="arrangedObjects.value.Name" previousBinding="2303" id="2310"/>
-                                                <binding destination="-2" name="enabled" keyPath="self.isUnlocked" id="1006">
-                                                    <dictionary key="options">
-                                                        <integer key="NSNotApplicablePlaceholder" value="0"/>
-                                                        <integer key="NSNoSelectionPlaceholder" value="0"/>
-                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
-                                                        <integer key="NSNullPlaceholder" value="0"/>
-                                                    </dictionary>
-                                                </binding>
                                                 <binding destination="-2" name="value" keyPath="self.cloverTheme" previousBinding="2310" id="5770">
                                                     <dictionary key="options">
                                                         <string key="NSNotApplicablePlaceholder">black_green</string>
                                                         <string key="NSNoSelectionPlaceholder">black_green</string>
                                                         <string key="NSMultipleValuesPlaceholder">black_green</string>
                                                         <string key="NSNullPlaceholder">black_green</string>
+                                                    </dictionary>
+                                                </binding>
+                                                <binding destination="-2" name="enabled" keyPath="self.isUnlocked" id="1006">
+                                                    <dictionary key="options">
+                                                        <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                                        <integer key="NSNoSelectionPlaceholder" value="0"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
+                                                        <integer key="NSNullPlaceholder" value="0"/>
                                                     </dictionary>
                                                 </binding>
                                             </connections>
@@ -337,16 +337,16 @@
                                                         </constraints>
                                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" image="NoPreview" id="755"/>
                                                         <connections>
+                                                            <binding destination="-2" name="valuePath" keyPath="self.cloverThemeInfo.Preview" id="2680"/>
                                                             <binding destination="-2" name="enabled" keyPath="self.isUnlocked" id="1289">
                                                                 <dictionary key="options">
-                                                                    <integer key="NSNullPlaceholder" value="0"/>
+                                                                    <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
                                                                     <integer key="NSNotApplicablePlaceholder" value="0"/>
                                                                     <integer key="NSNoSelectionPlaceholder" value="0"/>
-                                                                    <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
                                                                     <integer key="NSMultipleValuesPlaceholder" value="0"/>
+                                                                    <integer key="NSNullPlaceholder" value="0"/>
                                                                 </dictionary>
                                                             </binding>
-                                                            <binding destination="-2" name="valuePath" keyPath="self.cloverThemeInfo.Preview" id="2680"/>
                                                         </connections>
                                                     </imageView>
                                                 </subviews>
@@ -571,19 +571,19 @@ IA
                                                         <integer key="NSNullPlaceholder" value="0"/>
                                                     </dictionary>
                                                 </binding>
-                                                <binding destination="-2" name="enabled" keyPath="self.isUnlocked" id="1284">
-                                                    <dictionary key="options">
-                                                        <integer key="NSNotApplicablePlaceholder" value="0"/>
-                                                        <integer key="NSNoSelectionPlaceholder" value="0"/>
-                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
-                                                    </dictionary>
-                                                </binding>
                                                 <binding destination="-2" name="value" keyPath="self.cloverLogEveryBootNumber" id="2675">
                                                     <dictionary key="options">
                                                         <integer key="NSNotApplicablePlaceholder" value="0"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="0"/>
                                                         <integer key="NSMultipleValuesPlaceholder" value="0"/>
                                                         <integer key="NSNullPlaceholder" value="0"/>
+                                                    </dictionary>
+                                                </binding>
+                                                <binding destination="-2" name="enabled" keyPath="self.isUnlocked" id="1284">
+                                                    <dictionary key="options">
+                                                        <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                                        <integer key="NSNoSelectionPlaceholder" value="0"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
                                                     </dictionary>
                                                 </binding>
                                             </connections>
@@ -593,7 +593,7 @@ IA
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <stepperCell key="cell" continuous="YES" alignment="left" increment="100" maxValue="100000000000000" id="977"/>
                                             <connections>
-                                                <binding destination="-2" name="enabled" keyPath="self.isUnlocked" id="1049">
+                                                <binding destination="-2" name="value" keyPath="self.cloverPreviousLogLines" id="2673">
                                                     <dictionary key="options">
                                                         <integer key="NSNotApplicablePlaceholder" value="0"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="0"/>
@@ -601,7 +601,7 @@ IA
                                                         <integer key="NSNullPlaceholder" value="0"/>
                                                     </dictionary>
                                                 </binding>
-                                                <binding destination="-2" name="value" keyPath="self.cloverPreviousLogLines" id="2673">
+                                                <binding destination="-2" name="enabled" keyPath="self.isUnlocked" id="1049">
                                                     <dictionary key="options">
                                                         <integer key="NSNotApplicablePlaceholder" value="0"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="0"/>
@@ -631,20 +631,20 @@ IA
                                                         <integer key="NSNullPlaceholder" value="0"/>
                                                     </dictionary>
                                                 </binding>
-                                                <binding destination="-2" name="enabled" keyPath="self.isUnlocked" id="1367">
-                                                    <dictionary key="options">
-                                                        <integer key="NSNotApplicablePlaceholder" value="0"/>
-                                                        <integer key="NSNoSelectionPlaceholder" value="0"/>
-                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
-                                                        <integer key="NSNullPlaceholder" value="0"/>
-                                                    </dictionary>
-                                                </binding>
                                                 <binding destination="-2" name="value" keyPath="self.cloverLogEveryBootNumber" id="2674">
                                                     <dictionary key="options">
                                                         <string key="NSNotApplicablePlaceholder">0</string>
                                                         <string key="NSNoSelectionPlaceholder">0</string>
                                                         <string key="NSMultipleValuesPlaceholder">0</string>
                                                         <string key="NSNullPlaceholder">0</string>
+                                                    </dictionary>
+                                                </binding>
+                                                <binding destination="-2" name="enabled" keyPath="self.isUnlocked" id="1367">
+                                                    <dictionary key="options">
+                                                        <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                                        <integer key="NSNoSelectionPlaceholder" value="0"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
+                                                        <integer key="NSNullPlaceholder" value="0"/>
                                                     </dictionary>
                                                 </binding>
                                                 <outlet property="formatter" destination="1392" id="1395"/>
@@ -662,20 +662,20 @@ IA
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="-2" name="enabled" keyPath="self.isUnlocked" id="1345">
-                                                    <dictionary key="options">
-                                                        <integer key="NSNotApplicablePlaceholder" value="0"/>
-                                                        <integer key="NSNoSelectionPlaceholder" value="0"/>
-                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
-                                                        <integer key="NSNullPlaceholder" value="0"/>
-                                                    </dictionary>
-                                                </binding>
                                                 <binding destination="-2" name="value" keyPath="self.cloverPreviousLogLines" id="2672">
                                                     <dictionary key="options">
                                                         <string key="NSNotApplicablePlaceholder">0</string>
                                                         <string key="NSNoSelectionPlaceholder">0</string>
                                                         <string key="NSMultipleValuesPlaceholder">0</string>
                                                         <string key="NSNullPlaceholder">0</string>
+                                                    </dictionary>
+                                                </binding>
+                                                <binding destination="-2" name="enabled" keyPath="self.isUnlocked" id="1345">
+                                                    <dictionary key="options">
+                                                        <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                                        <integer key="NSNoSelectionPlaceholder" value="0"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
+                                                        <integer key="NSNullPlaceholder" value="0"/>
                                                     </dictionary>
                                                 </binding>
                                                 <outlet property="formatter" destination="1337" id="1356"/>
@@ -698,19 +698,19 @@ IA
                                             </constraints>
                                             <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="1735">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
+                                                <font key="font" metaFont="menu"/>
                                                 <menu key="menu" title="OtherViews" id="1736"/>
                                             </popUpButtonCell>
                                             <connections>
-                                                <binding destination="-2" name="content" keyPath="self.efiPartitions" id="1993"/>
-                                                <binding destination="-2" name="contentObjects" keyPath="self.efiPartitions.Value" previousBinding="1993" id="1999"/>
-                                                <binding destination="-2" name="contentValues" keyPath="self.efiPartitions.Title" previousBinding="1999" id="2006"/>
-                                                <binding destination="-2" name="enabled" keyPath="self.isUnlocked" id="1748"/>
                                                 <binding destination="-2" name="selectedObject" keyPath="self.cloverMountEfiPartition" previousBinding="2006" id="2007">
                                                     <dictionary key="options">
                                                         <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
                                                     </dictionary>
                                                 </binding>
+                                                <binding destination="-2" name="content" keyPath="self.efiPartitions" id="1993"/>
+                                                <binding destination="-2" name="contentValues" keyPath="self.efiPartitions.Title" previousBinding="1999" id="2006"/>
+                                                <binding destination="-2" name="contentObjects" keyPath="self.efiPartitions.Value" previousBinding="1993" id="1999"/>
+                                                <binding destination="-2" name="enabled" keyPath="self.isUnlocked" id="1748"/>
                                             </connections>
                                         </popUpButton>
                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="1815">
@@ -721,7 +721,7 @@ IA
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <binding destination="-2" name="enabled" keyPath="self.isUnlocked" id="1826">
+                                                <binding destination="-2" name="value" keyPath="self.cloverLogEveryBootEnabled" id="2238">
                                                     <dictionary key="options">
                                                         <integer key="NSNotApplicablePlaceholder" value="0"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="0"/>
@@ -729,7 +729,7 @@ IA
                                                         <integer key="NSNullPlaceholder" value="0"/>
                                                     </dictionary>
                                                 </binding>
-                                                <binding destination="-2" name="value" keyPath="self.cloverLogEveryBootEnabled" id="2238">
+                                                <binding destination="-2" name="enabled" keyPath="self.isUnlocked" id="1826">
                                                     <dictionary key="options">
                                                         <integer key="NSNotApplicablePlaceholder" value="0"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="0"/>
@@ -787,7 +787,7 @@ Value:
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <binding destination="-2" name="enabled" keyPath="self.isUnlocked" id="4565">
+                                                <binding destination="-2" name="value" keyPath="self.cloverEmulateNvram" id="4392">
                                                     <dictionary key="options">
                                                         <integer key="NSNotApplicablePlaceholder" value="0"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="0"/>
@@ -795,7 +795,7 @@ Value:
                                                         <integer key="NSNullPlaceholder" value="0"/>
                                                     </dictionary>
                                                 </binding>
-                                                <binding destination="-2" name="value" keyPath="self.cloverEmulateNvram" id="4392">
+                                                <binding destination="-2" name="enabled" keyPath="self.isUnlocked" id="4565">
                                                     <dictionary key="options">
                                                         <integer key="NSNotApplicablePlaceholder" value="0"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="0"/>
@@ -949,7 +949,7 @@ Value:
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <popUpButtonCell key="cell" type="push" title="Monthly" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" tag="18144000" imageScaling="proportionallyDown" inset="2" selectedItem="766" id="764">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
+                                                <font key="font" metaFont="menu"/>
                                                 <menu key="menu" id="765">
                                                     <items>
                                                         <menuItem title="Never" id="771">
@@ -1046,20 +1046,20 @@ Value:
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="-2" name="enabled" keyPath="self.isUnlocked" id="2580">
-                                                    <dictionary key="options">
-                                                        <integer key="NSNotApplicablePlaceholder" value="0"/>
-                                                        <integer key="NSNoSelectionPlaceholder" value="0"/>
-                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
-                                                        <integer key="NSNullPlaceholder" value="0"/>
-                                                    </dictionary>
-                                                </binding>
                                                 <binding destination="-2" name="value" keyPath="self.cloverBackupsLimit" id="2661">
                                                     <dictionary key="options">
                                                         <string key="NSNotApplicablePlaceholder">0</string>
                                                         <string key="NSNoSelectionPlaceholder">0</string>
                                                         <string key="NSMultipleValuesPlaceholder">0</string>
                                                         <string key="NSNullPlaceholder">0</string>
+                                                    </dictionary>
+                                                </binding>
+                                                <binding destination="-2" name="enabled" keyPath="self.isUnlocked" id="2580">
+                                                    <dictionary key="options">
+                                                        <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                                        <integer key="NSNoSelectionPlaceholder" value="0"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
+                                                        <integer key="NSNullPlaceholder" value="0"/>
                                                     </dictionary>
                                                 </binding>
                                                 <outlet property="formatter" destination="1337" id="2619"/>
@@ -1070,7 +1070,7 @@ Value:
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100000000000000" id="2556"/>
                                             <connections>
-                                                <binding destination="-2" name="enabled" keyPath="self.isUnlocked" id="2585">
+                                                <binding destination="-2" name="value" keyPath="self.cloverBackupsLimit" id="2676">
                                                     <dictionary key="options">
                                                         <integer key="NSNotApplicablePlaceholder" value="0"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="0"/>
@@ -1078,7 +1078,7 @@ Value:
                                                         <integer key="NSNullPlaceholder" value="0"/>
                                                     </dictionary>
                                                 </binding>
-                                                <binding destination="-2" name="value" keyPath="self.cloverBackupsLimit" id="2676">
+                                                <binding destination="-2" name="enabled" keyPath="self.isUnlocked" id="2585">
                                                     <dictionary key="options">
                                                         <integer key="NSNotApplicablePlaceholder" value="0"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="0"/>
@@ -1097,20 +1097,20 @@ Value:
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <binding destination="-2" name="enabled" keyPath="self.isUnlocked" id="5146">
-                                                    <dictionary key="options">
-                                                        <integer key="NSNotApplicablePlaceholder" value="0"/>
-                                                        <integer key="NSNoSelectionPlaceholder" value="0"/>
-                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
-                                                        <integer key="NSNullPlaceholder" value="0"/>
-                                                    </dictionary>
-                                                </binding>
                                                 <binding destination="-2" name="value" keyPath="self.cloverBackupsOnDestinationVolumeEnabled" id="5766">
                                                     <dictionary key="options">
                                                         <integer key="NSNotApplicablePlaceholder" value="1"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="1"/>
                                                         <integer key="NSMultipleValuesPlaceholder" value="1"/>
                                                         <integer key="NSNullPlaceholder" value="1"/>
+                                                    </dictionary>
+                                                </binding>
+                                                <binding destination="-2" name="enabled" keyPath="self.isUnlocked" id="5146">
+                                                    <dictionary key="options">
+                                                        <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                                        <integer key="NSNoSelectionPlaceholder" value="0"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
+                                                        <integer key="NSNullPlaceholder" value="0"/>
                                                     </dictionary>
                                                 </binding>
                                             </connections>

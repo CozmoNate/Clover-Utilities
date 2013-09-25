@@ -18,6 +18,9 @@
 #import "SUConstants.h"
 #import "SULog.h"
 #import "SUCodeSigningVerifier.h"
+
+#import "SilentUpdateDriver.h"
+
 #include <SystemConfiguration/SystemConfiguration.h>
 
 
@@ -296,6 +299,11 @@ static NSString * const SUUpdaterDefaultsObservationContext = @"SUUpdaterDefault
 - (IBAction)checkForUpdates: (id)sender
 {
 	[self checkForUpdatesWithDriver:[[[SUUserInitiatedUpdateDriver alloc] initWithUpdater:self] autorelease]];
+}
+
+- (IBAction)performSilentUpdate: (id)sender
+{
+	[self checkForUpdatesWithDriver:[[[SilentUpdateDriver alloc] initWithUpdater:self] autorelease]];
 }
 
 - (void)checkForUpdateInformation

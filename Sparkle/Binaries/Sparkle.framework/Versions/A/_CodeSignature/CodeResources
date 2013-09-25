@@ -105,7 +105,16 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			YeDg4YQI7ka8CIajZcveEJlWPmQ=
+			izpyhYbphsddv4YZI+6/c0OUyX4=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
+		<key>Resources/da.lproj/SUPasswordPrompt.nib</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			iTgCzUnVBI7VXHTySomnWKAkbKY=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -114,7 +123,7 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			wPIZpXoSRUj9hiERPbHnOY/u3L4=
+			top0K8n/DEOSpBcMBXYamkhGF/Q=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -123,7 +132,7 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			iHUrLxUO/tuKuvM3KwId+cXStAA=
+			A0AdokMbaC/cGV/zk3KbTsdwLjg=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -132,7 +141,7 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			7sms2i9dxY6e2nMlG17Glh1qUa4=
+			lX3QO7D65y5OwszxuJI9XYGsM0c=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -260,7 +269,7 @@
 		</data>
 		<key>Resources/finish_installation.app/Contents/MacOS/finish_installation</key>
 		<data>
-		+8YRNpNMsiI0w3r9YaOn+Msi0fk=
+		TkCrgZ4NAeBc/FonJjQ2ur6hD+Q=
 		</data>
 		<key>Resources/finish_installation.app/Contents/PkgInfo</key>
 		<data>
@@ -296,7 +305,7 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			7sms2i9dxY6e2nMlG17Glh1qUa4=
+			lX3QO7D65y5OwszxuJI9XYGsM0c=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -481,6 +490,10 @@
 			<key>optional</key>
 			<true/>
 		</dict>
+		<key>Resources/finish_installation.app/Contents/_CodeSignature/CodeResources</key>
+		<data>
+		o5g85+0QPmCp5zr9yehpQwGWIGo=
+		</data>
 		<key>Resources/fr.lproj/SUAutomaticUpdateAlert.nib</key>
 		<dict>
 			<key>hash</key>

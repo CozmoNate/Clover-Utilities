@@ -11,9 +11,12 @@
 #import <PreferencePanes/PreferencePanes.h>
 #import <ServiceManagement/ServiceManagement.h>
 #import <SecurityInterface/SFAuthorizationView.h>
+#import <Sparkle/Sparkle.h>
 
 @interface CloverPrefPane : NSPreferencePane <NSURLDownloadDelegate, NSConnectionDelegate>
 {
+    SUUpdater *_updater;
+    
     io_registry_entry_t _ioRegistryOptions;
     io_registry_entry_t _ioAcpiPlatformExpert;
     NSString *_installerFilename;

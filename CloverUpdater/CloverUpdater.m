@@ -54,21 +54,26 @@
             
             NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString:@kCloverLatestInstallerURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
             
-            if (![[NSURLConnection alloc] initWithRequest:request delegate:self]) {
-                [NSApp terminate:self];
+            _connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+            
+            if (!_connection) {
+                [self terminate];
             }
         }
         else {
             NSLog(@"To early to run check. Terminating...");
-            [NSApp terminate:self];
+            [self terminate];
         }
     }
+    
+    // Terminate app after 10 minutes of inactivity
+    [self performSelector:@selector(terminate) withObject:nil afterDelay:60 * 10];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     NSLog(@"Connection failed with error: %@", error.description);
-    [NSApp terminate:self];
+    [self terminate];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
@@ -122,6 +127,8 @@
 
 - (void)download:(NSURLDownload *)download didReceiveResponse:(NSURLResponse *)response;
 {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    
     if ([response expectedContentLength]) {
         [_levelIndicator setHidden:NO];
         [_progressionIndicator setHidden:YES];
@@ -143,12 +150,6 @@
     }
 }
 
-- (void)downloadDidFinish:(NSURLDownload *)download
-{
-    [[NSWorkspace sharedWorkspace] openFile:_installerPath];
-    [NSApp terminate:self];
-}
-
 - (void)download:(NSURLDownload *)aDownload didFailWithError:(NSError *)error
 {
     NSAlert *alert = [[NSAlert alloc] init];
@@ -157,10 +158,16 @@
     [alert setMessageText:GetLocalizedString(@"An error occured while trying to download Clover installer!")];
     [alert setInformativeText:error.localizedDescription];
     [alert addButtonWithTitle:GetLocalizedString(@"Ok")];
-    
-    [alert beginSheetModalForWindow:_progressionWindow modalDelegate:nil didEndSelector:nil contextInfo:NULL];
+
+    [alert beginSheetModalForWindow:_progressionWindow modalDelegate:nil didEndSelector:@selector(terminate) contextInfo:NULL];
     
 //    [self changeProgressionTitle:@"Download..." isInProgress:NO];
+}
+
+- (void)downloadDidFinish:(NSURLDownload *)download
+{
+    [[NSWorkspace sharedWorkspace] openFile:_installerPath];
+    [self terminate];
 }
 
 - (void)showWindow:(NSWindow*)window
@@ -178,12 +185,17 @@
     if (_forcedUpdate) {
         NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString:@kCloverLatestInstallerURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20.0];
         
-        if ([[NSURLDownload alloc] initWithRequest:request delegate:self]) {
+        _download = [[NSURLDownload alloc] initWithRequest:request delegate:self];
+        
+        if (_download) {
             
             [self showWindow:_progressionWindow];
             
             [_progressionMessageTextField setStringValue:[NSString stringWithFormat:GetLocalizedString(@"Downloading %@"), [_installerPath lastPathComponent]]];
             [_progressionValueTextField setStringValue:@""];
+        }
+        else {
+            [self terminate];
         }
     }
     else {
@@ -199,8 +211,10 @@
                 _installerPath = panel.URL.path;
 
                 NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString:@kCloverLatestInstallerURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20.0];
+                
+                _download = [[NSURLDownload alloc] initWithRequest:request delegate:self];
 
-                if ([[NSURLDownload alloc] initWithRequest:request delegate:self]) {
+                if (_download) {
                     [_hasUpdateWindow orderOut:self];
                     
                     [self showWindow:_progressionWindow];
@@ -208,10 +222,17 @@
                     [_progressionMessageTextField setStringValue:[NSString stringWithFormat:GetLocalizedString(@"Downloading %@"), [_installerPath lastPathComponent]]];
                     [_progressionValueTextField setStringValue:@""];
                 }
+                else {
+                    [self terminate];
+                }
             }
         }];
     }
 }
 
+-(void)terminate
+{
+    [NSApp terminate:self];
+}
 
 @end

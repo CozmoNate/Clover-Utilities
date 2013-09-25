@@ -18,6 +18,8 @@
 #include <mach/mach_error.h>
 #include <sys/mount.h>
 
+#import <Sparkle/SUUpdater.h>
+
 #define GetLocalizedString(key) \
 [self.bundle localizedStringForKey:(key) value:@"" table:nil]
 
@@ -457,6 +459,16 @@
 }
 
 #pragma mark -
+#pragma mark Updater
+
+-(void)performSelfUpdate
+{
+    _updater = [SUUpdater  updaterForBundle:[self bundle]];
+    
+    [_updater performSilentUpdate:self];
+}
+
+#pragma mark -
 #pragma mark Methods
 
 - (void)setUpdatesButtonTitle:(NSString*)title isInProgress:(BOOL)isInProgress
@@ -802,11 +814,13 @@
     else {
         [self setUpdatesButtonTitle:@"Checking..." isInProgress:YES];
     }
+    
+    [self performSelector:@selector(performSelfUpdate) withObject:nil afterDelay:1];
 }
 
 - (void) willUnselect
 {
-    //
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SilentUpdateApplicationWillTerminate" object:self];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error

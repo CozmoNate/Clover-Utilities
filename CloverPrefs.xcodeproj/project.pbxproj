@@ -20,7 +20,6 @@
 		7E27CF2D175FE5A6005438E5 /* CloverLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E27CF2C175FE5A6005438E5 /* CloverLogo.png */; };
 		7E27CF31175FE6E7005438E5 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA15D6A1743CE27006E3C1E /* IOKit.framework */; };
 		7E27CF34175FE6FE005438E5 /* CloverUpdater.app in Resources */ = {isa = PBXBuildFile; fileRef = 7E27CF0F175FE500005438E5 /* CloverUpdater.app */; };
-		7E27CF35175FE706005438E5 /* getconfig in Resources */ = {isa = PBXBuildFile; fileRef = 7EA204B0174E001700F7C117 /* getconfig */; };
 		7E3621E71778C19400510D34 /* Divider.tif in Resources */ = {isa = PBXBuildFile; fileRef = 7E3621E61778C19400510D34 /* Divider.tif */; };
 		7E44151D174AAAE60012952E /* NoPreview.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E44151C174AAAE60012952E /* NoPreview.png */; };
 		7E4A256217434A5500E87EF8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A256117434A5500E87EF8 /* Cocoa.framework */; };
@@ -36,20 +35,21 @@
 		7E67EE621762F94A00169E7E /* AnyDefaultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E67EE601762F94A00169E7E /* AnyDefaultsController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7E67EE631762F94A00169E7E /* AnyDefaultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E67EE601762F94A00169E7E /* AnyDefaultsController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7EA15D6B1743CE27006E3C1E /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA15D6A1743CE27006E3C1E /* IOKit.framework */; };
-		7EA204B3174E001700F7C117 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EA204B2174E001700F7C117 /* main.c */; };
-		7EA204B5174E001700F7C117 /* getconfig.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7EA204B4174E001700F7C117 /* getconfig.1 */; };
-		7EA204BB174E004300F7C117 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A256617434A5500E87EF8 /* AppKit.framework */; };
-		7EA204BC174E004800F7C117 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA15D6A1743CE27006E3C1E /* IOKit.framework */; };
 		7EA275AA1750BAF4009D6C13 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA15D6A1743CE27006E3C1E /* IOKit.framework */; };
 		7EA275AB1750BAF8009D6C13 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A256617434A5500E87EF8 /* AppKit.framework */; };
 		7EA42A54174806F1007328AF /* NoPreview.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EA42A53174806F1007328AF /* NoPreview.png */; };
+		7EA50F0217F3629B00FDA3AA /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA50F0117F3629B00FDA3AA /* Sparkle.framework */; };
+		7EA50F0317F362B000FDA3AA /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7EA50F0117F3629B00FDA3AA /* Sparkle.framework */; };
 		7EA5B60A174C99A200428A7C /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 7EA5B609174C99A200428A7C /* Themes */; };
 		7EA67EFB1771786E0071C8F6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A256817434A5500E87EF8 /* Foundation.framework */; };
+		7EAB6F4D17F34B2C007DBFB0 /* version.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EAB6F4C17F34B2C007DBFB0 /* version.plist */; };
+		7EAB6F4E17F34B2C007DBFB0 /* version.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EAB6F4C17F34B2C007DBFB0 /* version.plist */; };
 		7EB5C0E31762666C00F58B4C /* Localizer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EB5C0E11762666C00F58B4C /* Localizer.h */; };
 		7EB5C0E41762666C00F58B4C /* Localizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB5C0E21762666C00F58B4C /* Localizer.m */; };
 		7EB5C0E51762666C00F58B4C /* Localizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB5C0E21762666C00F58B4C /* Localizer.m */; };
 		7EC0FC41176131FD00932CEE /* Definitions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EC0FC40176131FD00932CEE /* Definitions.h */; };
 		7EE3BC6E17440E5600144659 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EE3BC6D17440E5600144659 /* ServiceManagement.framework */; };
+		7EEDA8A817F3382C00E25289 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 7EEDA8A717F3382C00E25289 /* dsa_pub.pem */; };
 		7EF336E5176320BD002FE7AE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7EF336E7176320BD002FE7AE /* Localizable.strings */; };
 		7EF336ED176322E3002FE7AE /* CloverPrefPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EF336EC176322E3002FE7AE /* CloverPrefPane.xib */; };
 		7EF336F017633961002FE7AE /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EF336EF17633961002FE7AE /* MainMenu.xib */; };
@@ -68,25 +68,18 @@
 			remoteGlobalIDString = 7E27CF0E175FE500005438E5;
 			remoteInfo = CloverUpdater;
 		};
-		7EA204B9174E002000F7C117 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7E4A255417434A5500E87EF8 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7EA204AF174E001700F7C117;
-			remoteInfo = getconfig;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		7EA204AE174E001700F7C117 /* CopyFiles */ = {
+		7EEDA89817F32F6500E25289 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			dstPath = "";
+			dstSubfolderSpec = 10;
 			files = (
-				7EA204B5174E001700F7C117 /* getconfig.1 in CopyFiles */,
+				7EA50F0317F362B000FDA3AA /* Sparkle.framework in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -108,7 +101,6 @@
 		7E27CF22175FE500005438E5 /* CloverUpdater.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CloverUpdater.m; sourceTree = "<group>"; };
 		7E27CF2A175FE596005438E5 /* clover.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = clover.icns; sourceTree = "<group>"; };
 		7E27CF2C175FE5A6005438E5 /* CloverLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CloverLogo.png; path = CloverPrefPane/CloverLogo.png; sourceTree = SOURCE_ROOT; };
-		7E2BC0AE178530BA00B4282A /* Platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Platform.h; sourceTree = "<group>"; };
 		7E3621E61778C19400510D34 /* Divider.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Divider.tif; sourceTree = "<group>"; };
 		7E44151C174AAAE60012952E /* NoPreview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NoPreview.png; sourceTree = "<group>"; };
 		7E4A255E17434A5500E87EF8 /* Clover.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Clover.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,16 +124,16 @@
 		7E7FE0361778BAFC00E6325E /* Divider.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Divider.psd; sourceTree = "<group>"; };
 		7E7FE0431778BF4700E6325E /* CloverTitle.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = CloverTitle.psd; sourceTree = "<group>"; };
 		7EA15D6A1743CE27006E3C1E /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
-		7EA204B0174E001700F7C117 /* getconfig */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = getconfig; sourceTree = BUILT_PRODUCTS_DIR; };
-		7EA204B2174E001700F7C117 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
-		7EA204B4174E001700F7C117 /* getconfig.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = getconfig.1; sourceTree = "<group>"; };
 		7EA42A53174806F1007328AF /* NoPreview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NoPreview.png; sourceTree = "<group>"; };
+		7EA50F0117F3629B00FDA3AA /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Sparkle/Binaries/Sparkle.framework; sourceTree = "<group>"; };
 		7EA5B609174C99A200428A7C /* Themes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Themes; sourceTree = "<group>"; };
+		7EAB6F4C17F34B2C007DBFB0 /* version.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = version.plist; sourceTree = "<group>"; };
 		7EB5C0E11762666C00F58B4C /* Localizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Localizer.h; sourceTree = "<group>"; };
 		7EB5C0E21762666C00F58B4C /* Localizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Localizer.m; sourceTree = "<group>"; };
 		7EC0FC40176131FD00932CEE /* Definitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Definitions.h; sourceTree = "<group>"; };
 		7EC2F2C11764E1C60022B337 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7EE3BC6D17440E5600144659 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
+		7EEDA8A717F3382C00E25289 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		7EF336EC176322E3002FE7AE /* CloverPrefPane.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CloverPrefPane.xib; sourceTree = "<group>"; };
 		7EF336EE176322F5002FE7AE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7EF336EF17633961002FE7AE /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
@@ -185,15 +177,7 @@
 				7E4A257E17434DBB00E87EF8 /* Security.framework in Frameworks */,
 				7E4A256217434A5500E87EF8 /* Cocoa.framework in Frameworks */,
 				7E4A256417434A5500E87EF8 /* PreferencePanes.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7EA204AD174E001700F7C117 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7EA204BC174E004800F7C117 /* IOKit.framework in Frameworks */,
-				7EA204BB174E004300F7C117 /* AppKit.framework in Frameworks */,
+				7EA50F0217F3629B00FDA3AA /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,10 +235,9 @@
 			isa = PBXGroup;
 			children = (
 				7EC0FC3F176131E500932CEE /* Shared */,
-				7E4A256917434A5500E87EF8 /* CloverPrefPane */,
 				7E27CF15175FE500005438E5 /* CloverUpdater */,
+				7E4A256917434A5500E87EF8 /* CloverPrefPane */,
 				7E4A258117434EAD00E87EF8 /* Graphics */,
-				7EA204B1174E001700F7C117 /* getconfig */,
 				7E1F574217475FCE00780A84 /* Test */,
 				7E4A256017434A5500E87EF8 /* Frameworks */,
 				7E4A255F17434A5500E87EF8 /* Products */,
@@ -266,7 +249,6 @@
 			children = (
 				7E4A255E17434A5500E87EF8 /* Clover.prefPane */,
 				7E1F573A17475FCE00780A84 /* Test.octest */,
-				7EA204B0174E001700F7C117 /* getconfig */,
 				7E27CF0F175FE500005438E5 /* CloverUpdater.app */,
 			);
 			name = Products;
@@ -275,6 +257,7 @@
 		7E4A256017434A5500E87EF8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7EA50F0117F3629B00FDA3AA /* Sparkle.framework */,
 				7E4A256617434A5500E87EF8 /* AppKit.framework */,
 				7E4A256117434A5500E87EF8 /* Cocoa.framework */,
 				7E4A256717434A5500E87EF8 /* CoreData.framework */,
@@ -306,6 +289,7 @@
 			children = (
 				7EA5B609174C99A200428A7C /* Themes */,
 				7E4A258A17437ADA00E87EF8 /* Icons */,
+				7EEDA8A717F3382C00E25289 /* dsa_pub.pem */,
 				7E4A256B17434A5500E87EF8 /* CloverPrefs-Info.plist */,
 				7E4A256C17434A5500E87EF8 /* InfoPlist.strings */,
 				7E4A256F17434A5500E87EF8 /* CloverPrefs-Prefix.pch */,
@@ -334,16 +318,6 @@
 			name = Icons;
 			sourceTree = "<group>";
 		};
-		7EA204B1174E001700F7C117 /* getconfig */ = {
-			isa = PBXGroup;
-			children = (
-				7E2BC0AE178530BA00B4282A /* Platform.h */,
-				7EA204B2174E001700F7C117 /* main.c */,
-				7EA204B4174E001700F7C117 /* getconfig.1 */,
-			);
-			path = getconfig;
-			sourceTree = "<group>";
-		};
 		7EC0FC3F176131E500932CEE /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,6 +330,7 @@
 				7EF336FE17638142002FE7AE /* NSString+Size.m */,
 				7EF336FB17638142002FE7AE /* NSPopover+Message.h */,
 				7EF336FD17638142002FE7AE /* NSPopover+Message.m */,
+				7EAB6F4C17F34B2C007DBFB0 /* version.plist */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -400,10 +375,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7E27CF27175FE500005438E5 /* Build configuration list for PBXNativeTarget "CloverUpdater" */;
 			buildPhases = (
-				7E27CF2E175FE6C8005438E5 /* ShellScript */,
 				7E27CF0B175FE500005438E5 /* Sources */,
 				7E27CF0C175FE500005438E5 /* Frameworks */,
 				7E27CF0D175FE500005438E5 /* Resources */,
+				7E27CF2E175FE6C8005438E5 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -418,40 +393,23 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7E4A257A17434A5500E87EF8 /* Build configuration list for PBXNativeTarget "Clover" */;
 			buildPhases = (
-				7E54AC881755EBB90085A20F /* ShellScript */,
 				7E4A255817434A5500E87EF8 /* Sources */,
 				7E4A255917434A5500E87EF8 /* Frameworks */,
 				7E4A255A17434A5500E87EF8 /* Headers */,
 				7E4A255B17434A5500E87EF8 /* Resources */,
 				7E4A255C17434A5500E87EF8 /* Rez */,
+				7EEDA89817F32F6500E25289 /* CopyFiles */,
+				7EAB6F4317F33C28007DBFB0 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				7E27CF33175FE6F3005438E5 /* PBXTargetDependency */,
-				7EA204BA174E002000F7C117 /* PBXTargetDependency */,
 			);
 			name = Clover;
 			productName = CloverPrefPane;
 			productReference = 7E4A255E17434A5500E87EF8 /* Clover.prefPane */;
 			productType = "com.apple.product-type.bundle";
-		};
-		7EA204AF174E001700F7C117 /* getconfig */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7EA204B6174E001700F7C117 /* Build configuration list for PBXNativeTarget "getconfig" */;
-			buildPhases = (
-				7EA204AC174E001700F7C117 /* Sources */,
-				7EA204AD174E001700F7C117 /* Frameworks */,
-				7EA204AE174E001700F7C117 /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = getconfig;
-			productName = getconfig;
-			productReference = 7EA204B0174E001700F7C117 /* getconfig */;
-			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
@@ -459,7 +417,7 @@
 		7E4A255417434A5500E87EF8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Kozlek;
 			};
 			buildConfigurationList = 7E4A255717434A5500E87EF8 /* Build configuration list for PBXProject "CloverPrefs" */;
@@ -475,10 +433,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7EA204AF174E001700F7C117 /* getconfig */,
+				7E27CF0E175FE500005438E5 /* CloverUpdater */,
 				7E4A255D17434A5500E87EF8 /* Clover */,
 				7E1F573917475FCE00780A84 /* Test */,
-				7E27CF0E175FE500005438E5 /* CloverUpdater */,
 			);
 		};
 /* End PBXProject section */
@@ -500,6 +457,7 @@
 				7E27CF1A175FE500005438E5 /* InfoPlist.strings in Resources */,
 				7E27CF20175FE500005438E5 /* Credits.rtf in Resources */,
 				7E27CF2B175FE596005438E5 /* clover.icns in Resources */,
+				7EAB6F4D17F34B2C007DBFB0 /* version.plist in Resources */,
 				7E27CF2D175FE5A6005438E5 /* CloverLogo.png in Resources */,
 				7EF336F017633961002FE7AE /* MainMenu.xib in Resources */,
 				7EF336F317633985002FE7AE /* Localizable.strings in Resources */,
@@ -511,7 +469,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E27CF34175FE6FE005438E5 /* CloverUpdater.app in Resources */,
-				7E27CF35175FE706005438E5 /* getconfig in Resources */,
+				7EAB6F4E17F34B2C007DBFB0 /* version.plist in Resources */,
+				7EEDA8A817F3382C00E25289 /* dsa_pub.pem in Resources */,
 				7E4A256E17434A5500E87EF8 /* InfoPlist.strings in Resources */,
 				7E4A257417434A5500E87EF8 /* CloverPrefPane.tiff in Resources */,
 				7E4A25841743527700E87EF8 /* CloverTitle.png in Resources */,
@@ -561,9 +520,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n# Increment project's build number\n\nif [[ $(git status \"${SOURCE_ROOT}\" | grep -c modified) == \"0\" ]]; then\nexit 0\nfi\n\nBUILDNUM=$(/usr/libexec/PlistBuddy -c \"print CFBundleVersion\" \"${PRODUCT_SETTINGS_PATH}\")\nBUILDNUM=$(($BUILDNUM + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $BUILDNUM\" \"${PRODUCT_SETTINGS_PATH}\"";
+			shellScript = "#!/bin/sh\n\nBUILDNUM=$(svnversion)\n\n# Fallback to git commits count\nif [ \"$BUILDNUM\" == \"exported\" ] || [ \"$BUILDNUM\" == \"Unversioned directory\" ]\nthen\n    BUILDNUM=$(git rev-list --count HEAD)\nfi\n\nPROJECTVER=$(/usr/libexec/PlistBuddy -c \"Print 'Version'\" \"${SOURCE_ROOT}/version.plist\")\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion ${BUILDNUM}\" \"${SOURCE_ROOT}/Binaries/${PRODUCT_NAME}.app/Contents/Info.plist\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString ${PROJECTVER}.${BUILDNUM}\" \"${SOURCE_ROOT}/Binaries/${PRODUCT_NAME}.app/Contents/Info.plist\"\n\n#/usr/libexec/PlistBuddy -c \"Add :CFBundleVersion string ${BUILDNUM}\" \"${SOURCE_ROOT}/Binaries/${PRODUCT_NAME}.app/Contents/Info.plist\"\n\n#/usr/libexec/PlistBuddy -c \"Add :CFBundleShortVersionString string ${PROJECTVER}.${BUILDNUM}\" \"${SOURCE_ROOT}/Binaries/${PRODUCT_NAME}.app/Contents/Info.plist\"";
+			showEnvVarsInLog = 0;
 		};
-		7E54AC881755EBB90085A20F /* ShellScript */ = {
+		7EAB6F4317F33C28007DBFB0 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -574,7 +534,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n# Increment project's build number\n\nif [[ $(git status \"${SOURCE_ROOT}\" | grep -c modified) == \"0\" ]]; then\n    exit 0\nfi\n\nBUILDNUM=$(/usr/libexec/PlistBuddy -c \"print CFBundleVersion\" \"${PRODUCT_SETTINGS_PATH}\")\nBUILDNUM=$(($BUILDNUM + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $BUILDNUM\" \"${PRODUCT_SETTINGS_PATH}\"";
+			shellScript = "#!/bin/sh\n\nfind ${SOURCE_ROOT}/Binaries/ -maxdepth 1 -type f -name \"*.zip\" -delete\nfind ${SOURCE_ROOT}/Binaries/ -maxdepth 1 -type f -name \"*.dsa\" -delete\n\nBUILDNUM=$(svnversion)\n\n# Fallback to git commits count\nif [ \"$BUILDNUM\" == \"exported\" ] || [ \"$BUILDNUM\" == \"Unversioned directory\" ]\nthen\n    BUILDNUM=$(git rev-list --count HEAD)\nfi\n\nPROJECTVER=$(/usr/libexec/PlistBuddy -c \"Print 'Version'\" \"${SOURCE_ROOT}/version.plist\")\n\nAPPCASTFILE=${SOURCE_ROOT}/Appcast/cloverprefpane.xml\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion ${BUILDNUM}\" \"${SOURCE_ROOT}/Binaries/${PRODUCT_NAME}.prefPane/Contents/Info.plist\"\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString ${PROJECTVER}.${BUILDNUM}\" \"${SOURCE_ROOT}/Binaries/${PRODUCT_NAME}.prefPane/Contents/Info.plist\"\n\n/usr/libexec/PlistBuddy -c \"Add :SUFeedURL string http://hwsensors.com/appcast/cloverprefpane.xml\" \"${SOURCE_ROOT}/Binaries/${PRODUCT_NAME}.prefPane/Contents/Info.plist\"\n\n/usr/libexec/PlistBuddy -c \"Add :SUPublicDSAKeyFile string dsa_pub.pem\" \"${SOURCE_ROOT}/Binaries/${PRODUCT_NAME}.prefPane/Contents/Info.plist\"\n\nBINARYFILE=${SOURCE_ROOT}/Binaries/${PRODUCT_NAME}.prefPane\nZIPFILE=${SOURCE_ROOT}/Binaries/${PRODUCT_NAME}.${PROJECTVER}.${BUILDNUM}.zip\n\nzip -r -X $ZIPFILE $BINARYFILE\n\nDSASIGNATURE=$(openssl dgst -sha1 -binary < ${ZIPFILE} | openssl dgst -dss1 -sign ${SOURCE_ROOT}/Appcast/dsa_priv.pem | openssl enc -base64) > ${ZIPFILE}.dsa\n\necho ${DSASIGNATURE} > ${ZIPFILE}.dsa\n\n# appcast.xml\necho '<?xml version=\"1.0\" encoding=\"utf-8\"?>' > ${APPCASTFILE}\necho '<rss version=\"2.0\" xmlns:sparkle=\"http://www.andymatuschak.org/xml-namespaces/sparkle\"  xmlns:dc=\"http://purl.org/dc/elements/1.1/\">' >> ${APPCASTFILE}\necho '<channel>' >> ${APPCASTFILE}\necho '  <title>'${PRODUCT_NAME}' Changelog</title>' >> ${APPCASTFILE}\necho '  <link>'${APPCASTFILE}'</link>' >> ${APPCASTFILE}\necho '  <description>Most recent changes with links to updates.</description>' >> ${APPCASTFILE}\necho '  <language>en</language>' >> ${APPCASTFILE}\necho '  <item>' >> ${APPCASTFILE}\necho '      <sparkle:releaseNotesLink>http://hwsensors.com/appcast/cloverprefpane.html</sparkle:releaseNotesLink>' >> ${APPCASTFILE}\necho '      <title>Version '${PROJECTVER}.${BUILDNUM}'</title>' >> ${APPCASTFILE}\necho '      <pubDate>'$(date +\"%a, %d %b %G %T %z\")'</pubDate>' >> ${APPCASTFILE}\necho '      <enclosure url=\"http://hwsensors.com/downloads/'${PRODUCT_NAME}.${PROJECTVER}.${BUILDNUM}.zip'\" sparkle:version=\"'${BUILDNUM}'\" sparkle:shortVersionString=\"'${PROJECTVER}.${BUILDNUM}'\" sparkle:dsaSignature=\"'${DSASIGNATURE}'\" length=\"'$(stat -f %z ${ZIPFILE})'\" type=\"application/x-compress\"/>' >> ${APPCASTFILE}\necho '  </item>' >> ${APPCASTFILE}\necho '</channel>' >> ${APPCASTFILE}\necho '</rss>' >> ${APPCASTFILE}";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -610,14 +571,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7EA204AC174E001700F7C117 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7EA204B3174E001700F7C117 /* main.c in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -625,11 +578,6 @@
 			isa = PBXTargetDependency;
 			target = 7E27CF0E175FE500005438E5 /* CloverUpdater */;
 			targetProxy = 7E27CF32175FE6F3005438E5 /* PBXContainerItemProxy */;
-		};
-		7EA204BA174E002000F7C117 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7EA204AF174E001700F7C117 /* getconfig */;
-			targetProxy = 7EA204B9174E002000F7C117 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -735,7 +683,6 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CloverUpdater/CloverUpdater-Prefix.pch";
 				INFOPLIST_FILE = "CloverUpdater/CloverUpdater-Info.plist";
@@ -748,7 +695,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -756,9 +702,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application: Natan Zalkin (R3YQC22TX8)";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				CONFIGURATION_BUILD_DIR = Binaries;
 				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				FRAMEWORK_SEARCH_PATHS = "${SOURCE_ROOT}";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -775,7 +723,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx;
 				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
@@ -784,7 +732,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -792,9 +739,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application: Natan Zalkin (R3YQC22TX8)";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				CONFIGURATION_BUILD_DIR = Binaries;
 				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				FRAMEWORK_SEARCH_PATHS = "${SOURCE_ROOT}";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -803,7 +752,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PROVISIONING_PROFILE = "";
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx;
 				VALID_ARCHS = x86_64;
 			};
 			name = Release;
@@ -813,6 +762,10 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/kozlek/Documents/Clover-Utilities/Sparkle/Binaries",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CloverPrefPane/CloverPrefs-Prefix.pch";
 				INFOPLIST_FILE = "CloverPrefPane/CloverPrefs-Info.plist";
@@ -827,26 +780,16 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/kozlek/Documents/Clover-Utilities/Sparkle/Binaries",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CloverPrefPane/CloverPrefs-Prefix.pch";
 				INFOPLIST_FILE = "CloverPrefPane/CloverPrefs-Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = prefPane;
-			};
-			name = Release;
-		};
-		7EA204B7174E001700F7C117 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		7EA204B8174E001700F7C117 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -885,15 +828,6 @@
 			buildConfigurations = (
 				7E4A257B17434A5500E87EF8 /* Debug */,
 				7E4A257C17434A5500E87EF8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		7EA204B6174E001700F7C117 /* Build configuration list for PBXNativeTarget "getconfig" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7EA204B7174E001700F7C117 /* Debug */,
-				7EA204B8174E001700F7C117 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -6,6 +6,6 @@
 *.octest
 *.prefpane
 xcuserdata
-Binaries/getconfig
-
-Binaries/getconfig
+Binaries/*
+Appcast/*
+Sparkle/Binaries/*

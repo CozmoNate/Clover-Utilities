@@ -12,6 +12,8 @@
 {
     NSString *_installerPath;
     BOOL _forcedUpdate;
+    NSURLConnection *_connection;
+    NSURLDownload *_download;
 }
 
 @property (assign) IBOutlet NSWindow *hasUpdateWindow;
