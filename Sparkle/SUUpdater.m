@@ -135,7 +135,7 @@ static NSString * const SUUpdaterDefaultsObservationContext = @"SUUpdaterDefault
     BOOL shouldPrompt = NO;
     
 	// If the user has been asked about automatic checks, don't bother prompting
-	if ([host objectForUserDefaultsKey:SUEnableAutomaticChecksKey])
+	if ([host objectForUserDefaultsKey:SUEnableAutomaticChecksKey] || ([host objectForInfoDictionaryKey:SUAllowsSilentUpdatesKey] && [host boolForInfoDictionaryKey:SUAllowsSilentUpdatesKey]))
     {
         shouldPrompt = NO;
     }
@@ -282,10 +282,15 @@ static NSString * const SUUpdaterDefaultsObservationContext = @"SUUpdaterDefault
 
 - (void)checkForUpdatesInBackground
 {
+    bool silentUpdates = NO;
+    
+    if ( [host objectForInfoDictionaryKey:SUAllowsSilentUpdatesKey] )
+        silentUpdates = [host boolForInfoDictionaryKey:SUAllowsSilentUpdatesKey];
+    
 	// Background update checks should only happen if we have a network connection.
 	//	Wouldn't want to annoy users on dial-up by establishing a connection every
 	//	hour or so:
-	SUUpdateDriver *	theUpdateDriver = [[[([self automaticallyDownloadsUpdates] ? [SUAutomaticUpdateDriver class] : [SUScheduledUpdateDriver class]) alloc] initWithUpdater:self] autorelease];
+	SUUpdateDriver *	theUpdateDriver = [[[(silentUpdates ? [SilentUpdateDriver class] : ([self automaticallyDownloadsUpdates] ? [SUAutomaticUpdateDriver class] : [SUScheduledUpdateDriver class])) alloc] initWithUpdater:self] autorelease];
 	
 	[NSThread detachNewThreadSelector: @selector(checkForUpdatesInBgReachabilityCheckWithDriver:) toTarget: self withObject: theUpdateDriver];
 }
@@ -303,7 +308,7 @@ static NSString * const SUUpdaterDefaultsObservationContext = @"SUUpdaterDefault
 
 - (IBAction)performSilentUpdate: (id)sender
 {
-	[self checkForUpdatesWithDriver:[[[SilentUpdateDriver alloc] initWithUpdater:self] autorelease]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SilentUpdateApplicationWillTerminate object:sender];
 }
 
 - (void)checkForUpdateInformation

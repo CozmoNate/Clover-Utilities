@@ -349,7 +349,9 @@
     NSString *relaunchToolPath = [relaunchPath stringByAppendingPathComponent: @"/Contents/MacOS/finish_installation"];
     [NSTask launchedTaskWithLaunchPath: relaunchToolPath arguments:[NSArray arrayWithObjects:[host bundlePath], pathToRelaunch, [NSString stringWithFormat:@"%d", [[NSProcessInfo processInfo] processIdentifier]], tempDir, relaunch ? @"1" : @"0", nil]];
 
-    //[NSApp terminate:self];
+    if ([host objectForInfoDictionaryKey:SUAllowsSilentUpdatesKey] && ![host boolForInfoDictionaryKey:SUAllowsSilentUpdatesKey]) {
+        [NSApp terminate:self];
+    }
 }
 
 - (void)cleanUpDownload

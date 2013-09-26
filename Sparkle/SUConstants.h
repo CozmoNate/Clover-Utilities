@@ -37,6 +37,8 @@ extern NSString *const SUUpdaterWillRestartNotification;
 
 extern NSString *const SUTechnicalErrorInformationKey;
 
+extern NSString *const SilentUpdateApplicationWillTerminate;
+
 // -----------------------------------------------------------------------------
 //	PList keys::
 // -----------------------------------------------------------------------------
@@ -51,6 +53,7 @@ extern NSString *const SUPublicDSAKeyKey;
 extern NSString *const SUPublicDSAKeyFileKey;
 extern NSString *const SUAutomaticallyUpdateKey;
 extern NSString *const SUAllowsAutomaticUpdatesKey;
+extern NSString *const SUAllowsSilentUpdatesKey;
 extern NSString *const SUEnableAutomaticChecksKey;
 extern NSString *const SUEnableAutomaticChecksKeyOld;
 extern NSString *const SUEnableSystemProfilingKey;

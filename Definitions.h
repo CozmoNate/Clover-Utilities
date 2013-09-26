@@ -10,6 +10,7 @@
 #define CloverPrefs_Definitions_h
 
 #define kCloverUpdaterIdentifier        "com.projectosx.Clover.Updater"
+#define kCloverPrefpaneIdentifier       "org.kozlek.CloverPrefPane"
 #define kCloverUpdaterExecutable        "CloverUpdater.app/Contents/MacOS/CloverUpdater"
 #define kCloverLatestInstallerURL       "http://sourceforge.net/projects/cloverefiboot/files/latest/download"
 

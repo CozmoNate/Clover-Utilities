@@ -18,7 +18,7 @@
 #include <mach/mach_error.h>
 #include <sys/mount.h>
 
-#import <Sparkle/SUUpdater.h>
+#import <Sparkle/Sparkle.h>
 
 #define GetLocalizedString(key) \
 [self.bundle localizedStringForKey:(key) value:@"" table:nil]
@@ -208,14 +208,13 @@
 
 - (NSString*)cloverPath
 {
-    return [[NSUserDefaults standardUserDefaults] stringForKey:@"pathToClover"];
+    return [AnyDefaultsController getStringFromKey:CFSTR("pathToClover") forAppID:CFSTR(kCloverPrefpaneIdentifier)];
 }
 
 - (void)setCloverPath:(NSString *)cloverPath
 {
     if (![self.cloverPath isEqualToString:cloverPath]) {
-        [[NSUserDefaults standardUserDefaults] setObject:cloverPath forKey:@"pathToClover"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        [AnyDefaultsController setKey:CFSTR("pathToClover") forAppID:CFSTR(kCloverPrefpaneIdentifier) fromString:cloverPath];
         
         // Reset current themes db forsing it to reload from new path
         self.cloverThemesCollection = nil;
@@ -246,14 +245,13 @@
 
 -(NSString *)cloverOemPath
 {
-    return [[NSUserDefaults standardUserDefaults] stringForKey:@"lastOemProductSelected"];
+    return [AnyDefaultsController getStringFromKey:CFSTR("lastOemProductSelected") forAppID:CFSTR(kCloverPrefpaneIdentifier)];
 }
 
 -(void)setCloverOemPath:(NSString *)cloverOemProduct
 {
     if (![self.cloverOemPath isEqualToString:cloverOemProduct]) {
-        [[NSUserDefaults standardUserDefaults] setObject:cloverOemProduct forKey:@"lastOemProductSelected"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        [AnyDefaultsController setKey:CFSTR("lastOemProductSelected") forAppID:CFSTR(kCloverPrefpaneIdentifier) fromString:cloverOemProduct];
         self.cloverConfigPath = nil;
     }
 }
@@ -261,6 +259,7 @@
 -(NSString*)cloverConfigPath
 {
     if (!_cloverConfigPath) {
+        
         NSString *configPath = [self.cloverOemPath stringByAppendingPathComponent:@"config.plist"];
         
         if ([[NSFileManager defaultManager] fileExistsAtPath:configPath]) {
@@ -455,23 +454,6 @@
     if (self.cloverBackupsLimit != cloverBackupsLimit) {
         _cloverEfiFolderBackupsLimit = [NSString stringWithFormat:@"%li", (long)cloverBackupsLimit];
         [self setNvramKey:kCloverKeepBackupLimit value:[_cloverEfiFolderBackupsLimit UTF8String]];
-    }
-}
-
-#pragma mark -
-#pragma mark Updater
-
--(void)performSelfUpdate
-{
-    NSDate *lastSelfUpdateCheck = [AnyDefaultsController getDateFromKey:CFSTR("SULastCheckTime") forAppID:(__bridge CFStringRef)([self.bundle objectForInfoDictionaryKey:@"CFBundleIdentifier"])];
-    
-    NSLog(@"Last self update check was %@", lastSelfUpdateCheck);
-    
-    // Allows self update check every hour
-    if (!lastSelfUpdateCheck || [lastSelfUpdateCheck timeIntervalSinceNow] < - (60 * 60)) {
-        NSLog(@"Perform self update");
-        _updater = [SUUpdater  updaterForBundle:[self bundle]];
-        [_updater performSilentUpdate:self];
     }
 }
 
@@ -824,16 +806,15 @@
         [self setUpdatesButtonTitle:@"Checking..." isInProgress:YES];
     }
     
-    [[NSRunLoop currentRunLoop] performSelector:@selector(performSelfUpdate)
-                                         target:self
-                                       argument:nil
-                                          order:6
-                                          modes:[NSArray arrayWithObject:@"NSDefaultRunLoopMode"]];
+    _selfUpdater = [SUUpdater updaterForBundle:self.bundle];
+    
+    [_selfUpdater setAutomaticallyChecksForUpdates:YES];
+    [_selfUpdater setAutomaticallyDownloadsUpdates:YES];
 }
 
 - (void) willUnselect
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"SilentUpdateApplicationWillTerminate" object:self];
+    [_selfUpdater performSilentUpdate:self];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error

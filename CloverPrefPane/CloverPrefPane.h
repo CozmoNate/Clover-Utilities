@@ -15,8 +15,6 @@
 
 @interface CloverPrefPane : NSPreferencePane <NSURLDownloadDelegate, NSConnectionDelegate>
 {
-    SUUpdater *_updater;
-    
     io_registry_entry_t _ioRegistryOptions;
     io_registry_entry_t _ioAcpiPlatformExpert;
     NSString *_installerFilename;
@@ -41,6 +39,7 @@
     NSString *_cloverBackupsOnDestinationVolume;
     NSString *_cloverEfiFolderBackupsLimit;
     
+    IBOutlet SUUpdater *_selfUpdater;
     IBOutlet SFAuthorizationView *_authorizationView;
     IBOutlet NSTextField *_versionField;
     IBOutlet NSTextField *_bootedRevisionTextField;

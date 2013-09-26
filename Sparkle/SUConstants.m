@@ -15,6 +15,7 @@
 
 NSString *const SUUpdaterWillRestartNotification = @"SUUpdaterWillRestartNotificationName";
 NSString *const SUTechnicalErrorInformationKey = @"SUTechnicalErrorInformation";
+NSString *const SilentUpdateApplicationWillTerminate = @"SilentUpdateApplicationWillTerminate";
 
 NSString *const SUHasLaunchedBeforeKey = @"SUHasLaunchedBefore";
 NSString *const SUFeedURLKey = @"SUFeedURL";
@@ -27,6 +28,7 @@ NSString *const SUPublicDSAKeyKey = @"SUPublicDSAKey";
 NSString *const SUPublicDSAKeyFileKey = @"SUPublicDSAKeyFile";
 NSString *const SUAutomaticallyUpdateKey = @"SUAutomaticallyUpdate";
 NSString *const SUAllowsAutomaticUpdatesKey = @"SUAllowsAutomaticUpdates";
+NSString *const SUAllowsSilentUpdatesKey = @"SUAllowsSilentUpdates";
 NSString *const SUEnableSystemProfilingKey = @"SUEnableSystemProfiling";
 NSString *const SUEnableAutomaticChecksKey = @"SUEnableAutomaticChecks";
 NSString *const SUEnableAutomaticChecksKeyOld = @"SUCheckAtStartup";

@@ -30,7 +30,9 @@
 	<string>Clover</string>
 	<key>NSPrincipalClass</key>
 	<string>CloverPrefPane</string>
-	<key>SUEnableAutomaticChecks</key>
-	<false/>
+	<key>SUAllowsSilentUpdates</key>
+	<true/>
+	<key>SUAutomaticallyUpdate</key>
+	<true/>
 </dict>
 </plist>

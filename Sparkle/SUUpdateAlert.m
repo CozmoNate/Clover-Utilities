@@ -141,8 +141,12 @@
 - (BOOL)allowsAutomaticUpdates
 {
 	BOOL		allowAutoUpdates = YES;	// Defaults to YES.
-	if( [host objectForInfoDictionaryKey:SUAllowsAutomaticUpdatesKey] )
+    
+	if( [host objectForInfoDictionaryKey:SUAllowsAutomaticUpdatesKey])
 		allowAutoUpdates = [host boolForInfoDictionaryKey: SUAllowsAutomaticUpdatesKey];
+    
+    if(!allowAutoUpdates && [host objectForInfoDictionaryKey:SUAllowsSilentUpdatesKey])
+		allowAutoUpdates = [host boolForInfoDictionaryKey: SUAllowsSilentUpdatesKey];
 	
 	// UK 2007-08-31: Give delegate a chance to modify this choice:
 	if( delegate && [delegate respondsToSelector: @selector(updateAlert:shouldAllowAutoUpdate:)] )
