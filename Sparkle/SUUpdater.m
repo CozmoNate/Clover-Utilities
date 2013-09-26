@@ -306,7 +306,7 @@ static NSString * const SUUpdaterDefaultsObservationContext = @"SUUpdaterDefault
 	[self checkForUpdatesWithDriver:[[[SUUserInitiatedUpdateDriver alloc] initWithUpdater:self] autorelease]];
 }
 
-- (IBAction)performSilentUpdate: (id)sender
+- (IBAction)finishSilentUpdate: (id)sender
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:SilentUpdateApplicationWillTerminate object:sender];
 }

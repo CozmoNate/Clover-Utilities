@@ -811,7 +811,7 @@
 
 - (void) willUnselect
 {
-    [_selfUpdater performSilentUpdate:self];
+    [_selfUpdater finishSilentUpdate:self];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
