@@ -42,6 +42,7 @@
     NSString *_cloverEfiFolderBackupsLimit;
     
     IBOutlet SFAuthorizationView *_authorizationView;
+    IBOutlet NSTextField *_versionField;
     IBOutlet NSTextField *_bootedRevisionTextField;
     IBOutlet NSTextField *_installedRevisionTextField;
     IBOutlet NSTextField *_availableRevisionTextField;

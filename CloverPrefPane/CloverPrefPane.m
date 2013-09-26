@@ -742,6 +742,8 @@
 
 - (void)mainViewDidLoad
 {
+    [_versionField setStringValue:[NSString stringWithFormat:@"prefPane V%@", [self.bundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"]]];
+    
     [Localizer localizeView:self.mainView withBunde:self.bundle];
     
     // Setup security.

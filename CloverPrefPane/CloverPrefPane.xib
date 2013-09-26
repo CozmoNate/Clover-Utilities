@@ -15,6 +15,7 @@
                 <outlet property="_lastUpdateTextField" destination="775" id="796"/>
                 <outlet property="_updatesIndicator" destination="4983" id="5127"/>
                 <outlet property="_updatesIntervalPopup" destination="763" id="795"/>
+                <outlet property="_versionField" destination="v0E-OY-3dO" id="dwg-XC-aAq"/>
                 <outlet property="_window" destination="12" id="26"/>
             </connections>
         </customObject>
@@ -84,10 +85,10 @@
                                                 <action selector="saveSettingsPressed:" target="-2" id="2280"/>
                                                 <binding destination="-2" name="enabled" keyPath="self.cloverRevision" id="5144">
                                                     <dictionary key="options">
-                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
+                                                        <integer key="NSNullPlaceholder" value="0"/>
                                                         <integer key="NSNotApplicablePlaceholder" value="0"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="0"/>
-                                                        <integer key="NSNullPlaceholder" value="0"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
                                                         <string key="NSValueTransformerName">NSIsNotNil</string>
                                                     </dictionary>
                                                 </binding>
@@ -114,10 +115,10 @@
                                                 <binding destination="-2" name="content" keyPath="self.cloverOemCollection" id="2388"/>
                                                 <binding destination="-2" name="enabled" keyPath="self.cloverOemCollection" id="2479">
                                                     <dictionary key="options">
-                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
+                                                        <integer key="NSNullPlaceholder" value="0"/>
                                                         <integer key="NSNotApplicablePlaceholder" value="0"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="0"/>
-                                                        <integer key="NSNullPlaceholder" value="0"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
                                                         <string key="NSValueTransformerName">NSIsNotNil</string>
                                                     </dictionary>
                                                 </binding>
@@ -149,19 +150,19 @@
                                                 <action selector="revealCurrentConfigPressed:" target="-2" id="3335"/>
                                                 <binding destination="-2" name="enabled" keyPath="self.cloverConfigPath" id="2681">
                                                     <dictionary key="options">
-                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
+                                                        <integer key="NSNullPlaceholder" value="0"/>
                                                         <integer key="NSNotApplicablePlaceholder" value="0"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="0"/>
-                                                        <integer key="NSNullPlaceholder" value="0"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
                                                         <string key="NSValueTransformerName">NSIsNotNil</string>
                                                     </dictionary>
                                                 </binding>
                                                 <binding destination="-2" name="hidden" keyPath="self.cloverConfigPath" previousBinding="2681" id="2857">
                                                     <dictionary key="options">
-                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
+                                                        <integer key="NSNullPlaceholder" value="0"/>
                                                         <integer key="NSNotApplicablePlaceholder" value="0"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="0"/>
-                                                        <integer key="NSNullPlaceholder" value="0"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
                                                         <string key="NSValueTransformerName">NSIsNil</string>
                                                     </dictionary>
                                                 </binding>
@@ -197,10 +198,10 @@
                                                 <action selector="setCurrentCloverPathPressed:" target="-2" id="2495"/>
                                                 <binding destination="-2" name="hidden" keyPath="self.cloverPath" id="3205">
                                                     <dictionary key="options">
-                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
+                                                        <integer key="NSNullPlaceholder" value="0"/>
                                                         <integer key="NSNotApplicablePlaceholder" value="0"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="0"/>
-                                                        <integer key="NSNullPlaceholder" value="0"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
                                                         <string key="NSValueTransformerName">NSIsNil</string>
                                                     </dictionary>
                                                 </binding>
@@ -340,11 +341,11 @@
                                                             <binding destination="-2" name="valuePath" keyPath="self.cloverThemeInfo.Preview" id="2680"/>
                                                             <binding destination="-2" name="enabled" keyPath="self.isUnlocked" id="1289">
                                                                 <dictionary key="options">
-                                                                    <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                                                    <integer key="NSMultipleValuesPlaceholder" value="0"/>
                                                                     <integer key="NSNotApplicablePlaceholder" value="0"/>
                                                                     <integer key="NSNoSelectionPlaceholder" value="0"/>
-                                                                    <integer key="NSMultipleValuesPlaceholder" value="0"/>
                                                                     <integer key="NSNullPlaceholder" value="0"/>
+                                                                    <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
                                                                 </dictionary>
                                                             </binding>
                                                         </connections>
@@ -1250,6 +1251,18 @@ Value:
                             <constraint firstAttribute="width" constant="143" id="3889"/>
                         </constraints>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Copyright © 2013 JrCs, kozlek. All rights reserved. " id="826">
+                            <font key="font" metaFont="miniSystem"/>
+                            <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v0E-OY-3dO">
+                        <rect key="frame" x="12" y="186" width="149" height="11"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="143" id="f5B-U9-eYL"/>
+                        </constraints>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="prefPane -" id="qpp-ZQ-2IX">
                             <font key="font" metaFont="miniSystem"/>
                             <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
