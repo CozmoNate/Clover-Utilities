@@ -742,7 +742,7 @@
 
 - (void)mainViewDidLoad
 {
-    [_versionField setStringValue:[NSString stringWithFormat:@"prefPane V%@", [self.bundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"]]];
+    [_versionField setStringValue:[NSString stringWithFormat:@"prefPane v%@", [self.bundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"]]];
     
     [Localizer localizeView:self.mainView withBunde:self.bundle];
     
