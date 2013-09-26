@@ -341,11 +341,11 @@
                                                             <binding destination="-2" name="valuePath" keyPath="self.cloverThemeInfo.Preview" id="2680"/>
                                                             <binding destination="-2" name="enabled" keyPath="self.isUnlocked" id="1289">
                                                                 <dictionary key="options">
-                                                                    <integer key="NSMultipleValuesPlaceholder" value="0"/>
+                                                                    <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
                                                                     <integer key="NSNotApplicablePlaceholder" value="0"/>
                                                                     <integer key="NSNoSelectionPlaceholder" value="0"/>
+                                                                    <integer key="NSMultipleValuesPlaceholder" value="0"/>
                                                                     <integer key="NSNullPlaceholder" value="0"/>
-                                                                    <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
                                                                 </dictionary>
                                                             </binding>
                                                         </connections>

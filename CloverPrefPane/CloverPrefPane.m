@@ -463,9 +463,16 @@
 
 -(void)performSelfUpdate
 {
-    _updater = [SUUpdater  updaterForBundle:[self bundle]];
+    NSDate *lastSelfUpdateCheck = [AnyDefaultsController getDateFromKey:CFSTR("SULastCheckTime") forAppID:(__bridge CFStringRef)([self.bundle objectForInfoDictionaryKey:@"CFBundleIdentifier"])];
     
-    [_updater performSilentUpdate:self];
+    NSLog(@"Last self update check was %@", lastSelfUpdateCheck);
+    
+    // Allows self update check every hour
+    if (!lastSelfUpdateCheck || [lastSelfUpdateCheck timeIntervalSinceNow] < - (60 * 60)) {
+        NSLog(@"Perform self update");
+        _updater = [SUUpdater  updaterForBundle:[self bundle]];
+        [_updater performSilentUpdate:self];
+    }
 }
 
 #pragma mark -
@@ -817,7 +824,11 @@
         [self setUpdatesButtonTitle:@"Checking..." isInProgress:YES];
     }
     
-    [self performSelector:@selector(performSelfUpdate) withObject:nil afterDelay:1];
+    [[NSRunLoop currentRunLoop] performSelector:@selector(performSelfUpdate)
+                                         target:self
+                                       argument:nil
+                                          order:6
+                                          modes:[NSArray arrayWithObject:@"NSDefaultRunLoopMode"]];
 }
 
 - (void) willUnselect
