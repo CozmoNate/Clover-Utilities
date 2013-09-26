@@ -1256,12 +1256,9 @@ Value:
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v0E-OY-3dO">
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="v0E-OY-3dO">
                         <rect key="frame" x="12" y="186" width="149" height="11"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="143" id="f5B-U9-eYL"/>
-                        </constraints>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="prefPane -" id="qpp-ZQ-2IX">
                             <font key="font" metaFont="miniSystem"/>
                             <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -1284,6 +1281,9 @@ Value:
                     <constraint firstAttribute="trailing" secondItem="103" secondAttribute="trailing" constant="20" symbolic="YES" id="4170"/>
                     <constraint firstItem="103" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="171" id="4171"/>
                     <constraint firstItem="108" firstAttribute="top" secondItem="103" secondAttribute="bottom" constant="8" symbolic="YES" id="5300"/>
+                    <constraint firstItem="v0E-OY-3dO" firstAttribute="leading" secondItem="825" secondAttribute="leading" id="8f1-tq-T4K"/>
+                    <constraint firstItem="v0E-OY-3dO" firstAttribute="trailing" secondItem="825" secondAttribute="trailing" id="KG9-uD-trw"/>
+                    <constraint firstItem="v0E-OY-3dO" firstAttribute="top" secondItem="113" secondAttribute="bottom" constant="8" symbolic="YES" id="oFb-6W-TAw"/>
                 </constraints>
             </view>
         </window>
