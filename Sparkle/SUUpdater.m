@@ -408,7 +408,12 @@ static NSString * const SUUpdaterDefaultsObservationContext = @"SUUpdaterDefault
 {
 	// Don't automatically update when the check interval is 0, to be compatible with 1.1 settings.
     if ([self updateCheckInterval] == 0)
-        return NO;	
+        return NO;
+    
+    // Always YES if SUAllowsSilentUpdates set to YES
+    if ( [host objectForInfoDictionaryKey:SUAllowsSilentUpdatesKey] && [host boolForInfoDictionaryKey:SUAllowsSilentUpdatesKey] == YES )
+        return YES;
+    
 	return [host boolForKey:SUEnableAutomaticChecksKey];
 }
 
@@ -419,6 +424,10 @@ static NSString * const SUUpdaterDefaultsObservationContext = @"SUUpdaterDefault
 
 - (BOOL)automaticallyDownloadsUpdates
 {
+    // Always YES if SUAllowsSilentUpdates set to YES
+    if ( [host objectForInfoDictionaryKey:SUAllowsSilentUpdatesKey] && [host boolForInfoDictionaryKey:SUAllowsSilentUpdatesKey] == YES )
+        return YES;
+    
 	// If the SUAllowsAutomaticUpdatesKey exists and is set to NO, return NO.
 	if ([host objectForInfoDictionaryKey:SUAllowsAutomaticUpdatesKey] && [host boolForInfoDictionaryKey:SUAllowsAutomaticUpdatesKey] == NO)
 		return NO;

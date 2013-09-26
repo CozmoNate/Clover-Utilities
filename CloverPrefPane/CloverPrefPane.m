@@ -807,9 +807,6 @@
     }
     
     _selfUpdater = [SUUpdater updaterForBundle:self.bundle];
-    
-    [_selfUpdater setAutomaticallyChecksForUpdates:YES];
-    [_selfUpdater setAutomaticallyDownloadsUpdates:YES];
 }
 
 - (void) willUnselect

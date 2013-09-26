@@ -32,7 +32,5 @@
 	<string>CloverPrefPane</string>
 	<key>SUAllowsSilentUpdates</key>
 	<true/>
-	<key>SUAutomaticallyUpdate</key>
-	<true/>
 </dict>
 </plist>
