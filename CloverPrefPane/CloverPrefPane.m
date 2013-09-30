@@ -805,7 +805,12 @@
     else {
         [self setUpdatesButtonTitle:@"Checking..." isInProgress:YES];
     }
-    
+
+    [self performSelector:@selector(CheckForSelfUpdates) withObject:Nil afterDelay:1.0];
+}
+
+- (void) CheckForSelfUpdates
+{
     _selfUpdater = [SUUpdater updaterForBundle:self.bundle];
 }
 
