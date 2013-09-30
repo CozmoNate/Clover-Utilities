@@ -411,7 +411,7 @@
         _cloverNvramPartition = [self getNvramKey:kCloverNVRamDisk];
     }
     
-    return _cloverNvramPartition && [_cloverNvramPartition isCaseInsensitiveLike:@"Yes"];
+    return [_cloverNvramPartition isCaseInsensitiveLike:@"Yes"];
 }
 
 -(void)setCloverEmulateNvram:(BOOL)cloverEmulateNvram
@@ -428,13 +428,13 @@
         _cloverBackupsOnDestinationVolume = [self getNvramKey:kCloverBackupDirOnDestVol];
     }
     
-    return [_cloverBackupsOnDestinationVolume isCaseInsensitiveLike:@"Yes"];
+    return [_cloverBackupsOnDestinationVolume isCaseInsensitiveLike:@"Yes"] ||[_cloverBackupsOnDestinationVolume isCaseInsensitiveLike:@"-"];
 }
 
 -(void)setCloverBackupsOnDestinationVolumeEnabled:(BOOL)cloverBackupsOnDestinationVolume
 {
     if (self.cloverBackupsOnDestinationVolumeEnabled != cloverBackupsOnDestinationVolume) {
-        _cloverBackupsOnDestinationVolume = cloverBackupsOnDestinationVolume ? @"Yes" : @"";
+        _cloverBackupsOnDestinationVolume = cloverBackupsOnDestinationVolume ? @"Yes" : @"No";
         
         [self setNvramKey:kCloverBackupDirOnDestVol value:[_cloverBackupsOnDestinationVolume UTF8String]];
     }
