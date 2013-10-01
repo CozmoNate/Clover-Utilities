@@ -46,7 +46,7 @@
         NSTimeInterval intervalFromRef = [now timeIntervalSince1970];
         
         
-        if ((scheduledCheckInterval && lastCheckTimestamp && lastCheckTimestamp + scheduledCheckInterval < intervalFromRef) || forced) {
+        if ((scheduledCheckInterval && lastCheckTimestamp && lastCheckTimestamp + scheduledCheckInterval < intervalFromRef - scheduledCheckInterval * 0.05) || forced) {
             NSLog(@"Starting updates check...");
             
             [AnyDefaultsController setKey:CFSTR(kCloverLastCheckTimestamp) forAppID:CFSTR(kCloverUpdaterIdentifier) fromDate:now];
