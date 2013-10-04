@@ -84,12 +84,21 @@
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     
     _installerPath = response.suggestedFilename;
-    
-    NSString *remoteString = [[[[[_installerPath componentsSeparatedByString:@"."] objectAtIndex:0] componentsSeparatedByString:@"_"] objectAtIndex:2] substringFromIndex:1];
+
+    NSString *remoteFilename = [[_installerPath componentsSeparatedByString:@"."] objectAtIndex:0];
+
+    if (!remoteFilename || remoteFilename.length < 7 + 4 || ![[remoteFilename substringToIndex:7] isEqualToString:@"Clover_"]) {
+        NSLog(@"Failed to retrieve remote revision, terminating...");
+        [NSApp terminate:self];
+    }
+
+    NSString *remoteString = [remoteFilename substringFromIndex:remoteFilename.length - 4];
     NSNumber *remote = [formatter numberFromString:remoteString];
 
     NSString* bootedRevision = @"-";
+
     io_registry_entry_t ioRegistryEFI = IORegistryEntryFromPath(kIOMasterPortDefault, "IODeviceTree:/efi/platform");
+
     if (ioRegistryEFI) {
         CFStringRef nameRef = CFStringCreateWithCString(kCFAllocatorDefault, "clovergui-revision", kCFStringEncodingUTF8);
         if (nameRef) {

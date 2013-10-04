@@ -887,12 +887,21 @@
     _installerFilename = response.suggestedFilename;
     
     NSLog(@"installer: %@", _installerFilename);
-    
-    NSString *remoteRevision = [[[[[_installerFilename componentsSeparatedByString:@"."] objectAtIndex:0] componentsSeparatedByString:@"_"] objectAtIndex:2] substringFromIndex:1];
-    
-    [_availableRevisionTextField setStringValue:remoteRevision];
+
+    NSString *remoteFilename = [[_installerFilename componentsSeparatedByString:@"."] objectAtIndex:0];
+
+    if (!remoteFilename || remoteFilename.length < 7 + 4 || ![[remoteFilename substringToIndex:7] isEqualToString:@"Clover_"]) {
+        [self setUpdatesButtonTitle:@"Check now" isInProgress:NO];
+        [_availableRevisionTextField setStringValue:@"-"];
+    }
+    else {
+        NSString *remoteRevision = [remoteFilename substringFromIndex:remoteFilename.length - 4];/*[[[[[_installerFilename componentsSeparatedByString:@"."] objectAtIndex:0] componentsSeparatedByString:@"_"] objectAtIndex:2] substringFromIndex:1]*/;
+        
+        [_availableRevisionTextField setStringValue:remoteRevision];
+    }
     
     [_lastUpdateTextField setStringValue:[_lastUpdateTextField.formatter stringFromDate:now]];
+
     [AnyDefaultsController setKey:CFSTR(kCloverLastCheckTimestamp) forAppID:CFSTR(kCloverUpdaterIdentifier) fromDate:now];
     
     if ([_bootedRevisionTextField intValue] < [_availableRevisionTextField intValue]) {
