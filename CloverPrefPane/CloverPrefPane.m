@@ -806,12 +806,9 @@
         [self setUpdatesButtonTitle:@"Checking..." isInProgress:YES];
     }
 
-    [self performSelector:@selector(CheckForSelfUpdates) withObject:Nil afterDelay:1.0];
-}
-
-- (void) CheckForSelfUpdates
-{
-    _selfUpdater = [SUUpdater updaterForBundle:self.bundle];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        _selfUpdater = [SUUpdater updaterForBundle:self.bundle];
+    }];
 }
 
 - (void) willUnselect

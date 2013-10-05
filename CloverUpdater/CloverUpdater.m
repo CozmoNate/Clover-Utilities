@@ -121,10 +121,14 @@
         
         [_hasUpdateTextField setStringValue:[NSString stringWithFormat:GetLocalizedString([_hasUpdateTextField stringValue]), remote.intValue, local.intValue]];
 
-        [self performSelector:@selector(showWindow:) withObject:_hasUpdateWindow afterDelay:1.0];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self showWindow:_hasUpdateWindow];
+        }];
     }
     else if (_forcedUpdate) {
-        [self performSelector:@selector(showWindow:) withObject:_noUpdatesWindow afterDelay:1.0];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self showWindow:_noUpdatesWindow];
+        }];
     }
 }
 
