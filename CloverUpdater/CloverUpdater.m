@@ -89,7 +89,7 @@
 
     if (!remoteFilename || remoteFilename.length < 7 + 4 || ![[remoteFilename substringToIndex:7] isEqualToString:@"Clover_"]) {
         NSLog(@"Failed to retrieve remote revision, terminating...");
-        [NSApp terminate:self];
+        [self terminate];
     }
 
     NSString *remoteString = [remoteFilename substringFromIndex:remoteFilename.length - 4];
@@ -193,7 +193,7 @@
 - (IBAction)doUpdate:(id)sender
 {
 //    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@kCloverLatestInstallerURL]];
-//    [NSApp terminate:self];
+//    [self terminate];
     
     if (_forcedUpdate) {
         NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString:@kCloverLatestInstallerURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20.0];
@@ -243,7 +243,7 @@
     }
 }
 
--(void)terminate
+- (void)terminate
 {
     [NSApp terminate:self];
 }

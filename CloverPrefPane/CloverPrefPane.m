@@ -797,7 +797,7 @@
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector: @selector(volumesChanged:) name:NSWorkspaceDidMountNotification object: nil];
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector: @selector(volumesChanged:) name:NSWorkspaceDidUnmountNotification object:nil];
     
-    NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString:@kCloverLatestInstallerURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20.0];
+    NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString:@kCloverLatestInstallerURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:5.0];
     
     if (![[NSURLConnection alloc]initWithRequest:request delegate:self]) {
         [_lastUpdateTextField setStringValue:@"-"];
@@ -806,9 +806,12 @@
         [self setUpdatesButtonTitle:@"Checking..." isInProgress:YES];
     }
 
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        _selfUpdater = [SUUpdater updaterForBundle:self.bundle];
-    }];
+    [self performSelectorOnMainThread:@selector(createSelfUpdater) withObject:nil waitUntilDone:NO modes:[NSArray arrayWithObjects:NSRunLoopCommonModes, nil]];
+}
+
+-(void)createSelfUpdater
+{
+    _selfUpdater = [SUUpdater updaterForBundle:self.bundle];
 }
 
 - (void) willUnselect
