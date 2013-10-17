@@ -806,12 +806,9 @@
         [self setUpdatesButtonTitle:@"Checking..." isInProgress:YES];
     }
 
-    [self performSelectorOnMainThread:@selector(createSelfUpdater) withObject:nil waitUntilDone:NO modes:[NSArray arrayWithObjects:NSRunLoopCommonModes, nil]];
-}
-
--(void)createSelfUpdater
-{
-    _selfUpdater = [SUUpdater updaterForBundle:self.bundle];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        _selfUpdater = [SUUpdater updaterForBundle:self.bundle];
+    }];
 }
 
 - (void) willUnselect
