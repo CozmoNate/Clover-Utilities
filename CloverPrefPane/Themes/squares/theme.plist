@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Author</key>
+	<string>Marian Arlt</string>
+	<key>Year</key>
+	<string>2013</string>
+	<key>Description</key>
+	<string>Minimal &amp; clean theme based on flurry iconset by David Lanham. For simplified flat Logo check the theme folder.</string>
+	<key>Theme</key>
+	<dict>
+		<key>Banner</key>
+		<string>logo_alt.png</string>
+		<key>Badges</key>
+		<dict>
+			<key>Show</key>
+			<false/>
+			<key>Inline</key>
+			<true/>
+			<key>Swap</key>
+			<false/>
+		</dict>
+		<key>Background</key>
+		<dict>
+			<key>Path</key>
+			<string>background.png</string>
+			<key>Type</key>
+			<string>Tile</string>
+		</dict>
+		<key>Font</key>
+		<dict>
+			<key>CharWidth</key>
+			<integer>10</integer>
+			<key>Path</key>
+			<string>EnvyCodeR.png</string>
+			<key>Type</key>
+			<string>Load</string>
+		</dict>
+		<key>Selection</key>
+		<dict>
+			<key>Color</key>
+			<string>0xBDBDBDFF</string>
+			<key>Big</key>
+			<string>selection_big.png</string>
+			<key>Small</key>
+			<string>selection_small.png</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
