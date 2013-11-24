@@ -14,6 +14,7 @@
     BOOL _forcedUpdate;
     NSURLConnection *_connection;
     NSURLDownload *_download;
+    NSNumber *_remoteVersion;
 }
 
 @property (assign) IBOutlet NSWindow *hasUpdateWindow;

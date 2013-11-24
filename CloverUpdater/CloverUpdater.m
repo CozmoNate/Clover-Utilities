@@ -32,21 +32,25 @@
     NSArray *args = [[NSProcessInfo processInfo] arguments];
     
     if (args && [args count] && [[args objectAtIndex:1] isEqualToString:@"update"]) {
+        [self showDockIcon];
         _installerPath = [args objectAtIndex:2];
+        [self setRemoteRevision];
         _forcedUpdate = YES;
         [self doUpdate:self];
     }
     else {
         BOOL forced = args && [args count] && [[args objectAtIndex:1] isEqualToString:@"forced"];
-        
+
+        if (forced)
+            [self showDockIcon];
+
         NSDate *now = [NSDate dateWithTimeIntervalSinceNow:0];
         
         NSTimeInterval lastCheckTimestamp = [[AnyDefaultsController getDateFromKey:CFSTR(kCloverLastCheckTimestamp) forAppID:CFSTR(kCloverUpdaterIdentifier)] timeIntervalSince1970];
         NSInteger scheduledCheckInterval = [AnyDefaultsController getIntegerFromKey:CFSTR(kCloverScheduledCheckInterval) forAppID:CFSTR(kCloverUpdaterIdentifier) withDefault:0] * 0.9;
         NSTimeInterval intervalFromRef = [now timeIntervalSince1970];
         
-        
-        if ((scheduledCheckInterval && lastCheckTimestamp && lastCheckTimestamp + scheduledCheckInterval < intervalFromRef - scheduledCheckInterval * 0.05) || forced) {
+        if ((scheduledCheckInterval && lastCheckTimestamp + scheduledCheckInterval < intervalFromRef - scheduledCheckInterval * 0.05) || forced) {
             NSLog(@"Starting updates check...");
             
             [AnyDefaultsController setKey:CFSTR(kCloverLastCheckTimestamp) forAppID:CFSTR(kCloverUpdaterIdentifier) fromDate:now];
@@ -66,7 +70,7 @@
         }
     }
     
-    // Terminate app after 10 minutes of inactivity
+    // Terminate app after 10 minutes
     [self performSelector:@selector(terminate) withObject:nil afterDelay:60 * 10];
 }
 
@@ -80,20 +84,10 @@
 {
     // Stop downloading installer
     [connection cancel];
-    
-    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-    
+
     _installerPath = response.suggestedFilename;
 
-    NSString *remoteFilename = [[_installerPath componentsSeparatedByString:@"."] objectAtIndex:0];
-
-    if (!remoteFilename || remoteFilename.length < 7 + 4 || ![[remoteFilename substringToIndex:7] isEqualToString:@"Clover_"]) {
-        NSLog(@"Failed to retrieve remote revision, terminating...");
-        [self terminate];
-    }
-
-    NSString *remoteString = [remoteFilename substringFromIndex:remoteFilename.length - 4];
-    NSNumber *remote = [formatter numberFromString:remoteString];
+    [self setRemoteRevision];
 
     NSString* bootedRevision = @"-";
 
@@ -115,11 +109,14 @@
         IOObjectRelease(ioRegistryEFI);
     }
 
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     NSNumber *local = [formatter numberFromString:bootedRevision];
-    
-    if ([remote isGreaterThan:local]) {
+    NSNumber *downloaded = [NSNumber numberWithInt:[AnyDefaultsController getIntFromKey:CFSTR(kCloverLastVersionDownloaded) forAppID:CFSTR(kCloverUpdaterIdentifier) withDefault:0]];
+    NSDate *downloadedDate = [AnyDefaultsController getDateFromKey:CFSTR(kCloverLastVersionDownloaded) forAppID:CFSTR(kCloverLastDownloadWarned)];
+
+    if ([_remoteVersion isGreaterThan:local] && ([_remoteVersion isGreaterThan:downloaded] || [[NSDate date] timeIntervalSinceDate:downloadedDate] > 60 * 60 * 24) ) {
         
-        [_hasUpdateTextField setStringValue:[NSString stringWithFormat:GetLocalizedString([_hasUpdateTextField stringValue]), remote.intValue, local.intValue]];
+        [_hasUpdateTextField setStringValue:[NSString stringWithFormat:GetLocalizedString([_hasUpdateTextField stringValue]), _remoteVersion.intValue, local.intValue]];
 
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [self showWindow:_hasUpdateWindow];
@@ -180,6 +177,10 @@
 - (void)downloadDidFinish:(NSURLDownload *)download
 {
     [[NSWorkspace sharedWorkspace] openFile:_installerPath];
+
+    [AnyDefaultsController setKey:CFSTR(kCloverLastVersionDownloaded) forAppID:CFSTR(kCloverUpdaterIdentifier) fromInteger:_remoteVersion.intValue];
+    [AnyDefaultsController setKey:CFSTR(kCloverLastDownloadWarned) forAppID:CFSTR(kCloverUpdaterIdentifier) fromDate:[NSDate date]];
+
     [self terminate];
 }
 
@@ -190,10 +191,37 @@
     [window makeKeyAndOrderFront:self];
 }
 
+- (void)showDockIcon
+{
+	ProcessSerialNumber	psn = {0, kCurrentProcess};
+	TransformProcessType(&psn, kProcessTransformToForegroundApplication);
+}
+
+- (void)setRemoteRevision
+{
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+
+    NSString *remoteFilename = [[[_installerPath lastPathComponent] componentsSeparatedByString:@"."] objectAtIndex:0];
+
+    NSLog(@"Installer path: %@", _installerPath);
+
+    if (!remoteFilename || remoteFilename.length < 7 + 4 || ![[remoteFilename substringToIndex:7] isEqualToString:@"Clover_"]) {
+        NSLog(@"Failed to retrieve remote revision, terminating...");
+        [self terminate];
+    }
+
+    NSString *remoteString = [remoteFilename substringFromIndex:remoteFilename.length - 4];
+
+    _remoteVersion = [formatter numberFromString:remoteString];
+
+}
+
 - (IBAction)doUpdate:(id)sender
 {
 //    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@kCloverLatestInstallerURL]];
 //    [self terminate];
+
+    [self showDockIcon];
     
     if (_forcedUpdate) {
         NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString:@kCloverLatestInstallerURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20.0];

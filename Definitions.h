@@ -13,6 +13,8 @@
 #define kCloverPrefpaneIdentifier       "org.kozlek.CloverPrefPane"
 #define kCloverUpdaterExecutable        "CloverUpdater.app/Contents/MacOS/CloverUpdater"
 #define kCloverLatestInstallerURL       "http://sourceforge.net/projects/cloverefiboot/files/latest/download"
+#define kCloverLastVersionDownloaded    "LastVersionDownloaded"
+#define kCloverLastDownloadWarned       "LastDownloadWarned"
 
 #define kCloverLastCheckTimestamp       "LastCheckTimestamp"
 #define kCloverScheduledCheckInterval   "ScheduledCheckInterval"
