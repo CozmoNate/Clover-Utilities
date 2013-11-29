@@ -112,9 +112,9 @@
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     NSNumber *local = [formatter numberFromString:bootedRevision];
     NSNumber *downloaded = [NSNumber numberWithInt:[AnyDefaultsController getIntFromKey:CFSTR(kCloverLastVersionDownloaded) forAppID:CFSTR(kCloverUpdaterIdentifier) withDefault:0]];
-    NSDate *downloadedDate = [AnyDefaultsController getDateFromKey:CFSTR(kCloverLastVersionDownloaded) forAppID:CFSTR(kCloverLastDownloadWarned)];
+    NSDate *downloadedDate = [AnyDefaultsController getDateFromKey:CFSTR(kCloverLastDownloadWarned) forAppID:CFSTR(kCloverUpdaterIdentifier)];
 
-    if ([_remoteVersion isGreaterThan:local] && ([_remoteVersion isGreaterThan:downloaded] || [[NSDate date] timeIntervalSinceDate:downloadedDate] > 60 * 60 * 24) ) {
+    if ([_remoteVersion isGreaterThan:local] && ([_remoteVersion isGreaterThan:downloaded] || (downloadedDate && [downloadedDate timeIntervalSinceDate:[NSDate date]] > 60 * 60 * 24)) ) {
         
         [_hasUpdateTextField setStringValue:[NSString stringWithFormat:GetLocalizedString([_hasUpdateTextField stringValue]), _remoteVersion.intValue, local.intValue]];
 
@@ -126,6 +126,9 @@
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [self showWindow:_noUpdatesWindow];
         }];
+    }
+    else {
+        [self terminate];
     }
 }
 
