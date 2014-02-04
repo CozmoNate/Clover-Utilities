@@ -20,6 +20,8 @@
 
 #import <Sparkle/Sparkle.h>
 
+#import "NSString+CloverVersion.h"
+
 #define GetLocalizedString(key) \
 [self.bundle localizedStringForKey:(key) value:@"" table:nil]
 
@@ -887,14 +889,14 @@
 
     NSString *remoteFilename = [[_installerFilename componentsSeparatedByString:@"."] objectAtIndex:0];
 
-    if (!remoteFilename || remoteFilename.length < 7 + 4 || ![[remoteFilename substringToIndex:7] isEqualToString:@"Clover_"]) {
-        [self setUpdatesButtonTitle:@"Check now" isInProgress:NO];
-        [_availableRevisionTextField setStringValue:@"-"];
+    NSUInteger remoteReveision = [remoteFilename getCloverVersion];
+
+    if (remoteReveision) {
+        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+        [_availableRevisionTextField setStringValue:[formatter stringFromNumber:[NSNumber numberWithInteger:remoteReveision]]];
     }
     else {
-        NSString *remoteRevision = [remoteFilename substringFromIndex:remoteFilename.length - 4];/*[[[[[_installerFilename componentsSeparatedByString:@"."] objectAtIndex:0] componentsSeparatedByString:@"_"] objectAtIndex:2] substringFromIndex:1]*/;
-        
-        [_availableRevisionTextField setStringValue:remoteRevision];
+        [_availableRevisionTextField setStringValue:@"-"];
     }
     
     [_lastUpdateTextField setStringValue:[_lastUpdateTextField.formatter stringFromDate:now]];

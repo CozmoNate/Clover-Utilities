@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		7E3353A318A0C35E0010F280 /* Release */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 7E3353A618A0C35E0010F280 /* Build configuration list for PBXAggregateTarget "Release" */;
+			buildPhases = (
+				7E3353A718A0C3700010F280 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Release;
+			productName = Release;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		7E1F573C17475FCE00780A84 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E1F573B17475FCE00780A84 /* SenTestingKit.framework */; };
 		7E1F573D17475FCE00780A84 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A256117434A5500E87EF8 /* Cocoa.framework */; };
@@ -20,6 +34,8 @@
 		7E27CF2D175FE5A6005438E5 /* CloverLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E27CF2C175FE5A6005438E5 /* CloverLogo.png */; };
 		7E27CF31175FE6E7005438E5 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA15D6A1743CE27006E3C1E /* IOKit.framework */; };
 		7E27CF34175FE6FE005438E5 /* CloverUpdater.app in Resources */ = {isa = PBXBuildFile; fileRef = 7E27CF0F175FE500005438E5 /* CloverUpdater.app */; };
+		7E3353AD18A0C9EA0010F280 /* NSString+CloverVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3353AC18A0C9EA0010F280 /* NSString+CloverVersion.m */; };
+		7E3353AE18A0CE2C0010F280 /* NSString+CloverVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3353AC18A0C9EA0010F280 /* NSString+CloverVersion.m */; };
 		7E3621E71778C19400510D34 /* Divider.tif in Resources */ = {isa = PBXBuildFile; fileRef = 7E3621E61778C19400510D34 /* Divider.tif */; };
 		7E44151D174AAAE60012952E /* NoPreview.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E44151C174AAAE60012952E /* NoPreview.png */; };
 		7E4A256217434A5500E87EF8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4A256117434A5500E87EF8 /* Cocoa.framework */; };
@@ -101,6 +117,8 @@
 		7E27CF22175FE500005438E5 /* CloverUpdater.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CloverUpdater.m; sourceTree = "<group>"; };
 		7E27CF2A175FE596005438E5 /* clover.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = clover.icns; sourceTree = "<group>"; };
 		7E27CF2C175FE5A6005438E5 /* CloverLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CloverLogo.png; path = CloverPrefPane/CloverLogo.png; sourceTree = SOURCE_ROOT; };
+		7E3353AB18A0C9EA0010F280 /* NSString+CloverVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CloverVersion.h"; sourceTree = "<group>"; };
+		7E3353AC18A0C9EA0010F280 /* NSString+CloverVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CloverVersion.m"; sourceTree = "<group>"; };
 		7E3621E61778C19400510D34 /* Divider.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Divider.tif; sourceTree = "<group>"; };
 		7E44151C174AAAE60012952E /* NoPreview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NoPreview.png; sourceTree = "<group>"; };
 		7E4A255E17434A5500E87EF8 /* Clover.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Clover.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -328,6 +346,8 @@
 				7E67EE601762F94A00169E7E /* AnyDefaultsController.m */,
 				7EF336FC17638142002FE7AE /* NSString+Size.h */,
 				7EF336FE17638142002FE7AE /* NSString+Size.m */,
+				7E3353AB18A0C9EA0010F280 /* NSString+CloverVersion.h */,
+				7E3353AC18A0C9EA0010F280 /* NSString+CloverVersion.m */,
 				7EF336FB17638142002FE7AE /* NSPopover+Message.h */,
 				7EF336FD17638142002FE7AE /* NSPopover+Message.m */,
 				7EAB6F4C17F34B2C007DBFB0 /* version.plist */,
@@ -435,6 +455,7 @@
 			targets = (
 				7E27CF0E175FE500005438E5 /* CloverUpdater */,
 				7E4A255D17434A5500E87EF8 /* Clover */,
+				7E3353A318A0C35E0010F280 /* Release */,
 				7E1F573917475FCE00780A84 /* Test */,
 			);
 		};
@@ -523,6 +544,19 @@
 			shellScript = "#!/bin/sh\n\nBUILDNUM=$(svnversion)\n\n# Fallback to git commits count\nif [ \"$BUILDNUM\" == \"exported\" ] || [ \"$BUILDNUM\" == \"Unversioned directory\" ]\nthen\n    BUILDNUM=$(git rev-list --count HEAD)\nfi\n\nPROJECTVER=$(/usr/libexec/PlistBuddy -c \"Print 'Version'\" \"${SOURCE_ROOT}/version.plist\")\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion ${BUILDNUM}\" \"${SOURCE_ROOT}/Binaries/${PRODUCT_NAME}.app/Contents/Info.plist\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString ${PROJECTVER}.${BUILDNUM}\" \"${SOURCE_ROOT}/Binaries/${PRODUCT_NAME}.app/Contents/Info.plist\"\n\n#/usr/libexec/PlistBuddy -c \"Add :CFBundleVersion string ${BUILDNUM}\" \"${SOURCE_ROOT}/Binaries/${PRODUCT_NAME}.app/Contents/Info.plist\"\n\n#/usr/libexec/PlistBuddy -c \"Add :CFBundleShortVersionString string ${PROJECTVER}.${BUILDNUM}\" \"${SOURCE_ROOT}/Binaries/${PRODUCT_NAME}.app/Contents/Info.plist\"";
 			showEnvVarsInLog = 0;
 		};
+		7E3353A718A0C3700010F280 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/sh\n\nfind ${SOURCE_ROOT}/Binaries/ -maxdepth 1 -type f -name \"*.zip\" -delete\nfind ${SOURCE_ROOT}/Binaries/ -maxdepth 1 -type f -name \"*.tar.gz\" -delete\nfind ${SOURCE_ROOT}/Binaries/ -maxdepth 1 -type f -name \"*.dsa\" -delete\n\nBUILDNUM=$(svnversion)\n\n# Fallback to git commits count\nif [ \"$BUILDNUM\" == \"exported\" ] || [ \"$BUILDNUM\" == \"Unversioned directory\" ]\nthen\nBUILDNUM=$(git rev-list --count HEAD)\nfi\n\nPROJECTVER=$(/usr/libexec/PlistBuddy -c \"Print 'Version'\" \"${SOURCE_ROOT}/version.plist\")\n\nAPPCASTFILE=${SOURCE_ROOT}/Appcast/cloverprefpane.xml\n\nBINARYFILE=${SOURCE_ROOT}/Binaries/${PRODUCT_NAME}.prefPane\nZIPNAME=${PRODUCT_NAME}.${PROJECTVER}.${BUILDNUM}.tar.gz\nZIPFILE=${SOURCE_ROOT}/Binaries/${ZIPNAME}\n\n#zip -qr -X $ZIPFILE $BINARYFILE\ntar -zcvf $ZIPFILE $BINARYFILE\n\nDSASIGNATURE=$(openssl dgst -sha1 -binary < ${ZIPFILE} | openssl dgst -dss1 -sign ${SOURCE_ROOT}/Appcast/dsa_priv.pem | openssl enc -base64) > ${ZIPFILE}.dsa\n\necho ${DSASIGNATURE} > ${ZIPFILE}.dsa\n\n# appcast.xml\necho '<?xml version=\"1.0\" encoding=\"utf-8\"?>' > ${APPCASTFILE}\necho '<rss version=\"2.0\" xmlns:sparkle=\"http://www.andymatuschak.org/xml-namespaces/sparkle\"  xmlns:dc=\"http://purl.org/dc/elements/1.1/\">' >> ${APPCASTFILE}\necho '<channel>' >> ${APPCASTFILE}\necho '  <title>'${PRODUCT_NAME}' Changelog</title>' >> ${APPCASTFILE}\necho '  <link>'${APPCASTFILE}'</link>' >> ${APPCASTFILE}\necho '  <description>Most recent changes with links to updates.</description>' >> ${APPCASTFILE}\necho '  <language>en</language>' >> ${APPCASTFILE}\necho '  <item>' >> ${APPCASTFILE}\necho '      <sparkle:releaseNotesLink>http://hwsensors.com/appcast/cloverprefpane.html</sparkle:releaseNotesLink>' >> ${APPCASTFILE}\necho '      <title>Version '${PROJECTVER}.${BUILDNUM}'</title>' >> ${APPCASTFILE}\necho '      <pubDate>'$(date +\"%a, %d %b %G %T %z\")'</pubDate>' >> ${APPCASTFILE}\necho '      <enclosure url=\"http://hwsensors.com/appcast/clover/'${ZIPNAME}'\" sparkle:version=\"'${BUILDNUM}'\" sparkle:shortVersionString=\"'${PROJECTVER}.${BUILDNUM}'\" sparkle:dsaSignature=\"'${DSASIGNATURE}'\" length=\"'$(stat -f %z ${ZIPFILE})'\" type=\"application/x-compress\"/>' >> ${APPCASTFILE}\necho '  </item>' >> ${APPCASTFILE}\necho '</channel>' >> ${APPCASTFILE}\necho '</rss>' >> ${APPCASTFILE}\n";
+		};
 		7EAB6F4317F33C28007DBFB0 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -534,7 +568,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\nfind ${SOURCE_ROOT}/Binaries/ -maxdepth 1 -type f -name \"*.zip\" -delete\nfind ${SOURCE_ROOT}/Binaries/ -maxdepth 1 -type f -name \"*.tar.gz\" -delete\nfind ${SOURCE_ROOT}/Binaries/ -maxdepth 1 -type f -name \"*.dsa\" -delete\n\nBUILDNUM=$(svnversion)\n\n# Fallback to git commits count\nif [ \"$BUILDNUM\" == \"exported\" ] || [ \"$BUILDNUM\" == \"Unversioned directory\" ]\nthen\n    BUILDNUM=$(git rev-list --count HEAD)\nfi\n\nPROJECTVER=$(/usr/libexec/PlistBuddy -c \"Print 'Version'\" \"${SOURCE_ROOT}/version.plist\")\n\nAPPCASTFILE=${SOURCE_ROOT}/Appcast/cloverprefpane.xml\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion ${BUILDNUM}\" \"${SOURCE_ROOT}/Binaries/${PRODUCT_NAME}.prefPane/Contents/Info.plist\"\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString ${PROJECTVER}.${BUILDNUM}\" \"${SOURCE_ROOT}/Binaries/${PRODUCT_NAME}.prefPane/Contents/Info.plist\"\n\n/usr/libexec/PlistBuddy -c \"Add :SUFeedURL string http://hwsensors.com/appcast/cloverprefpane.xml\" \"${SOURCE_ROOT}/Binaries/${PRODUCT_NAME}.prefPane/Contents/Info.plist\"\n\n/usr/libexec/PlistBuddy -c \"Add :SUPublicDSAKeyFile string dsa_pub.pem\" \"${SOURCE_ROOT}/Binaries/${PRODUCT_NAME}.prefPane/Contents/Info.plist\"\n\nBINARYFILE=${SOURCE_ROOT}/Binaries/${PRODUCT_NAME}.prefPane\nZIPNAME=${PRODUCT_NAME}.${PROJECTVER}.${BUILDNUM}.tar.gz\nZIPFILE=${SOURCE_ROOT}/Binaries/${ZIPNAME}\n\n#zip -qr -X $ZIPFILE $BINARYFILE\ntar -zcvf $ZIPFILE $BINARYFILE\n\nDSASIGNATURE=$(openssl dgst -sha1 -binary < ${ZIPFILE} | openssl dgst -dss1 -sign ${SOURCE_ROOT}/Appcast/dsa_priv.pem | openssl enc -base64) > ${ZIPFILE}.dsa\n\necho ${DSASIGNATURE} > ${ZIPFILE}.dsa\n\n# appcast.xml\necho '<?xml version=\"1.0\" encoding=\"utf-8\"?>' > ${APPCASTFILE}\necho '<rss version=\"2.0\" xmlns:sparkle=\"http://www.andymatuschak.org/xml-namespaces/sparkle\"  xmlns:dc=\"http://purl.org/dc/elements/1.1/\">' >> ${APPCASTFILE}\necho '<channel>' >> ${APPCASTFILE}\necho '  <title>'${PRODUCT_NAME}' Changelog</title>' >> ${APPCASTFILE}\necho '  <link>'${APPCASTFILE}'</link>' >> ${APPCASTFILE}\necho '  <description>Most recent changes with links to updates.</description>' >> ${APPCASTFILE}\necho '  <language>en</language>' >> ${APPCASTFILE}\necho '  <item>' >> ${APPCASTFILE}\necho '      <sparkle:releaseNotesLink>http://hwsensors.com/appcast/cloverprefpane.html</sparkle:releaseNotesLink>' >> ${APPCASTFILE}\necho '      <title>Version '${PROJECTVER}.${BUILDNUM}'</title>' >> ${APPCASTFILE}\necho '      <pubDate>'$(date +\"%a, %d %b %G %T %z\")'</pubDate>' >> ${APPCASTFILE}\necho '      <enclosure url=\"http://hwsensors.com/downloads/'${ZIPNAME}'\" sparkle:version=\"'${BUILDNUM}'\" sparkle:shortVersionString=\"'${PROJECTVER}.${BUILDNUM}'\" sparkle:dsaSignature=\"'${DSASIGNATURE}'\" length=\"'$(stat -f %z ${ZIPFILE})'\" type=\"application/x-compress\"/>' >> ${APPCASTFILE}\necho '  </item>' >> ${APPCASTFILE}\necho '</channel>' >> ${APPCASTFILE}\necho '</rss>' >> ${APPCASTFILE}";
+			shellScript = "#!/bin/sh\n\n\nBUILDNUM=$(svnversion)\n\n# Fallback to git commits count\nif [ \"$BUILDNUM\" == \"exported\" ] || [ \"$BUILDNUM\" == \"Unversioned directory\" ]\nthen\n    BUILDNUM=$(git rev-list --count HEAD)\nfi\n\nPROJECTVER=$(/usr/libexec/PlistBuddy -c \"Print 'Version'\" \"${SOURCE_ROOT}/version.plist\")\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion ${BUILDNUM}\" \"${SOURCE_ROOT}/Binaries/${PRODUCT_NAME}.prefPane/Contents/Info.plist\"\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString ${PROJECTVER}.${BUILDNUM}\" \"${SOURCE_ROOT}/Binaries/${PRODUCT_NAME}.prefPane/Contents/Info.plist\"\n\n/usr/libexec/PlistBuddy -c \"Add :SUFeedURL string http://hwsensors.com/appcast/cloverprefpane.xml\" \"${SOURCE_ROOT}/Binaries/${PRODUCT_NAME}.prefPane/Contents/Info.plist\"\n\n/usr/libexec/PlistBuddy -c \"Add :SUPublicDSAKeyFile string dsa_pub.pem\" \"${SOURCE_ROOT}/Binaries/${PRODUCT_NAME}.prefPane/Contents/Info.plist\"";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -555,6 +589,7 @@
 				7E27CF1C175FE500005438E5 /* main.m in Sources */,
 				7E27CF23175FE500005438E5 /* CloverUpdater.m in Sources */,
 				7EB5C0E51762666C00F58B4C /* Localizer.m in Sources */,
+				7E3353AD18A0C9EA0010F280 /* NSString+CloverVersion.m in Sources */,
 				7E67EE631762F94A00169E7E /* AnyDefaultsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -564,6 +599,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E4A257217434A5500E87EF8 /* CloverPrefPane.m in Sources */,
+				7E3353AE18A0CE2C0010F280 /* NSString+CloverVersion.m in Sources */,
 				7EB5C0E41762666C00F58B4C /* Localizer.m in Sources */,
 				7E67EE621762F94A00169E7E /* AnyDefaultsController.m in Sources */,
 				7EF3370117638142002FE7AE /* NSPopover+Message.m in Sources */,
@@ -691,6 +727,20 @@
 			};
 			name = Release;
 		};
+		7E3353A418A0C35E0010F280 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7E3353A518A0C35E0010F280 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		7E4A257817434A5500E87EF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -815,6 +865,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		7E3353A618A0C35E0010F280 /* Build configuration list for PBXAggregateTarget "Release" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E3353A418A0C35E0010F280 /* Debug */,
+				7E3353A518A0C35E0010F280 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		7E4A255717434A5500E87EF8 /* Build configuration list for PBXProject "CloverPrefs" */ = {
 			isa = XCConfigurationList;

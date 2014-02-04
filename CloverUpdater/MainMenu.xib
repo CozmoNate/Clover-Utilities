@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13C48" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
@@ -307,22 +307,21 @@
                 <outlet property="progressionWindow" destination="634" id="643"/>
             </connections>
         </customObject>
-        <window title="Clover Updater" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="alertPanel" id="371">
+        <window title="Clover Updater" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="alertPanel" id="371">
             <windowStyleMask key="styleMask" titled="YES"/>
             <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES" participatesInCycle="YES"/>
             <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="568" width="500" height="148"/>
+            <rect key="contentRect" x="335" y="568" width="500" height="137"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
             <view key="contentView" id="372">
-                <rect key="frame" x="0.0" y="0.0" width="500" height="148"/>
+                <rect key="frame" x="0.0" y="0.0" width="500" height="137"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="553">
-                        <rect key="frame" x="119" y="52" width="363" height="55"/>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="553">
+                        <rect key="frame" x="106" y="57" width="376" height="55"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="357" id="665"/>
-                            <constraint firstAttribute="height" constant="55" id="666"/>
+                            <constraint firstAttribute="width" constant="372" id="6op-NC-7Xl"/>
                         </constraints>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="New Clover revision %i is available - you have %i. Would you like to download newer reversion?" id="554">
                             <font key="font" metaFont="system"/>
@@ -334,7 +333,8 @@
                         <rect key="frame" x="201" y="13" width="142" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="130" id="669"/>
+                            <constraint firstAttribute="width" priority="730" constant="130" id="Qk6-sX-Ra7"/>
+                            <constraint firstAttribute="height" constant="21" id="rpe-Oa-GgM"/>
                         </constraints>
                         <buttonCell key="cell" type="push" title="Not now" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="581">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -348,7 +348,8 @@
                         <rect key="frame" x="343" y="13" width="142" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="130" id="656"/>
+                            <constraint firstAttribute="height" constant="21" id="1e9-wu-kFJ"/>
+                            <constraint firstAttribute="width" priority="730" constant="130" id="YIJ-8a-hsB"/>
                         </constraints>
                         <buttonCell key="cell" type="push" title="Update..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="585">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -362,24 +363,30 @@ DQ
                         </connections>
                     </button>
                     <imageView translatesAutoresizingMaskIntoConstraints="NO" id="615">
-                        <rect key="frame" x="20" y="31" width="80" height="97"/>
+                        <rect key="frame" x="20" y="20" width="80" height="97"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="97" id="667"/>
-                            <constraint firstAttribute="width" constant="80" id="668"/>
+                            <constraint firstAttribute="width" constant="80" id="5K5-Uc-O88"/>
+                            <constraint firstAttribute="height" constant="97" id="Qcz-JM-q7t"/>
                         </constraints>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="CloverLogo" id="616"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="top" imageScaling="proportionallyUpOrDown" image="CloverLogo" id="616"/>
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="615" firstAttribute="top" secondItem="372" secondAttribute="top" constant="20" symbolic="YES" id="657"/>
-                    <constraint firstAttribute="bottom" secondItem="580" secondAttribute="bottom" constant="20" symbolic="YES" id="658"/>
-                    <constraint firstItem="584" firstAttribute="leading" secondItem="580" secondAttribute="trailing" constant="12" symbolic="YES" id="659"/>
-                    <constraint firstAttribute="bottom" secondItem="584" secondAttribute="bottom" constant="20" symbolic="YES" id="660"/>
-                    <constraint firstItem="553" firstAttribute="trailing" secondItem="584" secondAttribute="trailing" id="661"/>
-                    <constraint firstItem="615" firstAttribute="leading" secondItem="372" secondAttribute="leading" constant="20" symbolic="YES" id="662"/>
-                    <constraint firstItem="553" firstAttribute="leading" secondItem="372" secondAttribute="leading" constant="122" id="663"/>
-                    <constraint firstItem="553" firstAttribute="centerY" secondItem="615" secondAttribute="centerY" id="664"/>
+                    <constraint firstAttribute="trailing" secondItem="584" secondAttribute="trailing" constant="21" id="43v-gO-2df"/>
+                    <constraint firstItem="553" firstAttribute="leading" secondItem="615" secondAttribute="trailing" constant="8" id="5as-ZK-GDR"/>
+                    <constraint firstItem="615" firstAttribute="leading" secondItem="372" secondAttribute="leading" constant="20" id="7dn-6U-RX1"/>
+                    <constraint firstItem="584" firstAttribute="top" secondItem="553" secondAttribute="bottom" constant="16" id="ABQ-GQ-es5"/>
+                    <constraint firstAttribute="bottom" secondItem="615" secondAttribute="bottom" constant="20" id="AEZ-JS-fd1"/>
+                    <constraint firstItem="553" firstAttribute="top" secondItem="372" secondAttribute="top" constant="25" id="E2Z-J2-Tfa"/>
+                    <constraint firstAttribute="trailing" secondItem="553" secondAttribute="trailing" constant="20" id="Hq7-IV-dgo"/>
+                    <constraint firstAttribute="bottom" secondItem="580" secondAttribute="bottom" constant="20" id="RA7-l2-Ht2"/>
+                    <constraint firstItem="580" firstAttribute="top" secondItem="553" secondAttribute="bottom" constant="16" id="XPe-MK-dL4"/>
+                    <constraint firstItem="584" firstAttribute="leading" secondItem="580" secondAttribute="trailing" constant="12" id="dRk-9u-WqB"/>
+                    <constraint firstAttribute="bottom" secondItem="584" secondAttribute="bottom" constant="20" id="ehj-jX-5lf"/>
+                    <constraint firstItem="580" firstAttribute="leading" secondItem="615" secondAttribute="trailing" priority="729" constant="107" id="hbc-zh-ORc"/>
+                    <constraint firstItem="584" firstAttribute="leading" secondItem="580" secondAttribute="trailing" constant="12" id="lp4-wB-Vy5"/>
+                    <constraint firstItem="615" firstAttribute="top" secondItem="372" secondAttribute="top" constant="20" id="n7f-EA-DLn"/>
                 </constraints>
             </view>
         </window>
@@ -387,26 +394,26 @@ DQ
             <windowStyleMask key="styleMask" titled="YES"/>
             <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES" participatesInCycle="YES"/>
             <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="539" width="480" height="148"/>
+            <rect key="contentRect" x="196" y="539" width="498" height="137"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
             <view key="contentView" id="618">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="148"/>
+                <rect key="frame" x="0.0" y="0.0" width="498" height="137"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <imageView translatesAutoresizingMaskIntoConstraints="NO" id="624">
-                        <rect key="frame" x="20" y="31" width="80" height="97"/>
+                        <rect key="frame" x="20" y="20" width="80" height="97"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="97" id="672"/>
-                            <constraint firstAttribute="width" constant="80" id="673"/>
+                            <constraint firstAttribute="height" constant="97" id="lgt-fB-trP"/>
+                            <constraint firstAttribute="width" constant="80" id="ruU-jX-jPM"/>
                         </constraints>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="CloverLogo" id="625"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="top" imageScaling="proportionallyUpOrDown" image="CloverLogo" id="625"/>
                     </imageView>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="626">
-                        <rect key="frame" x="105" y="53" width="358" height="52"/>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="626">
+                        <rect key="frame" x="106" y="60" width="376" height="52"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="52" id="670"/>
+                            <constraint firstAttribute="width" constant="372" id="Tv1-aB-0Ah"/>
                         </constraints>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="No new Clover revisions are avaliable at this time!" id="627">
                             <font key="font" metaFont="system"/>
@@ -415,10 +422,10 @@ DQ
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="628">
-                        <rect key="frame" x="334" y="13" width="132" height="32"/>
+                        <rect key="frame" x="334" y="13" width="150" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="120" id="671"/>
+                            <constraint firstAttribute="height" constant="21" id="bCu-HB-16S"/>
                         </constraints>
                         <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="629">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -433,13 +440,16 @@ DQ
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="626" secondAttribute="trailing" constant="20" symbolic="YES" id="674"/>
-                    <constraint firstAttribute="bottom" secondItem="628" secondAttribute="bottom" constant="20" symbolic="YES" id="675"/>
-                    <constraint firstAttribute="trailing" secondItem="628" secondAttribute="trailing" constant="20" symbolic="YES" id="676"/>
-                    <constraint firstItem="624" firstAttribute="centerY" secondItem="626" secondAttribute="centerY" id="677"/>
-                    <constraint firstItem="624" firstAttribute="leading" secondItem="618" secondAttribute="leading" constant="20" symbolic="YES" id="678"/>
-                    <constraint firstItem="626" firstAttribute="leading" secondItem="624" secondAttribute="trailing" constant="8" symbolic="YES" id="679"/>
-                    <constraint firstItem="624" firstAttribute="top" secondItem="618" secondAttribute="top" constant="20" symbolic="YES" id="680"/>
+                    <constraint firstAttribute="trailing" secondItem="628" secondAttribute="trailing" constant="20" id="0ed-Vv-xOS"/>
+                    <constraint firstAttribute="bottom" secondItem="624" secondAttribute="bottom" constant="20" id="762-aW-zGZ"/>
+                    <constraint firstItem="628" firstAttribute="top" secondItem="626" secondAttribute="bottom" constant="19" id="GBU-8Y-dQH"/>
+                    <constraint firstItem="624" firstAttribute="leading" secondItem="618" secondAttribute="leading" constant="20" id="KvK-Zy-9sr"/>
+                    <constraint firstItem="626" firstAttribute="leading" secondItem="624" secondAttribute="trailing" constant="8" id="PEV-CR-79g"/>
+                    <constraint firstAttribute="trailing" secondItem="626" secondAttribute="trailing" constant="18" id="YnB-Xu-cSf"/>
+                    <constraint firstItem="624" firstAttribute="top" secondItem="618" secondAttribute="top" constant="20" id="aqT-EW-QUT"/>
+                    <constraint firstAttribute="bottom" secondItem="628" secondAttribute="bottom" constant="20" id="fog-az-XVq"/>
+                    <constraint firstItem="628" firstAttribute="leading" secondItem="624" secondAttribute="trailing" priority="730" constant="240" id="wnr-US-G4u"/>
+                    <constraint firstItem="626" firstAttribute="top" secondItem="618" secondAttribute="top" constant="25" id="x1Y-sa-eee"/>
                 </constraints>
             </view>
         </window>
@@ -457,16 +467,16 @@ DQ
                         <rect key="frame" x="20" y="31" width="80" height="97"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="97" id="693"/>
-                            <constraint firstAttribute="width" constant="80" id="694"/>
+                            <constraint firstAttribute="height" constant="97" id="JFi-VH-ZEq"/>
+                            <constraint firstAttribute="width" constant="80" id="khz-Ve-VJ0"/>
                         </constraints>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="CloverLogo" id="641"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="top" imageScaling="proportionallyUpOrDown" image="CloverLogo" id="641"/>
                     </imageView>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="637">
-                        <rect key="frame" x="334" y="13" width="132" height="32"/>
+                        <rect key="frame" x="334" y="13" width="131" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="120" id="691"/>
+                            <constraint firstAttribute="height" constant="21" id="yOQ-Or-y4Y"/>
                         </constraints>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="640">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -479,25 +489,20 @@ DQ
                             <action selector="terminate:" target="-3" id="642"/>
                         </connections>
                     </button>
-                    <levelIndicator verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="644">
-                        <rect key="frame" x="120" y="61" width="340" height="16"/>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="646">
+                        <rect key="frame" x="117" y="85" width="303" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="340" id="703"/>
+                            <constraint firstAttribute="width" priority="730" constant="299" id="EFB-LO-KeZ"/>
                         </constraints>
-                        <levelIndicatorCell key="cell" editable="YES" alignment="left" maxValue="100" levelIndicatorStyle="continuousCapacity" id="645"/>
-                    </levelIndicator>
-                    <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="646">
-                        <rect key="frame" x="117" y="85" width="111" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Downloading %@" id="647">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="648">
-                        <rect key="frame" x="425" y="85" width="38" height="17"/>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="648">
+                        <rect key="frame" x="424" y="85" width="38" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Label" id="649">
                             <font key="font" metaFont="system"/>
@@ -506,24 +511,41 @@ DQ
                         </textFieldCell>
                     </textField>
                     <progressIndicator hidden="YES" maxValue="100" indeterminate="YES" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="708">
-                        <rect key="frame" x="120" y="59" width="340" height="20"/>
+                        <rect key="frame" x="120" y="59" width="339" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="339" id="fSf-WT-U45"/>
+                            <constraint firstAttribute="height" constant="18" id="qoD-0c-XDc"/>
+                        </constraints>
                     </progressIndicator>
+                    <levelIndicator verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="644">
+                        <rect key="frame" x="120" y="62" width="339" height="16"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="339" id="sBx-sv-JTj"/>
+                            <constraint firstAttribute="height" constant="16" id="sl5-JS-g9D"/>
+                        </constraints>
+                        <levelIndicatorCell key="cell" editable="YES" alignment="left" maxValue="100" levelIndicatorStyle="continuousCapacity" id="645"/>
+                    </levelIndicator>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="637" firstAttribute="top" secondItem="644" secondAttribute="bottom" constant="20" symbolic="YES" id="681"/>
-                    <constraint firstAttribute="trailing" secondItem="644" secondAttribute="trailing" constant="20" symbolic="YES" id="682"/>
-                    <constraint firstItem="646" firstAttribute="baseline" secondItem="648" secondAttribute="baseline" id="684"/>
-                    <constraint firstItem="636" firstAttribute="leading" secondItem="635" secondAttribute="leading" constant="20" symbolic="YES" id="685"/>
-                    <constraint firstAttribute="bottom" secondItem="637" secondAttribute="bottom" constant="20" symbolic="YES" id="686"/>
-                    <constraint firstAttribute="trailing" secondItem="648" secondAttribute="trailing" constant="20" symbolic="YES" id="687"/>
-                    <constraint firstItem="644" firstAttribute="top" secondItem="646" secondAttribute="bottom" constant="8" symbolic="YES" id="688"/>
-                    <constraint firstAttribute="trailing" secondItem="637" secondAttribute="trailing" constant="20" symbolic="YES" id="689"/>
-                    <constraint firstItem="636" firstAttribute="top" secondItem="635" secondAttribute="top" constant="20" symbolic="YES" id="690"/>
-                    <constraint firstItem="646" firstAttribute="leading" secondItem="644" secondAttribute="leading" id="704"/>
-                    <constraint firstItem="708" firstAttribute="centerY" secondItem="644" secondAttribute="centerY" id="715"/>
-                    <constraint firstItem="708" firstAttribute="leading" secondItem="644" secondAttribute="leading" id="716"/>
-                    <constraint firstAttribute="trailing" secondItem="708" secondAttribute="trailing" constant="20" symbolic="YES" id="717"/>
+                    <constraint firstItem="646" firstAttribute="leading" secondItem="636" secondAttribute="trailing" constant="19" id="02e-oN-vfM"/>
+                    <constraint firstAttribute="trailing" secondItem="708" secondAttribute="trailing" constant="21" id="1tH-bk-Pr6"/>
+                    <constraint firstItem="646" firstAttribute="top" secondItem="635" secondAttribute="top" constant="46" id="3E6-fV-AGk"/>
+                    <constraint firstItem="644" firstAttribute="top" secondItem="648" secondAttribute="bottom" constant="7" id="60U-V5-fwp"/>
+                    <constraint firstAttribute="trailing" secondItem="648" secondAttribute="trailing" constant="20" id="7bM-p9-6Ij"/>
+                    <constraint firstItem="636" firstAttribute="top" secondItem="635" secondAttribute="top" constant="20" id="BWb-FE-NXI"/>
+                    <constraint firstAttribute="bottom" secondItem="637" secondAttribute="bottom" constant="20" id="ECa-wB-mjl"/>
+                    <constraint firstItem="636" firstAttribute="leading" secondItem="635" secondAttribute="leading" constant="20" id="GZX-TZ-Ifg"/>
+                    <constraint firstItem="708" firstAttribute="top" secondItem="648" secondAttribute="bottom" constant="7" id="NG6-SR-6QT"/>
+                    <constraint firstItem="648" firstAttribute="leading" secondItem="646" secondAttribute="trailing" constant="8" id="Ozo-XO-XLC"/>
+                    <constraint firstItem="637" firstAttribute="top" secondItem="708" secondAttribute="bottom" constant="19" id="XjE-cG-b7n"/>
+                    <constraint firstAttribute="trailing" secondItem="637" secondAttribute="trailing" constant="21" id="d6X-FT-YhE"/>
+                    <constraint firstItem="644" firstAttribute="leading" secondItem="636" secondAttribute="trailing" constant="20" id="dLZ-wN-xet"/>
+                    <constraint firstItem="648" firstAttribute="top" secondItem="635" secondAttribute="top" constant="46" id="jUv-fV-1r4"/>
+                    <constraint firstAttribute="trailing" secondItem="644" secondAttribute="trailing" constant="21" id="jbo-et-cPc"/>
+                    <constraint firstItem="637" firstAttribute="leading" secondItem="636" secondAttribute="trailing" priority="730" constant="240" id="kBf-u2-KSw"/>
+                    <constraint firstItem="708" firstAttribute="leading" secondItem="636" secondAttribute="trailing" constant="20" id="tK2-B2-3ti"/>
                 </constraints>
             </view>
         </window>

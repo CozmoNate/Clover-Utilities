@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13C48" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
@@ -47,11 +47,8 @@
                                     </userGuides>
                                     <subviews>
                                         <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2172">
-                                            <rect key="frame" x="233" y="285" width="217" height="26"/>
+                                            <rect key="frame" x="189" y="285" width="261" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="212" id="5758"/>
-                                            </constraints>
                                             <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="2175">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="menu"/>
@@ -65,18 +62,25 @@
                                                 <binding destination="-2" name="contentObjects" keyPath="self.cloverPathsCollection.Value" previousBinding="2180" id="2453"/>
                                             </connections>
                                         </popUpButton>
-                                        <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2190">
-                                            <rect key="frame" x="62" y="290" width="168" height="17"/>
+                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2190">
+                                            <rect key="frame" x="18" y="290" width="168" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="17" id="NZe-Jq-nhZ"/>
+                                                <constraint firstAttribute="width" priority="730" constant="164" id="aef-b8-JUS"/>
+                                            </constraints>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Select bootloader location" id="2191">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <button hidden="YES" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2243">
+                                        <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2243">
                                             <rect key="frame" x="152" y="11" width="168" height="28"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="158" id="Jsx-Oi-Gxp"/>
+                                            </constraints>
                                             <buttonCell key="cell" type="push" title="Save bootloader settings..." bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2244">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="smallSystem"/>
@@ -94,9 +98,13 @@
                                                 </binding>
                                             </connections>
                                         </button>
-                                        <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2318">
-                                            <rect key="frame" x="68" y="231" width="162" height="17"/>
+                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2318">
+                                            <rect key="frame" x="18" y="231" width="168" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="17" id="UZA-Qg-6z0"/>
+                                                <constraint firstAttribute="width" priority="730" constant="158" id="lFC-vK-wa1"/>
+                                            </constraints>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Select OEM configuration" id="2319">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -104,7 +112,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2320">
-                                            <rect key="frame" x="233" y="226" width="217" height="26"/>
+                                            <rect key="frame" x="189" y="226" width="261" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="2321">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -131,7 +139,7 @@
                                             <rect key="frame" x="434" y="210" width="13" height="13"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="13" id="4146"/>
+                                                <constraint firstAttribute="height" constant="13" id="z0O-OV-2q9"/>
                                             </constraints>
                                             <contentFilters>
                                                 <ciFilter name="CIFalseColor">
@@ -172,8 +180,8 @@
                                             <rect key="frame" x="434" y="269" width="13" height="13"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="13" id="5601"/>
-                                                <constraint firstAttribute="height" constant="13" id="5606"/>
+                                                <constraint firstAttribute="width" constant="13" id="5WY-0y-LRr"/>
+                                                <constraint firstAttribute="height" constant="13" id="Ior-jY-Xfz"/>
                                             </constraints>
                                             <contentFilters>
                                                 <ciFilter name="CIFalseColor">
@@ -207,9 +215,13 @@
                                                 </binding>
                                             </connections>
                                         </button>
-                                        <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2682">
+                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2682">
                                             <rect key="frame" x="22" y="209" width="407" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="403" id="F4U-VI-aT5"/>
+                                                <constraint firstAttribute="height" constant="14" id="Q03-8I-WWn"/>
+                                            </constraints>
                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" alignment="right" title="Label" id="2683">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -220,11 +232,12 @@
                                                 <binding destination="-2" name="value" keyPath="self.cloverConfigPath" id="3195"/>
                                             </connections>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2884">
+                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2884">
                                             <rect key="frame" x="22" y="268" width="407" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="401" id="5750"/>
+                                                <constraint firstAttribute="width" constant="403" id="QIo-Vn-Mli"/>
+                                                <constraint firstAttribute="height" constant="14" id="os0-Qz-mh8"/>
                                             </constraints>
                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" alignment="right" title="Label" id="2885">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -236,12 +249,12 @@
                                                 <binding destination="-2" name="value" keyPath="self.cloverPath" id="2889"/>
                                             </connections>
                                         </textField>
-                                        <button hidden="YES" toolTip="Saves config.plist of bootloader that currently booted the system" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5128">
+                                        <button hidden="YES" toolTip="Saves config.plist of bootloader that currently booted the system" translatesAutoresizingMaskIntoConstraints="NO" id="5128">
                                             <rect key="frame" x="323" y="19" width="15" height="15"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="15" id="5129"/>
-                                                <constraint firstAttribute="width" constant="15" id="5130"/>
+                                                <constraint firstAttribute="width" constant="15" id="F1G-IX-Zgj"/>
+                                                <constraint firstAttribute="height" constant="15" id="gCD-Td-gNb"/>
                                             </constraints>
                                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSInfo" imagePosition="only" alignment="left" imageScaling="proportionallyUpOrDown" inset="2" id="5131">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -253,29 +266,32 @@
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="2172" firstAttribute="top" secondItem="2189" secondAttribute="top" constant="18" id="4034"/>
-                                        <constraint firstItem="2682" firstAttribute="top" secondItem="2332" secondAttribute="top" id="4038"/>
-                                        <constraint firstItem="2320" firstAttribute="top" secondItem="2189" secondAttribute="top" constant="77" id="4306"/>
-                                        <constraint firstItem="2884" firstAttribute="top" secondItem="2190" secondAttribute="bottom" constant="8" symbolic="YES" id="4484"/>
-                                        <constraint firstItem="2320" firstAttribute="centerY" secondItem="2318" secondAttribute="centerY" id="4521"/>
-                                        <constraint firstItem="2682" firstAttribute="top" secondItem="2318" secondAttribute="bottom" constant="8" symbolic="YES" id="4522"/>
-                                        <constraint firstItem="2190" firstAttribute="centerY" secondItem="2172" secondAttribute="centerY" id="5641"/>
-                                        <constraint firstItem="2493" firstAttribute="top" secondItem="2884" secondAttribute="top" id="5644"/>
-                                        <constraint firstItem="2493" firstAttribute="leading" secondItem="2332" secondAttribute="leading" id="5646"/>
-                                        <constraint firstItem="2493" firstAttribute="leading" secondItem="2884" secondAttribute="trailing" constant="8" symbolic="YES" id="5648"/>
-                                        <constraint firstItem="2332" firstAttribute="leading" secondItem="2682" secondAttribute="trailing" constant="8" symbolic="YES" id="5651"/>
-                                        <constraint firstItem="2320" firstAttribute="trailing" secondItem="2332" secondAttribute="trailing" id="5658"/>
-                                        <constraint firstItem="2243" firstAttribute="centerX" secondItem="2189" secondAttribute="centerX" id="5696"/>
-                                        <constraint firstItem="2243" firstAttribute="centerY" secondItem="5128" secondAttribute="centerY" id="5699"/>
-                                        <constraint firstAttribute="bottom" secondItem="2243" secondAttribute="bottom" constant="17" id="5700"/>
-                                        <constraint firstItem="5128" firstAttribute="leading" secondItem="2243" secondAttribute="trailing" constant="8" symbolic="YES" id="5701"/>
-                                        <constraint firstItem="2493" firstAttribute="trailing" secondItem="2172" secondAttribute="trailing" id="5739"/>
-                                        <constraint firstItem="2493" firstAttribute="trailing" secondItem="2320" secondAttribute="trailing" id="5745"/>
-                                        <constraint firstItem="2320" firstAttribute="leading" secondItem="2172" secondAttribute="leading" id="5749"/>
-                                        <constraint firstItem="2172" firstAttribute="leading" secondItem="2190" secondAttribute="trailing" constant="8" symbolic="YES" id="5751"/>
-                                        <constraint firstItem="2884" firstAttribute="leading" secondItem="2189" secondAttribute="leading" constant="25" id="5753"/>
-                                        <constraint firstItem="2682" firstAttribute="leading" secondItem="2884" secondAttribute="leading" id="5755"/>
-                                        <constraint firstItem="2320" firstAttribute="leading" secondItem="2318" secondAttribute="trailing" constant="8" symbolic="YES" id="5756"/>
+                                        <constraint firstItem="2172" firstAttribute="centerY" secondItem="2190" secondAttribute="centerY" id="3Ak-1l-QGN"/>
+                                        <constraint firstItem="2884" firstAttribute="leading" secondItem="2189" secondAttribute="leading" constant="24" id="3Sg-mT-HrG"/>
+                                        <constraint firstItem="2493" firstAttribute="leading" secondItem="2332" secondAttribute="leading" id="4lu-sb-KXI"/>
+                                        <constraint firstItem="2320" firstAttribute="top" secondItem="2884" secondAttribute="bottom" constant="18" id="7q5-MD-luW"/>
+                                        <constraint firstItem="2318" firstAttribute="centerY" secondItem="2320" secondAttribute="centerY" id="8fM-hI-6xj"/>
+                                        <constraint firstItem="2493" firstAttribute="leading" secondItem="2884" secondAttribute="trailing" constant="7" id="GJU-VQ-cAn"/>
+                                        <constraint firstItem="2190" firstAttribute="leading" secondItem="2189" secondAttribute="leading" constant="20" symbolic="YES" id="MBM-VH-M99"/>
+                                        <constraint firstItem="2332" firstAttribute="trailing" secondItem="2320" secondAttribute="trailing" id="O2v-wW-wNU"/>
+                                        <constraint firstItem="2493" firstAttribute="trailing" secondItem="2320" secondAttribute="trailing" id="Ona-TZ-UlN"/>
+                                        <constraint firstItem="5128" firstAttribute="leading" secondItem="2243" secondAttribute="trailing" constant="8" symbolic="YES" id="Ssd-7f-as2"/>
+                                        <constraint firstItem="2682" firstAttribute="top" secondItem="2318" secondAttribute="bottom" constant="8" symbolic="YES" id="UN1-89-Cpw"/>
+                                        <constraint firstItem="2243" firstAttribute="leading" secondItem="2189" secondAttribute="leading" constant="157" id="ZPX-d6-iBE"/>
+                                        <constraint firstItem="2172" firstAttribute="trailing" secondItem="2493" secondAttribute="trailing" id="bIS-De-cfO"/>
+                                        <constraint firstItem="2172" firstAttribute="top" secondItem="2189" secondAttribute="top" constant="18" id="fhd-7U-UZI"/>
+                                        <constraint firstItem="2172" firstAttribute="leading" secondItem="2190" secondAttribute="trailing" constant="7" id="ght-nq-sJ2"/>
+                                        <constraint firstItem="2884" firstAttribute="top" secondItem="2190" secondAttribute="bottom" constant="8" symbolic="YES" id="gro-wj-tym"/>
+                                        <constraint firstItem="2493" firstAttribute="top" secondItem="2884" secondAttribute="top" id="jhf-Zu-GBe"/>
+                                        <constraint firstItem="2243" firstAttribute="centerY" secondItem="5128" secondAttribute="centerY" id="joG-iu-YU7"/>
+                                        <constraint firstItem="2884" firstAttribute="leading" secondItem="2682" secondAttribute="leading" id="lRu-Cd-qe7"/>
+                                        <constraint firstAttribute="bottom" secondItem="2243" secondAttribute="bottom" constant="17" id="mxO-Gw-YFV"/>
+                                        <constraint firstItem="2682" firstAttribute="top" secondItem="2332" secondAttribute="top" id="oZa-VV-HYc"/>
+                                        <constraint firstItem="2884" firstAttribute="trailing" secondItem="2682" secondAttribute="trailing" id="pgI-jS-1ri"/>
+                                        <constraint firstItem="2172" firstAttribute="leading" secondItem="2320" secondAttribute="leading" id="qPx-83-Tvl"/>
+                                        <constraint firstAttribute="trailing" secondItem="2172" secondAttribute="trailing" constant="24" id="sWR-1c-De1"/>
+                                        <constraint firstItem="2318" firstAttribute="leading" secondItem="2189" secondAttribute="leading" constant="20" symbolic="YES" id="t7v-TS-pdB"/>
+                                        <constraint firstItem="2318" firstAttribute="trailing" secondItem="2190" secondAttribute="trailing" id="xR2-Zo-OlY"/>
                                     </constraints>
                                 </view>
                             </tabViewItem>
@@ -341,11 +357,11 @@
                                                             <binding destination="-2" name="valuePath" keyPath="self.cloverThemeInfo.Preview" id="2680"/>
                                                             <binding destination="-2" name="enabled" keyPath="self.isUnlocked" id="1289">
                                                                 <dictionary key="options">
-                                                                    <integer key="NSMultipleValuesPlaceholder" value="0"/>
+                                                                    <integer key="NSNullPlaceholder" value="0"/>
                                                                     <integer key="NSNotApplicablePlaceholder" value="0"/>
                                                                     <integer key="NSNoSelectionPlaceholder" value="0"/>
-                                                                    <integer key="NSNullPlaceholder" value="0"/>
                                                                     <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                                                    <integer key="NSMultipleValuesPlaceholder" value="0"/>
                                                                 </dictionary>
                                                             </binding>
                                                         </connections>

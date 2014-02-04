@@ -14,6 +14,8 @@
 #import "Localizer.h"
 #import "AnyDefaultsController.h"
 
+#import "NSString+CloverVersion.h"
+
 #define GetLocalizedString(key) \
 [[NSBundle mainBundle] localizedStringForKey:(key) value:@"" table:nil]
 
@@ -172,7 +174,7 @@
     [alert setInformativeText:error.localizedDescription];
     [alert addButtonWithTitle:GetLocalizedString(@"Ok")];
 
-    [alert beginSheetModalForWindow:_progressionWindow modalDelegate:nil didEndSelector:@selector(terminate) contextInfo:NULL];
+    [alert beginSheetModalForWindow:_progressionWindow modalDelegate:self didEndSelector:@selector(terminate) contextInfo:NULL];
     
 //    [self changeProgressionTitle:@"Download..." isInProgress:NO];
 }
@@ -202,21 +204,11 @@
 
 - (void)setRemoteRevision
 {
-    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-
     NSString *remoteFilename = [[[_installerPath lastPathComponent] componentsSeparatedByString:@"."] objectAtIndex:0];
 
     NSLog(@"Installer path: %@", _installerPath);
 
-    if (!remoteFilename || remoteFilename.length < 7 + 4 || ![[remoteFilename substringToIndex:7] isEqualToString:@"Clover_"]) {
-        NSLog(@"Failed to retrieve remote revision, terminating...");
-        [self terminate];
-    }
-
-    NSString *remoteString = [remoteFilename substringFromIndex:remoteFilename.length - 4];
-
-    _remoteVersion = [formatter numberFromString:remoteString];
-
+    _remoteVersion = [NSNumber numberWithInteger:[remoteFilename getCloverVersion]];
 }
 
 - (IBAction)doUpdate:(id)sender
