@@ -10,29 +10,29 @@
 	<string>Clover Utilities</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>74F4290B-998D-4F4B-991C-A88F971A61C3</key>
+		<key>4A96CEE75EA41B2FA50B045C973EAC41DF326875</key>
 		<string>ssh://git.code.sf.net/p/cloverutilities/code</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Clover Utilities.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>74F4290B-998D-4F4B-991C-A88F971A61C3</key>
+		<key>4A96CEE75EA41B2FA50B045C973EAC41DF326875</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>ssh://git.code.sf.net/p/cloverutilities/code</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>74F4290B-998D-4F4B-991C-A88F971A61C3</string>
+	<string>4A96CEE75EA41B2FA50B045C973EAC41DF326875</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>74F4290B-998D-4F4B-991C-A88F971A61C3</string>
+			<string>4A96CEE75EA41B2FA50B045C973EAC41DF326875</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Clover-Utilities</string>
 		</dict>

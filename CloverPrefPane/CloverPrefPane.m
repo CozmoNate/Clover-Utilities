@@ -887,7 +887,7 @@
     
     NSLog(@"installer: %@", _installerFilename);
 
-    NSString *remoteFilename = [[_installerFilename componentsSeparatedByString:@"."] objectAtIndex:0];
+    NSString *remoteFilename = [[_installerFilename lastPathComponent] stringByDeletingPathExtension];
 
     NSUInteger remoteReveision = [remoteFilename getCloverVersion];
 

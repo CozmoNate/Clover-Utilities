@@ -389,7 +389,7 @@
 			name = Test;
 			productName = Test;
 			productReference = 7E1F573A17475FCE00780A84 /* Test.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 		7E27CF0E175FE500005438E5 /* CloverUpdater */ = {
 			isa = PBXNativeTarget;

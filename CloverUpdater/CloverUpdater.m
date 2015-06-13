@@ -204,7 +204,7 @@
 
 - (void)setRemoteRevision
 {
-    NSString *remoteFilename = [[[_installerPath lastPathComponent] componentsSeparatedByString:@"."] objectAtIndex:0];
+    NSString *remoteFilename = [[_installerPath lastPathComponent] stringByDeletingPathExtension];
 
     NSLog(@"Installer path: %@", _installerPath);
 
